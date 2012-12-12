@@ -40,5 +40,5 @@ Installation
 ### TODO
 
 Write a script for the installation process.
-* Should check at the beginning, if $ZDOTDIR is set correctly (or rather, confirm the setting with the user.)
+* Should check at the beginning if $ZDOTDIR is set correctly (or rather, confirm the setting with the user).
 * Should ask which of the zshrc's to link to, maybe make a guess based on `uname -s` output.
