@@ -35,3 +35,42 @@ CRUNCH_PROMPT="$CRUNCH_BRACKET_COLOR➭ "
 # Put it all together!
 PROMPT="$CRUNCH_BRACKET_COLOR"["$CRUNCH_USER_$CRUNCH_DIR_$CRUNCH_BRACKET_COLOR"]" $CRUNCH_GIT_$CRUNCH_PROMPT%{$reset_color%}"
 RPROMPT="$CRUNCH_RVM_$CRUNCH_TIME_%{$reset_color%}"
+
+# Highlighting
+ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=white"
+
+ZSH_HIGHLIGHT_STYLES[alias]="fg=033,bold"
+ZSH_HIGHLIGHT_STYLES[builtin]="fg=111,bold"
+ZSH_HIGHLIGHT_STYLES[function]="fg=111,bold"
+ZSH_HIGHLIGHT_STYLES[command]="fg=111,bold"
+
+ZSH_HIGHLIGHT_STYLES[path]="fg=yellow,underline"
+ZSH_HIGHLIGHT_STYLES[globbing]="fg=black,bg=yellow,underline"
+
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]="fg=108,underline"
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]="fg=108,underline"
+
+ZSH_HIGHLIGHT_STYLES[reserved-word]="fg=063,bold"
+
+# The default highlight styles:
+# : ${ZSH_HIGHLIGHT_STYLES[default]:=none}
+# : ${ZSH_HIGHLIGHT_STYLES[unknown-token]:=fg=red,bold}
+# : ${ZSH_HIGHLIGHT_STYLES[reserved-word]:=fg=yellow}
+# : ${ZSH_HIGHLIGHT_STYLES[alias]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[builtin]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[function]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[command]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green,underline}
+# : ${ZSH_HIGHLIGHT_STYLES[commandseparator]:=none}
+# : ${ZSH_HIGHLIGHT_STYLES[hashed-command]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[path]:=underline}
+# : ${ZSH_HIGHLIGHT_STYLES[globbing]:=fg=blue}
+# : ${ZSH_HIGHLIGHT_STYLES[history-expansion]:=fg=blue}
+# : ${ZSH_HIGHLIGHT_STYLES[single-hyphen-option]:=none}
+# : ${ZSH_HIGHLIGHT_STYLES[double-hyphen-option]:=none}
+# : ${ZSH_HIGHLIGHT_STYLES[back-quoted-argument]:=none}
+# : ${ZSH_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=yellow}
+# : ${ZSH_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=yellow}
+# : ${ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]:=fg=cyan}
+# : ${ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]:=fg=cyan}
+# : ${ZSH_HIGHLIGHT_STYLES[assign]:=none}
