@@ -20,7 +20,7 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" $CRUNCH_GIT_DIRTY_COLOR✗"
 
 # Our elements:
 CRUNCH_TIME_="$CRUNCH_TIME_COLOR%T%{$reset_color%}"
-CRUNCH_USER_="$CRUNCH_USER_COLOR%n$CRUNCH_BRACKET_COLOR@$CRUNCH_HOST_COLOR%m$CRUNCH_BRACKET_COLOR %{$reset_color%}"
+CRUNCH_USER_="$CRUNCH_USER_COLOR%n$CRUNCH_BRACKET_COLOR@$CRUNCH_HOST_COLOR%m$CRUNCH_BRACKET_COLOR:%{$reset_color%}"
 if which rvm-prompt &> /dev/null; then
   CRUNCH_RVM_="$CRUNCH_BRACKET_COLOR‹%{$reset_color%}$CRUNCH_RVM_COLOR\${\$(~/.rvm/bin/rvm-prompt i v g)#ruby-}$CRUNCH_BRACKET_COLOR›%{$reset_color%} "
 # else
