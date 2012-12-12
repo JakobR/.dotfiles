@@ -1,6 +1,8 @@
 # my zsh theme
 # based on the crunch theme
 
+export LSCOLORS="ExfxcxdxBxegedabagacad"
+
 # Color code explanation at http://lucentbeing.com/blog/that-256-color-thing/
 CRUNCH_BRACKET_COLOR="%{[01;38;5;240m%}"
 CRUNCH_TIME_COLOR="%{[01;38;5;245m%}"
