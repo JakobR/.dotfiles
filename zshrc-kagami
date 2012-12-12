@@ -50,14 +50,8 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git osx capistrano zsh-syntax-highlighting)
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 source $ZSH/oh-my-zsh.sh
 
 # Customize aliases
 alias hashcat='/Users/Jakob/Applications/hashcat'
 alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 250'
-
-# As described on https://rvm.io/integration/zsh/
-__rvm_project_rvmrc
