@@ -10,3 +10,5 @@
 !/custom/plugins/.gitkeep
 
 /.zshrc
+
+/.zcompdump
