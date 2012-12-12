@@ -25,7 +25,7 @@ Installation
 
 5. Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh):
 
-        $ git clone git clone git://github.com/robbyrussell/oh-my-zsh.git $ZDOTDIR/oh-my-zsh
+        $ git clone git://github.com/robbyrussell/oh-my-zsh.git $ZDOTDIR/oh-my-zsh
 
 6. Install the [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugin:
 
