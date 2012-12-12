@@ -8,3 +8,5 @@
 
 /custom/plugins/*
 !/custom/plugins/.gitkeep
+
+/.zshrc
