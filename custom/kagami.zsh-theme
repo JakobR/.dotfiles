@@ -1,15 +1,16 @@
 # my zsh theme
 # based on the crunch theme
 
-CRUNCH_BRACKET_COLOR="%{$fg_bold[grey]%}"
-CRUNCH_TIME_COLOR="%{$fg_bold[grey]%}"
-CRUNCH_USER_COLOR="%{$fg_bold[red]%}"
-CRUNCH_HOST_COLOR="%{$fg_bold[blue]%}"
-CRUNCH_RVM_COLOR="%{$fg[magenta]%}"
-CRUNCH_DIR_COLOR="%{$fg_bold[yellow]%}"
-CRUNCH_GIT_BRANCH_COLOR="%{$fg[green]%}"
-CRUNCH_GIT_CLEAN_COLOR="%{$fg[green]%}"
-CRUNCH_GIT_DIRTY_COLOR="%{$fg[red]%}"
+# Color code explanation at http://lucentbeing.com/blog/that-256-color-thing/
+CRUNCH_BRACKET_COLOR="%{[01;38;5;240m%}"
+CRUNCH_TIME_COLOR="%{[01;38;5;245m%}"
+CRUNCH_USER_COLOR="%{[01;38;5;009m%}"
+CRUNCH_HOST_COLOR="%{[01;38;5;063m%}"
+CRUNCH_RVM_COLOR="%{[22;38;5;090m%}"
+CRUNCH_DIR_COLOR="%{[01;38;5;220m%}"
+CRUNCH_GIT_BRANCH_COLOR="%{[01;38;5;040m%}"
+CRUNCH_GIT_CLEAN_COLOR="%{[01;38;5;040m%}"
+CRUNCH_GIT_DIRTY_COLOR="%{[01;38;5;196m%}"
 
 # These Git variables are used by the oh-my-zsh git_prompt_info helper:
 ZSH_THEME_GIT_PROMPT_PREFIX="$CRUNCH_BRACKET_COLOR(%{$reset_color%}$CRUNCH_GIT_BRANCH_COLOR"
