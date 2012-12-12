@@ -16,7 +16,7 @@ Installation
 
 3. Clone the repository:
 
-        $ git clone https://github.com/JakobR/.zsh.git $ZDOTDIR
+        $ git clone git@github.com:JakobR/.zsh.git $ZDOTDIR
 
 4. Choose one of the zshrc files and link to it:
 
