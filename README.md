@@ -23,19 +23,16 @@ Installation
         $ cd $ZDOTDIR
         $ ln -s zshrc-kagami .zshrc
 
-5. Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh):
+5. Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and the [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugin:
 
-        $ git clone git://github.com/robbyrussell/oh-my-zsh.git $ZDOTDIR/oh-my-zsh
+        $ git submodule init
+        $ git submodule update
 
-6. Install the [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugin:
-
-        $ git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/custom/plugins/zsh-syntax-highlighting
-
-7. Set zsh as default shell (likely at a different path on other systems).
+6. Set zsh as default shell (likely at a different path on other systems). Also, you might have to add zsh to the `/etc/shells` file first.
 
         $ chsh -s /usr/local/bin/zsh
 
-8. Start/restart zsh.
+7. Start/restart zsh.
 
 ### TODO
 
@@ -43,4 +40,10 @@ Installation
   * Should check at the beginning if $ZDOTDIR is set correctly (or rather, confirm the setting with the user).
   * Should ask which of the zshrc's to link to, maybe make a guess based on `uname -s` output.
 
-* Use [git submodules](http://git-scm.com/book/en/Git-Tools-Submodules) for oh-my-zsh and zsh-syntax-highlighting.
+
+Updating
+--------
+
+    $ cd $ZDOTDIR
+    $ git pull origin master
+    $ git submodule update
