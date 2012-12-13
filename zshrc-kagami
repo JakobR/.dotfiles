@@ -53,6 +53,5 @@ plugins=(git osx capistrano zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Customize aliases
-alias ls='gls -F --color=tty'
 alias hashcat='/Users/Jakob/Applications/hashcat'
 alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 250'
