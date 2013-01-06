@@ -49,6 +49,8 @@ ZSH_HIGHLIGHT_STYLES[command]="fg=$ZSH_HIGHLIGHT_COMMAND_COLOR,bold"
 ZSH_HIGHLIGHT_STYLES[precommand]="fg=$ZSH_HIGHLIGHT_COMMAND_COLOR,bold,underline"
 ZSH_HIGHLIGHT_STYLES[commandseparator]="fg=black,bg=$ZSH_HIGHLIGHT_COMMAND_COLOR"
 
+ZSH_HIGHLIGHT_STYLES[history-expansion]="fg=white,bg=blue"
+
 ZSH_HIGHLIGHT_STYLES[path]="fg=yellow,underline"
 ZSH_HIGHLIGHT_STYLES[globbing]="fg=black,bg=yellow,underline"
 
