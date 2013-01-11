@@ -9,6 +9,9 @@ ZSH_THEME='kagami'
 # needed for homebrew
 export PATH=/usr/local/sbin:$PATH
 
+# smlnj (installed by homebrew and not linked to /usr/local)
+export PATH=$PATH:/usr/local/Cellar/smlnj/110.75/libexec/bin
+
 # needed for right postgresql version
 export PATH=/usr/local/bin:$PATH
 
