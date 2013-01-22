@@ -5,6 +5,7 @@ ZSH_CUSTOM=$ZDOTDIR/custom
 
 # Set name of the theme to load. Set to "random" for a random theme.
 ZSH_THEME='kagami'
+ZSH_THEME_NO_SPECIAL_CHARACTERS="true"
 
 # TODO: Install a recent vim and set as $EDITOR
 #alias zshconfig="$EDITOR $ZDOTDIR/.zshrc"
