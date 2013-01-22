@@ -21,7 +21,7 @@ Installation
 4. Choose one of the zshrc files and link to it:
 
         $ cd $ZDOTDIR
-        $ ln -s zshrc-kagami .zshrc
+        $ ln -s zshrc-mac .zshrc
 
 5. Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and the [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugin:
 
