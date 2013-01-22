@@ -7,7 +7,7 @@ My zsh configuration.
 Installation
 ------------
 
-1. Set the `$ZDOTDIR` variable. Add this to `/etc/zprofile`:
+1. Set the `$ZDOTDIR` variable. Add this to `/etc/zshenv`:
 
         # configuration in ~/.zsh
         export ZDOTDIR=$HOME/.zsh
