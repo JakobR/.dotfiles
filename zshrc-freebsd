@@ -7,8 +7,11 @@ ZSH_CUSTOM=$ZDOTDIR/custom
 ZSH_THEME='kagami'
 ZSH_THEME_NO_SPECIAL_CHARACTERS="true"
 
-# TODO: Install a recent vim and set as $EDITOR
-#alias zshconfig="$EDITOR $ZDOTDIR/.zshrc"
+# vi sucks, vim is awesome
+alias vi="vim"
+export EDITOR='/usr/local/bin/vim'
+
+alias zshconfig="$EDITOR $ZDOTDIR/.zshrc"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
