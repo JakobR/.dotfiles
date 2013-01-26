@@ -13,6 +13,10 @@ export EDITOR='/usr/local/bin/vim'
 
 alias zshconfig="$EDITOR $ZDOTDIR/.zshrc"
 
+# need to set locale explicitly
+# (in order for 'ls' to display unicode characters in file names)
+export LC_ALL="de_AT.UTF-8"
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
