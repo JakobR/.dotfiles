@@ -1,17 +1,22 @@
 
-# Only if not inside tmux
-if [[ -z "$TMUX" ]] then
+# Is tmux installed?
+if type tmux >/dev/null 2>/dev/null; then
 
-  jr_tmux_sessions=`tmux list-sessions 2>&1`
+  # Only if not inside tmux
+  if [[ -z "$TMUX" ]] then
 
-  # Are there any tmux sessions?
-  if [[ "$jr_tmux_sessions" != "failed to connect to server" ]] then
+    jr_tmux_sessions=`tmux list-sessions 2>&1`
 
-    # If yes, list them
-    echo "\n\033[4mActive tmux sessions:\033[0m\n$jr_tmux_sessions\n"
+    # Are there any tmux sessions?
+    if [[ "$jr_tmux_sessions" != "failed to connect to server" ]] then
+
+      # If yes, list them
+      echo "\n\033[4mActive tmux sessions:\033[0m\n$jr_tmux_sessions\n"
+    fi
+
   fi
 
-fi
+  # I often forget the "-t"
+  alias tmux-attach='tmux attach -t'
 
-# I often forget the "-t"
-alias tmux-attach='tmux attach -t'
+fi
