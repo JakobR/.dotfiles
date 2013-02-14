@@ -16,7 +16,7 @@ if type tmux >/dev/null 2>/dev/null; then
 
   fi
 
-  # I often forget the "-t"
-  alias tmux-attach='tmux attach -t'
+  # Attaches to the first unattached session. If there is no unattached session, creates a new one.
+  alias tmux-attach-or-new='jr_tmux_session=`tmux list-sessions -F "#{session_name} a=#{session_attached}" | grep " a=0\$" | head -n 1`; tmux attach -t ${jr_tmux_session% a=0} 2>/dev/null || tmux; unset jr_tmux_session'
 
 fi
