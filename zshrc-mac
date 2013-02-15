@@ -28,8 +28,6 @@ export GIT_EDITOR="/usr/local/bin/mate --name 'Git Commit Message' -w -l 1"
 alias finder-show-hidden-files='defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder && open -g /System/Library/CoreServices/Finder.app'
 alias finder-hide-hidden-files='defaults write com.apple.Finder AppleShowAllFiles NO  && killall Finder && open -g /System/Library/CoreServices/Finder.app'
 
-alias zshconfig="$EDITOR $ZDOTDIR/.zshrc"
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
