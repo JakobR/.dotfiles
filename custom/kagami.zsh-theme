@@ -4,16 +4,17 @@
 export LSCOLORS="ExfxcxdxBxegedabagacad"
 
 # Color code explanation at http://lucentbeing.com/blog/that-256-color-thing/
-KAGAMI_BRACKET_COLOR="%{[01;38;5;240m%}"
-KAGAMI_TIME_COLOR="%{[01;38;5;245m%}"
-KAGAMI_USER_COLOR="%{[01;38;5;009m%}"
-KAGAMI_ROOT_COLOR="%{[01;38;5;196m%}"
-KAGAMI_HOST_COLOR="%{[01;38;5;105m%}"
-KAGAMI_RVM_COLOR="%{[22;38;5;090m%}"
-KAGAMI_DIR_COLOR="%{[01;38;5;220m%}"
-KAGAMI_GIT_BRANCH_COLOR="%{[01;38;5;040m%}"
-KAGAMI_GIT_CLEAN_COLOR="%{[01;38;5;040m%}"
-KAGAMI_GIT_DIRTY_COLOR="%{[01;38;5;196m%}"
+KAGAMI_BRACKET_COLOR="%{[00;01;38;5;240m%}"
+KAGAMI_TIME_COLOR="%{[00;01;38;5;245m%}"
+KAGAMI_USER_COLOR="%{[00;01;38;5;009m%}"
+KAGAMI_ROOT_COLOR="%{[00;01;38;5;196m%}"
+KAGAMI_HOST_COLOR="%{[00;01;38;5;105m%}"
+KAGAMI_RVM_COLOR="%{[00;22;38;5;090m%}"
+KAGAMI_DIR_COLOR="%{[00;01;38;5;220m%}"
+KAGAMI_GIT_BRANCH_COLOR="%{[00;01;38;5;040m%}"
+KAGAMI_GIT_CLEAN_COLOR="%{[00;01;38;5;040m%}"
+KAGAMI_GIT_DIRTY_COLOR="%{[00;01;38;5;196m%}"
+KAGAMI_UNDERLINE="%{[04m%}"
 
 # Special symbols used by the prompt
 if [[ "$ZSH_THEME_NO_SPECIAL_CHARACTERS" != "true" ]] then
@@ -44,6 +45,11 @@ if [[ $UID -eq 0 ]] then
   # TODO: Maybe with black text/red background it's even more visible?
 else
   KAGAMI_PROMPT="$KAGAMI_BRACKET_COLOR$KAGAMI_SYMBOL_PROMPT "
+fi
+
+# underline host name if connected over ssh
+if [[ -n $SSH_CLIENT ]] then
+  KAGAMI_HOST_COLOR="$KAGAMI_HOST_COLOR$KAGAMI_UNDERLINE"
 fi
 
 KAGAMI_TIME_="$KAGAMI_TIME_COLOR%T%{$reset_color%}"
