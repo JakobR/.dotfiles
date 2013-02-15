@@ -7,6 +7,12 @@ ZSH_CUSTOM=$ZDOTDIR/custom
 ZSH_THEME='kagami'
 ZSH_THEME_NO_SPECIAL_CHARACTERS="true"
 
+# If connected over ssh, it's most likely with iTerm2 from the mac.
+# In that case there's no problem with special characters.
+if [[ -n $SSH_CLIENT ]] && [[ $TERM == *'256color' ]] then
+  ZSH_THEME_NO_SPECIAL_CHARACTERS="false"
+fi
+
 # vi sucks, vim is awesome
 alias vi="vim"
 export EDITOR='/usr/local/bin/vim'
