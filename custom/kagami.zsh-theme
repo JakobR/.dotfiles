@@ -3,13 +3,34 @@
 
 export LSCOLORS="ExfxcxdxBxegedabagacad"
 
-# Color code explanation at http://lucentbeing.com/blog/that-256-color-thing/
+# Color code explanation from http://lucentbeing.com/blog/that-256-color-thing/
+# The general structure of a color code is:
+#   code       :: ^[[(value)m
+#   value      :: (attributes);(foreground);(background)
+#   attributes :: attribute;attributes
+#   attribute  :: 00|01|03|04|05|07|22|23|24|25|27
+#   foreground :: 38;05;color
+#   background :: 48;05;color
+#   color      :: 000-255
+# attributes:
+#   Reset	        00
+#   Bold	        01
+#   Italic	      03
+#   Underline	    04
+#   Blink	        05
+#   Reverse	      07
+#   No Bold	      22
+#   No Italic	    23
+#   No Underline  24
+#   No Blink	    25
+#   No Reverse	  27
 KAGAMI_BRACKET_COLOR="%{[00;01;38;5;240m%}"
-KAGAMI_TIME_COLOR="%{[00;01;38;5;245m%}"
+KAGAMI_TIME_COLOR="%{[00;38;5;245m%}"
 KAGAMI_USER_COLOR="%{[00;01;38;5;009m%}"
-KAGAMI_ROOT_COLOR="%{[00;01;38;5;196m%}"
+KAGAMI_ROOT_COLOR_FG="%{[00;01;38;5;196m%}"
+KAGAMI_ROOT_COLOR_BG="%{[00;01;38;5;016;48;5;196m%}"
 KAGAMI_HOST_COLOR="%{[00;01;38;5;105m%}"
-KAGAMI_RVM_COLOR="%{[00;22;38;5;090m%}"
+KAGAMI_RVM_COLOR="%{[00;38;5;090m%}"
 KAGAMI_DIR_COLOR="%{[00;01;38;5;220m%}"
 KAGAMI_GIT_BRANCH_COLOR="%{[00;01;38;5;040m%}"
 KAGAMI_GIT_CLEAN_COLOR="%{[00;01;38;5;040m%}"
@@ -41,8 +62,8 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" $KAGAMI_GIT_DIRTY_COLOR$KAGAMI_SYMBOL_GIT_CROSS"
 
 # are we root or just a normal user?
 if [[ $UID -eq 0 ]] then
-  KAGAMI_PROMPT="$KAGAMI_ROOT_COLOR$KAGAMI_SYMBOL_ROOT "
-  KAGAMI_USER_COLOR=$KAGAMI_ROOT_COLOR
+  KAGAMI_PROMPT="$KAGAMI_ROOT_COLOR_FG$KAGAMI_SYMBOL_ROOT "
+  KAGAMI_USER_COLOR=$KAGAMI_ROOT_COLOR_BG
   # TODO: Maybe with black text/red background it's even more visible?
 else
   KAGAMI_PROMPT="$KAGAMI_BRACKET_COLOR$KAGAMI_SYMBOL_PROMPT "
