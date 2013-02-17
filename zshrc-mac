@@ -57,6 +57,8 @@ source $ZSH/oh-my-zsh.sh
 alias hashcat='/Users/Jakob/Applications/hashcat'
 alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 250'
 alias openssl='/usr/local/opt/openssl/bin/openssl'
+alias dtw='~/server/dango/transmission-web.sh -f'
+alias dtr='~/server/dango/transmission-remote.sh'
 
 # Autojump
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
