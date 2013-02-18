@@ -12,6 +12,8 @@ Installation
         # configuration in ~/.zsh
         export ZDOTDIR=$HOME/.zsh
 
+    Note: On Ubuntu, edit `/etc/zsh/zshenv` instead.
+
 2. Set the `$ZDOTDIR` variable in the current shell session (for the following commands).
 
 3. Clone the repository:
