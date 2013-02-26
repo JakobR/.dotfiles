@@ -45,3 +45,9 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+# Only if not inside tmux
+if [[ -z "$TMUX" ]] then
+  # Set iTerm tab color
+  echo -n -e "\033]6;1;bg;red;brightness;0\a\033]6;1;bg;green;brightness;150\a\033]6;1;bg;blue;brightness;0\a"
+fi
