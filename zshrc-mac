@@ -60,5 +60,10 @@ alias openssl='/usr/local/opt/openssl/bin/openssl'
 alias dtw='~/server/dango/transmission-web.sh -f'
 alias dtr='~/server/dango/transmission-remote.sh'
 
+# Directory shortcuts
+Uni=~/Documents/Uni
+CompSci=$Uni/Informatik
+Math=$Uni/Mathematik
+
 # Autojump
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
