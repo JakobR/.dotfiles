@@ -40,7 +40,7 @@ plugins=(git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Only if not inside tmux
-if [[ -z "$TMUX" ]] then
+if [[ -z "$TMUX" && "$TERM_PROGRAM" == "iTerm.app" ]] then
   # Set iTerm tab color
   echo -n -e "\033]6;1;bg;red;brightness;100\a\033]6;1;bg;green;brightness;100\a\033]6;1;bg;blue;brightness;255\a"
 fi
