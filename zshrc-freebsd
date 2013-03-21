@@ -45,11 +45,3 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-
-# Only if not inside tmux and only when connecting with iTerm
-if [[ -z "$TMUX" && "$TERM_PROGRAM" == "iTerm.app" ]] then
-  # Set iTerm tab color
-  echo -n -e "\033]6;1;bg;red;brightness;0\a\033]6;1;bg;green;brightness;150\a\033]6;1;bg;blue;brightness;0\a"
-fi
-
-# TODO: Reset color when disconnecting ssh. Is this possible? Maybe overriding 'exit'?
