@@ -1,46 +1,37 @@
-.zsh
-====
+.dotfiles
+=========
 
-My zsh configuration.
+My dotfiles managed by git.
 
 
 Installation
 ------------
 
-1. Set the `$ZDOTDIR` variable. Add this to `/etc/zshenv`:
+1. Install `zsh`, `tmux` and `vim`. Set zsh as default shell (might have to add it to `/etc/shells` first):
 
-        # configuration in ~/.zsh
-        export ZDOTDIR=$HOME/.zsh
+        $ chsh -s `which zsh`
 
-    Note: On Ubuntu, edit `/etc/zsh/zshenv` instead.
+2. Clone the repository to `~/.dotfiles`:
 
-2. Set the `$ZDOTDIR` variable in the current shell session (for the following commands).
+        $ git clone git://github.com/JakobR/.dotfiles.git $HOME/.dotfiles
 
-3. Clone the repository:
+3. Clone the submodules:
 
-        $ git clone git://github.com/JakobR/.zsh.git $ZDOTDIR
-
-4. Choose one of the zshrc files and link to it:
-
-        $ cd $ZDOTDIR
-        $ ln -s zshrc-mac .zshrc
-
-5. Install [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and the [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) plugin:
-
+        $ cd ~/.dotfiles
         $ git submodule init
         $ git submodule update
 
-6. Set zsh as default shell (likely at a different path on other systems). Also, you might have to add zsh to the `/etc/shells` file first.
+4. Set up symlinks:
 
-        $ chsh -s /usr/local/bin/zsh
+        $ ln -s ~/.dotfiles/zsh/zshrc-mac ~/.zshrc
 
-7. Start/restart zsh.
+5. Start/restart zsh.
 
 
 Updating
 --------
 
-    $ cd $ZDOTDIR
+    $ cd ~/.dotfiles
     $ git pull origin master
     $ git submodule update
 
@@ -49,5 +40,5 @@ TODO
 ----
 
 * Write a script for the installation process.
-  * Should check at the beginning if $ZDOTDIR is set correctly (or rather, confirm the setting with the user).
+  * Creates symlinks (abort if any of the files already exists, and tell the user to delete it first)
   * Should ask which of the zshrc's to link to, maybe make a guess based on `uname -s` output.
