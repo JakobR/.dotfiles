@@ -24,6 +24,7 @@ Installation
 4. Set up symlinks:
 
         $ ln -s ~/.dotfiles/zsh/zshrc-mac ~/.zshrc
+        $ ln -s ~/.dotfiles/zsh/tmux.conf ~/.tmux.conf
 
 5. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
 
