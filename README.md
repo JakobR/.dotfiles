@@ -23,9 +23,9 @@ Installation
 
 4. Set up symlinks:
 
-        $ ln -s ~/.dotfiles/zsh/zshrc     ~/.zshrc
-        $ ln -s ~/.dotfiles/zsh/tmux.conf ~/.tmux.conf
-        $ ln -s ~/.dotfiles/zsh/vimrc     ~/.vimrc
+        $ ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+        $ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
+        $ ln -s ~/.dotfiles/vimrc     ~/.vimrc
 
 5. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
 
