@@ -7,3 +7,6 @@
 [submodule "vimpager"]
 	path = vimpager
 	url = git://github.com/rkitover/vimpager.git
+[submodule "rmate"]
+	path = rmate
+	url = git://github.com/textmate/rmate.git
