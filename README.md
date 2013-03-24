@@ -23,7 +23,7 @@ Installation
 
 4. Set up symlinks:
 
-        $ ln -s ~/.dotfiles/zsh/zshrc-mac ~/.zshrc
+        $ ln -s ~/.dotfiles/zsh/zshrc     ~/.zshrc
         $ ln -s ~/.dotfiles/zsh/tmux.conf ~/.tmux.conf
         $ ln -s ~/.dotfiles/zsh/vimrc     ~/.vimrc
 
@@ -47,4 +47,3 @@ TODO
 
 * Write a script for the installation process.
   * Creates symlinks (abort if any of the files already exists, and tell the user to delete it first)
-  * Should ask which of the zshrc's to link to, maybe make a guess based on `uname -s` output.

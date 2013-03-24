@@ -1,6 +1,0 @@
-
-source $HOME/.dotfiles/zsh/zshrc-common
-
-export EDITOR='/usr/bin/vim'
-
-source $ZSH/oh-my-zsh.sh
