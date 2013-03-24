@@ -25,7 +25,11 @@ Installation
 
         $ ln -s ~/.dotfiles/zsh/zshrc-mac ~/.zshrc
 
-5. Start/restart zsh.
+5. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
+
+        AcceptEnv TERM_PROGRAM
+
+6. Start/restart zsh.
 
 
 Updating
