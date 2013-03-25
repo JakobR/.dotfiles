@@ -1,4 +1,4 @@
 
 alias l='ls -F'
-alias ll='ls -lFh'
-alias la='ls -laFh'
+alias ll='ls -lFhT'
+alias la='ls -laFhT'
