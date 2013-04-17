@@ -44,6 +44,9 @@ platform=`uname`
 if [[ $platform == 'Darwin' ]] then
   # Mac OS X configuration
 
+  # LaTeX
+  export PATH=/usr/texbin:$PATH
+
   # needed for homebrew
   export PATH=/usr/local/sbin:$PATH
 
