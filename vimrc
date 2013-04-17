@@ -7,3 +7,5 @@ filetype plugin on
 set laststatus=2
 syntax on
 set mouse=a
+set number
+set ruler
