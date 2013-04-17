@@ -13,6 +13,9 @@ fi
 # vi sucks, vim is awesome
 alias vi="vim"
 
+# disable shell-builtin "r" so I can access the "r" executable
+disable r
+
 # set locale explicitly
 export LC_ALL="en_US.UTF-8"
 
