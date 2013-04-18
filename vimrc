@@ -45,3 +45,21 @@ if &t_Co > 2 || has("gui_running")
   " TODO: Fix terminal colors before using that
   "colorscheme solarized
 endif
+
+"set autochdir
+
+" open NERDTree on the right side
+let g:NERDTreeWinPos="right"
+" open files/directories with single click
+let g:NERDTreeMouseMode=3
+
+let g:NERDTreeChDirMode=2
+
+let g:CommandTMatchWindowAtTop=1
+let g:CommandTAcceptSelectionMap = '<C-t>'
+let g:CommandTAcceptSelectionTabMap = '<CR>'
+
+" status line
+"set statusline=%f       " file path relative to CWD
+" ...
+" TODO
