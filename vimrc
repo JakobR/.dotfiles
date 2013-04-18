@@ -1,6 +1,9 @@
 set nocompatible
 set nomodeline
 
+runtime pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
 filetype on
 filetype indent on
 filetype plugin on
