@@ -26,6 +26,7 @@ Installation
         $ ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
         $ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
         $ ln -s ~/.dotfiles/vimrc     ~/.vimrc
+        $ ln -s ~/.dotfiles/gvimrc    ~/.gvimrc
 
 5. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
 
