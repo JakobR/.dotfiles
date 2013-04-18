@@ -13,26 +13,20 @@ Installation
 
 2. Clone the repository to `~/.dotfiles`:
 
-        $ git clone git://github.com/JakobR/.dotfiles.git $HOME/.dotfiles
+        $ git clone --recursive git://github.com/JakobR/.dotfiles.git $HOME/.dotfiles
 
-3. Clone the submodules:
-
-        $ cd ~/.dotfiles
-        $ git submodule init
-        $ git submodule update
-
-4. Set up symlinks:
+3. Set up symlinks:
 
         $ ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
         $ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
         $ ln -s ~/.dotfiles/vimrc     ~/.vimrc
         $ ln -s ~/.dotfiles/gvimrc    ~/.gvimrc
 
-5. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
+4. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
 
         AcceptEnv TERM_PROGRAM
 
-6. Start/restart zsh.
+5. Start/restart zsh.
 
 
 Updating
@@ -40,7 +34,7 @@ Updating
 
     $ cd ~/.dotfiles
     $ git pull origin master
-    $ git submodule update
+    $ git submodule update --recursive
 
 
 TODO
