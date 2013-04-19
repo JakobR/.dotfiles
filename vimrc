@@ -42,8 +42,7 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch       " highlight search (very useful!)
   set incsearch      " search incremently (search while typing)
 
-  " TODO: Fix terminal colors before using that
-  "colorscheme solarized
+  colorscheme solarized
 endif
 
 "set autochdir
