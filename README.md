@@ -17,12 +17,13 @@ Installation
 
 3. Set up symlinks:
 
-        $ ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
-        $ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
-        $ ln -s ~/.dotfiles/vim       ~/.vim
-        $ ln -s ~/.dotfiles/vimrc     ~/.vimrc
-        $ ln -s ~/.dotfiles/gvimrc    ~/.gvimrc
-        $ ln -s ~/.dotfiles/gitconfig ~/.gitconfig
+        $ ln -s ~/.dotfiles/zsh/zshrc        ~/.zshrc
+        $ ln -s ~/.dotfiles/tmux.conf        ~/.tmux.conf
+        $ ln -s ~/.dotfiles/vim              ~/.vim
+        $ ln -s ~/.dotfiles/vimrc            ~/.vimrc
+        $ ln -s ~/.dotfiles/gvimrc           ~/.gvimrc
+        $ ln -s ~/.dotfiles/gitconfig        ~/.gitconfig
+        $ ln -s ~/.dotfiles/gitignore-global ~/.gitignore-global
 
 4. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
 

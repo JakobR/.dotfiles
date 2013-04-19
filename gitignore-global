@@ -1,0 +1,11 @@
+# Add OS- and Editor-specific files that
+# should be ignored in every git repository
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+.tm_properties
