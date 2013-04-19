@@ -8,7 +8,7 @@ colorscheme solarized
 
 " from https://github.com/raecoo/dotfiles/blob/master/gvimrc
 if has("gui_macvim")
-  " Cmd=\ toggles NERDTree
+  " Cmd-\ toggles NERDTree
   map <D-\> :NERDTreeTabsToggle<CR>
   imap <D-\> <Esc>:NERDTreeTabsToggle<CR>
 

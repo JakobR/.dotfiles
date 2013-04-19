@@ -22,7 +22,8 @@ set wildmenu            " completion with menu
 set laststatus=2        " use 2 lines for the status bar
 set matchtime=1         " show matching bracket for 0.1 seconds
 set matchpairs+=<:>     " for html
-
+set nrformats-=octal
+set autoread            " Reload file when changed externally (but only if not yet changed in vim)
 set esckeys             " map missed escape sequences (enables keypad keys)
 set ignorecase          " case insensitive searching
 set smartcase           " but become case sensitive if you type uppercase characters
@@ -30,23 +31,35 @@ set smartindent         " smart auto indenting
 set smarttab            " smart tab handling for indenting
 set magic               " change the way backslashes are used in search patterns
 set bs=indent,eol,start " Allow backspacing over everything in insert mode
-
 set tabstop=2           " number of spaces a tab counts for
 set shiftwidth=2        " number of spaces for autoindents
 set expandtab           " insert spaces instead of tabs
-
+set shiftround
+set autoindent
+set incsearch           " search incremently (search while typing)
+set hlsearch            " highlight search (very useful!)
+set display+=lastline
+set display+=uhex
+set history=1000
+set tabpagemax=50
 set mouse=a             " use mouse
 
-" show tabs and trailing spaces (with low visibility)
-set list listchars=tab:⇥\ ,trail:·
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
+
+" show whitespace (with low visibility)
+set list
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
+  let &listchars = "tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
+endif
 let g:solarized_visibility="low"
 
 " color settings (if terminal/gui supports it)
 if &t_Co > 2 || has("gui_running")
-  syntax on          " enable colors
-  set hlsearch       " highlight search (very useful!)
-  set incsearch      " search incremently (search while typing)
-
+  syntax on
   colorscheme solarized
 endif
 
