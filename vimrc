@@ -11,6 +11,7 @@ filetype plugin on
 set background=dark
 set nowrap
 set scrolloff=2         " 2 lines above/below cursor when scrolling
+set sidescrolloff=5
 set number              " show line numbers
 set ruler               " show cursor position in status bar
 set title               " show file in titlebar
@@ -79,3 +80,24 @@ set statusline+=%y\     " filetype
 set statusline+=%c,     " cursor column
 set statusline+=%l/%L   " cursor line/total lines
 set statusline+=\ %P    " percent through file
+
+" Make Y consistent with C and D. See :help Y.
+nnoremap Y y$
+
+" from tpope/vim-sensible
+"let s:dir = has('win32') ? '$APPDATA/Vim' : match(system('uname'), "Darwin") > -1 ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
+let s:dir = '~/.vim/tmp'
+if isdirectory(expand(s:dir))
+  if &directory =~# '^\.,'
+    let &directory = expand(s:dir) . '/swap//,' . &directory
+  endif
+  if &backupdir =~# '^\.,'
+    let &backupdir = expand(s:dir) . '/backup//,' . &backupdir
+  endif
+  if exists('+undodir') && &undodir =~# '^\.\%(,\|$\)'
+    let &undodir = expand(s:dir) . '/undo//,' . &undodir
+  endif
+endif
+if exists('+undofile')
+  set undofile
+endif
