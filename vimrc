@@ -64,15 +64,18 @@ let g:CommandTAcceptSelectionTabMap = '<CR>'
 
 " status line
 " see http://got-ravings.blogspot.co.at/2008/08/vim-pr0n-making-statuslines-that-own.html
+" and http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
 set statusline=%f       " file path relative to CWD
-set statusline+=\ %m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%h      "help file flag
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%y      "filetype
-set statusline+=%{fugitive#statusline()} "git branch
-set statusline+=%=      "left/right separator
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+set statusline+=%m      " modified flag
+set statusline+=%r      " read only flag
+set statusline+=%h      " [Help] file flag
+set statusline+=%w\     " [Preview] file flag
+set statusline+=%{fugitive#statusline()}\      " git branch
+set statusline+=[%{strlen(&fenc)?&fenc:'none'} " file encoding
+set statusline+=%{&ff=='unix'?'':','.&ff}]     " file format, unless it's unix (TODO: Print that in red)
+set statusline+=%=      " left/right separator
+" set statusline+=%{rvm#statusline()}
+set statusline+=%y\     " filetype
+set statusline+=%c,     " cursor column
+set statusline+=%l/%L   " cursor line/total lines
+set statusline+=\ %P    " percent through file
