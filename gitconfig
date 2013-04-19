@@ -1,0 +1,19 @@
+[user]
+  name = Jakob Rath
+  email = git@jakobrath.eu
+[color]
+  ui = true
+[core]
+  excludesfile = ~/.gitignore-global
+  pager = less
+[merge "gemfilelock"]
+  name = relocks the gemfile.lock
+  driver = bundle install
+[alias]
+  st = status
+  last = log --decorate -1 HEAD
+  ld = log --decorate --pretty=oneline --abbrev-commit
+[push]
+  default = simple
+[include]
+  path = ~/.gitconfig.local

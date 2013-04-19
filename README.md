@@ -22,6 +22,7 @@ Installation
         $ ln -s ~/.dotfiles/vim       ~/.vim
         $ ln -s ~/.dotfiles/vimrc     ~/.vimrc
         $ ln -s ~/.dotfiles/gvimrc    ~/.gvimrc
+        $ ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
 4. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
 
