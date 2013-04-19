@@ -65,7 +65,8 @@ if [[ $platform == 'Darwin' ]] then
 
   # TextMate is awesome
   export EDITOR='/usr/local/bin/mate -w'
-  export GIT_EDITOR="/usr/local/bin/mate --name 'Git Commit Message' -w -l 1"
+  # but stay in console for git commit messages
+  export GIT_EDITOR='/usr/local/bin/vim'
 
   # Show hidden files in Finder
   alias finder-show-hidden-files='defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder && open -g /System/Library/CoreServices/Finder.app'
