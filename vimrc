@@ -36,6 +36,10 @@ set expandtab           " insert spaces instead of tabs
 
 set mouse=a             " use mouse
 
+" show tabs and trailing spaces (with low visibility)
+set list listchars=tab:⇥\ ,trail:·
+let g:solarized_visibility="low"
+
 " color settings (if terminal/gui supports it)
 if &t_Co > 2 || has("gui_running")
   syntax on          " enable colors
