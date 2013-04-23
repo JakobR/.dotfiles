@@ -5,7 +5,6 @@
   ui = true
 [core]
   excludesfile = ~/.gitignore-global
-  pager = less
 [merge "gemfilelock"]
   name = relocks the gemfile.lock
   driver = bundle install
