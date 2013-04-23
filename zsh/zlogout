@@ -1,0 +1,7 @@
+# "Reset" iTerm tab color
+# Real reset is not (yet) possible, but this is close enough
+#
+# Only if not inside tmux and only when connecting with iTerm
+if [[ -z "$TMUX" && "$TERM_PROGRAM" == "iTerm.app" ]] then
+  echo -n -e "\033]6;1;bg;red;brightness;150\a\033]6;1;bg;green;brightness;150\a\033]6;1;bg;blue;brightness;150\a"
+fi

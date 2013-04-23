@@ -1,4 +1,3 @@
-
 # Set iTerm tab color.
 #
 # Only if not inside tmux and only when connecting with iTerm
@@ -12,7 +11,3 @@ if [[ -z "$TMUX" && "$TERM_PROGRAM" == "iTerm.app" ]] then
     echo -n -e "\033]6;1;bg;red;brightness;190\a\033]6;1;bg;green;brightness;50\a\033]6;1;bg;blue;brightness;50\a"
   fi
 fi
-
-# TODO: Reset color when disconnecting ssh.
-# How is this possible? Maybe overriding 'exit'?
-# Could also set the color not only on connect, but every time the prompt is drawn.
