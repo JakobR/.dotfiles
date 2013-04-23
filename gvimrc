@@ -11,6 +11,10 @@ if has("gui_macvim")
   " Cmd-\ toggles NERDTree
   map <D-\> :NERDTreeTabsToggle<CR>
   imap <D-\> <Esc>:NERDTreeTabsToggle<CR>
+  " Cmd-\ is frequently broken, but I am unable to reproduce it consistently
+  " Use Cmd=' as alternative
+  map <D-'> :NERDTreeTabsToggle<CR>
+  imap <D-'> <Esc>:NERDTreeTabsToggle<CR>
 
   " Re-open NERDTree at current directory
 "  map <D-|> :NERDTree\ .<CR>
@@ -20,6 +24,14 @@ if has("gui_macvim")
   macmenu &File.New\ Tab key=<D-T>
   map <D-t> :CommandT<CR>
   imap <D-t> <Esc>:CommandT<CR>
+
+  " Command-/ to toggle comments
+  map <D-/> <plug>NERDCommenterToggle<CR>
+  imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
+
+  " Command-][ to increase/decrease indentation
+  vmap <D-]> >gv
+  vmap <D-[> <gv
 
   " Map Command-# to switch tabs
   map  <D-0> 0gt
