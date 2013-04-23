@@ -43,6 +43,8 @@ set display+=uhex
 set history=1000
 set tabpagemax=50
 set mouse=a             " use mouse
+set ttimeout
+set ttimeoutlen=50
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
@@ -113,4 +115,10 @@ if isdirectory(expand(s:dir))
 endif
 if exists('+undofile')
   set undofile
+endif
+
+" Cursor shape in iTerm2
+if !has("gui_running") && ($TERM_PROGRAM ==# 'iTerm.app')
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
