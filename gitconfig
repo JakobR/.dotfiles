@@ -11,7 +11,7 @@
 [alias]
   st = status
   last = log --decorate -1 HEAD
-  ld = log --decorate --pretty=oneline --abbrev-commit
+  ld = -c 'core.pager=less -S' log --decorate --pretty=oneline --abbrev-commit
 [push]
   default = simple
 [include]
