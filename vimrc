@@ -130,3 +130,6 @@ if !has("gui_running") && ($TERM_PROGRAM ==# 'iTerm.app')
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
   endif
 endif
+
+" tab switching is too slow otherwise
+let g:gitgutter_eager = 0
