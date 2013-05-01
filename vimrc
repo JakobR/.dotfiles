@@ -1,12 +1,18 @@
 set nocompatible
 set nomodeline
 
+" To disable a plugin, add it's bundle name to the following list
+let g:pathogen_disabled = []
+" Use CtrlP instead of CommandT plugin
+call add(g:pathogen_disabled, 'command-t')
+" Disable these plugins until I have time to configure them properly
+call add(g:pathogen_disabled, 'neocomplcache')
+call add(g:pathogen_disabled, 'syntastic')
+
 runtime pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-filetype on
-filetype indent on
-filetype plugin on
+filetype plugin indent on
 
 set background=dark
 set nowrap
@@ -78,6 +84,16 @@ let g:CommandTMatchWindowAtTop=1
 let g:CommandTAcceptSelectionMap = '<C-t>'
 let g:CommandTAcceptSelectionTabMap = '<CR>'
 
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_max_height = 15
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+
+let g:neocomplcache_enable_at_startup = 1
+
 " status line
 " see http://got-ravings.blogspot.co.at/2008/08/vim-pr0n-making-statuslines-that-own.html
 " and http://stackoverflow.com/questions/5375240/a-more-useful-statusline-in-vim
@@ -133,3 +149,8 @@ endif
 
 " tab switching is too slow otherwise
 let g:gitgutter_eager = 0
+
+" TODO:
+" Look more closely at spf13
+" https://github.com/spf13/spf13-vim
+" https://github.com/spf13/snipmate-snippets

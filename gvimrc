@@ -20,10 +20,10 @@ if has("gui_macvim")
 "  map <D-|> :NERDTree\ .<CR>
 "  imap <D-|> <Esc>:NERDTree\ .<CR>
 
-  " Command-T for CommandT
+  " Command-T for CtrlP
   macmenu &File.New\ Tab key=<D-T>
-  map <D-t> :CommandT<CR>
-  imap <D-t> <Esc>:CommandT<CR>
+  map <D-t> :CtrlP<CR>
+  imap <D-t> <Esc>:CtrlP<CR>
 
   " Command-/ to toggle comments
   map <D-/> <plug>NERDCommenterToggle<CR>
