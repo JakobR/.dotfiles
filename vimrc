@@ -3,8 +3,6 @@ set nomodeline
 
 " To disable a plugin, add it's bundle name to the following list
 let g:pathogen_disabled = []
-" Use CtrlP instead of CommandT plugin
-call add(g:pathogen_disabled, 'command-t')
 " Disable these plugins until I have time to configure them properly
 call add(g:pathogen_disabled, 'neocomplcache')
 call add(g:pathogen_disabled, 'syntastic')
@@ -79,10 +77,6 @@ let g:NERDTreeWinPos="right"
 let g:NERDTreeMouseMode=3
 
 let g:NERDTreeChDirMode=2
-
-let g:CommandTMatchWindowAtTop=1
-let g:CommandTAcceptSelectionMap = '<C-t>'
-let g:CommandTAcceptSelectionTabMap = '<CR>'
 
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
