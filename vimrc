@@ -154,3 +154,12 @@ let g:gitgutter_eager = 0
 " Look more closely at spf13
 " https://github.com/spf13/spf13-vim
 " https://github.com/spf13/snipmate-snippets
+
+" TODO:
+" Configure vim for Objective-C and Cocoa development
+" http://stackoverflow.com/a/11550394
+" https://github.com/Rip-Rip/clang_complete
+" https://github.com/msanders/cocoa.vim
+" https://github.com/b4winckler/vim-objc
+" https://github.com/eraserhd/objective-vim/
+" http://objvimmer.com/blog/2012/12/05/getting-started-with-ios-development-with-vim/
