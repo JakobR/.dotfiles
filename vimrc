@@ -41,6 +41,10 @@ set mouse=a             " use mouse
 set ttimeout
 set ttimeoutlen=50
 
+" Use two spaces to separate sentences
+" See http://stevelosh.com/blog/2012/10/why-i-two-space/
+set cpo+=J
+
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
