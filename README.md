@@ -26,11 +26,15 @@ Installation
         $ ln -s ~/.dotfiles/gitconfig        ~/.gitconfig
         $ ln -s ~/.dotfiles/gitignore-global ~/.gitignore-global
 
-4. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
+4. Set up vim bundles:
+
+        $ vim -u ~/.dotfiles/bundles.vim +BundleInstall +qall
+
+5. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
 
         AcceptEnv TERM_PROGRAM
 
-5. Start/restart zsh.
+6. Start/restart zsh.
 
 
 Updating

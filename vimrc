@@ -1,14 +1,8 @@
 set nocompatible
 set nomodeline
 
-" To disable a plugin, add it's bundle name to the following list
-let g:pathogen_disabled = []
-" Disable these plugins until I have time to configure them properly
-call add(g:pathogen_disabled, 'neocomplcache')
-call add(g:pathogen_disabled, 'syntastic')
-
-runtime pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+" Load bundles
+source $HOME/.dotfiles/bundles.vim
 
 filetype plugin indent on
 
