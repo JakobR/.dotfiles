@@ -70,3 +70,8 @@ set guioptions-=T
 
 " Scrollbar on the left side is annoying
 set guioptions-=L
+
+
+" Disable modeline (security issue)
+" This should be the last line
+set nomodeline

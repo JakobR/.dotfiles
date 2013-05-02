@@ -1,6 +1,3 @@
-set nocompatible
-set nomodeline
-
 " Load bundles
 source $HOME/.dotfiles/bundles.vim
 
@@ -151,3 +148,8 @@ let g:gitgutter_eager = 0
 " https://github.com/b4winckler/vim-objc
 " https://github.com/eraserhd/objective-vim/
 " http://objvimmer.com/blog/2012/12/05/getting-started-with-ios-development-with-vim/
+
+
+" Disable modeline (security issue)
+" This should be the last line
+set nomodeline
