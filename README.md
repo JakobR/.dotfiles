@@ -37,6 +37,11 @@ Installation
 6. Start/restart zsh.
 
 
+### Additional steps on Mac OS X
+
+1. Run `osx.sh`.
+
+
 Updating
 --------
 
