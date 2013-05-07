@@ -40,22 +40,21 @@ Installation
 ### Additional steps on Mac OS X
 
 1. Install some additional software:
-
     * [PCKeyboardHack](http://pqrs.org/macosx/keyremap4macbook/pckeyboardhack.html.en)
     * [KeyRemap4MacBook](http://pqrs.org/macosx/keyremap4macbook/index.html.en)
     * [Slate](https://github.com/jigish/slate)
 
 2. Additional configuration steps:
-
     * In `System Preferences / Keyboard / Modifier Keys`, set Caps Lock to "No Action".
     * In PCKeyboardHack, map Caps Lock to "80" (F19).
     * Create symlink for KeyRemap4MacBook's `private.xml` file:
-
-              $ ln -sf ~/.dotfiles/KeyRemap4MacBook/private.xml ~/Library/Application\ Support/KeyRemap4MacBook/private.xml
-
+        ```
+          $ ln -sf ~/.dotfiles/KeyRemap4MacBook/private.xml ~/Library/Application\ Support/KeyRemap4MacBook/private.xml
+        ```
     * Create symlink for Slate configuration:
-
-              $ ln -s ~/.dotfiles/slate.js ~/.slate.js
+        ```
+          $ ln -s ~/.dotfiles/slate.js ~/.slate.js
+        ```
 
 3. Run `osx.sh`.
 
