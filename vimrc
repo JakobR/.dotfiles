@@ -66,6 +66,9 @@ endif
 
 "set autochdir
 
+" Enable wrapping in markdown
+autocmd FileType markdown setlocal wrap
+
 " open NERDTree on the right side
 let g:NERDTreeWinPos="right"
 " open files/directories with single click
