@@ -67,7 +67,7 @@ endif
 "set autochdir
 
 " Enable wrapping in markdown
-autocmd FileType markdown setlocal wrap
+autocmd FileType markdown setlocal wrap nolist linebreak
 
 " open NERDTree on the right side
 let g:NERDTreeWinPos="right"
