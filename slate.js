@@ -29,10 +29,15 @@ slate.bind(hyper("right"), slate.operation("focus", {"direction": "right"}));
 slate.bind(hyper("up"),    slate.operation("focus", {"direction": "up"}));
 slate.bind(hyper("down"),  slate.operation("focus", {"direction": "down"}));
 
+// TODO:
+// Custom operation: Launch app when not running, focus when it is running
+// And when it's already focused? Switching windows inside app might be most useful (there's Cmd+` for this, but it's harder to reach)
 slate.bind(hyper("d"), slate.operation("focus", {"app": "Finder"}));
+slate.bind(hyper("p"), slate.operation("focus", {"app": "Preview"}));
 
 //slate.config("windowHintsIgnoreHiddenWindows", false);
 //slate.config("windowHintsShowIcons", true);
+slate.config("focusPreferSameApp", false);
 
 // direction: 0=left, 1=top, 2=right, 3=bottom
 var tolerance = function(win, direction) {
