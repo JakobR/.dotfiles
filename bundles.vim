@@ -13,6 +13,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-unimpaired'
 
 Bundle 'kien/ctrlp.vim'
 Bundle 'myusuf3/numbers.vim'
@@ -39,7 +40,9 @@ Bundle 'othree/html5.vim'
 " More interesting bundles to check out:
 " https://github.com/tpope/vim-commentary
 " https://github.com/tomtom/tcomment_vim
-" https://github.com/tpope/vim-unimpaired
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bundle 'kana/vim-smartinput'
+" Bundle 'mattn/zencoding-vim'
+" https://github.com/terryma/vim-multiple-cursors
 
 filetype plugin indent on     " required!
