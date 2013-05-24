@@ -40,7 +40,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting zaw)
 
 # Platform-specific configuration
 platform=`uname`
@@ -103,3 +103,15 @@ elif [[ $platform == 'Linux' ]] then
 fi
 
 source $ZSH/oh-my-zsh.sh
+
+# Configure zaw
+bindkey '^R' zaw-history
+bindkey -M filterselect '^R' down-line-or-history
+bindkey -M filterselect '^S' up-line-or-history
+bindkey -M filterselect '^E' accept-search
+
+#zstyle ':filter-select:highlight' matched fg=green
+zstyle ':filter-select' max-lines 15
+zstyle ':filter-select' rotate-list yes
+zstyle ':filter-select' case-insensitive yes
+zstyle ':filter-select' extended-search yes # see https://github.com/zsh-users/zaw for explanation
