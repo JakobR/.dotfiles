@@ -33,6 +33,8 @@ Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'othree/html5.vim'
 
+Bundle 'vim-scripts/abnf'
+
 " Disable these bundles until I have time to configure them properly
 "Bundle 'scrooloose/syntastic'
 "Bundle 'Shougo/neocomplcache'
