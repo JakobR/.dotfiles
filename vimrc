@@ -66,8 +66,8 @@ endif
 
 "set autochdir
 
-" Enable wrapping in markdown
-autocmd FileType markdown setlocal wrap nolist linebreak
+" Enable wrapping in markdown and text files
+autocmd FileType markdown,text setlocal wrap nolist linebreak
 " TODO: http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
 
 " open NERDTree on the right side
