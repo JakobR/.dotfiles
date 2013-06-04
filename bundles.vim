@@ -31,7 +31,6 @@ Bundle 'tpope/vim-markdown'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
-Bundle 'othree/html5.vim'
 
 Bundle 'vim-scripts/abnf'
 

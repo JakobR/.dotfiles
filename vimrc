@@ -70,6 +70,11 @@ endif
 autocmd FileType markdown,text setlocal wrap nolist linebreak
 " TODO: http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
 
+" HTML indentation
+let g:html_indent_inctags = "body,head,li"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+
 " open NERDTree on the right side
 let g:NERDTreeWinPos="right"
 " open files/directories with single click
