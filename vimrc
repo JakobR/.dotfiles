@@ -66,9 +66,53 @@ endif
 
 "set autochdir
 
+" Functions to enable/disable wrapping
+function EnableWrap()
+  if !&wrap
+    echo "Wrap ON"
+    setlocal wrap linebreak nolist
+    "set virtualedit=
+    "setlocal display+=lastline
+    noremap  <buffer> <silent> <Up>   gk
+    noremap  <buffer> <silent> <Down> gj
+    noremap  <buffer> <silent> <Home> g<Home>
+    noremap  <buffer> <silent> <End>  g<End>
+    inoremap <buffer> <silent> <Up>   <C-o>gk
+    inoremap <buffer> <silent> <Down> <C-o>gj
+    inoremap <buffer> <silent> <Home> <C-o>g<Home>
+    inoremap <buffer> <silent> <End>  <C-o>g<End>
+  endif
+endfunction
+
+function DisableWrap()
+  if &wrap
+    echo "Wrap OFF"
+    setlocal nowrap
+    "set virtualedit=all
+    silent! nunmap <buffer> <Up>
+    silent! nunmap <buffer> <Down>
+    silent! nunmap <buffer> <Home>
+    silent! nunmap <buffer> <End>
+    silent! iunmap <buffer> <Up>
+    silent! iunmap <buffer> <Down>
+    silent! iunmap <buffer> <Home>
+    silent! iunmap <buffer> <End>
+  end
+endfunction
+
+function ToggleWrap()
+  if &wrap
+    call DisableWrap()
+  else
+    call EnableWrap()
+  endif
+endfunction
+
+" Toggle wrapping with <Leader>w
+noremap <silent> <Leader>w :call ToggleWrap()<CR>
+
 " Enable wrapping in markdown and text files
-autocmd FileType markdown,text setlocal wrap nolist linebreak
-" TODO: http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
+autocmd FileType markdown,text silent call EnableWrap()
 
 " HTML indentation
 let g:html_indent_inctags = "body,head,li"
