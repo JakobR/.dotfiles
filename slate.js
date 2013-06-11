@@ -69,6 +69,11 @@ var isWindowOnRightHalf = function(win) {
 }
 
 var cycleLeft = function(win) {
+  if (win == undefined) {
+    // this check is true for both undefined and null
+    // this happens for example if the spotlight text field is focused
+    return;
+  }
   if (isWindowOnLeftHalf(win)) {
     var currentScreen = win.screen().id();
     var targetScreen = currentScreen - 1;
@@ -88,7 +93,11 @@ var cycleLeft = function(win) {
 };
 
 var cycleRight = function(win) {
-
+  if (win == undefined) {
+    // this check is true for both undefined and null
+    // this happens for example if the spotlight text field is focused
+    return;
+  }
   if (isWindowOnRightHalf(win)) {
     var currentScreen = win.screen().id();
     var targetScreen = currentScreen + 1;
