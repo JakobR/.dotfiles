@@ -89,6 +89,7 @@ if [[ $platform == 'Darwin' ]] then
 
   # additional oh-my-zsh plugins
   plugins+=osx
+  plugins+=brew
   plugins+=capistrano
 
 elif [[ $platform == 'FreeBSD' ]] then
