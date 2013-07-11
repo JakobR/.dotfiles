@@ -32,8 +32,23 @@ slate.bind(hyper("down"),  slate.operation("focus", {"direction": "down"}));
 // TODO:
 // Custom operation: Launch app when not running, focus when it is running
 // And when it's already focused? Switching windows inside app might be most useful (there's Cmd+` for this, but it's harder to reach)
-slate.bind(hyper("d"), slate.operation("focus", {"app": "Finder"}));
-slate.bind(hyper("p"), slate.operation("focus", {"app": "Preview"}));
+var focus = function(appName) {
+  return slate.operation("focus", {"app": appName});
+}
+
+slate.bind(hyper("d"), focus("Finder"));
+slate.bind(hyper("p"), focus("Preview"));
+slate.bind(hyper("v"), focus("MacVim"));
+slate.bind(hyper("e"), focus("iTerm"));
+slate.bind(hyper("x"), focus("Skype"));
+slate.bind(hyper("t"), focus("iTunes"));
+slate.bind(hyper("a"), focus("Anki"));
+slate.bind(hyper("o"), focus("Opera"));
+slate.bind(hyper("m"), focus("Mail"));
+slate.bind(hyper("c"), focus("Calendar"));
+slate.bind(hyper("s"), focus("Google Chrome"));
+slate.bind(hyper("f"), focus("Firefox"));
+slate.bind(hyper("j"), focus("JEDict"));
 
 //slate.config("windowHintsIgnoreHiddenWindows", false);
 //slate.config("windowHintsShowIcons", true);
