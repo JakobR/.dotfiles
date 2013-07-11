@@ -50,6 +50,12 @@ if [[ $platform == 'Darwin' ]] then
   # LaTeX
   export PATH=/usr/texbin:$PATH
 
+  # git installed by installer from git-scm.org
+  # (I wasn't able to successfully build git from source on my new machine)
+  if [[ -d "/usr/local/git/bin" ]]; then
+    export PATH=/usr/local/git/bin:$PATH
+  fi
+
   # needed for homebrew
   export PATH=/usr/local/sbin:$PATH
 
