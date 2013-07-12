@@ -69,8 +69,9 @@ if [[ $platform == 'Darwin' ]] then
   # be careful when running tests though as they will need the 'test' environment explicitly specified.
   export RAILS_ENV='development'
 
-  # TextMate is awesome
-  export EDITOR='/usr/local/bin/mate -w'
+  # Use MacVim to edit files, and give focus back to iTerm after closing
+  export EDITOR="/usr/local/bin/mvim -f -c 'au VimLeave * !open -a iTerm'"
+  alias mvim="/usr/local/bin/mvim -c 'au VimLeave * !open -a iTerm'"
   # but stay in console for git commit messages
   export GIT_EDITOR='/usr/local/bin/vim'
 
