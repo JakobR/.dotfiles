@@ -103,7 +103,7 @@ var cycleLeft = function(win) {
     if (targetScreen < 0) {
       targetScreen = slate.screenCount() - 1;
     }
-    win.doOperation(slate.operation('throw', {
+    win.doOperation(slate.operation('move', {
       'screen': targetScreen,
       "x": "screenOriginX+screenSizeX/2",
       "y": "screenOriginY",
@@ -127,7 +127,7 @@ var cycleRight = function(win) {
     if (targetScreen >= slate.screenCount()) {
       targetScreen = 0;
     }
-    win.doOperation(slate.operation('throw', {
+    win.doOperation(slate.operation('move', {
       'screen': targetScreen,
       "x": "screenOriginX",
       "y": "screenOriginY",
@@ -141,6 +141,59 @@ var cycleRight = function(win) {
 
 slate.bind("left:ctrl", cycleLeft);
 slate.bind("right:ctrl", cycleRight);
+
+var leftMonitor = 0;
+var rightMonitor = 1;
+
+var LFull = slate.operation("move", {
+  "screen": leftMonitor,
+  "x": "screenOriginX",
+  "y": "screenOriginY",
+  "width": "screenSizeX",
+  "height": "screenSizeY"
+});
+var LLeft        = LFull.dup({"width": "screenSizeX/2"});
+var LRight       = LLeft.dup({"x": "screenOriginX + screenSizeX/2"});
+var LTopLeft     = LLeft.dup({"height": "screenSizeY/2"});
+var LTopRight    = LTopLeft.dup({"x": "screenOriginX + screenSizeX/2"});
+var LBottomLeft  = LTopLeft.dup({"y": "screenOriginY + screenSizeY/2"});
+var LBottomRight = LBottomLeft.dup({"x": "screenOriginX + screenSizeX/2"});
+var LTop         = LFull.dup({"height": "screenSizeY/2"});
+var LBottom      = LTop.dup({"y": "screenOriginY + screenSizeY/2"});
+var RFull = slate.operation("move", {
+  "screen": rightMonitor,
+  "x": "screenOriginX",
+  "y": "screenOriginY",
+  "width": "screenSizeX",
+  "height": "screenSizeY"
+});
+var RLeft        = RFull.dup({"width": "screenSizeX/2"});
+var RRight       = RLeft.dup({"x": "screenOriginX + screenSizeX/2"});
+var RTopLeft     = RLeft.dup({"height": "screenSizeY/2"});
+var RTopRight    = RTopLeft.dup({"x": "screenOriginX + screenSizeX/2"});
+var RBottomLeft  = RTopLeft.dup({"y": "screenOriginY + screenSizeY/2"});
+var RBottomRight = RBottomLeft.dup({"x": "screenOriginX + screenSizeX/2"});
+var RTop         = RFull.dup({"height": "screenSizeY/2"});
+var RBottom      = RTop.dup({"y": "screenOriginY + screenSizeY/2"});
+
+slate.bind("pad1:ctrl", LBottomLeft);
+slate.bind("pad2:ctrl", LBottom);
+slate.bind("pad3:ctrl", LBottomRight);
+slate.bind("pad4:ctrl", LLeft);
+slate.bind("pad5:ctrl", LFull);
+slate.bind("pad6:ctrl", LRight);
+slate.bind("pad7:ctrl", LTopLeft);
+slate.bind("pad8:ctrl", LTop);
+slate.bind("pad9:ctrl", LTopRight);
+slate.bind("pad1:alt", RBottomLeft);
+slate.bind("pad2:alt", RBottom);
+slate.bind("pad3:alt", RBottomRight);
+slate.bind("pad4:alt", RLeft);
+slate.bind("pad5:alt", RFull);
+slate.bind("pad6:alt", RRight);
+slate.bind("pad7:alt", RTopLeft);
+slate.bind("pad8:alt", RTop);
+slate.bind("pad9:alt", RTopRight);
 
 // Helper functions for debugging
 /*
