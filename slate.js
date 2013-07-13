@@ -29,11 +29,19 @@ slate.bind(hyper("right"), slate.operation("focus", {"direction": "right"}));
 slate.bind(hyper("up"),    slate.operation("focus", {"direction": "up"}));
 slate.bind(hyper("down"),  slate.operation("focus", {"direction": "down"}));
 
-// TODO:
-// Custom operation: Launch app when not running, focus when it is running
-// And when it's already focused? Switching windows inside app might be most useful (there's Cmd+` for this, but it's harder to reach)
-var focus = function(appName) {
-  return slate.operation("focus", {"app": appName});
+// Returns an operation that switches to an application
+// - appName: string, the name of the application to switch to (e.g. "Opera")
+// - focusOnly: undefined, or boolean. Use a "focus" operation if true, and "open -a" otherwise.
+// TODO: When it's already focused? Switching windows inside app might be most useful (there's Cmd+` for this, but it's harder to reach)
+var focus = function(appName, focusOnly) {
+  if (focusOnly == true) {
+    return slate.operation("focus", {"app": appName});
+  }
+  else {
+    return function(win) {
+      slate.shell("/usr/bin/open -a '" + appName + "'", false);
+    }
+  }
 }
 
 slate.bind(hyper("d"), focus("Finder"));
