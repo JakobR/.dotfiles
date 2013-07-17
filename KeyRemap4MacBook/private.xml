@@ -58,4 +58,19 @@
     <autogen>__KeyToKey__ KeyCode::KEYPAD_5, KeyCode::V</autogen>
   </item>
 
+  <item>
+    <name>Remap Command_L to Control_L in Guild Wars 2</name>
+    <identifier>private.gw2.command_l_to_control_l</identifier>
+
+    <only>GUILDWARS2</only>
+
+    <!-- map Command_L to Control_L -->
+    <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::CONTROL_L</autogen>
+    <!-- but still allow to tab out -->
+    <autogen>
+      __KeyToKey__
+      KeyCode::TAB, ModifierFlag::CONTROL_L,
+      KeyCode::TAB, ModifierFlag::COMMAND_L
+    </autogen>
+  </item>
 </root>
