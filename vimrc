@@ -114,6 +114,9 @@ noremap <silent> <Leader>w :call ToggleWrap()<CR>
 " Enable wrapping in markdown and text files
 autocmd FileType markdown,text silent call EnableWrap()
 
+" Don't show whitespace in man pages
+autocmd FileType man set nolist
+
 " HTML indentation
 let g:html_indent_inctags = "body,head,li"
 let g:html_indent_script1 = "inc"
