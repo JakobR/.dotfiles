@@ -57,6 +57,7 @@ slate.bind(hyper("c"), focus("Calendar"));
 slate.bind(hyper("s"), focus("Google Chrome"));
 slate.bind(hyper("f"), focus("Firefox"));
 slate.bind(hyper("j"), focus("JEDict"));
+slate.bind(hyper("w"), focus("Xcode"));
 
 //slate.config("windowHintsIgnoreHiddenWindows", false);
 //slate.config("windowHintsShowIcons", true);
