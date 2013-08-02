@@ -214,6 +214,10 @@ let g:gitgutter_eager = 0
 
 " secure modelines
 let g:secure_modelines_modelines=10
+" disable secure modelines in vimpager
+if exists('g:vimpager')
+  let g:loaded_securemodelines = 1
+endif
 
 " Disable modeline (security issue)
 " This should be the last line
