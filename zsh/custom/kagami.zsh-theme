@@ -1,5 +1,7 @@
 # my zsh theme
 # based on the crunch theme
+#
+# vim: set ft=zsh:
 
 export LSCOLORS="ExfxcxdxBxegedabagacad"
 

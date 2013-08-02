@@ -6,6 +6,8 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
+Bundle 'ciaranm/securemodelines'
+
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'

@@ -212,6 +212,8 @@ let g:gitgutter_eager = 0
 " https://github.com/eraserhd/objective-vim/
 " http://objvimmer.com/blog/2012/12/05/getting-started-with-ios-development-with-vim/
 
+" secure modelines
+let g:secure_modelines_modelines=10
 
 " Disable modeline (security issue)
 " This should be the last line
