@@ -66,6 +66,28 @@ endif
 
 "set autochdir
 
+" open URL under cursor
+" see http://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
+function OpenUrlUnderCursor()
+  if system('uname')=~'Darwin'
+    execute "normal! BvEy"
+    " this regex supports one level of matching parentheses in URLs.
+    " single closing parentheses are seen as end of the URL (because of link syntax in markdown)
+    " (supporting matching parentheses actually breaks single opening parentheses as well)
+    " A better way might be to enable this behaviour only in markdown files...
+    let url=matchstr(@0, '\(http\|https\|mailto\)://\(([^ ]*)\|[^ >,;)]\)*')
+    if url != ""
+      silent exec "!open '".url."'" | redraw!
+      echo "opened ".url
+    else
+      echo "No URL under cursor."
+    endif
+  else
+    echo "TODO: OpenUrlUnderCursor() currently only works on OS X."
+  endif
+endfunction
+nmap <leader>o :call OpenUrlUnderCursor()<CR>
+
 " Functions to enable/disable wrapping
 function EnableWrap()
   if !&wrap
