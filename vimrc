@@ -151,6 +151,14 @@ let g:NERDTreeMouseMode=3
 
 let g:NERDTreeChDirMode=2
 
+map  <leader>' :NERDTreeTabsToggle<CR>
+imap <leader>' <Esc>:NERDTreeTabsToggle<CR>
+
+" TODO: Should have TextMate-like behaviour
+" for pretty commenting: use \cb. Too bad it doesn't toggle...
+map  <leader>/ <plug>NERDCommenterToggle<CR>
+imap <leader>/ <Esc><plug>NERDCommenterToggle<CR>i
+
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_height = 15
