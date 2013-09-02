@@ -1,5 +1,5 @@
 " Load bundles
-source $HOME/.dotfiles/bundles.vim
+source $JR_DOTFILES/bundles.vim
 
 filetype plugin indent on
 

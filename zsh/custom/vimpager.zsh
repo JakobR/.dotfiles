@@ -1,12 +1,11 @@
-
 # Use vimpager instead of less
 export PAGER='vimpager'
 
 # Use vimpager from submodule if not installed
 type vimpager >/dev/null 2>/dev/null
 if [[ $? -ne 0 ]] then
-  alias vimpager="$HOME/.dotfiles/vimpager/vimpager"
-  export PAGER="$HOME/.dotfiles/vimpager/vimpager"
+  alias vimpager="$JR_DOTFILES/vimpager/vimpager"
+  export PAGER="$JR_DOTFILES/vimpager/vimpager"
 fi
 
-type vimcat >/dev/null 2>/dev/null || alias vimcat="$HOME/.dotfiles/vimpager/vimcat"
+type vimcat >/dev/null 2>/dev/null || alias vimcat="$JR_DOTFILES/vimpager/vimcat"

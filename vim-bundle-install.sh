@@ -1,3 +1,3 @@
 #!/bin/sh
 
-vim -u ~/.dotfiles/bundles.vim +BundleInstall +qall
+vim -u $JR_DOTFILES/bundles.vim +BundleInstall +qall

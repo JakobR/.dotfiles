@@ -1,7 +1,9 @@
+# Path to dotfiles
+export JR_DOTFILES=$HOME/.dotfiles
 
 # Path to oh-my-zsh configuration.
-ZSH=$HOME/.dotfiles/zsh/oh-my-zsh
-ZSH_CUSTOM=$HOME/.dotfiles/zsh/custom
+ZSH=$JR_DOTFILES/zsh/oh-my-zsh
+ZSH_CUSTOM=$JR_DOTFILES/zsh/custom
 
 # Set name of the theme to load. Set to "random" for a random theme.
 ZSH_THEME='kagami'

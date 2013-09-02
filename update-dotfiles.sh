@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ~/.dotfiles
+cd $JR_DOTFILES
 git pull
 git submodule update --recursive
-vim -u ~/.dotfiles/bundles.vim '+BundleInstall!'
+vim -u $JR_DOTFILES/bundles.vim '+BundleInstall!'
