@@ -73,3 +73,7 @@ TODO
 
 * Write a script for the installation process.
   * Creates symlinks (abort if any of the files already exists, and tell the user to delete it first)
+* Allow to use a single copy of the dotfiles on a server (read-only, owned by root, maybe auto-updated)
+  * Need to move vim's tmp/swap directory somewhere else
+    (maybe automatically in ~/.vim-tmp, if ~/.vim/... isn't writable?)
+* Use HTTPS in submodules (security)
