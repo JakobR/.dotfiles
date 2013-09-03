@@ -35,6 +35,7 @@ Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
 
 Bundle 'vim-scripts/abnf'
+Bundle 'tmatilai/vim-monit'
 
 " Disable these bundles until I have time to configure them properly
 "Bundle 'scrooloose/syntastic'
