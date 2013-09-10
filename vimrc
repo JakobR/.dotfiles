@@ -1,5 +1,9 @@
 " Load bundles
-source $JR_DOTFILES/bundles.vim
+if empty($JR_DOTFILES)
+  source $HOME/.dotfiles/bundles.vim
+else
+  source $JR_DOTFILES/bundles.vim
+endif
 
 filetype plugin indent on
 
@@ -147,7 +151,7 @@ let g:html_indent_style1 = "inc"
 " open NERDTree on the right side
 let g:NERDTreeWinPos="right"
 " open files/directories with single click
-let g:NERDTreeMouseMode=3
+"let g:NERDTreeMouseMode=3
 
 let g:NERDTreeChDirMode=2
 
