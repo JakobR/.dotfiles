@@ -87,6 +87,7 @@ if [[ $platform == 'Darwin' ]] then
   alias openssl='/usr/local/opt/openssl/bin/openssl'
   alias dtw='~/server/dango/transmission-web.sh -f'
   alias dtr='~/server/dango/transmission-remote.sh'
+  alias sage='/Applications/sage/sage'
 
   # Directory shortcuts
   Uni=~/Documents/Uni
