@@ -232,6 +232,10 @@ endif
 " tab switching is too slow otherwise
 let g:gitgutter_eager = 0
 
+" use 'ag' instead of 'ack', if available
+" see https://github.com/ggreer/the_silver_searcher
+let g:ackprg = 'ag -H --nogroup --nocolor --column'
+
 " TODO:
 " Look more closely at spf13
 " https://github.com/spf13/spf13-vim
