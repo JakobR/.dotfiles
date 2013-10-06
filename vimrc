@@ -68,7 +68,11 @@ if &t_Co > 2 || has("gui_running")
   colorscheme solarized
 endif
 
-"set autochdir
+" Change current directory to directory of the currently open file.
+" Apparently setting 'autochdir' can cause problems with plugins, so I rather
+" do it manually as needed instead of dealing hard-to-find bugs in plugins.
+" See http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " open URL under cursor
 " see http://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
