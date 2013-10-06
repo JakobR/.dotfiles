@@ -16,6 +16,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-eunuch'
 
 Bundle 'kien/ctrlp.vim'
 Bundle 'myusuf3/numbers.vim'
