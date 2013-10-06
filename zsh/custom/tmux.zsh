@@ -1,4 +1,3 @@
-
 # Is tmux installed?
 if type tmux >/dev/null 2>/dev/null; then
 
@@ -16,7 +15,18 @@ if type tmux >/dev/null 2>/dev/null; then
 
   fi
 
-  # Attaches to the first unattached session. If there is no unattached session, creates a new one.
-  alias tmux-attach-or-new='jr_tmux_session=`tmux list-sessions -F "#{session_name} a=#{session_attached}" 2>/dev/null | grep " a=0\$" | head -n 1`; tmux attach -t ${jr_tmux_session% a=0} 2>/dev/null || tmux; unset jr_tmux_session'
+  # Returns ID of first unattached tmux session (empty if there is none)
+  first_unattached_tmux_session () {
+    tmux list-sessions -F "#{?session_attached,1,0} #{session_id}" | grep -m 1 '^0 ' | cut -c 3-
+  }
+
+  tmux-attach-or-new () {
+    unattached_tmux_session=$(first_unattached_tmux_session)
+    if [[ -n "$unattached_tmux_session" ]] then
+      exec tmux attach -t "$unattached_tmux_session"
+    else
+      exec tmux new-session
+    fi
+  }
 
 fi
