@@ -18,6 +18,13 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-eunuch'
 
+Bundle 'kana/vim-textobj-user'
+Bundle 'lucapette/vim-textobj-underscore'
+Bundle 'mattn/vim-textobj-url'
+Bundle 'Julian/vim-textobj-variable-segment'
+Bundle 'nelstrom/vim-textobj-rubyblock'
+Bundle 'rbonvall/vim-textobj-latex'
+
 Bundle 'kien/ctrlp.vim'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'mileszs/ack.vim'

@@ -7,6 +7,8 @@ endif
 
 filetype plugin indent on
 
+runtime macros/matchit.vim
+
 set background=dark
 set nowrap
 set scrolloff=2         " 2 lines above/below cursor when scrolling
