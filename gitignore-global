@@ -9,3 +9,8 @@
 Thumbs.db
 
 .tm_properties
+
+# Ignore OS X's folder icons
+# (yes, that's two <CR> after "Icon")
+# see http://blog.bitfluent.com/post/173740409/ignoring-icon-in-gitignore
+Icon
