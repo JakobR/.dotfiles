@@ -187,7 +187,7 @@ set statusline+=%m      " modified flag
 set statusline+=%r      " read only flag
 set statusline+=%h      " [Help] file flag
 set statusline+=%w\     " [Preview] file flag
-set statusline+=%{fugitive#statusline()}\      " git branch
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}\      " git branch
 set statusline+=[%{strlen(&fenc)?&fenc:'none'} " file encoding
 set statusline+=%{&ff=='unix'?'':','.&ff}]     " file format, unless it's unix (TODO: Print that in red)
 set statusline+=%=      " left/right separator
