@@ -67,7 +67,7 @@ let g:solarized_visibility="low"
 " color settings (if terminal/gui supports it)
 if &t_Co > 2 || has("gui_running")
   syntax on
-  colorscheme solarized
+  silent! colorscheme solarized
 endif
 
 " Change current directory to directory of the currently open file.
