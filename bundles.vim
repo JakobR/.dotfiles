@@ -26,8 +26,11 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'rbonvall/vim-textobj-latex'
 
 Bundle 'kien/ctrlp.vim'
-Bundle 'myusuf3/numbers.vim'
 Bundle 'mileszs/ack.vim'
+
+if v:version >= 703
+  Bundle 'myusuf3/numbers.vim'
+end
 
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
