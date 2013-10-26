@@ -149,6 +149,8 @@ autocmd FileType markdown,text silent call EnableWrap()
 " Don't show whitespace in man pages
 autocmd FileType man set nolist
 
+let g:sql_type_default = 'pgsql'
+
 " HTML indentation
 let g:html_indent_inctags = "body,head,li"
 let g:html_indent_script1 = "inc"

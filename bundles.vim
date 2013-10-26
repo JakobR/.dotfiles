@@ -44,6 +44,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'exu/pgsql.vim'
 
 Bundle 'vim-scripts/abnf'
 Bundle 'tmatilai/vim-monit'
