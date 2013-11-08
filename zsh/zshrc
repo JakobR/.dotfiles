@@ -52,20 +52,12 @@ if [[ $platform == 'Darwin' ]] then
   # LaTeX
   export PATH=/usr/texbin:$PATH
 
-  # git installed by installer from git-scm.org
-  # (I wasn't able to successfully build git from source on my new machine)
-  if [[ -d "/usr/local/git/bin" ]]; then
-    export PATH=/usr/local/git/bin:$PATH
-  fi
-
-  # needed for homebrew
+  # Homebrew paths
   export PATH=/usr/local/sbin:$PATH
-
-  # smlnj (installed by homebrew and not linked to /usr/local)
-  export PATH=$PATH:/usr/local/Cellar/smlnj/110.75/libexec/bin
-
-  # needed for right postgresql version
   export PATH=/usr/local/bin:$PATH
+
+  # Cabal binaries
+  export PATH=~/.cabal/bin:$PATH
 
   # standard rails environment on this machine
   # be careful when running tests though as they will need the 'test' environment explicitly specified.
