@@ -22,7 +22,6 @@ set showcmd             " show typed command in status bar
 set wildmenu            " completion with menu
 set laststatus=2        " use 2 lines for the status bar
 set matchtime=1         " show matching bracket for 0.1 seconds
-set matchpairs+=<:>     " for html
 set nrformats-=octal
 set autoread            " Reload file when changed externally (but only if not yet changed in vim)
 set esckeys             " map missed escape sequences (enables keypad keys)
