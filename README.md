@@ -26,6 +26,7 @@ Installation
         ln -s ~/.dotfiles/ackrc            ~/.ackrc
         ln -s ~/.dotfiles/gitconfig        ~/.gitconfig
         ln -s ~/.dotfiles/gitignore-global ~/.gitignore-global
+        ln -s ~/.dotfiles/ghci             ~/.ghci
 
 4. Set up vim bundles:
 
