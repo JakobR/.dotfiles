@@ -57,6 +57,10 @@ Installation
         ```
           ln -s ~/.dotfiles/slate.js ~/.slate.js
         ```
+    * To enable _US with umlauts_ keyboard layout (created with [Ukelele](http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ukelele), need to relog before it is available):
+        ```
+          ln -s ~/.dotfiles/Ukelele/US_with_umlauts.keylayout ~/Library/Keyboard\ Layouts/US_with_umlauts.keylayout
+        ```
 
 3. Run `osx.sh`.
 
