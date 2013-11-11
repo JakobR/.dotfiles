@@ -83,7 +83,7 @@ if [[ $platform == 'Darwin' ]] then
 
   # Directory shortcuts
   Uni=~/Documents/Uni
-  CompSci=$Uni/Informatik
+  CS=$Uni/Informatik
   Math=$Uni/Mathematik
 
   # Autojump
