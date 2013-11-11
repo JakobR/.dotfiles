@@ -1,3 +1,6 @@
+# Shortcut for paging
+alias p='$PAGER'
+
 # Use vimpager instead of less
 export PAGER='vimpager'
 
