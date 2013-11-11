@@ -19,6 +19,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-eunuch'
 
 Bundle 'kana/vim-textobj-user'
+Bundle 'kana/vim-textobj-indent'
 Bundle 'lucapette/vim-textobj-underscore'
 Bundle 'mattn/vim-textobj-url'
 Bundle 'Julian/vim-textobj-variable-segment'
@@ -45,6 +46,10 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'exu/pgsql.vim'
+Bundle 'lukerandall/haskellmode-vim'
+
+" good, but sadly too slow
+"Bundle 'dag/vim2hs'
 
 Bundle 'vim-scripts/abnf'
 Bundle 'tmatilai/vim-monit'
