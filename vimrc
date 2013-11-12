@@ -156,7 +156,7 @@ if system('uname')=~'Darwin'
   let g:haddock_browser = "open"
   let g:haddock_browser_callformat = "%s %s"
 else
-  echo "TODO: g:haddock_browser currently only set on OS X."
+  " TODO: g:haddock_browser currently only set on OS X.
 endif
 
 " Auto-insert leading '>' in literate haskell scripts
