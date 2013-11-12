@@ -159,6 +159,10 @@ else
   echo "TODO: g:haddock_browser currently only set on OS X."
 endif
 
+" Auto-insert leading '>' in literate haskell scripts
+" http://stackoverflow.com/a/18572190
+autocmd FileType lhaskell set formatoptions+=ro
+
 " HTML indentation
 let g:html_indent_inctags = "body,head,li"
 let g:html_indent_script1 = "inc"
