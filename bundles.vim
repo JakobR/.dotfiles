@@ -4,7 +4,9 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
+" Don't let vundle manage itself.
+" (since it's a git submodule it's not on a branch, so updating fails)
+"Bundle 'gmarik/vundle'
 
 Bundle 'ciaranm/securemodelines'
 
