@@ -45,6 +45,7 @@ set tabpagemax=50
 set mouse=a             " use mouse
 set ttimeout
 set ttimeoutlen=50
+set updatetime=750
 
 " Use two spaces to separate sentences
 " See http://stevelosh.com/blog/2012/10/why-i-two-space/
