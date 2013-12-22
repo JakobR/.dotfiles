@@ -64,8 +64,9 @@ if [[ $platform == 'Darwin' ]] then
   export RAILS_ENV='development'
 
   # Use MacVim to edit files, and give focus back to iTerm after closing
-  export EDITOR="/usr/local/bin/mvim -f -c 'au VimLeave * !pgrep iTerm && open -a iTerm'"
-  alias mvim="/usr/local/bin/mvim -p -c 'au VimLeave * !pgrep iTerm && open -a iTerm'"
+  export EDITOR="/usr/local/bin/mvim -p --nofork -c 'au VimLeave * !open -a iTerm'"
+  # only focus iTerm if the same shell is still open
+  alias mvim="/usr/local/bin/mvim -p -c 'au VimLeave * !pgrep zsh | grep $$ && open -a iTerm'"
   # but stay in console for git commit messages
   export GIT_EDITOR='/usr/local/bin/vim'
 
