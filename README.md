@@ -81,4 +81,3 @@ TODO
 * Allow to use a single copy of the dotfiles on a server (read-only, owned by root, maybe auto-updated)
   * Need to move vim's tmp/swap directory somewhere else
     (maybe automatically in ~/.vim-tmp, if ~/.vim/... isn't writable?)
-* Use HTTPS in submodules (security)
