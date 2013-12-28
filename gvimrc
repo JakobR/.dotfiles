@@ -26,14 +26,17 @@ if has("gui_macvim")
   imap <D-t> <Esc>:CtrlP<CR>
 
   " Command-/ to toggle comments
-  map <D-/> <plug>NERDCommenterToggle<CR>
-  imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
+  nmap <D-/> gcc
+  vmap <D-/> gcgv
+  imap <D-/> <Esc>gcci
+  " map <D-/> <plug>NERDCommenterToggle<CR>
+  " imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
 
   " Command-][ to increase/decrease indentation
   vmap <D-]> >gv
   vmap <D-[> <gv
 
-  " Map Command-# to switch tabs
+  " Map Command-Digit to switch to tab
   map  <D-0> 0gt
   imap <D-0> <Esc>0gt
   map  <D-1> 1gt
@@ -54,13 +57,6 @@ if has("gui_macvim")
   imap <D-8> <Esc>8gt
   map  <D-9> 9gt
   imap <D-9> <Esc>9gt
-
-  " TODO: Need to remove the menu item mapping first
-  "map <D-S-[> gT
-  "imap <D-S-[> <Esc>gT
-  "map <D-S-]> gt
-  "imap <D-S-]> <Esc>gt
-
 endif
 
 let g:nerdtree_tabs_open_on_gui_startup=0

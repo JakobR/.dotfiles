@@ -19,6 +19,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-eunuch'
+Bundle 'tpope/vim-commentary'
 
 Bundle 'scrooloose/syntastic'
 
@@ -37,7 +38,6 @@ if v:version >= 703
   Bundle 'myusuf3/numbers.vim'
 end
 
-Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 
