@@ -71,6 +71,8 @@ set guioptions-=T
 " Scrollbar on the left side is annoying
 set guioptions-=L
 
+" Show tab numbers
+set guitablabel=%N:\ %M%t
 
 " Disable modeline (security issue)
 " This should be the last line
