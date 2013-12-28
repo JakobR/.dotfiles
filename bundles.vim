@@ -20,6 +20,8 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-eunuch'
 
+Bundle 'scrooloose/syntastic'
+
 Bundle 'kana/vim-textobj-user'
 Bundle 'kana/vim-textobj-indent'
 Bundle 'lucapette/vim-textobj-underscore'
@@ -57,7 +59,6 @@ Bundle 'vim-scripts/abnf'
 Bundle 'tmatilai/vim-monit'
 
 " Disable these bundles until I have time to configure them properly
-"Bundle 'scrooloose/syntastic'
 "Bundle 'Shougo/neocomplcache'
 
 " More interesting bundles to check out:
