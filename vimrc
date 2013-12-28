@@ -185,7 +185,7 @@ let g:NERDTreeWinPos="right"
 let g:NERDTreeChDirMode=2
 
 map  <leader>' :NERDTreeTabsToggle<CR>
-imap <leader>' <Esc>:NERDTreeTabsToggle<CR>
+imap <leader>' <C-O>:NERDTreeTabsToggle<CR>
 
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_match_window_reversed = 0
