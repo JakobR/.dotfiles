@@ -164,9 +164,13 @@ else
   " TODO: g:haddock_browser currently only set on OS X.
 endif
 
+" Don't auto-insert comment-leader when hitting 'o' or 'O' in normal mode
+" ftplugin is modifying this setting, see http://stackoverflow.com/a/16035812/1889401
+autocmd FileType * setlocal formatoptions-=o
+
 " Auto-insert leading '>' in literate haskell scripts
 " http://stackoverflow.com/a/18572190
-autocmd FileType lhaskell set formatoptions+=ro
+autocmd FileType lhaskell setlocal formatoptions+=ro
 
 " HTML indentation
 let g:html_indent_inctags = "body,head,li"
