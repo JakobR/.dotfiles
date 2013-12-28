@@ -140,6 +140,10 @@ function ToggleWrap()
   endif
 endfunction
 
+" Use <Space> as <Leader>
+" See http://superuser.com/a/693644
+map <Space> <Leader>
+
 " Toggle wrapping with <Leader>w
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
 
