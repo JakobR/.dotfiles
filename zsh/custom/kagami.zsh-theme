@@ -104,6 +104,8 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]="fg=black,bg=$ZSH_HIGHLIGHT_COMMAND_COLOR
 ZSH_HIGHLIGHT_STYLES[history-expansion]="fg=white,bg=blue"
 
 ZSH_HIGHLIGHT_STYLES[path]="fg=yellow,underline"
+ZSH_HIGHLIGHT_STYLES[path_prefix]="underline"
+ZSH_HIGHLIGHT_STYLES[path_approx]="none"
 ZSH_HIGHLIGHT_STYLES[globbing]="fg=black,bg=yellow,underline"
 
 ZSH_HIGHLIGHT_STYLES[single-quoted-argument]="fg=108,underline"
@@ -115,7 +117,17 @@ ZSH_HIGHLIGHT_STYLES[reserved-word]="fg=063,bold"
 # : ${ZSH_HIGHLIGHT_STYLES[default]:=none}
 # : ${ZSH_HIGHLIGHT_STYLES[unknown-token]:=fg=red,bold}
 # : ${ZSH_HIGHLIGHT_STYLES[reserved-word]:=fg=yellow}
+# : ${ZSH_HIGHLIGHT_STYLES[alias]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[builtin]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[function]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[command]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green,underline}
+# : ${ZSH_HIGHLIGHT_STYLES[commandseparator]:=none}
 # : ${ZSH_HIGHLIGHT_STYLES[hashed-command]:=fg=green}
+# : ${ZSH_HIGHLIGHT_STYLES[path]:=underline}
+# : ${ZSH_HIGHLIGHT_STYLES[path_prefix]:=underline}
+# : ${ZSH_HIGHLIGHT_STYLES[path_approx]:=fg=yellow,underline}
+# : ${ZSH_HIGHLIGHT_STYLES[globbing]:=fg=blue}
 # : ${ZSH_HIGHLIGHT_STYLES[history-expansion]:=fg=blue}
 # : ${ZSH_HIGHLIGHT_STYLES[single-hyphen-option]:=none}
 # : ${ZSH_HIGHLIGHT_STYLES[double-hyphen-option]:=none}
