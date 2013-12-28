@@ -27,6 +27,7 @@ Installation
         ln -s ~/.dotfiles/gitconfig        ~/.gitconfig
         ln -s ~/.dotfiles/gitignore-global ~/.gitignore-global
         ln -s ~/.dotfiles/ghci             ~/.ghci
+        ln -s ~/.dotfiles/inputrc          ~/.inputrc
 
 4. Set up vim bundles:
 

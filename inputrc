@@ -1,0 +1,22 @@
+# Documentation at http://cnswww.cns.cwru.edu/php/chet/readline/rluserman.html
+
+# vi key bindings
+set editing-mode vi
+
+# Case-insensitive tab completion
+set completion-ignore-case on
+
+# Only ask, if there are more than 200 items
+set completion-query-items 200
+
+# Show all tab completions instead of ringing the bell
+set show-all-if-ambiguous on
+
+# Extra information when completing
+set visible-stats on
+
+# Show all completions at once
+set page-completions off
+
+# More intelligent completion when completing in middle of word
+set skip-completed-text on
