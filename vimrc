@@ -47,6 +47,8 @@ set ttimeout
 set ttimeoutlen=50
 set updatetime=750
 
+set path+=/usr/local/include
+
 " Use two spaces to separate sentences
 " See http://stevelosh.com/blog/2012/10/why-i-two-space/
 set cpo+=J
