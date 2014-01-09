@@ -70,6 +70,10 @@ let g:solarized_visibility="low"
 if &t_Co > 2 || has("gui_running")
   syntax on
   silent! colorscheme solarized
+
+  if &t_Co >= 256
+    let g:indentLine_color_term = 235
+  endif
 endif
 
 " Change current directory to directory of the currently open file.

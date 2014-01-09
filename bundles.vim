@@ -44,6 +44,9 @@ Bundle 'jistr/vim-nerdtree-tabs'
 
 Bundle 'altercation/vim-colors-solarized'
 
+Bundle 'Yggdroot/indentLine'
+" Bundle 'nathanaelkane/vim-indent-guides'
+
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-markdown'

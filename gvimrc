@@ -65,6 +65,10 @@ endif
 
 let g:nerdtree_tabs_open_on_gui_startup=0
 
+" More beautiful indent guides:
+let g:indentLine_color_gui = '#eee8d5'
+let g:indentLine_char = '│'
+
 " Start without toolbar
 set guioptions-=T
 
