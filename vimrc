@@ -258,9 +258,16 @@ endif
 " tab switching is too slow otherwise
 let g:gitgutter_eager = 0
 
-" use 'ag' instead of 'ack', if available
-" see https://github.com/ggreer/the_silver_searcher
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" Use <Leader>a to search in project
+if executable('ag')
+  " ag aka the_silver_searcher
+  " see https://github.com/ggreer/the_silver_searcher
+  nnoremap <Leader>a :Ag<Space>
+elseif executable('ack')
+  nnoremap <Leader>a :Ack<Space>
+else
+  nnoremap <Leader>a :echoerr 'Error: Neither ag nor ack are available!'<CR>
+endif
 
 " TODO:
 " Look more closely at spf13

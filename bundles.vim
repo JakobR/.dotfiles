@@ -32,6 +32,7 @@ Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'rbonvall/vim-textobj-latex'
 
 Bundle 'kien/ctrlp.vim'
+Bundle 'rking/ag.vim'
 Bundle 'mileszs/ack.vim'
 
 if v:version >= 703
