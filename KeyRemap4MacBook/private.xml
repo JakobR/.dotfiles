@@ -73,4 +73,26 @@
       KeyCode::TAB, ModifierFlag::COMMAND_L
     </autogen>
   </item>
+
+  <devicevendordef>
+    <vendorname>EVOLUENT</vendorname>
+    <vendorid>0x1a7c</vendorid>
+  </devicevendordef>
+
+  <deviceproductdef>
+    <productname>VERTICALMOUSE4</productname>
+    <productid>0x0191</productid>
+  </deviceproductdef>
+
+  <item>
+    <name>Evoluent VerticalMouse 4 Buttons</name>
+    <identifier>private.evoluent.verticalmouse4.buttons</identifier>
+
+    <device_only>DeviceVendor::EVOLUENT, DeviceProduct::VERTICALMOUSE4</device_only>
+
+    <!-- Swap right and middle buttons -->
+    <autogen>__PointingButtonToPointingButton__ PointingButton::MIDDLE, PointingButton::RIGHT</autogen>
+    <autogen>__PointingButtonToPointingButton__ PointingButton::RIGHT, PointingButton::MIDDLE</autogen>
+  </item>
+
 </root>
