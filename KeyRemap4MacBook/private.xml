@@ -20,7 +20,7 @@
       KeyCode::COMMAND_L,
       ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L,
 
-      KeyCode::F19
+      KeyCode::ESCAPE
     </autogen>
   </item>
 
