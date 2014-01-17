@@ -95,4 +95,29 @@
     <autogen>__PointingButtonToPointingButton__ PointingButton::RIGHT, PointingButton::MIDDLE</autogen>
   </item>
 
+  <appdef>
+    <appname>GOOGLECHROME</appname>
+    <equal>com.google.Chrome</equal>
+  </appdef>
+
+  <item>
+    <name>Evoluent VerticalMouse4 in Google Chrome</name>
+    <identifier>private.evoluent.verticalmouse4.chrome</identifier>
+
+    <only>GOOGLECHROME</only>
+    <device_only>DeviceVendor::EVOLUENT, DeviceProduct::VERTICALMOUSE4</device_only>
+
+    <autogen>
+      __PointingButtonToKey__
+      PointingButton::BUTTON6,
+      KeyCode::BRACKET_LEFT, ModifierFlag::SHIFT_L | ModifierFlag::COMMAND_L
+    </autogen>
+
+    <autogen>
+      __PointingButtonToKey__
+      PointingButton::BUTTON4,
+      KeyCode::BRACKET_RIGHT, ModifierFlag::SHIFT_L | ModifierFlag::COMMAND_L
+    </autogen>
+  </item>
+
 </root>
