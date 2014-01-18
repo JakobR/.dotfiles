@@ -130,6 +130,11 @@
     <productid>0x00db</productid>
   </deviceproductdef>
 
+  <deviceproductdef>
+    <productname>CHEAPMOUSE</productname>
+    <productid>0x0797</productid>
+  </deviceproductdef>
+
   <item>
     <name>Microsoft Natural Ergonomic 4000</name>
     <identifier>private.microsoft.natural4000</identifier>
@@ -140,6 +145,16 @@
     <autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::COMMAND_R</autogen>
     <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
     <autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::COMMAND_L</autogen>
+  </item>
+
+  <item>
+    <name>Use cheap microsoft mouse with the left hand</name>
+    <identifier>private.microsoft.cheapmouse.lefthanded</identifier>
+
+    <device_only>DeviceVendor::MICROSOFT, DeviceProduct::CHEAPMOUSE</device_only>
+
+    <autogen>__PointingButtonToPointingButton__ PointingButton::LEFT, PointingButton::RIGHT</autogen>
+    <autogen>__PointingButtonToPointingButton__ PointingButton::RIGHT, PointingButton::LEFT</autogen>
   </item>
 
 </root>
