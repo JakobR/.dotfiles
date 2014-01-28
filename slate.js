@@ -34,15 +34,15 @@ slate.bind(hyper("down"),  slate.operation("focus", {"direction": "down"}));
 // - focusOnly: undefined, or boolean. Use a "focus" operation if true, and "open -a" otherwise.
 // TODO: When it's already focused? Switching windows inside app might be most useful (there's Cmd+` for this, but it's harder to reach)
 var focus = function(appName, focusOnly) {
-  if (focusOnly == true) {
+  if (focusOnly === true) {
     return slate.operation("focus", {"app": appName});
   }
   else {
     return function(win) {
       slate.shell("/usr/bin/open -a '" + appName + "'", false);
-    }
+    };
   }
-}
+};
 
 slate.bind(hyper("d"), focus("Finder"));
 slate.bind(hyper("p"), focus("Preview"));
@@ -65,13 +65,19 @@ slate.config("focusPreferSameApp", false);
 
 // direction: 0=left, 1=top, 2=right, 3=bottom
 var tolerance = function(win, direction) {
+  /*
   var app = win.app();
   if (app.name() == "MacVim") {
     return 20;
   }
   return 5;
-}
+  */
+  return 20;
+};
 
+// TODO: Only check top left corner of window?
+// It would work with fixed-size windows as well then.
+// Needs to work with full-screen windows, though.
 var isWindowOnLeftHalf = function(win) {
   var win_rect = win.rect();
   var screen_rect = win.screen().visibleRect();
@@ -80,8 +86,10 @@ var isWindowOnLeftHalf = function(win) {
     Math.abs(win_rect.y - screen_rect.y) < tolerance(win,1) &&
     Math.abs(win_rect.width - screen_rect.width/2) < tolerance(win,2) &&
     Math.abs(win_rect.height - screen_rect.height) < tolerance(win,3);
-}
+};
 
+// TODO: Only check top left corner of window?
+// It would work with fixed-size windows as well then.
 var isWindowOnRightHalf = function(win) {
   var win_rect = win.rect();
   var screen_rect = win.screen().visibleRect();
@@ -90,10 +98,10 @@ var isWindowOnRightHalf = function(win) {
     Math.abs(win_rect.y - screen_rect.y) < tolerance(win,1) &&
     Math.abs(win_rect.width - screen_rect.width/2) < tolerance(win,2) &&
     Math.abs(win_rect.height - screen_rect.height) < tolerance(win,3);
-}
+};
 
 var cycleLeft = function(win) {
-  if (win == undefined) {
+  if (win === undefined) {
     // this check is true for both undefined and null
     // this happens for example if the spotlight text field is focused
     return;
@@ -117,7 +125,7 @@ var cycleLeft = function(win) {
 };
 
 var cycleRight = function(win) {
-  if (win == undefined) {
+  if (win === undefined) {
     // this check is true for both undefined and null
     // this happens for example if the spotlight text field is focused
     return;
