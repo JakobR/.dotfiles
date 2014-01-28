@@ -227,6 +227,10 @@ nnoremap Y y$
 " gf should open files in a new tab
 nnoremap gf <C-W>gf
 
+" reselect visual block after indent
+vnoremap < <gv
+vnoremap > >gv
+
 " from tpope/vim-sensible
 "let s:dir = has('win32') ? '$APPDATA/Vim' : match(system('uname'), "Darwin") > -1 ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
 let s:dir = '~/.vim/tmp'
