@@ -5,3 +5,5 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 /vim/.netrwhist
+/vim/eclim/
+/vim/plugin/eclim.vim

@@ -62,15 +62,27 @@ Bundle 'lukerandall/haskellmode-vim'
 Bundle 'vim-scripts/abnf'
 Bundle 'tmatilai/vim-monit'
 
-" Disable these bundles until I have time to configure them properly
-"Bundle 'Shougo/neocomplcache'
+" Installation guide: https://github.com/Valloric/YouCompleteMe
+if has('gui_macvim')
+  " MacVim links to system python, even if homebrew python is installed
+  " (check with `otool -L /usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim|grep -i python`)
+  " YCM, on the other hand, seems to use python from $PATH (and the server crashes)
+  " workaround: Set path to python explicitly to avoid having to unlink
+  " homebrew's python.
+  let g:ycm_path_to_python_interpreter = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
+  Bundle 'Valloric/YouCompleteMe'
+endif
 
 " More interesting bundles to check out:
-" https://github.com/tpope/vim-commentary
-" https://github.com/tomtom/tcomment_vim
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Bundle 'kana/vim-smartinput'
 " Bundle 'mattn/zencoding-vim'
 " https://github.com/terryma/vim-multiple-cursors
+" https://github.com/bling/vim-airline
+"
+" https://github.com/Lokaltog/vim-easymotion
+" or https://github.com/haya14busa/vim-easymotion
+
+" snippets: https://github.com/SirVer/ultisnips
 
 filetype plugin indent on     " required!

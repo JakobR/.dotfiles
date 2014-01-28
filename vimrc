@@ -277,15 +277,31 @@ else
   nnoremap <Leader>a :echoerr 'Error: Neither ag nor ack are available!'<CR>
 endif
 
-" TODO:
-" Look more closely at spf13
-" https://github.com/spf13/spf13-vim
-" https://github.com/spf13/snipmate-snippets
+" Disable messages for completion menu
+" see patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
+" TODO: Activate as soon as this patch is pulled into main vim
+" if v:version > 704 || (v:version == 704 && has('patch???'))
+"   set shortmess+=c
+" endif
+
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+
+let g:ycm_allow_changing_updatetime = 0
+
+" Load .ycm_extra_conf.py only in my own projects
+let g:ycm_extra_conf_globlist = ['!~/code/other/*','~/code/*','!~/*']
+
+" Make Eclim play nicely with YouCompleteMe
+let g:EclimCompletionMethod = 'omnifunc'
+
+" Disable Eclim for now
+let g:EclimDisabled = 1
+
 
 " TODO:
 " Configure vim for Objective-C and Cocoa development
 " http://stackoverflow.com/a/11550394
-" https://github.com/Rip-Rip/clang_complete
 " https://github.com/msanders/cocoa.vim
 " https://github.com/b4winckler/vim-objc
 " https://github.com/eraserhd/objective-vim/
