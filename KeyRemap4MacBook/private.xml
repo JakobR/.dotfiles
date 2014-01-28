@@ -9,7 +9,7 @@
     <name>Remap Caps Lock to Hyper</name>
     <appendix>OS X doesn't have a Hyper. This maps Caps Lock to Control + Shift + Option + Command.</appendix>
     <appendix>You can use this key in your own custom keyboard shortcuts you create in apps.</appendix>
-    <appendix>Caps Lock pressed alone is mapped to F19.</appendix>
+    <appendix>Caps Lock pressed alone is mapped to Esc.</appendix>
 
     <identifier>private.caps_lock_to_hyper</identifier>
 
