@@ -73,6 +73,8 @@ if has('gui_macvim')
   Bundle 'Valloric/YouCompleteMe'
 endif
 
+Bundle 'Valloric/MatchTagAlways'
+
 " Bundle 'sjl/gundo.vim'
 Bundle 'mbbill/undotree'
 

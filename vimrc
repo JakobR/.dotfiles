@@ -278,6 +278,20 @@ else
   nnoremap <Leader>a :echoerr 'Error: Neither ag nor ack are available!'<CR>
 endif
 
+" Highlight matching tags in these file types (MatchTagAlways plugin)
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'eruby' : 1,
+    \ 'php' : 1,
+    \ 'ant' : 1
+    \}
+
+" Use MatchTag highlighting group for matching tags (and not MatchParen)
+let g:mta_use_matchparen_group = 0
+
 " Disable messages for completion menu
 " see patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
 " TODO: Activate as soon as this patch is pulled into main vim
