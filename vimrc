@@ -309,9 +309,10 @@ let g:EclimDisabled = 1
 
 " secure modelines
 let g:secure_modelines_modelines=10
-" disable secure modelines in vimpager
+" disable secure modelines and indent guides in vimpager
 if exists('g:vimpager')
   let g:loaded_securemodelines = 1
+  let g:indentLine_loaded = 1
 endif
 
 " Disable modeline (security issue)
