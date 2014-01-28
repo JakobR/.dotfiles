@@ -201,7 +201,8 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
 
-let g:neocomplcache_enable_at_startup = 1
+nnoremap <F5> :UndotreeToggle<CR>
+inoremap <F5> <C-O>:UndotreeToggle<CR>
 
 " status line
 " see http://got-ravings.blogspot.co.at/2008/08/vim-pr0n-making-statuslines-that-own.html

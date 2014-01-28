@@ -73,6 +73,9 @@ if has('gui_macvim')
   Bundle 'Valloric/YouCompleteMe'
 endif
 
+" Bundle 'sjl/gundo.vim'
+Bundle 'mbbill/undotree'
+
 " More interesting bundles to check out:
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Bundle 'kana/vim-smartinput'
