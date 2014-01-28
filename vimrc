@@ -20,6 +20,7 @@ set showmatch           " show matching brackets
 set showmode            " show mode in status bar (insert/replace/...)
 set showcmd             " show typed command in status bar
 set wildmenu            " completion with menu
+set wildmode=list:longest,full
 set laststatus=2        " use 2 lines for the status bar
 set matchtime=1         " show matching bracket for 0.1 seconds
 set nrformats-=octal
