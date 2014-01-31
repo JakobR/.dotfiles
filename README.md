@@ -19,6 +19,7 @@ Installation
 
         ln -s ~/.dotfiles/zsh/zshrc        ~/.zshrc
         ln -s ~/.dotfiles/zsh/zlogout      ~/.zlogout
+        ln -s ~/.dotfiles/zsh/zprofile     ~/.zprofile
         ln -s ~/.dotfiles/tmux.conf        ~/.tmux.conf
         ln -s ~/.dotfiles/vim              ~/.vim
         ln -s ~/.dotfiles/vimrc            ~/.vimrc
