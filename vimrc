@@ -314,6 +314,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 " Disable Eclim for now
 let g:EclimDisabled = 1
 
+" let b:delimitMate_expand_cr = 1
 
 " TODO:
 " Configure vim for Objective-C and Cocoa development

@@ -13,6 +13,7 @@ Bundle 'ciaranm/securemodelines'
 Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
+" alternative to gitgutter: https://github.com/mhinz/vim-signify
 
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
@@ -74,6 +75,7 @@ if has('gui_macvim')
 endif
 
 Bundle 'Valloric/MatchTagAlways'
+Bundle 'Raimondi/delimitMate'
 
 " Bundle 'sjl/gundo.vim'
 Bundle 'mbbill/undotree'
@@ -89,5 +91,11 @@ Bundle 'mbbill/undotree'
 " or https://github.com/haya14busa/vim-easymotion
 
 " snippets: https://github.com/SirVer/ultisnips
+
+" Look at http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
+" Bundle 'Shougo/unite.vim'
+
+" Bundle 'xolox/vim-session'
+" Bundle 'tpope/vim-obsession'
 
 filetype plugin indent on     " required!
