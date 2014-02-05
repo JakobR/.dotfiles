@@ -13,7 +13,7 @@ Installation
 
 2. Clone the repository to `~/.dotfiles`:
 
-        git clone --recursive git://github.com/JakobR/.dotfiles.git $HOME/.dotfiles
+        git clone --recursive https://github.com/JakobR/.dotfiles.git $HOME/.dotfiles
 
 3. Set up symlinks:
 
