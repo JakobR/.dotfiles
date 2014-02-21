@@ -251,7 +251,7 @@ endfunction
 
 let s:dir = expand('~/.vim-tmp')
 if EnsureDirectoryExists(s:dir)
-  " TODO: Check if permissions of s:dir are 700
+  " TODO: Check if permissions of s:dir are 700 (with python? or shell commands?)
 
   let s:swapdir = s:dir . '/swap'
   if EnsureDirectoryExists(s:swapdir)
@@ -272,6 +272,11 @@ endif
 if exists('+undofile')
   set undofile
 endif
+
+" include a timestamp in backup extension
+" TODO: Auto-cleanup, or at least show a message if the directory is getting too full
+au BufWritePre * let &backupext = '-' . strftime("%Y%b%d-%X") . '~'
+set backup
 
 " Cursor shape in iTerm2
 if !has("gui_running") && ($TERM_PROGRAM ==# 'iTerm.app')
