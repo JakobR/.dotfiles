@@ -233,18 +233,40 @@ nnoremap gf <C-W>gf
 vnoremap < <gv
 vnoremap > >gv
 
-" from tpope/vim-sensible
-"let s:dir = has('win32') ? '$APPDATA/Vim' : match(system('uname'), "Darwin") > -1 ? '~/Library/Vim' : empty($XDG_DATA_HOME) ? '~/.local/share/vim' : '$XDG_DATA_HOME/vim'
-let s:dir = '~/.vim/tmp'
-if isdirectory(expand(s:dir))
-  if &directory =~# '^\.,'
-    let &directory = expand(s:dir) . '/swap//,' . &directory
+function EnsureDirectoryExists(dir)
+  if empty(glob(a:dir))
+    if exists('*mkdir')
+      call mkdir(a:dir, '', 0700)
+    else
+      echoerr 'mkdir is not available. Please create this directory with permissions 700: ' . a:dir
+    endif
   endif
-  if &backupdir =~# '^\.,'
-    let &backupdir = expand(s:dir) . '/backup//,' . &backupdir
+  if isdirectory(a:dir)
+    return 1
+  else
+    echoerr 'Not a directory: ' . a:dir
+    return 0
   endif
-  if exists('+undodir') && &undodir =~# '^\.\%(,\|$\)'
-    let &undodir = expand(s:dir) . '/undo//,' . &undodir
+endfunction
+
+let s:dir = expand('~/.vim-tmp')
+if EnsureDirectoryExists(s:dir)
+  " TODO: Check if permissions of s:dir are 700
+
+  let s:swapdir = s:dir . '/swap'
+  if EnsureDirectoryExists(s:swapdir)
+    " need double slashes at end to build swap file names from full path
+    let &directory = s:swapdir . '//,' . &directory
+  endif
+
+  let s:backupdir = s:dir . '/backup'
+  if EnsureDirectoryExists(s:backupdir)
+    let &backupdir = s:backupdir . '//,' . &backupdir
+  endif
+
+  let s:undodir = s:dir . '/undo'
+  if exists('+undodir') && EnsureDirectoryExists(s:undodir)
+    let &undodir = s:undodir . '//,' . &undodir
   endif
 endif
 if exists('+undofile')
