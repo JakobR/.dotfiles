@@ -56,6 +56,7 @@ Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'exu/pgsql.vim'
 Bundle 'lukerandall/haskellmode-vim'
+Bundle 'jnwhiteh/vim-golang'
 
 " good, but sadly too slow
 "Bundle 'dag/vim2hs'
@@ -74,7 +75,9 @@ if has('gui_macvim')
   Bundle 'Valloric/YouCompleteMe'
 endif
 
-Bundle 'Valloric/MatchTagAlways'
+if has('python')
+  Bundle 'Valloric/MatchTagAlways'
+end
 Bundle 'Raimondi/delimitMate'
 
 " Bundle 'sjl/gundo.vim'
