@@ -66,12 +66,6 @@ Bundle 'tmatilai/vim-monit'
 
 " Installation guide: https://github.com/Valloric/YouCompleteMe
 if has('gui_macvim')
-  " MacVim links to system python, even if homebrew python is installed
-  " (check with `otool -L /usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim|grep -i python`)
-  " YCM, on the other hand, seems to use python from $PATH (and the server crashes)
-  " workaround: Set path to python explicitly to avoid having to unlink
-  " homebrew's python.
-  let g:ycm_path_to_python_interpreter = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
   Bundle 'Valloric/YouCompleteMe'
 endif
 
