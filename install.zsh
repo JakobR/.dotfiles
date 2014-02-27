@@ -23,90 +23,60 @@ if [[ ! -f "$JR_DOTFILES/.jr_dotfiles" ]] then
   exit 2
 fi
 
-# Files to link from home directory.
-# This array contains paths relative to $JR_DOTFILES.
-# Every entry will be linked to $HOME/.`basename $file`
-files=(
-  zsh/zshrc
-  zsh/zlogout
-  zsh/zprofile
-  tmux.conf
-  vim
-  vimrc
-  gvimrc
-  ackrc
-  gitconfig
-  gitignore-global
-  ghci
-  inputrc
-  gemrc
-)
 
-for file in $files
-do
-  link_loc="$HOME/.$(basename $file)"
-  orig_loc="$JR_DOTFILES/$file"
+# creates a symlink with additional checks and output
+function create_symlink () {
+  local orig_path="$1"
+  local link_path="$2"
 
-  if [[ ! -e "$orig_loc" ]] then
-    echo "Error: Original file does not exist: $orig_loc"
+  if [[ ! -e "$orig_path" ]] then
+    echo "Error: Original file does not exist: $orig_path"
     exit 3
   fi
 
-  if [[ -e "$link_loc" ]] then
+  if [[ -e "$link_path" ]] then
     # Link exists. Is it the correct one?
-    if [[ (-L "$link_loc") && ("$(readlink -n $link_loc)" = "$orig_loc") ]] then
-      echo "Found correct link at $link_loc"
+    if [[ (-L "$link_path") && ("$(readlink -n $link_path)" = "$orig_path") ]] then
+      echo "Found correct link at $link_path"
     else
       # TODO: Can backup automatically
-      echo "Error: File already exists, please back up and delete: $link_loc"
+      echo "Error: File already exists, please back up and delete: $link_path"
       exit 4
     fi
   else
     # Create link
-    echo "Creating link from $link_loc to $orig_loc"
-    /bin/ln -is "$orig_loc" "$link_loc"
+    echo "Creating link from $link_path to $orig_path"
+    /bin/ln -is "$orig_path" "$link_path"
   fi
+}
 
-done
+# Expects a path relative to $JR_DOTFILES.
+function create_symlink_to_home () {
+  local file="$1"
 
-## previous complicated version with associative array:
-#
-# typeset -A files
-# files=(
-#   .zshrc              zsh/zshrc
-#   .zlogout            zsh/zlogout
-#   .zprofile           zsh/zprofile
-#   .tmux.conf          -
-#   .vim                -
-#   .vimrc              -
-#   .gvimrc             -
-#   .ackrc              -
-#   .gitconfig          -
-#   .gitignore-global   -
-#   .ghci               -
-#   .inputrc            -
-#   .gemrc              -
-# )
-
-# for k in ${(k)files}
-# do
-#   v="${files[$k]}"
-
-#   link_dst="$HOME/$k"
-
-#   if [[ "$v" = "-" ]] then
-#     # A dash means default location -> just remove the dot
-#     link_src="${k[2,$#k]}"
-#   else
-#     link_src="$v"
-#   fi
-#   link_src="$JR_DOTFILES/$link_src"
-
-#   echo $link_src '->' $link_dst
-# done
+  create_symlink "$JR_DOTFILES/$file" "$HOME/.$(basename $file)"
+}
 
 
-platform=`uname -s`
+create_symlink_to_home 'zsh/zshrc'
+create_symlink_to_home 'zsh/zlogout'
+create_symlink_to_home 'zsh/zprofile'
+create_symlink_to_home 'tmux.conf'
+create_symlink_to_home 'vim'
+create_symlink_to_home 'vimrc'
+create_symlink_to_home 'gvimrc'
+create_symlink_to_home 'ackrc'
+create_symlink_to_home 'gitconfig'
+create_symlink_to_home 'gitignore-global'
+create_symlink_to_home 'ghci'
+create_symlink_to_home 'inputrc'
+create_symlink_to_home 'gemrc'
+
+
+if [[ $OSTYPE =~ ^darwin ]] then
+  create_symlink_to_home 'slate.js'
+  create_symlink "$JR_DOTFILES/KeyRemap4MacBook/private.xml" "$HOME/Library/Application Support/KeyRemap4MacBook/private.xml"
+fi
 
 # TODO:
 # Allow running with curl https://.../ | zsh or so for fast install
