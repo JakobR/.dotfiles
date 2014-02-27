@@ -86,7 +86,7 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " open URL under cursor
 " see http://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
 function OpenUrlUnderCursor()
-  if system('uname')=~'Darwin'
+  if system('uname -s')=~'Darwin'
     execute "normal! BvEy"
     " this regex supports one level of matching parentheses in URLs.
     " single closing parentheses are seen as end of the URL (because of link syntax in markdown)
@@ -164,7 +164,7 @@ let g:sql_type_default = 'pgsql'
 
 " Configure browser for haskell_doc.vim
 " http://projects.haskell.org/haskellmode-vim/
-if system('uname')=~'Darwin'
+if system('uname -s')=~'Darwin'
   let g:haddock_browser = "open"
   let g:haddock_browser_callformat = "%s %s"
 else

@@ -1,8 +1,6 @@
-
 alias l='ls -F'
 
-platform=`uname`
-if [[ $platform == 'Darwin' || $platform == 'FreeBSD' ]] then
+if [[ ($OSTYPE =~ ^darwin) || ($OSTYPE =~ ^freebsd) ]] then
   alias ll='ls -lFhT'
   alias la='ls -laFhT'
 else

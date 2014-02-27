@@ -45,8 +45,7 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(git zaw zsh-syntax-highlighting)
 
 # Platform-specific configuration
-platform=`uname`
-if [[ $platform == 'Darwin' ]] then
+if [[ $OSTYPE =~ ^darwin ]] then
   # Mac OS X configuration
 
   # LaTeX
@@ -95,12 +94,12 @@ if [[ $platform == 'Darwin' ]] then
   plugins+=brew
   plugins+=capistrano
 
-elif [[ $platform == 'FreeBSD' ]] then
+elif [[ $OSTYPE =~ ^freebsd ]] then
   # FreeBSD configuration
 
   export EDITOR='/usr/local/bin/vim'
 
-elif [[ $platform == 'Linux' ]] then
+elif [[ $OSTYPE =~ ^linux ]] then
   # Linux configuration
 
   export EDITOR='/usr/bin/vim'
