@@ -54,7 +54,8 @@ function create_symlink () {
 function create_symlink_to_home () {
   local file="$1"
 
-  create_symlink "$JR_DOTFILES/$file" "$HOME/.$(basename $file)"
+  # "${file:t}" is the basename of the path in $file
+  create_symlink "$JR_DOTFILES/$file" "$HOME/.${file:t}"
 }
 
 
