@@ -1,6 +1,15 @@
 " Load bundles
 if empty($JR_DOTFILES)
   source $HOME/.dotfiles/bundles.vim
+
+  if has("gui_macvim")
+    " zshrc is not sourced when opening a file from Finder or when creating a
+    " new window with Cmd+N
+    "
+    " Need to add at least homebrew's paths here.
+    " TODO: This is a suboptimal solution, find something better.
+    let $PATH = '/usr/local/bin:/usr/local/sbin:' . $PATH
+  endif
 else
   source $JR_DOTFILES/bundles.vim
 endif
