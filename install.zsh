@@ -18,13 +18,11 @@ if [[ -z "$JR_DOTFILES" ]] then
 fi
 
 if [[ ! -d "$JR_DOTFILES" ]] then
-  # TODO: Clone automatically (or ask user?)
-  echo "Please clone https://github.com/JakobR/.dotfiles.git"
-  exit 1
+  git clone --recursive 'https://github.com/JakobR/.dotfiles.git' "$JR_DOTFILES"
 fi
 
 if [[ ! -f "$JR_DOTFILES/.jr_dotfiles" ]] then
-  echo "JR_DOTFILES directory (path: '$JR_DOTFILES') does not contain expected data (or is too old?)"
+  echo "JR_DOTFILES directory (path: '$JR_DOTFILES') does not contain expected data!"
   exit 2
 fi
 
@@ -64,6 +62,10 @@ function create_symlink_to_home () {
 }
 
 
+if [[ "$JR_DOTFILES" != "$DEFAULT_JR_DOTFILES" ]] then
+  create_symlink "$JR_DOTFILES" "$DEFAULT_JR_DOTFILES"
+fi
+
 create_symlink_to_home 'zsh/zshrc'
 create_symlink_to_home 'zsh/zlogout'
 create_symlink_to_home 'zsh/zprofile'
@@ -87,8 +89,12 @@ if [[ $OSTYPE =~ ^darwin ]] then
   $JR_DOTFILES/osx.sh
 fi
 
+
+# vim bundles
+vim -u "$JR_DOTFILES/bundles.vim" +BundleInstall +qall
+
+
 # TODO:
-# Allow running with curl https://.../ | zsh or so for fast install
-# run osx.sh on osx
-# also symlink private.xml if on osx
 # print notes about things to do manually
+# colored output of what's being done next (like rvm: green for status, red for errors)
+# don't abort if a symlink exists
