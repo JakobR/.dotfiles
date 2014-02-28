@@ -7,6 +7,17 @@
 # Abort on error
 set -e
 
+
+# Parse command line parameters.
+if [[ ("${#}" -eq "1") && ("$1" = "--update") ]] then
+  JR_UPDATE="true"
+elif [[ "${#}" -ne "0" ]] then
+  echo "Invalid number of arguments!"
+  echo "\nUsage:\n  $0 [--update]"
+  exit 1
+fi
+
+
 DEFAULT_JR_DOTFILES="$HOME/.dotfiles"
 if [[ -z "$JR_DOTFILES" ]] then
   # Use default location if not set
@@ -93,6 +104,18 @@ fi
 # vim bundles
 vim -u "$JR_DOTFILES/bundles.vim" +BundleInstall +qall
 
+
+if [[ "$JR_UPDATE" = "true" ]] then
+  echo updating
+  (
+    set -e
+    cd "$JR_DOTFILES"
+    git pull origin master
+    git submodule sync
+    git submodule update --recursive
+    vim -u "$JR_DOTFILES/bundles.vim" '+BundleInstall!'
+  )
+fi
 
 # TODO:
 # print notes about things to do manually
