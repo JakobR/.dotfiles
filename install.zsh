@@ -8,11 +8,23 @@
 set -e
 
 
+# Colors
+autoload -Uz colors
+colors
+
+function echo_msg () {
+  echo "$fg[green]$@$fg[default]"
+}
+function echo_err () {
+  echo "$fg[red]$@$fg[default]"
+}
+
+
 # Parse command line parameters.
 if [[ ("${#}" -eq "1") && ("$1" = "--update") ]] then
   JR_UPDATE="true"
 elif [[ "${#}" -ne "0" ]] then
-  echo "Invalid number of arguments!"
+  echo_err "Invalid number of arguments!"
   echo "\nUsage:\n  $0 [--update]"
   exit 1
 fi
@@ -28,13 +40,16 @@ if [[ -z "$JR_DOTFILES" ]] then
   export JR_DOTFILES
 fi
 
+echo_msg "Installation directory: $fg[yellow]$JR_DOTFILES"
+
 if [[ ! -d "$JR_DOTFILES" ]] then
+  echo_msg "Directory doesn't exist yet, cloning from GitHub..."
   git clone --recursive 'https://github.com/JakobR/.dotfiles.git' "$JR_DOTFILES"
 fi
 
 if [[ ! -f "$JR_DOTFILES/.jr_dotfiles" ]] then
-  echo "JR_DOTFILES directory (path: '$JR_DOTFILES') does not contain expected data!"
-  exit 2
+  echo_err "JR_DOTFILES directory (path: '$JR_DOTFILES') does not contain expected data!"
+  exit 1
 fi
 
 
@@ -44,7 +59,7 @@ function create_symlink () {
   local link_path="$2"
 
   if [[ ! -e "$orig_path" ]] then
-    echo "Error: Original file does not exist: $orig_path"
+    echo_err "Error: Original file does not exist: $orig_path"
     exit 3
   fi
 
@@ -54,12 +69,12 @@ function create_symlink () {
       echo "Found correct link at $link_path"
     else
       # TODO: Can backup automatically
-      echo "Error: File already exists, please back up and delete: $link_path"
+      echo_err "Error: File already exists, please back up and delete: $link_path"
       exit 4
     fi
   else
     # Create link
-    echo "Creating link from $link_path to $orig_path"
+    echo "Creating link from $link_path to $orig_path..."
     /bin/ln -is "$orig_path" "$link_path"
   fi
 }
@@ -74,9 +89,11 @@ function create_symlink_to_home () {
 
 
 if [[ "$JR_DOTFILES" != "$DEFAULT_JR_DOTFILES" ]] then
+  echo_msg "Symlinking $HOME/.dotfiles..."
   create_symlink "$JR_DOTFILES" "$DEFAULT_JR_DOTFILES"
 fi
 
+echo_msg "Symlinking dotfiles..."
 create_symlink_to_home 'zsh/zshrc'
 create_symlink_to_home 'zsh/zlogout'
 create_symlink_to_home 'zsh/zprofile'
@@ -93,20 +110,23 @@ create_symlink_to_home 'gemrc'
 
 
 if [[ $OSTYPE =~ ^darwin ]] then
+  echo_msg "Symlinking OS X specific files..."
   create_symlink_to_home 'slate.js'
   create_symlink "$JR_DOTFILES/KeyRemap4MacBook/private.xml" "$HOME/Library/Application Support/KeyRemap4MacBook/private.xml"
   create_symlink "$JR_DOTFILES/Ukelele/US_with_umlauts.keylayout" "$HOME/Library/Keyboard Layouts/US_with_umlauts.keylayout"
 
+  echo_msg "Running OS X configuration script..."
   $JR_DOTFILES/osx.sh
 fi
 
 
 # vim bundles
+echo_msg "Installing vim bundles..."
 vim -u "$JR_DOTFILES/bundles.vim" +BundleInstall +qall
 
 
 if [[ "$JR_UPDATE" = "true" ]] then
-  echo updating
+  echo_msg "Updating..."
   (
     set -e
     cd "$JR_DOTFILES"
@@ -117,7 +137,9 @@ if [[ "$JR_UPDATE" = "true" ]] then
   )
 fi
 
+echo
+echo_msg "Done! Installation completed successfully."
+
 # TODO:
 # print notes about things to do manually
-# colored output of what's being done next (like rvm: green for status, red for errors)
 # don't abort if a symlink exists
