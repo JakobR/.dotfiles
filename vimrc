@@ -1,5 +1,6 @@
 " Load bundles
 if empty($JR_DOTFILES)
+  " TODO: Does this still work when `$HOME/.dotfiles` is a symlink?
   source $HOME/.dotfiles/bundles.vim
 
   if has("gui_macvim")

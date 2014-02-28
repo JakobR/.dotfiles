@@ -1,5 +1,9 @@
 # Path to dotfiles
-export JR_DOTFILES=$HOME/.dotfiles
+JR_DOTFILES="$HOME/.dotfiles"
+if [[ -L "$JR_DOTFILES" ]] then
+  JR_DOTFILES=$(readlink -n $JR_DOTFILES)
+fi
+export JR_DOTFILES
 
 # Path to oh-my-zsh configuration.
 ZSH=$JR_DOTFILES/zsh/oh-my-zsh
@@ -56,7 +60,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export PATH=/usr/local/bin:$PATH
 
   # Cabal binaries
-  export PATH=~/.cabal/bin:$PATH
+  export PATH=$HOME/.cabal/bin:$PATH
 
   # standard rails environment on this machine
   # be careful when running tests though as they will need the 'test' environment explicitly specified.
@@ -77,12 +81,12 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias hashcat='/Users/Jakob/Applications/hashcat'
   alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 250'
   alias openssl='/usr/local/opt/openssl/bin/openssl'
-  alias dtw='~/server/dango/transmission-web.sh -f'
-  alias dtr='~/server/dango/transmission-remote.sh'
+  alias dtw='$HOME/server/dango/transmission-web.sh -f'
+  alias dtr='$HOME/server/dango/transmission-remote.sh'
   alias sage='/Applications/sage/sage'
 
   # Directory shortcuts
-  Uni=~/Documents/Uni
+  Uni=$HOME/Documents/Uni
   CS=$Uni/Informatik
   Math=$Uni/Mathematik
 

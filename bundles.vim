@@ -87,6 +87,8 @@ Bundle 'mbbill/undotree'
 " https://github.com/Lokaltog/vim-easymotion
 " or https://github.com/haya14busa/vim-easymotion
 
+" https://github.com/suan/vim-instant-markdown
+
 " snippets: https://github.com/SirVer/ultisnips
 
 " Look at http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/

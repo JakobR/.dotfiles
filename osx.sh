@@ -2,6 +2,7 @@
 
 # OS X Settings
 # most stuff from https://github.com/sjl/dotfiles/blob/master/osx.sh
+# also interesting: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
 # Disable menu bar transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false

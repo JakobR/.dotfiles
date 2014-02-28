@@ -7,9 +7,14 @@
 # Abort on error
 set -e
 
+DEFAULT_JR_DOTFILES="$HOME/.dotfiles"
 if [[ -z "$JR_DOTFILES" ]] then
   # Use default location if not set
-  export JR_DOTFILES=$HOME/.dotfiles
+  JR_DOTFILES="$DEFAULT_JR_DOTFILES"
+  if [[ -L "$JR_DOTFILES" ]] then
+    JR_DOTFILES=$(readlink -n $JR_DOTFILES)
+  fi
+  export JR_DOTFILES
 fi
 
 if [[ ! -d "$JR_DOTFILES" ]] then
@@ -77,6 +82,9 @@ create_symlink_to_home 'gemrc'
 if [[ $OSTYPE =~ ^darwin ]] then
   create_symlink_to_home 'slate.js'
   create_symlink "$JR_DOTFILES/KeyRemap4MacBook/private.xml" "$HOME/Library/Application Support/KeyRemap4MacBook/private.xml"
+  create_symlink "$JR_DOTFILES/Ukelele/US_with_umlauts.keylayout" "$HOME/Library/Keyboard Layouts/US_with_umlauts.keylayout"
+
+  $JR_DOTFILES/osx.sh
 fi
 
 # TODO:
