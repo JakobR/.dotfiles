@@ -13,3 +13,6 @@
 [submodule "zsh/custom/plugins/zaw"]
 	path = zsh/custom/plugins/zaw
 	url = https://github.com/zsh-users/zaw.git
+[submodule "zsh/custom/plugins/zsh-dwim"]
+	path = zsh/custom/plugins/zsh-dwim
+	url = https://github.com/JakobR/zsh-dwim.git
