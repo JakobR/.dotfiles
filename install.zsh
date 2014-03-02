@@ -18,6 +18,10 @@ function echo_msg () {
 function echo_err () {
   echo "$fg[red]$@$fg[default]"
 }
+function echo_path () {
+  # Resetting color to default isn't actually correct (if used with echo_err for example), but that doesn't really matter
+  echo "$fg[yellow]$@$fg[default]"
+}
 
 
 # Parse command line parameters.
@@ -40,7 +44,7 @@ if [[ -z "$JR_DOTFILES" ]] then
   export JR_DOTFILES
 fi
 
-echo_msg "Installation directory: $fg[yellow]$JR_DOTFILES"
+echo_msg "Installation directory: $(echo_path $JR_DOTFILES)"
 
 if [[ ! -d "$JR_DOTFILES" ]] then
   echo_msg "Directory doesn't exist yet, cloning from GitHub..."
@@ -63,18 +67,31 @@ function create_symlink () {
     exit 3
   fi
 
-  if [[ -e "$link_path" ]] then
-    # Link exists. Is it the correct one?
-    if [[ (-L "$link_path") && ("$(readlink -n -- $link_path)" = "$orig_path") ]] then
-      echo "Found correct link at $link_path"
-    else
-      # TODO: Can backup automatically
-      echo_err "Error: File already exists, please back up and delete: $link_path"
-      exit 4
-    fi
+  # Link exists. Is it the correct one?
+  if [[ (-L "$link_path") && ("$(readlink -n -- $link_path)" = "$orig_path") ]] then
+    echo "Found correct link at $(echo_path $link_path)"
   else
+    # Something else exists at original path. Move it out of the way.
+    if [[ -e "$link_path" ]] then
+      # Find a free file name for the backup file
+      local i=0
+      local backup_base="$link_path.original"
+      local backup_path="$backup_base"
+      while [[ -e "$backup_path" ]] do
+        (( i = i + 1 ))
+        backup_path="$backup_base.$i"
+      done
+      # Try to move
+      echo "File already exists. Moving existing $(echo_path $link_path) to $(echo_path $backup_path)"
+      mv -n -- "$link_path" "$backup_path"
+      # Did it work?
+      if [[ -e "$link_path" ]] then
+        echo_err "Failed. Please resolve manually by deleting or moving $(echo_path $link_path)"
+        exit 4
+      fi
+    fi
     # Create link
-    echo "Creating link from $link_path to $orig_path..."
+    echo "Creating link from $(echo_path $link_path) to $(echo_path $orig_path)..."
     /bin/ln -is -- "$orig_path" "$link_path"
   fi
 }
@@ -156,4 +173,3 @@ echo_msg "Done! Installation completed successfully."
 
 # TODO:
 # print notes about things to do manually
-# don't abort if a symlink exists
