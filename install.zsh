@@ -35,7 +35,7 @@ if [[ -z "$JR_DOTFILES" ]] then
   # Use default location if not set
   JR_DOTFILES="$DEFAULT_JR_DOTFILES"
   if [[ -L "$JR_DOTFILES" ]] then
-    JR_DOTFILES=$(readlink -n $JR_DOTFILES)
+    JR_DOTFILES=$(readlink -n -- $JR_DOTFILES)
   fi
   export JR_DOTFILES
 fi
@@ -65,7 +65,7 @@ function create_symlink () {
 
   if [[ -e "$link_path" ]] then
     # Link exists. Is it the correct one?
-    if [[ (-L "$link_path") && ("$(readlink -n $link_path)" = "$orig_path") ]] then
+    if [[ (-L "$link_path") && ("$(readlink -n -- $link_path)" = "$orig_path") ]] then
       echo "Found correct link at $link_path"
     else
       # TODO: Can backup automatically
@@ -75,7 +75,7 @@ function create_symlink () {
   else
     # Create link
     echo "Creating link from $link_path to $orig_path..."
-    /bin/ln -is "$orig_path" "$link_path"
+    /bin/ln -is -- "$orig_path" "$link_path"
   fi
 }
 
@@ -136,6 +136,20 @@ if [[ "$JR_UPDATE" = "true" ]] then
     vim -u "$JR_DOTFILES/bundles.vim" '+BundleInstall!'
   )
 fi
+
+
+# Permissions
+echo_msg "Updating permissions..."
+chmod -- go-rwx $HOME
+
+mkdir -p -- $HOME/.ssh
+chmod -R -- go-rwx $HOME/.ssh
+
+mkdir -p -- $HOME/.vim-tmp
+chmod -- go-rwx $HOME/.vim-tmp
+
+chmod -R -- go-w $JR_DOTFILES
+
 
 echo
 echo_msg "Done! Installation completed successfully."
