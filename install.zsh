@@ -171,5 +171,30 @@ chmod -R -- go-w $JR_DOTFILES
 echo
 echo_msg "Done! Installation completed successfully."
 
-# TODO:
-# print notes about things to do manually
+echo
+cat <<END
+Additional configuration tasks to be performed manually:
+
+  * If you want to connect to this machine via ssh, sshd should accept the TERM_PROGRAM variable.
+    Add this line to sshd_config:
+
+        AcceptEnv TERM_PROGRAM
+
+END
+if [[ $OSTYPE =~ ^darwin ]] then
+  cat <<END
+  * Install additional software:
+    - PCKeyboardHack
+          http://pqrs.org/macosx/keyremap4macbook/pckeyboardhack.html.en
+    - KeyRemap4MacBook
+          http://pqrs.org/macosx/keyremap4macbook/index.html.en
+    - Slate
+          https://github.com/jigish/slate
+
+  * In System Preferences / Keyboard / Modifier Keys, set Caps Lock to "No Action".
+    (this is necessary for KeyRemap4MacBook's KeyOverlaidModifier to work correctly.)
+
+  * In PCKeyboardHack, map Caps Lock to "80" (F19).
+
+END
+fi

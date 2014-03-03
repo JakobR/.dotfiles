@@ -15,24 +15,7 @@ Installation
 
         curl https://raw.github.com/JakobR/.dotfiles/master/install.zsh | zsh
 
-3. When connecting over ssh, sshd should accept the `TERM_PROGRAM` variable. Add this line to `sshd_config`:
-
-        AcceptEnv TERM_PROGRAM
-
-4. Start/restart zsh.
-
-
-### Additional steps on Mac OS X
-
-1. Install some additional software:
-    * [PCKeyboardHack](http://pqrs.org/macosx/keyremap4macbook/pckeyboardhack.html.en)
-    * [KeyRemap4MacBook](http://pqrs.org/macosx/keyremap4macbook/index.html.en)
-    * [Slate](https://github.com/jigish/slate)
-
-2. Additional configuration steps:
-    * In `System Preferences / Keyboard / Modifier Keys`, set Caps Lock to "No Action".
-        (this is necessary for KeyRemap4MacBook's KeyOverlaidModifier to work correctly.)
-    * In PCKeyboardHack, map Caps Lock to "80" (F19).
+3. Start/restart zsh.
 
 
 ### Location
