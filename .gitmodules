@@ -15,4 +15,4 @@
 	url = https://github.com/zsh-users/zaw.git
 [submodule "zsh/custom/plugins/zsh-dwim"]
 	path = zsh/custom/plugins/zsh-dwim
-	url = https://github.com/JakobR/zsh-dwim.git
+	url = https://github.com/oknowton/zsh-dwim.git
