@@ -196,5 +196,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
 
   * In PCKeyboardHack, map Caps Lock to "80" (F19).
 
+  * In KeyRemap4MacBook, enable the mappings.
+
 END
 fi
