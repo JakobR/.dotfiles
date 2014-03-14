@@ -134,6 +134,17 @@ if [[ $OSTYPE =~ ^darwin ]] then
 
   echo_msg "Running OS X configuration script..."
   $JR_DOTFILES/osx.sh
+
+  echo_msg "Configuring PCKeyboardHack..."
+  PCKH="/Applications/PCKeyboardHack.app/Contents/Library/bin/PCKeyboardHack_cli"
+  if [[ (-f "$PCKH") && (-x "$PCKH") ]] then
+    # Map Caps Lock to 80, which is the key code for F19.
+    "$PCKH" set keycode_capslock 80
+    "$PCKH" set enable_capslock 1
+  else
+    echo_err "Unable to configure PCKeyboardHack. Please ensure you have at least version 10.6.0 installed, and run this script again."
+    # Not serious enough to exit...
+  fi
 fi
 
 
@@ -193,8 +204,6 @@ if [[ $OSTYPE =~ ^darwin ]] then
 
   * In System Preferences / Keyboard / Modifier Keys, set Caps Lock to "No Action".
     (this is necessary for KeyRemap4MacBook's KeyOverlaidModifier to work correctly.)
-
-  * In PCKeyboardHack, map Caps Lock to "80" (F19).
 
   * In KeyRemap4MacBook, enable the mappings.
 
