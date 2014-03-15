@@ -77,7 +77,6 @@ endif
 if has('python')
   Bundle 'Valloric/MatchTagAlways'
 end
-Bundle 'Raimondi/delimitMate'
 
 " Bundle 'sjl/gundo.vim'
 Bundle 'mbbill/undotree'
