@@ -344,6 +344,7 @@ let g:ycm_allow_changing_updatetime = 0
 
 " Load .ycm_extra_conf.py only in my own projects
 let g:ycm_extra_conf_globlist = ['!~/code/other/*','~/code/*','!~/*']
+let g:ycm_global_ycm_extra_conf = $JR_DOTFILES . '/ycm_extra_conf.py'
 
 " Make Eclim play nicely with YouCompleteMe
 let g:EclimCompletionMethod = 'omnifunc'
