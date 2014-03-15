@@ -68,6 +68,10 @@ Bundle 'tmatilai/vim-monit'
 " Installation guide: https://github.com/Valloric/YouCompleteMe
 if has('gui_macvim')
   Bundle 'Valloric/YouCompleteMe'
+
+  " Disable syntastic for C++ if we have YCM
+  " (TODO: this should be in vimrc, with a check whether YCM is actually loaded and working)
+  let g:syntastic_cpp_checkers = []
 endif
 
 if has('python')
