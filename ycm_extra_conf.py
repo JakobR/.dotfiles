@@ -8,10 +8,10 @@ flags = [
 '-Wall',
 '-Wextra',
 '-Werror',
-'-Wc++98-compat',
+# '-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
-'-Weverything',
+# '-Weverything',
 '-fexceptions',
 '-DNDEBUG',
 # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
@@ -52,6 +52,11 @@ flags = [
 # To generate the compilation database, use `bear`:
 #   $ bear -- make
 # See https://github.com/rizsotto/Bear
+#
+# There may be problems with C++11, see
+# https://github.com/Valloric/YouCompleteMe/issues/303
+#
+# TODO: Look at https://gist.github.com/locojay/4950253
 
 
 def DirectoryOfThisScript():
