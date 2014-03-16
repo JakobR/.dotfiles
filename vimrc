@@ -345,6 +345,8 @@ let g:ycm_add_preview_to_completeopt = 0
 
 let g:ycm_allow_changing_updatetime = 0
 
+let g:ycm_enable_diagnostic_signs = 0
+
 " Load .ycm_extra_conf.py only in my own projects
 let g:ycm_extra_conf_globlist = ['!~/code/other/*','~/code/*','!~/*']
 let g:ycm_global_ycm_extra_conf = $JR_DOTFILES . '/ycm_extra_conf.py'
