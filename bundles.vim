@@ -61,6 +61,8 @@ Bundle 'jnwhiteh/vim-golang'
 " good, but sadly too slow
 "Bundle 'dag/vim2hs'
 
+Bundle 'Mizuchi/STL-Syntax'
+Bundle 'vim-jp/cpp-vim'
 Bundle 'artoj/qmake-syntax-vim'
 Bundle 'vim-scripts/abnf'
 Bundle 'tmatilai/vim-monit'
