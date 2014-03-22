@@ -342,6 +342,7 @@ let g:mta_use_matchparen_group = 0
 
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
+autocmd FileType c,cpp set completeopt+=preview
 
 let g:ycm_allow_changing_updatetime = 0
 
