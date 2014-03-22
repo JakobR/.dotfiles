@@ -22,3 +22,10 @@ _dwim_add_transform '^dtr -t [0-9,-]+ *(--remove-and-delete)?$' \
 # => dtr -t 1,2,3 --remove-and-delete
 _dwim_add_transform '^dtr -t [0-9,-]+ *--info *\| *grep N?ame' \
   '_dwim_sed "s/--info.*/--remove-and-delete/"'
+
+
+#     brew info <formula>
+# =>  brew install <formula>
+_dwim_add_transform '^brew info ' \
+  '_dwim_sed "s/^brew info/brew install/"
+  _dwim_cursor=$#BUFFER'
