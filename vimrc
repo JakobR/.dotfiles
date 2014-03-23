@@ -215,6 +215,9 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
 
+nmap <Leader>a <Plug>(altr-forward)
+nmap <Leader>A <Plug>(altr-back)
+
 nnoremap <F5> :UndotreeToggle<CR>
 inoremap <F5> <C-O>:UndotreeToggle<CR>
 
@@ -308,15 +311,15 @@ endif
 " tab switching is too slow otherwise
 let g:gitgutter_eager = 0
 
-" Use <Leader>a to search in project
+" Use <Leader>s to search in project
 if executable('ag')
   " ag aka the_silver_searcher
   " see https://github.com/ggreer/the_silver_searcher
-  nnoremap <Leader>a :Ag<Space>
+  nnoremap <Leader>s :Ag<Space>
 elseif executable('ack')
-  nnoremap <Leader>a :Ack<Space>
+  nnoremap <Leader>s :Ack<Space>
 else
-  nnoremap <Leader>a :echoerr 'Error: Neither ag nor ack are available!'<CR>
+  nnoremap <Leader>s :echoerr 'Error: Neither ag nor ack are available!'<CR>
 endif
 
 " Highlight matching tags in these file types (MatchTagAlways plugin)
