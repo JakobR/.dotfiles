@@ -67,15 +67,16 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export RAILS_ENV='development'
 
   # Use MacVim to edit files, and give focus back to iTerm after closing
-  export EDITOR="/usr/local/bin/mvim -p --nofork -c 'au VimLeave * !open -a iTerm'"
+  export EDITOR="/usr/local/bin/mvim -p --nofork -c 'au VimLeave * !/usr/bin/open -a iTerm'"
   # only focus iTerm if the same shell is still open
-  alias mvim="/usr/local/bin/mvim -p -c 'au VimLeave * !pgrep zsh | grep $$ && open -a iTerm'"
+  alias mvim="/usr/local/bin/mvim -p -c 'au VimLeave * !/usr/bin/pgrep zsh | /usr/bin/grep $$ && /usr/bin/open -a iTerm'"
   # but stay in console for git commit messages
   export GIT_EDITOR='/usr/local/bin/vim'
 
   # Show hidden files in Finder
-  alias finder-show-hidden-files='defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder && open -g /System/Library/CoreServices/Finder.app'
-  alias finder-hide-hidden-files='defaults write com.apple.Finder AppleShowAllFiles NO  && killall Finder && open -g /System/Library/CoreServices/Finder.app'
+  # If it doesn't work, try `killall cfprefsd` first (http://apple.stackexchange.com/a/112091)
+  alias finder-show-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool TRUE  && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
+  alias finder-hide-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool FALSE && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
 
   # Some aliases
   alias hashcat='/Users/Jakob/Applications/hashcat'
