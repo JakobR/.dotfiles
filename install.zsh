@@ -124,6 +124,7 @@ create_symlink_to_home 'gitignore-global'
 create_symlink_to_home 'ghci'
 create_symlink_to_home 'inputrc'
 create_symlink_to_home 'gemrc'
+create_symlink_to_home 'Xmodmap'
 
 
 if [[ $OSTYPE =~ ^darwin ]] then
