@@ -4,7 +4,7 @@ bindkey "^U" backward-kill-line
 
 #    dtr
 # => dtr --list
-_dwim_add_transform '^dtr *(.*--)$' \
+_dwim_add_transform '^dtr *(.*--)?$' \
   'BUFFER="dtr --list"
   _dwim_cursor=$#BUFFER'
 
