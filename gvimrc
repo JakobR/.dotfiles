@@ -5,6 +5,10 @@ set guifont=Menlo:h14
 
 set background=light
 colorscheme solarized
+highlight GitGutterAdd          guibg=#eee8d5
+highlight GitGutterChange       guibg=#eee8d5
+highlight GitGutterDelete       guibg=#eee8d5
+highlight GitGutterChangeDelete guibg=#eee8d5
 
 " from https://github.com/raecoo/dotfiles/blob/master/gvimrc
 if has("gui_macvim")
