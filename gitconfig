@@ -10,6 +10,7 @@
   driver = bundle install
 [alias]
   st = status
+  co = checkout
   last = log --decorate -1 HEAD
   ld = -c 'core.pager=less -S' log --decorate --pretty=oneline --abbrev-commit
 [push]
