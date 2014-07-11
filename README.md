@@ -13,7 +13,7 @@ Installation
 
 2. Run the installation script:
 
-        curl https://raw.github.com/JakobR/.dotfiles/master/install.zsh | zsh
+        curl https://raw.githubusercontent.com/JakobR/.dotfiles/master/install.zsh | zsh
 
 3. Start/restart zsh.
 
