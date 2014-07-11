@@ -97,7 +97,6 @@ if [[ $OSTYPE =~ ^darwin ]] then
   # additional oh-my-zsh plugins
   plugins+=osx
   plugins+=brew
-  plugins+=capistrano
 
 elif [[ $OSTYPE =~ ^freebsd ]] then
   # FreeBSD configuration
