@@ -58,15 +58,12 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'exu/pgsql.vim'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'jnwhiteh/vim-golang'
-
-" good, but sadly too slow
-"Bundle 'dag/vim2hs'
-
 Bundle 'Mizuchi/STL-Syntax'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'artoj/qmake-syntax-vim'
 Bundle 'vim-scripts/abnf'
 Bundle 'tmatilai/vim-monit'
+Bundle 'adimit/prolog.vim'
 
 " Installation guide: https://github.com/Valloric/YouCompleteMe
 if has('gui_macvim')
@@ -75,10 +72,16 @@ if has('gui_macvim')
   " Disable syntastic for C++ if we have YCM
   " (TODO: this should be in vimrc, with a check whether YCM is actually loaded and working)
   let g:syntastic_cpp_checkers = []
+  " Disable python-mode's autocompletion if we have YCM
+  let g:pymode_rope_complete_on_dot = 0
 endif
 
 if has('python')
   Bundle 'Valloric/MatchTagAlways'
+
+  "Bundle 'klen/python-mode'
+  " workaround for freezes, see https://github.com/klen/python-mode/issues/342
+  let g:pymode_rope_lookup_project = 0
 end
 
 " Bundle 'sjl/gundo.vim'
