@@ -130,20 +130,20 @@ create_symlink_to_home 'Xmodmap'
 if [[ $OSTYPE =~ ^darwin ]] then
   echo_msg "Symlinking OS X specific files..."
   create_symlink_to_home 'slate.js'
-  create_symlink "$JR_DOTFILES/KeyRemap4MacBook/private.xml" "$HOME/Library/Application Support/KeyRemap4MacBook/private.xml"
+  create_symlink "$JR_DOTFILES/Karabiner/private.xml" "$HOME/Library/Application Support/Karabiner/private.xml"
   create_symlink "$JR_DOTFILES/Ukelele/US_with_umlauts.keylayout" "$HOME/Library/Keyboard Layouts/US_with_umlauts.keylayout"
 
   echo_msg "Running OS X configuration script..."
   $JR_DOTFILES/osx.sh
 
-  echo_msg "Configuring PCKeyboardHack..."
-  PCKH="/Applications/PCKeyboardHack.app/Contents/Library/bin/PCKeyboardHack_cli"
-  if [[ (-f "$PCKH") && (-x "$PCKH") ]] then
+  echo_msg "Configuring Seil..."
+  SEIL="/Applications/Seil.app/Contents/Library/bin/seil"
+  if [[ (-f "$SEIL") && (-x "$SEIL") ]] then
     # Map Caps Lock to 80, which is the key code for F19.
-    "$PCKH" set keycode_capslock 80
-    "$PCKH" set enable_capslock 1
+    "$SEIL" set keycode_capslock 80
+    "$SEIL" set enable_capslock 1
   else
-    echo_err "Unable to configure PCKeyboardHack. Please ensure you have at least version 10.6.0 installed, and run this script again."
+    echo_err "Unable to configure Seil. Please ensure you have at least version 10.9.0 installed, and run this script again."
     # Not serious enough to exit...
   fi
 fi
@@ -196,17 +196,17 @@ END
 if [[ $OSTYPE =~ ^darwin ]] then
   cat <<END
   * Install additional software:
-    - PCKeyboardHack
-          http://pqrs.org/macosx/keyremap4macbook/pckeyboardhack.html.en
-    - KeyRemap4MacBook
-          http://pqrs.org/macosx/keyremap4macbook/index.html.en
+    - Seil (formerly PCKeyboardHack)
+          https://pqrs.org/osx/karabiner/seil.html
+    - Karabiner (formerly KeyRemap4MacBook)
+          https://pqrs.org/osx/karabiner/index.html.en
     - Slate
           https://github.com/jigish/slate
 
   * In System Preferences / Keyboard / Modifier Keys, set Caps Lock to "No Action".
-    (this is necessary for KeyRemap4MacBook's KeyOverlaidModifier to work correctly.)
+    (this is necessary for Seil's KeyOverlaidModifier to work correctly.)
 
-  * In KeyRemap4MacBook, enable the mappings.
+  * In Karabiner, enable the mappings.
 
 END
 fi
