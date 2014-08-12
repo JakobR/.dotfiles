@@ -54,6 +54,7 @@ slate.bind(hyper("a"), focus("Anki"));
 slate.bind(hyper("o"), focus("Opera"));
 slate.bind(hyper("m"), focus("Mail"));
 slate.bind(hyper("c"), focus("Calendar"));
+slate.bind(hyper("r"), focus("Reminders"));
 slate.bind(hyper("s"), focus("Google Chrome"));
 slate.bind(hyper("f"), focus("Firefox"));
 slate.bind(hyper("j"), focus("JEDict"));
