@@ -82,10 +82,8 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias hashcat='/Users/Jakob/Applications/hashcat'
   alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 250'
   alias openssl='/usr/local/opt/openssl/bin/openssl'
-  alias dtw='$HOME/server/dango/transmission-web.sh -f'
-  alias dtr='$HOME/server/dango/transmission-remote.sh'
-  alias rtw='$HOME/server/raspberrypi/transmission-web.sh -f'
-  alias rtr='$HOME/server/raspberrypi/transmission-remote.sh'
+  alias dtw='$HOME/server/raspberrypi/transmission-web.sh -f'
+  alias dtr='$HOME/server/raspberrypi/transmission-remote.sh'
   alias sage='/Applications/sage/sage'
 
   # Directory shortcuts
