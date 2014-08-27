@@ -85,6 +85,8 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias dtw='$HOME/server/raspberrypi/transmission-web.sh -f'
   alias dtr='$HOME/server/raspberrypi/transmission-remote.sh'
   alias sage='/Applications/sage/sage'
+  alias pplex='java -jar $HOME/code/other/pplex/pplex.jar -nogui'
+  alias pplex-gui='java -jar $HOME/code/other/pplex/pplex.jar'
 
   # Directory shortcuts
   Uni=$HOME/Documents/Uni
