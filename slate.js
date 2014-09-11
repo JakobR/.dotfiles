@@ -44,11 +44,10 @@ var focus = function(appName, focusOnly) {
   }
 };
 
-slate.bind(hyper("d"), focus("Finder"));
+slate.bind(hyper("d"), focus("Dictionary"));
 slate.bind(hyper("p"), focus("Preview"));
 slate.bind(hyper("v"), focus("MacVim"));
 slate.bind(hyper("e"), focus("iTerm"));
-slate.bind(hyper("x"), focus("Skype"));
 slate.bind(hyper("t"), focus("iTunes"));
 slate.bind(hyper("a"), focus("Anki"));
 slate.bind(hyper("o"), focus("Opera"));
@@ -56,9 +55,9 @@ slate.bind(hyper("m"), focus("Mail"));
 slate.bind(hyper("c"), focus("Calendar"));
 slate.bind(hyper("r"), focus("Reminders"));
 slate.bind(hyper("s"), focus("Google Chrome"));
-slate.bind(hyper("f"), focus("Firefox"));
+slate.bind(hyper("f"), focus("Finder"));
 slate.bind(hyper("j"), focus("JEDict"));
-slate.bind(hyper("w"), focus("Xcode"));
+slate.bind(hyper("x"), focus("Xcode"));
 
 //slate.config("windowHintsIgnoreHiddenWindows", false);
 //slate.config("windowHintsShowIcons", true);
