@@ -64,6 +64,7 @@ Bundle 'artoj/qmake-syntax-vim'
 Bundle 'vim-scripts/abnf'
 Bundle 'tmatilai/vim-monit'
 Bundle 'adimit/prolog.vim'
+Bundle 'niklasl/vim-rdf'
 
 " Installation guide: https://github.com/Valloric/YouCompleteMe
 if has('gui_macvim')
