@@ -65,6 +65,7 @@ Bundle 'vim-scripts/abnf'
 Bundle 'tmatilai/vim-monit'
 Bundle 'adimit/prolog.vim'
 Bundle 'niklasl/vim-rdf'
+Bundle 'nikolavp/sparql.vim'
 
 " Installation guide: https://github.com/Valloric/YouCompleteMe
 if has('gui_macvim')
