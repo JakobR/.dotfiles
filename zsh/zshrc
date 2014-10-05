@@ -46,7 +46,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zaw zsh-syntax-highlighting zsh-dwim)
+plugins=(zaw zsh-syntax-highlighting zsh-dwim)
 
 # Platform-specific configuration
 if [[ $OSTYPE =~ ^darwin ]] then
@@ -123,12 +123,12 @@ if [[ $OSTYPE =~ ^darwin ]] then
   CS=$Uni/Informatik
   Math=$Uni/Mathematik
 
-  # Autojump
-  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+  # Autojump (this is slow!)
+  [[ -s /usr/local/etc/autojump.sh ]] && . /usr/local/etc/autojump.sh
+  # eval "$(fasd --init auto)"
 
   # additional oh-my-zsh plugins
   plugins+=osx
-  plugins+=brew
 
 elif [[ $OSTYPE =~ ^freebsd ]] then
   # FreeBSD configuration
