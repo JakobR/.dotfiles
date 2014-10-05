@@ -376,6 +376,7 @@ let g:secure_modelines_modelines=10
 if exists('g:vimpager')
   let g:loaded_securemodelines = 1
   let g:indentLine_loaded = 1
+  let vimpager_disable_ansiesc = 1
 endif
 
 " Disable modeline (security issue)
