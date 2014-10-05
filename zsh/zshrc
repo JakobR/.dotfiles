@@ -70,7 +70,28 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export EDITOR="/usr/local/bin/mvim -p --nofork -c 'au VimLeave * !/usr/bin/open -a iTerm'"
   # only focus iTerm if the same shell is still open
   alias mvim="/usr/local/bin/mvim -p -c 'au VimLeave * !/usr/bin/pgrep zsh | /usr/bin/grep $$ && /usr/bin/open -a iTerm'"
-  # but stay in console for git commit messages
+  function m() {
+    function vim_binary() {
+      # local vim_binary_path="/usr/local/Cellar/macvim/7.4-73_1/MacVim.app/Contents/MacOS/Vim"
+      local vim_binary_path="/usr/local/bin/mvim"
+      $vim_binary_path -g "${@}"
+    }
+    # TODO: When starting a new instance, add the code to switch back to the terminal on exit
+    # TODO: Maybe use this server: $(vim --serverlist|tail -n 1)   (latest one started)
+    # Maybe it's possible to use a specific vim server per "project"?
+    if [[ -z "${@}" ]] then
+      if [[ -z "$(vim_binary --serverlist)" ]] then
+        # No vim instances running? start a new one
+        vim_binary
+      else
+        # vim_binary --remote-send '<Esc>:tabnew<CR>' --remote-expr 'foreground()'
+        vim_binary --remote-send '<Esc>:tabnew<CR>:call foreground()<CR>'
+      fi
+    else
+      vim_binary --remote-tab-silent "${@}"
+    fi
+  }
+  # stay in console for git commit messages
   export GIT_EDITOR='/usr/local/bin/vim'
 
   # Show hidden files in Finder
