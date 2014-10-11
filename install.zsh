@@ -125,6 +125,8 @@ create_symlink_to_home 'ghci'
 create_symlink_to_home 'inputrc'
 create_symlink_to_home 'gemrc'
 create_symlink_to_home 'Xmodmap'
+create_symlink "${JR_DOTFILES}/mpv/input.conf" "${HOME}/.config/mpv/input.conf"
+create_symlink "${JR_DOTFILES}/mpv/mpv.conf" "${HOME}/.config/mpv/mpv.conf"
 
 
 if [[ $OSTYPE =~ ^darwin ]] then
