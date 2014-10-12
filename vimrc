@@ -57,7 +57,17 @@ set ttimeout
 set ttimeoutlen=50
 set updatetime=750
 
-set path+=/usr/local/include
+function s:AddToPath(dir)
+  if isdirectory(a:dir)
+    let &path .= ',' . escape(a:dir, ' ')
+  endif
+endfunction
+
+call s:AddToPath('/usr/local/include')
+call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include')
+call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1')
+call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.0/include')
+call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include')
 
 " Use two spaces to separate sentences
 " See http://stevelosh.com/blog/2012/10/why-i-two-space/
