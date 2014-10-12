@@ -69,6 +69,11 @@ call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDef
 call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.0/include')
 call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include')
 
+" Set filetype for C++ headers without extension (like <iostream>)
+" Standard library headers all seem to have a comment "// -*- C++ -*-" in the
+" first line.
+au BufRead * if search('-*- C++ -*-', 'nwc', 2) | setlocal ft=cpp | endif
+
 " Use two spaces to separate sentences
 " See http://stevelosh.com/blog/2012/10/why-i-two-space/
 set cpo+=J
