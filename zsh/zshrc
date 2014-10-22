@@ -100,8 +100,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias finder-hide-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool FALSE && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
 
   # Some aliases
-  alias libreoffice='/Users/Jakob/Applications/LibreOffice.app/Contents/MacOS/soffice'
-  alias hashcat='/Users/Jakob/Applications/hashcat'
+  alias libreoffice='$HOME/Applications/LibreOffice.app/Contents/MacOS/soffice'
   alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 250'
   alias openssl='/usr/local/opt/openssl/bin/openssl'
   alias dtw='$HOME/server/raspberrypi/transmission-web.sh -f'
@@ -109,6 +108,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias sage='/Applications/sage/sage'
   alias pplex='java -jar $HOME/code/other/pplex/pplex.jar -nogui'
   alias pplex-gui='java -jar $HOME/code/other/pplex/pplex.jar'
+  alias protege='$HOME/Documents/Uni/INFO116/Protege_5.0_beta/run.command'
 
   function o() {
     if [[ -z "${@}" ]] then
