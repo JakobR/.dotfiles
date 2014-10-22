@@ -18,6 +18,7 @@ endif
 filetype plugin indent on
 
 runtime macros/matchit.vim
+runtime! ftplugin/man.vim
 
 set background=dark
 set nowrap
