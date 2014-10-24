@@ -105,7 +105,6 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias openssl='/usr/local/opt/openssl/bin/openssl'
   alias dtw='$HOME/server/raspberrypi/transmission-web.sh -f'
   alias dtr='$HOME/server/raspberrypi/transmission-remote.sh'
-  alias sage='/Applications/sage/sage'
   alias pplex='java -jar $HOME/code/other/pplex/pplex.jar -nogui'
   alias pplex-gui='java -jar $HOME/code/other/pplex/pplex.jar'
   alias protege='$HOME/Documents/Uni/INFO116/Protege_5.0_beta/run.command'
