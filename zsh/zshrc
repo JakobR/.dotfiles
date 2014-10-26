@@ -109,6 +109,9 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias pplex-gui='java -jar $HOME/code/other/pplex/pplex.jar'
   alias protege='$HOME/Documents/Uni/INFO116/Protege_5.0_beta/run.command'
 
+  # Open today's journal entry (changes to next day at 12:00)
+  alias mj='(cd "$HOME/Documents/journal" && m "./$(date "-v-12H" "+%Y-%m-%d")".txt)'
+
   function o() {
     if [[ -z "${@}" ]] then
       /usr/bin/open .
