@@ -378,6 +378,9 @@ let g:EclimDisabled = 1
 
 " let b:delimitMate_expand_cr = 1
 
+" Don't need pylint in addition to flake8
+let g:syntastic_python_checkers = ['python', 'flake8']
+
 " TODO:
 " Configure vim for Objective-C and Cocoa development
 " http://stackoverflow.com/a/11550394
