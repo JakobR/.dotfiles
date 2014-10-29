@@ -380,6 +380,9 @@ let g:EclimDisabled = 1
 
 " Don't need pylint in addition to flake8
 let g:syntastic_python_checkers = ['python', 'flake8']
+" Ignore errors that are more annoying than helpful
+" E501 is "line too long"
+let g:syntastic_python_flake8_post_args = '--ignore=E501'
 
 " TODO:
 " Configure vim for Objective-C and Cocoa development
