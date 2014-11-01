@@ -24,6 +24,8 @@ Bundle 'tpope/vim-commentary'
 
 Bundle 'scrooloose/syntastic'
 
+Bundle 'aperezdc/vim-template'
+
 Bundle 'kana/vim-textobj-user'
 Bundle 'kana/vim-textobj-indent'
 Bundle 'lucapette/vim-textobj-underscore'
