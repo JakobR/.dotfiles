@@ -11,40 +11,10 @@ call vundle#rc()
 Bundle 'ciaranm/securemodelines'
 
 Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
-" alternative to gitgutter: https://github.com/mhinz/vim-signify
-
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-speeddating'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-eunuch'
-Bundle 'tpope/vim-commentary'
-
-Bundle 'scrooloose/syntastic'
-
-Bundle 'aperezdc/vim-template'
-
-Bundle 'kana/vim-textobj-user'
-Bundle 'kana/vim-textobj-indent'
-Bundle 'lucapette/vim-textobj-underscore'
-Bundle 'mattn/vim-textobj-url'
-Bundle 'Julian/vim-textobj-variable-segment'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'rbonvall/vim-textobj-latex'
-
-Bundle 'kien/ctrlp.vim'
-Bundle 'kana/vim-altr'
-Bundle 'rking/ag.vim'
-Bundle 'mileszs/ack.vim'
 
 if v:version >= 703
   Bundle 'myusuf3/numbers.vim'
 end
-
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
 
 Bundle 'altercation/vim-colors-solarized'
 
@@ -72,33 +42,68 @@ Bundle 'nikolavp/sparql.vim'
 " Bundle 'Mizuchi/STL-Syntax'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 
-" Installation guide: https://github.com/Valloric/YouCompleteMe
-if has('gui_macvim')
-  Bundle 'Valloric/YouCompleteMe'
+if !exists('g:vimpager')
+  " Don't need these plugins in vimpager
 
-  " Disable syntastic for C++ if we have YCM
-  " (TODO: this should be in vimrc, with a check whether YCM is actually loaded and working)
-  let g:syntastic_cpp_checkers = []
-  " Disable python-mode's autocompletion if we have YCM
-  let g:pymode_rope_complete_on_dot = 0
-endif
+  Bundle 'tpope/vim-fugitive'
+  Bundle 'airblade/vim-gitgutter'
+  " alternative to gitgutter: https://github.com/mhinz/vim-signify
 
-if v:version >= 704 && exists("*matchaddpos")
-  " Bundle 'bbchung/clighter'
+  Bundle 'tpope/vim-repeat'
+  Bundle 'tpope/vim-surround'
+  Bundle 'tpope/vim-speeddating'
+  Bundle 'tpope/vim-unimpaired'
+  Bundle 'tpope/vim-eunuch'
+  Bundle 'tpope/vim-commentary'
 
-  let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+  Bundle 'scrooloose/syntastic'
+
+  Bundle 'aperezdc/vim-template'
+
+  Bundle 'kana/vim-textobj-user'
+  Bundle 'kana/vim-textobj-indent'
+  Bundle 'lucapette/vim-textobj-underscore'
+  Bundle 'mattn/vim-textobj-url'
+  Bundle 'Julian/vim-textobj-variable-segment'
+  Bundle 'nelstrom/vim-textobj-rubyblock'
+  Bundle 'rbonvall/vim-textobj-latex'
+
+  Bundle 'kien/ctrlp.vim'
+  Bundle 'kana/vim-altr'
+  Bundle 'rking/ag.vim'
+  Bundle 'mileszs/ack.vim'
+
+  " Bundle 'scrooloose/nerdtree'
+  " Bundle 'jistr/vim-nerdtree-tabs'
+
+  " Installation guide: https://github.com/Valloric/YouCompleteMe
+  if has('gui_macvim')
+    Bundle 'Valloric/YouCompleteMe'
+
+    " Disable syntastic for C++ if we have YCM
+    " (TODO: this should be in vimrc, with a check whether YCM is actually loaded and working)
+    let g:syntastic_cpp_checkers = []
+    " Disable python-mode's autocompletion if we have YCM
+    let g:pymode_rope_complete_on_dot = 0
+  endif
+
+  if v:version >= 704 && exists("*matchaddpos")
+    " Bundle 'bbchung/clighter'
+
+    let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+  end
+
+  if has('python')
+    Bundle 'Valloric/MatchTagAlways'
+
+    "Bundle 'klen/python-mode'
+    " workaround for freezes, see https://github.com/klen/python-mode/issues/342
+    let g:pymode_rope_lookup_project = 0
+  end
+
+  " Bundle 'sjl/gundo.vim'
+  Bundle 'mbbill/undotree'
 end
-
-if has('python')
-  Bundle 'Valloric/MatchTagAlways'
-
-  "Bundle 'klen/python-mode'
-  " workaround for freezes, see https://github.com/klen/python-mode/issues/342
-  let g:pymode_rope_lookup_project = 0
-end
-
-" Bundle 'sjl/gundo.vim'
-Bundle 'mbbill/undotree'
 
 " More interesting bundles to check out:
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
