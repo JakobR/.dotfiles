@@ -8,7 +8,6 @@ call vundle#rc()
 " (since it's a git submodule it's not on a branch, so updating fails)
 "Bundle 'gmarik/vundle'
 
-Bundle 'ciaranm/securemodelines'
 
 Bundle 'tpope/vim-git'
 
@@ -17,9 +16,6 @@ if v:version >= 703
 end
 
 Bundle 'altercation/vim-colors-solarized'
-
-" Bundle 'Yggdroot/indentLine'
-" Bundle 'nathanaelkane/vim-indent-guides'
 
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
@@ -44,6 +40,7 @@ Bundle 'octol/vim-cpp-enhanced-highlight'
 
 if !exists('g:vimpager')
   " Don't need these plugins in vimpager
+  Bundle 'ciaranm/securemodelines'
 
   Bundle 'tpope/vim-fugitive'
   Bundle 'airblade/vim-gitgutter'
@@ -75,6 +72,9 @@ if !exists('g:vimpager')
 
   " Bundle 'scrooloose/nerdtree'
   " Bundle 'jistr/vim-nerdtree-tabs'
+
+  " Bundle 'Yggdroot/indentLine'
+  " Bundle 'nathanaelkane/vim-indent-guides'
 
   " Installation guide: https://github.com/Valloric/YouCompleteMe
   if has('gui_macvim')

@@ -399,12 +399,10 @@ let g:template_dir = $JR_DOTFILES . '/vim/templates'
 
 " secure modelines
 let g:secure_modelines_modelines=10
-" disable secure modelines and indent guides in vimpager
-if exists('g:vimpager')
-  let g:loaded_securemodelines = 1
-  let g:indentLine_loaded = 1
-  let vimpager_disable_ansiesc = 1
-endif
+
+" Disable ansiesc in vimpager (I prefer the highlighting from tpope/vim-git
+" for git output, which is where I use vimpager most of the time)
+let vimpager_disable_ansiesc = 1
 
 " Disable modeline (security issue)
 " This should be the last line
