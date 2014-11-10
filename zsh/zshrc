@@ -108,6 +108,8 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias pplex='java -jar $HOME/code/other/pplex/pplex.jar -nogui'
   alias pplex-gui='java -jar $HOME/code/other/pplex/pplex.jar'
   alias protege='$HOME/Documents/Uni/INFO116/Protege_5.0_beta/run.command'
+  alias jsonld='$HOME/code/other/jsonld.js/bin/jsonld'
+  alias clang-format='$HOME/Applications/clang+llvm-3.5.0-macosx-apple-darwin/bin/clang-format'
 
   # Open yesterday's or today's journal entry (day changes at 12:00)
   # Can open shift day with ±number as first argument (e.g. "mj -1")
