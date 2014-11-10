@@ -389,13 +389,7 @@ let g:email = substitute(system('git --no-pager config -z user.email'), '\W$', '
 let g:user  = substitute(system('git --no-pager config -z user.name'),  '\W$', '', '')
 let g:template_dir = $JR_DOTFILES . '/vim/templates'
 
-" TODO:
-" Configure vim for Objective-C and Cocoa development
-" http://stackoverflow.com/a/11550394
-" https://github.com/msanders/cocoa.vim
-" https://github.com/b4winckler/vim-objc
-" https://github.com/eraserhd/objective-vim/
-" http://objvimmer.com/blog/2012/12/05/getting-started-with-ios-development-with-vim/
+let g:clang_format#command = $HOME . '/Applications/clang+llvm-3.5.0-macosx-apple-darwin/bin/clang-format'
 
 " secure modelines
 let g:secure_modelines_modelines=10

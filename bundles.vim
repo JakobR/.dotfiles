@@ -70,6 +70,8 @@ if !exists('g:vimpager')
   Bundle 'rking/ag.vim'
   Bundle 'mileszs/ack.vim'
 
+  Bundle 'rhysd/vim-clang-format'
+
   " Bundle 'scrooloose/nerdtree'
   " Bundle 'jistr/vim-nerdtree-tabs'
 
