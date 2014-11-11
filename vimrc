@@ -245,8 +245,9 @@ set statusline+=%r      " read only flag
 set statusline+=%h      " [Help] file flag
 set statusline+=%w\     " [Preview] file flag
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}\      " git branch
-set statusline+=[%{strlen(&fenc)?&fenc:'none'} " file encoding
-set statusline+=%{&ff=='unix'?'':','.&ff}]     " file format, unless it's unix (TODO: Print that in red)
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}            " file encoding
+set statusline+=%{&ff=='unix'?'':','.&ff}                 " file format, unless it's unix (TODO: Print that in red)
+set statusline+=%{(exists('+bomb')&&&bomb)?',BOM':''}]    " BOM if byte order mark is present (TODO: red, if possible)
 set statusline+=%=      " left/right separator
 " set statusline+=%{rvm#statusline()}
 set statusline+=%y\     " filetype
