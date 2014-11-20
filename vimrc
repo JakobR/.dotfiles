@@ -247,12 +247,16 @@ set statusline+=%r      " read only flag
 set statusline+=%h      " [Help] file flag
 set statusline+=%w\     " [Preview] file flag
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}\      " git branch
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}            " file encoding
-set statusline+=%{&ff=='unix'?'':','.&ff}                 " file format, unless it's unix (TODO: Print that in red)
-set statusline+=%{(exists('+bomb')&&&bomb)?',BOM':''}]    " BOM if byte order mark is present (TODO: red, if possible)
+set statusline+=[%{strlen(&fenc)?&fenc:'none'}  " file encoding
+set statusline+=%{&ff=='unix'?'':','.&ff}       " file format, unless it's unix
+if exists('+bomb')
+  set statusline+=%{&bomb?',BOM':''}            " BOM if byte order mark is present
+end
+set statusline+=]
+set statusline+=\ %y    " filetype
 set statusline+=%=      " left/right separator
 " set statusline+=%{rvm#statusline()}
-set statusline+=%y\     " filetype
+set statusline+=\ [%b][0x%B]\                   " ASCII and byte code under cursor
 set statusline+=%c,     " cursor column
 set statusline+=%l/%L   " cursor line/total lines
 set statusline+=\ %P    " percent through file
