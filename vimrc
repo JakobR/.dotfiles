@@ -204,8 +204,10 @@ autocmd FileType * setlocal formatoptions-=o
 " http://stackoverflow.com/a/18572190
 autocmd FileType lhaskell setlocal formatoptions+=ro
 
-" Comment string for qmake
+" Comment style by file type
 autocmd FileType qmake set commentstring=#\ %s
+autocmd FileType sparql set commentstring=#\ %s
+autocmd FileType matlab set commentstring=%\ %s
 
 " HTML indentation
 let g:html_indent_inctags = "body,head,li"
