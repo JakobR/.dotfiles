@@ -390,6 +390,8 @@ let g:syntastic_python_checkers = ['python', 'flake8']
 " Ignore errors that are more annoying than helpful
 " E501 is "line too long"
 let g:syntastic_python_flake8_post_args = '--ignore=E501'
+" Use python3 by default
+let g:syntastic_python_python_exec = 'python3'
 
 " Use same user and email as git for the templates
 let g:email = substitute(system('git --no-pager config -z user.email'), '\W$', '', '')
