@@ -32,6 +32,7 @@ Bundle 'tmatilai/vim-monit'
 Bundle 'adimit/prolog.vim'
 Bundle 'niklasl/vim-rdf'
 Bundle 'nikolavp/sparql.vim'
+Bundle 'Keithbsmiley/swift.vim'
 
 " C++
 " Bundle 'vim-jp/cpp-vim'
