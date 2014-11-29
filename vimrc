@@ -374,7 +374,7 @@ let g:ycm_allow_changing_updatetime = 0
 let g:ycm_enable_diagnostic_signs = 0
 
 " Load .ycm_extra_conf.py only in my own projects
-let g:ycm_extra_conf_globlist = ['!~/code/other/*','~/code/*','!~/*']
+let g:ycm_extra_conf_globlist = ['!~/code/other/*','~/code/*','~/Documents/Uni/*','!~/*']
 let g:ycm_global_ycm_extra_conf = $JR_DOTFILES . '/ycm_extra_conf.py'
 
 " Make Eclim play nicely with YouCompleteMe
@@ -392,6 +392,12 @@ let g:syntastic_python_checkers = ['python', 'flake8']
 let g:syntastic_python_flake8_post_args = '--ignore=E501'
 " Use python3 by default
 let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_flake8_exe = 'python3 -mflake8'
+" Allow switching to python 2 for specific buffers
+function UsePython2()
+  let b:syntastic_python_python_exec = 'python'
+  let b:syntastic_python_flake8_exe = 'python -mflake8'
+endfunction
 
 " Use same user and email as git for the templates
 let g:email = substitute(system('git --no-pager config -z user.email'), '\W$', '', '')
@@ -407,6 +413,32 @@ let g:secure_modelines_modelines=10
 " for git output, which is where I use vimpager most of the time)
 let vimpager_disable_ansiesc = 1
 
-" Disable modeline (security issue)
-" This should be the last line
+" Project-specific settings
+" This should really be in a project-local file or something, but 'set exrc'
+" has serious security issues and I didn't want to choose a plugin at the moment.
+" This one seems to be actively developed, though: https://github.com/LucHermitte/local_vimrc
+function IsProject(name)
+  " Name should be the partial path of the project relative to home directory
+  " e.g for project at '$HOME/code/blah' use 'code/blah' as name argument.
+  return expand('%:p') =~ '^' . $HOME . '/' . a:name . '.*$'
+endfunction
+function ProjectSpecificSetup()
+  if IsProject('code/anki-addons')
+    call UsePython2()   " Anki uses python 2.7.6
+  " elseif IsProject('code/something_else')
+  "   " something else
+  endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call ProjectSpecificSetup()
+
+" Settings with security issues (this part should be at the end of vimrc)
+"
+" Disable modeline
 set nomodeline
+" " Enable project-specific configuration with secure mode
+" set exrc
+" " NOTE:
+" " This prevents certain commands, but only if the file is not owned by yourself,
+" " which means it doesn't offer any protection if you just clone random github
+" " repositories or open suspicious tarballs.
+" set secure
