@@ -81,10 +81,16 @@ au BufRead * if search('-*- C++ -*-', 'nwc', 2) | setlocal ft=cpp | endif
 " See http://stevelosh.com/blog/2012/10/why-i-two-space/
 set cpo+=J
 
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-endif
+" Use <C-L> to clear the highlighting of :set hlsearch
+" and of :GhcModType
+function ClearOtherHighlighting()
+  if exists(':GhcModTypeClear')
+    GhcModTypeClear
+  endif
+endfunction
+" <C-L> is already used to redraw the screen, keep that functionality by
+" executing the previous <C-L> at the end.
+nnoremap <silent> <C-L> :nohlsearch<CR>:call ClearOtherHighlighting()<CR><C-L>
 
 " show whitespace (with low visibility)
 set list
@@ -414,6 +420,13 @@ function UsePython2()
   let b:syntastic_python_python_exec = 'python'
   let b:syntastic_python_flake8_exe = 'python -mflake8'
 endfunction
+
+" ghc_mod seems to do the same as hdevtools
+let g:syntastic_haskell_checkers = ['hdevtools', 'hlint']
+" let g:ycm_semantic_triggers = {'haskell' : ['.']}
+" let g:necoghc_enable_detailed_browse = 1
+" autocmd FileType haskell,lhaskell setlocal omnifunc=necoghc#omnifunc
+nnoremap <Leader>t :GhcModType<CR>
 
 " Use same user and email as git for the templates
 let g:email = substitute(system('git --no-pager config -z user.email'), '\W$', '', '')

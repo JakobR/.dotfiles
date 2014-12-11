@@ -24,7 +24,6 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'exu/pgsql.vim'
-Bundle 'lukerandall/haskellmode-vim'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'artoj/qmake-syntax-vim'
 Bundle 'vim-scripts/abnf'
@@ -72,6 +71,12 @@ if !exists('g:vimpager')
   Bundle 'mileszs/ack.vim'
 
   Bundle 'rhysd/vim-clang-format'
+
+  Bundle 'Shougo/vimproc.vim'
+  Bundle 'eagletmt/ghcmod-vim'
+  " Bundle 'bitc/vim-hdevtools'
+  " Bundle 'eagletmt/neco-ghc'
+  " Bundle 'lukerandall/haskellmode-vim'
 
   " Bundle 'scrooloose/nerdtree'
   " Bundle 'jistr/vim-nerdtree-tabs'

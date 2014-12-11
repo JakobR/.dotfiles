@@ -1,4 +1,45 @@
--- vim: ft=haskell
+-- vim: syn=haskell
 
-:def hoogle \x -> return $ ":!hoogle \"" ++ x ++ "\""
-:def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
+-- Silence most output while loading .ghci
+:set -v0
+:unset +t
+
+-- Hoogle commands
+:def hoogle \x -> return $ ":!hoogle        \"" ++ x ++ "\""
+:def doc    \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
+
+-- :set prompt  "\ESC[1;34m\n%s\nλ: \ESC[0m"  -- with modules
+:set prompt  "\ESC[1;34m\nλ: \ESC[0m"
+:set prompt2 "\ESC[1;34m | \ESC[0m"
+
+-- See http://www.reddit.com/r/haskell/comments/144biy/pretty_output_in_ghci_howto_in_comments/
+import qualified IPPrint
+import qualified Language.Haskell.HsColour as HsColour
+import qualified Language.Haskell.HsColour.Colourise as HsColour
+import qualified Language.Haskell.HsColour.Output as HsColour
+
+:{
+let myColourPrefs = HsColour.defaultColourPrefs
+                                                -- { HsColour.conid    = [HsColour.Foreground HsColour.Yellow, HsColour.Bold]
+                                                -- , HsColour.conop    = [HsColour.Foreground HsColour.Yellow]
+                                                -- , HsColour.string   = [HsColour.Foreground HsColour.Green]
+                                                -- , HsColour.char     = [HsColour.Foreground HsColour.Cyan]
+                                                -- , HsColour.number   = [HsColour.Foreground HsColour.Red, HsColour.Bold]
+                                                -- , HsColour.layout   = [HsColour.Foreground HsColour.White]
+                                                -- , HsColour.keyglyph = [HsColour.Foreground HsColour.White]
+                                                -- }
+:}
+
+:{
+let myPrint :: Show a => a -> IO ();
+    myPrint = putStrLn . HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False . IPPrint.pshow
+:}
+
+:set -interactive-print=myPrint
+:set -v1
+
+-- always show type of result (like :t)
+:set +t
+
+-- enable parsing of multiline commands (seems to be annoying as default though)
+-- :set +m
