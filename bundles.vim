@@ -41,7 +41,7 @@ Bundle 'octol/vim-cpp-enhanced-highlight'
 
 if !exists('g:vimpager')
   " Don't need these plugins in vimpager
-  Bundle 'ciaranm/securemodelines'
+  Bundle 'JakobR/securemodelines'
 
   Bundle 'tpope/vim-fugitive'
   Bundle 'airblade/vim-gitgutter'
