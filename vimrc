@@ -32,6 +32,8 @@ set showmode            " show mode in status bar (insert/replace/...)
 set showcmd             " show typed command in status bar
 set wildmenu            " completion with menu
 set wildmode=list:longest,full
+set wildignore+=*.o
+set wildignore+=*.pyc
 set laststatus=2        " use 2 lines for the status bar
 set matchtime=1         " show matching bracket for 0.1 seconds
 set nrformats-=octal
@@ -231,6 +233,17 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
+let g:ctrlp_tabpage_position = 'al'
+let g:ctrlp_show_hidden = 1
+" Ignore the following directories:
+"   .git
+"   .hg
+"   .svn
+"   .dotfiles/vim/bundle
+"   .dotfiles/zsh/oh-my-zsh
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v(\/.(git|hg|svn)|\.dotfiles\/(vim\/bundle|zsh\/oh-my-zsh))$'
+  \ }
 
 nmap <Leader>a <Plug>(altr-forward)
 nmap <Leader>A <Plug>(altr-back)
