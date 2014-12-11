@@ -127,6 +127,7 @@ create_symlink_to_home 'gemrc'
 create_symlink_to_home 'Xmodmap'
 create_symlink "${JR_DOTFILES}/mpv/input.conf" "${HOME}/.config/mpv/input.conf"
 create_symlink "${JR_DOTFILES}/mpv/mpv.conf" "${HOME}/.config/mpv/mpv.conf"
+create_symlink "${JR_DOTFILES}/cabal-config" "${HOME}/.cabal/config"
 
 
 if [[ $OSTYPE =~ ^darwin ]] then
