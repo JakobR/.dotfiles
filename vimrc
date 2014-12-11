@@ -267,6 +267,9 @@ nnoremap Y y$
 " gf should open files in a new tab
 nnoremap gf <C-W>gf
 
+" disable ex mode
+nnoremap Q <nop>
+
 " reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
