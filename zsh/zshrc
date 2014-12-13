@@ -1,3 +1,6 @@
+# Uncomment this line and "zprof" at the end to profile zsh startup time
+# zmodload zsh/zprof
+
 # Path to dotfiles
 JR_DOTFILES="$HOME/.dotfiles"
 if [[ -L "$JR_DOTFILES" ]] then
@@ -153,3 +156,5 @@ fi
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+
+# zprof
