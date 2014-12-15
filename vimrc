@@ -458,7 +458,7 @@ function ProjectSpecificSetup()
   "   " something else
   endif
 endfunction
-autocmd! BufReadPost,BufNewFile * call ProjectSpecificSetup()
+autocmd BufReadPost,BufNewFile * call ProjectSpecificSetup()
 
 " Settings with security issues (this part should be at the end of vimrc)
 "
