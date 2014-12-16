@@ -125,10 +125,10 @@ function OpenUrlUnderCursor()
     " single closing parentheses are seen as end of the URL (because of link syntax in markdown)
     " (supporting matching parentheses actually breaks single opening parentheses as well)
     " A better way might be to enable this behaviour only in markdown files...
-    let url=matchstr(@0, '\(http\|https\|mailto\)://\(([^ ]*)\|[^ >,;)]\)*')
-    if url != ""
-      silent exec "!open '".url."'" | redraw!
-      echo "opened ".url
+    let l:url=matchstr(@0, '\(http\|https\|mailto\)://\(([^ ]*)\|[^ >,;)]\)*')
+    if l:url != ""
+      silent exec "!open '".l:url."'" | redraw!
+      echo "opened ".l:url
     else
       echo "No URL under cursor."
     endif
