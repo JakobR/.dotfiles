@@ -446,16 +446,19 @@ let vimpager_disable_ansiesc = 1
 " This should really be in a project-local file or something, but 'set exrc'
 " has serious security issues and I didn't want to choose a plugin at the moment.
 " This one seems to be actively developed, though: https://github.com/LucHermitte/local_vimrc
-function IsProject(name)
+function IsProject(path, name)
   " Name should be the partial path of the project relative to home directory
   " e.g for project at '$HOME/code/blah' use 'code/blah' as name argument.
-  return expand('%:p') =~ '^' . $HOME . '/' . a:name . '.*$'
+  return a:path =~ '\V\^' . $HOME . '/' . a:name
 endfunction
 function ProjectSpecificSetup()
-  if IsProject('code/anki-addons')
+  let l:path = expand('%:p')
+  if IsProject(l:path, 'code/anki-addons')
     call UsePython2()   " Anki uses python 2.7.6
-  " elseif IsProject('code/something_else')
+  " elseif IsProject(l:path, 'code/something_else')
   "   " something else
+  " elseif l:path =~ '\V\^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1'
+  "   setlocal ft=cpp
   endif
 endfunction
 autocmd BufReadPost,BufNewFile * call ProjectSpecificSetup()
