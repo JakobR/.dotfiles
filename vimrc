@@ -75,7 +75,7 @@ call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDef
 " Set filetype for C++ headers without extension (like <iostream>)
 " Standard library headers all seem to have a comment "// -*- C++ -*-" in the
 " first line.
-au BufRead * if search('-*- C++ -*-', 'nwc', 2) | setlocal ft=cpp | endif
+autocmd BufRead * if search('\V-*- C++ -*-', 'nwc', 1) | setlocal ft=cpp | endif
 
 " Use two spaces to separate sentences
 " See http://stevelosh.com/blog/2012/10/why-i-two-space/
@@ -335,7 +335,7 @@ endif
 
 " include a timestamp in backup extension
 " TODO: Auto-cleanup, or at least show a message if the directory is getting too full
-au BufWritePre * let &backupext = '-' . strftime("%Y%b%d-%X") . '~'
+autocmd BufWritePre * let &backupext = '-' . strftime("%Y%b%d-%X") . '~'
 set backup
 
 " Cursor shape in iTerm2
