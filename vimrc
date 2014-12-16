@@ -248,7 +248,7 @@ let g:ctrlp_show_hidden = 1
 "   .dotfiles/vim/bundle
 "   .dotfiles/zsh/oh-my-zsh
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v(\/.(git|hg|svn)|\.dotfiles\/(vim\/bundle|zsh\/oh-my-zsh))$'
+  \ 'dir': '\v(\/.(git|hg|svn)|\.dotfiles\/(vim\/bundle|zsh\/oh-my-zsh)|build|bin)$'
   \ }
 
 nmap <Leader>a <Plug>(altr-forward)
