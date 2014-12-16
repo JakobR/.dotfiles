@@ -13,7 +13,7 @@ flags = [
 '-Wno-variadic-macros',
 # '-Weverything',
 '-fexceptions',
-'-DNDEBUG',
+# '-DNDEBUG',
 # THIS IS IMPORTANT! Without a "-std=<something>" flag, clang won't know which
 # language to use when compiling headers. So it will guess. Badly. So C++
 # headers will be compiled as C headers. You don't want that so ALWAYS specify
@@ -28,6 +28,8 @@ flags = [
 '-x',
 'c++',
 
+'-isysroot',
+'/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk',
 '-isysroot',
 '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk',
 
