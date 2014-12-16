@@ -24,7 +24,7 @@ Default installation location is `$HOME/.dotfiles`.
 To set a different location, set the `JR_DOTFILES` variable before running the install script.
 
 Multiple users can share a single installation, but you need to be careful with permissions.
-Also, every user needs a symlink at `$HOME/.dotfiles` pointing to where the dotfiles are installed (normally created by install script).
+Also, every user needs a symlink at `$HOME/.dotfiles` pointing to where the dotfiles are installed (normally created by the install script).
 
 
 Updating
