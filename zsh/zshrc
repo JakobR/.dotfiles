@@ -70,7 +70,8 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export RAILS_ENV='development'
 
   # Use MacVim to edit files, and give focus back to iTerm after closing
-  export EDITOR="/usr/local/bin/mvim -p --nofork -c 'au VimLeave * !/usr/bin/open -a iTerm'"
+  # export EDITOR="/usr/local/bin/mvim -p --nofork -c 'au VimLeave * !/usr/bin/open -a iTerm'"
+  export EDITOR="/usr/local/bin/mvim -p --nofork -c ActivateTerminalOnExit"
   # only focus iTerm if the same shell is still open
   alias mvim="/usr/local/bin/mvim -p -c 'au VimLeave * !/usr/bin/pgrep zsh | /usr/bin/grep $$ && /usr/bin/open -a iTerm'"
   function m() {

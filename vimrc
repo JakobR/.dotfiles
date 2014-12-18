@@ -463,6 +463,10 @@ function ProjectSpecificSetup()
 endfunction
 autocmd BufReadPost,BufNewFile * call ProjectSpecificSetup()
 
+" When calling vim from a terminal via the $EDITOR variable, switch back to
+" the terminal after the edit is done
+:command ActivateTerminalOnExit autocmd VimLeave * !/usr/bin/open -a iTerm
+
 " Settings with security issues (this part should be at the end of vimrc)
 "
 " Disable modeline
