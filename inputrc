@@ -2,6 +2,7 @@
 
 # vi key bindings
 set editing-mode vi
+set show-mode-in-prompt on
 
 # Case-insensitive tab completion
 set completion-ignore-case on
