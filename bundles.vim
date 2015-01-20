@@ -77,6 +77,7 @@ if !exists('g:vimpager')
   " Bundle 'bitc/vim-hdevtools'
   " Bundle 'eagletmt/neco-ghc'
   " Bundle 'lukerandall/haskellmode-vim'
+  Bundle 'kana/vim-filetype-haskell'
 
   " Bundle 'scrooloose/nerdtree'
   " Bundle 'jistr/vim-nerdtree-tabs'

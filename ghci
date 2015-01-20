@@ -19,6 +19,9 @@ import qualified Language.Haskell.HsColour.Colourise as HsColour
 import qualified Language.Haskell.HsColour.Output as HsColour
 
 :{
+-- TODO: Make colors consistent with highlighting in vim
+-- see http://www.cs.york.ac.uk/fp/darcs/hscolour/docs/hscolour/Language/Haskell/HsColour/Colourise.html
+-- and http://hackage.haskell.org/package/hscolour-1.14/docs/src/Language-Haskell-HsColour-Colourise.html
 let myColourPrefs = HsColour.defaultColourPrefs
                                                 -- { HsColour.conid    = [HsColour.Foreground HsColour.Yellow, HsColour.Bold]
                                                 -- , HsColour.conop    = [HsColour.Foreground HsColour.Yellow]
