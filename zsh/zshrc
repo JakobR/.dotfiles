@@ -138,7 +138,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   Math=$Uni/Mathematik
 
   # Autojump (this is slow!)
-  [[ -s /usr/local/etc/autojump.sh ]] && . /usr/local/etc/autojump.sh
+  # [[ -s /usr/local/etc/autojump.sh ]] && . /usr/local/etc/autojump.sh
   # eval "$(fasd --init auto)"
 
   # additional oh-my-zsh plugins
