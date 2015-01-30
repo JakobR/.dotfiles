@@ -37,7 +37,9 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Allow text selection in Quick Look window
-defaults write com.apple.finder QLEnableTextSelection -bool true
+# defaults write com.apple.finder QLEnableTextSelection -bool true
+# This setting ruins Quick Look, see http://apple.stackexchange.com/questions/126065/quick-look-sometimes-shows-blank-panel-in-mavericks
+# Remove the setting with: defaults delete com.apple.finder QLEnableTextSelection
 
 # Show status bar in Finder
 defaults write com.apple.finder ShowStatusBar -bool true
