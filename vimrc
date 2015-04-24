@@ -44,8 +44,8 @@ set smartcase           " but become case sensitive if you type uppercase charac
 set smarttab            " smart tab handling for indenting
 set magic               " change the way backslashes are used in search patterns
 set bs=indent,eol,start " Allow backspacing over everything in insert mode
-set tabstop=2           " number of spaces a tab counts for
-set shiftwidth=2        " number of spaces for autoindents
+set tabstop=4           " number of spaces a tab counts for
+set shiftwidth=4        " number of spaces for autoindents
 set expandtab           " insert spaces instead of tabs
 set shiftround
 set autoindent
