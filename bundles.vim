@@ -73,8 +73,8 @@ if !exists('g:vimpager')
   Bundle 'rhysd/vim-clang-format'
 
   Bundle 'Shougo/vimproc.vim'
-  Bundle 'eagletmt/ghcmod-vim'
-  " Bundle 'bitc/vim-hdevtools'
+  " Bundle 'eagletmt/ghcmod-vim'
+  Bundle 'bitc/vim-hdevtools'
   " Bundle 'eagletmt/neco-ghc'
   " Bundle 'lukerandall/haskellmode-vim'
   Bundle 'kana/vim-filetype-haskell'

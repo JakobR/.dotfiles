@@ -82,10 +82,13 @@ autocmd BufRead * if search('\V-*- C++ -*-', 'nwc', 1) | setlocal ft=cpp | endif
 set cpo+=J
 
 " Use <C-L> to clear the highlighting of :set hlsearch
-" and of :GhcModType
+" and of :GhcModType and :HdevtoolsType
 function ClearOtherHighlighting()
   if exists(':GhcModTypeClear')
     GhcModTypeClear
+  endif
+  if exists(':HdevtoolsClear')
+    HdevtoolsClear
   endif
 endfunction
 " <C-L> is already used to redraw the screen, keep that functionality by
@@ -426,7 +429,7 @@ let g:syntastic_haskell_checkers = ['hdevtools', 'hlint']
 " let g:ycm_semantic_triggers = {'haskell' : ['.']}
 " let g:necoghc_enable_detailed_browse = 1
 " autocmd FileType haskell,lhaskell setlocal omnifunc=necoghc#omnifunc
-nnoremap <Leader>t :GhcModType<CR>
+nnoremap <Leader>t :HdevtoolsType<CR>
 
 " Use same user and email as git for the templates
 let g:email = substitute(system('git --no-pager config -z user.email'), '\W$', '', '')
