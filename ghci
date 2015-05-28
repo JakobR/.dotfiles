@@ -13,6 +13,7 @@
 :set prompt2 "\ESC[1;34m | \ESC[0m"
 
 -- See http://www.reddit.com/r/haskell/comments/144biy/pretty_output_in_ghci_howto_in_comments/
+import qualified Text.PrettyPrint as PrettyPrint
 import qualified Text.Show.Pretty as PrettyShow
 import qualified Language.Haskell.HsColour as HsColour
 import qualified Language.Haskell.HsColour.Colourise as HsColour
@@ -35,7 +36,17 @@ let myColourPrefs = HsColour.defaultColourPrefs
 
 :{
 let myPrint :: Show a => a -> IO ();
-    myPrint = putStrLn . HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False . PrettyShow.ppShow
+    myPrint = putStrLn . colorize . prettify
+        where
+            -- TODO:
+            -- Use actual terminal window size for line length, see http://stackoverflow.com/questions/12806053/get-terminal-width-haskell (or use wl-pprint-terminfo)
+            -- What does "ribbonsPerLine" actually mean?
+            style = PrettyPrint.Style   { PrettyPrint.mode = PrettyPrint.PageMode
+                                        , PrettyPrint.lineLength = 230
+                                        , PrettyPrint.ribbonsPerLine = 1.5
+                                        }
+            prettify = PrettyPrint.renderStyle style . PrettyShow.ppDoc
+            colorize = HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False
 :}
 
 :set -interactive-print=myPrint
