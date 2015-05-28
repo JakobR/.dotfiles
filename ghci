@@ -13,7 +13,7 @@
 :set prompt2 "\ESC[1;34m | \ESC[0m"
 
 -- See http://www.reddit.com/r/haskell/comments/144biy/pretty_output_in_ghci_howto_in_comments/
-import qualified IPPrint
+import qualified Text.Show.Pretty as PrettyShow
 import qualified Language.Haskell.HsColour as HsColour
 import qualified Language.Haskell.HsColour.Colourise as HsColour
 import qualified Language.Haskell.HsColour.Output as HsColour
@@ -35,7 +35,7 @@ let myColourPrefs = HsColour.defaultColourPrefs
 
 :{
 let myPrint :: Show a => a -> IO ();
-    myPrint = putStrLn . HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False . IPPrint.pshow
+    myPrint = putStrLn . HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False . PrettyShow.ppShow
 :}
 
 :set -interactive-print=myPrint
