@@ -357,6 +357,9 @@ endif
 
 " tab switching is too slow otherwise
 let g:gitgutter_eager = 0
+" also allow ]h and [h for navigation
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 
 " Use <Leader>s to search in project
 if executable('ag')
