@@ -32,6 +32,7 @@ Bundle 'adimit/prolog.vim'
 Bundle 'niklasl/vim-rdf'
 Bundle 'nikolavp/sparql.vim'
 Bundle 'Keithbsmiley/swift.vim'
+Bundle 'peterhoeg/vim-qml'
 
 " C++
 " Bundle 'vim-jp/cpp-vim'
@@ -52,6 +53,7 @@ if !exists('g:vimpager')
   Bundle 'tpope/vim-unimpaired'
   Bundle 'tpope/vim-eunuch'
   Bundle 'tpope/vim-commentary'
+  Bundle 'terryma/vim-expand-region'
 
   Bundle 'scrooloose/syntastic'
 
@@ -75,7 +77,7 @@ if !exists('g:vimpager')
   Bundle 'Shougo/vimproc.vim'
   " Bundle 'eagletmt/ghcmod-vim'
   Bundle 'bitc/vim-hdevtools'
-  " Bundle 'eagletmt/neco-ghc'
+  Bundle 'eagletmt/neco-ghc'
   " Bundle 'lukerandall/haskellmode-vim'
   Bundle 'kana/vim-filetype-haskell'
 

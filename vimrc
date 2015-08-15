@@ -296,6 +296,8 @@ nnoremap Q <nop>
 vnoremap < <gv
 vnoremap > >gv
 
+vmap v <Plug>(expand_region_expand)
+
 function EnsureDirectoryExists(dir)
   if empty(glob(a:dir))
     if exists('*mkdir')
@@ -426,7 +428,7 @@ endfunction
 
 " ghc_mod seems to do the same as hdevtools
 let g:syntastic_haskell_checkers = ['hdevtools', 'hlint']
-" let g:ycm_semantic_triggers = {'haskell' : ['.']}
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
 " let g:necoghc_enable_detailed_browse = 1
 " autocmd FileType haskell,lhaskell setlocal omnifunc=necoghc#omnifunc
 nnoremap <Leader>t :HdevtoolsType<CR>
