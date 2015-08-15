@@ -74,6 +74,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export EDITOR="/usr/local/bin/mvim -p --nofork -c ActivateTerminalOnExit"
   # only focus iTerm if the same shell is still open
   alias mvim="/usr/local/bin/mvim -p -c 'au VimLeave * !/usr/bin/pgrep zsh | /usr/bin/grep $$ && /usr/bin/open -a iTerm'"
+  # TODO: Functions m2, m3, ... which open in the 2nd, 3rd, ... vim server in the serverlist
   function m() {
     function vim_binary() {
       # local vim_binary_path="/usr/local/Cellar/macvim/7.4-73_1/MacVim.app/Contents/MacOS/Vim"
