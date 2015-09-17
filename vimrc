@@ -467,6 +467,8 @@ function ProjectSpecificSetup()
   "   " something else
   " elseif l:path =~ '\V\^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1'
   "   setlocal ft=cpp
+  elseif l:path =~ '\V\.\*libxml2-2.\..\.\+'    " libxml2-2.?.? (mixed tabs and spaces for indentation)
+      set ts=8
   endif
 endfunction
 autocmd BufReadPost,BufNewFile * call ProjectSpecificSetup()
