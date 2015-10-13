@@ -5,6 +5,13 @@
 
 export LSCOLORS="ExfxcxdxBxegedabagacad"
 
+function kagami_git_stash_info () {
+  local p_git_stash_count="$(git stash list 2> /dev/null | wc -l | tr -d \ \t)"
+  if [[ "${p_git_stash_count}" -ne "0" ]] then
+    print " %F{blue}s${p_git_stash_count}"
+  fi
+}
+
 function prompt_kagami_setup () {
   # Prompt expansion:
   # see http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
@@ -47,9 +54,10 @@ function prompt_kagami_setup () {
 
   # Branch and status of git repository in current directory
   local p_git="\$(git_prompt_info)"
+  local p_git_stash="" #"\$(kagami_git_stash_info)"
   # Configure the oh-my-zsh git_prompt_info helper
-  ZSH_THEME_GIT_PROMPT_PREFIX="$c_gray(%40F"
-  ZSH_THEME_GIT_PROMPT_SUFFIX="$c_gray) "
+  ZSH_THEME_GIT_PROMPT_PREFIX=" $c_gray(%40F"
+  ZSH_THEME_GIT_PROMPT_SUFFIX="$c_gray)"
   ZSH_THEME_GIT_PROMPT_CLEAN=" %40F$s_git_check"
   ZSH_THEME_GIT_PROMPT_DIRTY=" %196F$s_git_cross"
 
@@ -60,7 +68,7 @@ function prompt_kagami_setup () {
   local p_char="%(!.%196F$s_prompt_root.$c_gray$s_prompt_char) "
 
   # Put it all together!
-  PROMPT="%B${c_gray}[$p_user$c_gray@$p_host$c_gray:$p_dir$c_gray] $p_git$p_status$p_char%b%f%k"
+  PROMPT="%B${c_gray}[$p_user$c_gray@$p_host$c_gray:$p_dir$c_gray]$p_git$p_git_stash $p_status$p_char%b%f%k"
 
 
   # Highlighting
