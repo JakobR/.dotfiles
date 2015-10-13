@@ -35,7 +35,9 @@ let myColourPrefs = HsColour.defaultColourPrefs
 :}
 
 :{
-let myPrint :: Show a => a -> IO ();
+-- Problem with myPrint: cannot handle infinite lists.
+-- Maybe it's possible to have a timeout (0.5 seconds?) and revert to normal print if it is exceeded.
+let myPrint :: Show a => a -> IO ()
     myPrint = putStrLn . colorize . prettify
         where
             -- TODO:
@@ -49,7 +51,7 @@ let myPrint :: Show a => a -> IO ();
             colorize = HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False
 :}
 
-:set -interactive-print=myPrint
+-- :set -interactive-print=myPrint
 :set -v1
 
 -- always show type of result (like :t)
