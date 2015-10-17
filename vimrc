@@ -415,6 +415,34 @@ let g:EclimDisabled = 1
 
 " let b:delimitMate_expand_cr = 1
 
+let g:syntastic_aggregate_errors = 1
+
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": ["java"] }
+function RunSyntasticAndJumpToError()
+    if exists('b:syntastic_mode')
+        let l:old_syntastic_mode = b:syntastic_mode
+    endif
+    " Don't check twice if this is an active filetype
+    let b:syntastic_mode = 'passive'
+    w
+    SyntasticCheck
+    if exists('l:old_syntastic_mode')
+        let b:syntastic_mode = l:old_syntastic_mode
+    else
+        unlet b:syntastic_mode
+    endif
+    Errors
+    lclose
+    " If there are, in fact, errors, the ll command will jump to the first one
+    " and thus replace this echoed message with the message from syntastic
+    echo 'No errors'
+    silent! ll 1
+endfunction
+nnoremap <Leader>e :call RunSyntasticAndJumpToError()<CR>
+
 " Don't need pylint in addition to flake8
 let g:syntastic_python_checkers = ['python', 'flake8']
 " Ignore errors that are more annoying than helpful

@@ -40,6 +40,10 @@ if has("gui_macvim")
   noremap <D-D> :split<CR>
   inoremap <D-D> <C-O>:split<CR>
 
+  " Command-E to run syntastic (for passively checked filetypes)
+  noremap <D-e> :call RunSyntasticAndJumpToError()<CR>
+  inoremap <D-e> <C-O>:call RunSyntasticAndJumpToError()<CR>
+
   " Command-][ to increase/decrease indentation
   vmap <D-]> >gv
   vmap <D-[> <gv
