@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.dl set ft=prolog
+au BufRead,BufNewFile *.dl,*.hyp,*.obs set ft=prolog
