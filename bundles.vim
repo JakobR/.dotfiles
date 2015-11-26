@@ -81,6 +81,8 @@ if !exists('g:vimpager')
   " Bundle 'lukerandall/haskellmode-vim'
   Bundle 'kana/vim-filetype-haskell'
 
+  Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
+
   " Bundle 'scrooloose/nerdtree'
   " Bundle 'jistr/vim-nerdtree-tabs'
 
