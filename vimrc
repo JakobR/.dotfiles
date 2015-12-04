@@ -59,6 +59,7 @@ set mouse=a             " use mouse
 set ttimeout
 set ttimeoutlen=50
 set updatetime=750
+set nofoldenable        " folds should be open by default
 
 function s:AddToPath(dir)
   if isdirectory(a:dir)
