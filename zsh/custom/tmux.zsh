@@ -7,7 +7,10 @@ if type tmux >/dev/null 2>/dev/null; then
     jr_tmux_sessions=`tmux list-sessions 2>&1`
 
     # Are there any tmux sessions?
-    if [[ "$jr_tmux_sessions" != "failed to connect to server"* ]] then
+    if [[ ( "$jr_tmux_sessions" != "failed to connect to server"* ) &&
+          ( "$jr_tmux_sessions" != "no server running on"* ) &&
+          ( "$jr_tmux_sessions" != "error connecting to"* )
+       ]] then
 
       # If yes, list them
       echo "\n\033[4mActive tmux sessions:\033[0m\n$jr_tmux_sessions\n"
