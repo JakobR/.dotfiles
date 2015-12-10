@@ -221,6 +221,9 @@ autocmd FileType qmake set commentstring=#\ %s
 autocmd FileType sparql set commentstring=#\ %s
 autocmd FileType matlab set commentstring=%\ %s
 
+" No spell check in LaTeX comments
+let g:tex_comment_nospell=1
+
 " HTML indentation
 let g:html_indent_inctags = "body,head,li"
 let g:html_indent_script1 = "inc"
