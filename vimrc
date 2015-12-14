@@ -503,6 +503,7 @@ function ProjectSpecificSetup()
     set ts=8
   elseif IsProject(l:path, 'code/ds-tuwien')
     " let g:syntastic_java_javac_custom_classpath_command = "ant -s build.xml -q src-path | grep echo | cut -f2- -d] | tr -d ' ' | tr ':' '\n'"
+    let g:ctrlp_root_markers =['build.xml']
     set noexpandtab
     set tabstop=4
     set shiftwidth=4
