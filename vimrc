@@ -500,9 +500,12 @@ function ProjectSpecificSetup()
   " elseif l:path =~ '\V\^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1'
   "   setlocal ft=cpp
   elseif l:path =~ '\V\.\*libxml2-2.\..\.\+'    " libxml2-2.?.? (mixed tabs and spaces for indentation)
-      set ts=8
-  elseif IsProject(l:path, 'code/ds-lab1')
-      let g:syntastic_java_javac_custom_classpath_command = "ant -s build.xml -q src-path | grep echo | cut -f2- -d] | tr -d ' ' | tr ':' '\n'"
+    set ts=8
+  elseif IsProject(l:path, 'code/ds-tuwien')
+    " let g:syntastic_java_javac_custom_classpath_command = "ant -s build.xml -q src-path | grep echo | cut -f2- -d] | tr -d ' ' | tr ':' '\n'"
+    set noexpandtab
+    set tabstop=4
+    set shiftwidth=4
   endif
 endfunction
 autocmd BufReadPost,BufNewFile * call ProjectSpecificSetup()
