@@ -77,9 +77,10 @@ if !exists('g:vimpager')
   Bundle 'Shougo/vimproc.vim'
   " Bundle 'eagletmt/ghcmod-vim'
   Bundle 'bitc/vim-hdevtools'
-  Bundle 'eagletmt/neco-ghc'
+  " Bundle 'eagletmt/neco-ghc'
   " Bundle 'lukerandall/haskellmode-vim'
-  Bundle 'kana/vim-filetype-haskell'
+  " Bundle 'kana/vim-filetype-haskell'
+  " Bundle 'dag/vim2hs'
 
   Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 

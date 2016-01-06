@@ -470,7 +470,18 @@ let g:syntastic_haskell_checkers = ['hdevtools', 'hlint']
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 " let g:necoghc_enable_detailed_browse = 1
 " autocmd FileType haskell,lhaskell setlocal omnifunc=necoghc#omnifunc
-nnoremap <Leader>t :HdevtoolsType<CR>
+function HaskellShowType()
+  if exists(':GhcModType')
+    GhcModType
+    return
+  endif
+  if exists(':HdevtoolsType')
+    HdevtoolsType
+    return
+  endif
+  echoerr "Neither :GhcModType nor :HdevtoolsType is available."
+endfunction
+nnoremap <Leader>t :call HaskellShowType()<CR>
 
 " Use same user and email as git for the templates
 let g:email = substitute(system('git --no-pager config -z user.email'), '\W$', '', '')
