@@ -83,7 +83,7 @@ if !exists('g:vimpager')
   " Bundle 'kana/vim-filetype-haskell'
   " Bundle 'dag/vim2hs'
 
-  Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
+  " Bundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 
   " Bundle 'scrooloose/nerdtree'
   " Bundle 'jistr/vim-nerdtree-tabs'
