@@ -44,6 +44,7 @@ if !exists('g:vimpager')
   Bundle 'JakobR/securemodelines'
 
   Bundle 'tpope/vim-fugitive'
+  Bundle 'gregsexton/gitv'
   Bundle 'airblade/vim-gitgutter'
   " alternative to gitgutter: https://github.com/mhinz/vim-signify
 
