@@ -60,6 +60,7 @@ slate.bind(hyper("j"), focus("JEDict"));
 slate.bind(hyper("x"), focus("Xcode"));
 slate.bind(hyper("y"), focus("YNAB 4"));
 slate.bind(hyper("w"), focus("Things"));
+slate.bind(hyper("g"), focus("GitHub Desktop"));
 
 //slate.config("windowHintsIgnoreHiddenWindows", false);
 //slate.config("windowHintsShowIcons", true);
