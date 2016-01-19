@@ -9,7 +9,7 @@
 	url = https://github.com/rkitover/vimpager.git
 [submodule "vim/bundle/vundle"]
 	path = vim/bundle/vundle
-	url = https://github.com/gmarik/vundle.git
+	url = https://github.com/VundleVim/Vundle.vim.git
 [submodule "zsh/custom/plugins/zaw"]
 	path = zsh/custom/plugins/zaw
 	url = https://github.com/zsh-users/zaw.git
