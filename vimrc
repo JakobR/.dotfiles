@@ -518,12 +518,10 @@ function ProjectSpecificSetup()
   "   setlocal ft=cpp
   elseif l:path =~ '\V\.\*libxml2-2.\..\.\+'    " libxml2-2.?.? (mixed tabs and spaces for indentation)
     set ts=8
-  elseif IsProject(l:path, 'code/ds-tuwien')
+  elseif IsProject(l:path, 'Documents/Uni/Verteilte Systeme VO_UE/')
+    " (for all projects in this folder)
     " let g:syntastic_java_javac_custom_classpath_command = "ant -s build.xml -q src-path | grep echo | cut -f2- -d] | tr -d ' ' | tr ':' '\n'"
     let g:ctrlp_root_markers =['build.xml']
-    set noexpandtab
-    set tabstop=4
-    set shiftwidth=4
   endif
 endfunction
 autocmd BufReadPost,BufNewFile * call ProjectSpecificSetup()
