@@ -156,7 +156,7 @@ fi
 
 # vim bundles
 echo_msg "Installing vim bundles..."
-vim -u "$JR_DOTFILES/bundles.vim" +BundleInstall +qall
+vim -u "$JR_DOTFILES/bundles.vim" '+PluginInstall' '+qall'
 
 
 if [[ "$JR_UPDATE" = "true" ]] then
@@ -167,7 +167,7 @@ if [[ "$JR_UPDATE" = "true" ]] then
     git pull origin master
     git submodule sync
     git submodule update --init --recursive
-    vim -u "$JR_DOTFILES/bundles.vim" '+BundleInstall!'
+    vim -u "$JR_DOTFILES/bundles.vim" '+PluginUpdate'
   )
 fi
 
