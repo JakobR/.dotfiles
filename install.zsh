@@ -39,12 +39,12 @@ if [[ -z "$JR_DOTFILES" ]] then
   # Use default location if not set
   JR_DOTFILES="$DEFAULT_JR_DOTFILES"
   if [[ -L "$JR_DOTFILES" ]] then
-    JR_DOTFILES=$(readlink -n -- $JR_DOTFILES)
+    JR_DOTFILES=$(readlink -n -- "$JR_DOTFILES")
   fi
   export JR_DOTFILES
 fi
 
-echo_msg "Installation directory: $(echo_path $JR_DOTFILES)"
+echo_msg "Installation directory: $(echo_path "$JR_DOTFILES")"
 
 if [[ ! -d "$JR_DOTFILES" ]] then
   echo_msg "Directory doesn't exist yet, cloning from GitHub..."
@@ -132,14 +132,14 @@ mkdir -p "${HOME}/.cabal"
 create_symlink "${JR_DOTFILES}/cabal-config" "${HOME}/.cabal/config"
 
 
-if [[ $OSTYPE =~ ^darwin ]] then
+if [[ "$OSTYPE" =~ ^darwin ]] then
   echo_msg "Symlinking OS X specific files..."
   create_symlink_to_home 'slate.js'
   create_symlink "$JR_DOTFILES/Karabiner/private.xml" "$HOME/Library/Application Support/Karabiner/private.xml"
   create_symlink "$JR_DOTFILES/Ukelele/US_with_umlauts.keylayout" "$HOME/Library/Keyboard Layouts/US_with_umlauts.keylayout"
 
   echo_msg "Running OS X configuration script..."
-  $JR_DOTFILES/osx.sh
+  "$JR_DOTFILES"/osx.sh
 
   echo_msg "Configuring Seil..."
   SEIL="/Applications/Seil.app/Contents/Library/bin/seil"
@@ -174,15 +174,15 @@ fi
 
 # Permissions
 echo_msg "Updating permissions..."
-chmod -- go-rwx $HOME
+chmod -- go-rwx "$HOME"
 
-mkdir -p -- $HOME/.ssh
-chmod -R -- go-rwx $HOME/.ssh
+mkdir -p -- "$HOME"/.ssh
+chmod -R -- go-rwx "$HOME"/.ssh
 
-mkdir -p -- $HOME/.vim-tmp
-chmod -- go-rwx $HOME/.vim-tmp
+mkdir -p -- "$HOME"/.vim-tmp
+chmod -- go-rwx "$HOME"/.vim-tmp
 
-chmod -R -- go-w $JR_DOTFILES
+chmod -R -- go-w "$JR_DOTFILES"
 
 
 echo
@@ -198,7 +198,7 @@ Additional configuration tasks to be performed manually:
         AcceptEnv TERM_PROGRAM
 
 END
-if [[ $OSTYPE =~ ^darwin ]] then
+if [[ "$OSTYPE" =~ ^darwin ]] then
   cat <<END
   * Install additional software:
     - Seil (formerly PCKeyboardHack)
