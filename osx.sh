@@ -112,3 +112,6 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 # Prefer plain text emails in Mail.app
 # (apparently there's no way to completely disable HTML in emails)
 defaults write com.apple.mail PreferPlainText -bool true
+
+# Disable bouncing effect of icons in the Dock
+defaults write com.apple.dock no-bouncing -bool true
