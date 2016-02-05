@@ -62,8 +62,6 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export PATH=/usr/local/sbin:$PATH
   export PATH=/usr/local/bin:$PATH
 
-  # Cabal binaries
-  export PATH=$HOME/.cabal/bin:$PATH
   # See http://www.xmlsoft.org/catalog.html
   export XML_CATALOG_FILES="$HOME/.dotfiles/xml/catalog.xml"
 
@@ -159,6 +157,9 @@ elif [[ $OSTYPE =~ ^linux ]] then
 
   export EDITOR='/usr/bin/vim'
 fi
+
+# Haskell-stack
+export PATH=$HOME/.local/bin:$PATH
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
