@@ -64,6 +64,8 @@ if [[ $OSTYPE =~ ^darwin ]] then
 
   # Cabal binaries
   export PATH=$HOME/.cabal/bin:$PATH
+  # See http://www.xmlsoft.org/catalog.html
+  export XML_CATALOG_FILES="$HOME/.dotfiles/xml/catalog.xml"
 
   # standard rails environment on this machine
   # be careful when running tests though as they will need the 'test' environment explicitly specified.
