@@ -118,7 +118,6 @@ create_symlink_to_home 'tmux.conf'
 create_symlink_to_home 'vim'
 create_symlink_to_home 'vimrc'
 create_symlink_to_home 'gvimrc'
-create_symlink_to_home 'xvimrc'
 create_symlink_to_home 'ackrc'
 create_symlink_to_home 'gitconfig'
 create_symlink_to_home 'gitignore-global'
@@ -138,7 +137,8 @@ create_symlink "${JR_DOTFILES}/stack/global-project/stack.yaml" "${HOME}/.stack/
 
 if [[ "$OSTYPE" =~ ^darwin ]] then
   echo_msg "Symlinking OS X specific files..."
-  create_symlink_to_home 'slate.js'
+  create_symlink_to_home 'xvimrc'
+  create_symlink_to_home 'hammerspoon'
   create_symlink "$JR_DOTFILES/Karabiner/private.xml" "$HOME/Library/Application Support/Karabiner/private.xml"
   create_symlink "$JR_DOTFILES/Ukelele/US_with_umlauts.keylayout" "$HOME/Library/Keyboard Layouts/US_with_umlauts.keylayout"
 
