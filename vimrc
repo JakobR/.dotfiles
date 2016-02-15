@@ -49,6 +49,7 @@ set shiftwidth=4        " number of spaces for autoindents
 set expandtab           " insert spaces instead of tabs
 set shiftround
 set autoindent
+set smartindent
 set incsearch           " search incremently (search while typing)
 set hlsearch            " highlight search (very useful!)
 set display+=lastline
@@ -60,6 +61,9 @@ set ttimeout
 set ttimeoutlen=50
 set updatetime=750
 set nofoldenable        " folds should be open by default
+
+" use system clipboard as default register
+set clipboard=unnamed,unnamedplus
 
 function s:AddToPath(dir)
   if isdirectory(a:dir)
@@ -101,6 +105,7 @@ set list
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
   let &listchars = "tab:\u21e5 ,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u00b7"
+  set showbreak=↪
 endif
 let g:solarized_visibility="low"
 
