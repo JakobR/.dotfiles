@@ -19,6 +19,7 @@ set blinkcursor
 
 " nnoremap <silent> <C-L> :nohlsearch<CR>
 nmap ,l :nohlsearch<CR>
+nmap <C-l> :nohlsearch<CR>
 
 "reselect visual block after indent
 vnoremap < <gv
