@@ -16,7 +16,7 @@ require('hs.window')
 
 
 -----------------------------------------------
--- Reload config on write
+-- Reload config on write (can uncomment while working on configuration)
 -----------------------------------------------
 
 -- local function reload_config(files)
@@ -105,7 +105,7 @@ end
 -- Cycle windows through screen halves like in Windows 7 and later
 --------------------------------------------------------------------
 
-hs.hotkey.bind({'ctrl'}, 'Left', modifyFrame(function(win, f, screen, max)
+local cycleLeft = modifyFrame(function(win, f, screen, max)
     local upperLeftCorner = approxOriginEqual(win:frame(), screen:frame())
     local isFullscreen = approxFrameEqual(win:frame(), screen:frame())
 
@@ -126,9 +126,9 @@ hs.hotkey.bind({'ctrl'}, 'Left', modifyFrame(function(win, f, screen, max)
         -- Move to the left half of the same screen.
         return leftHalf(screen:frame())
     end
-end))
+end)
 
-hs.hotkey.bind({'ctrl'}, 'Right', modifyFrame(function(win, f, screen, max)
+local cycleRight = modifyFrame(function(win, f, screen, max)
     local upperMidpoint = approxOriginEqual(win:frame(), rightHalf(screen:frame()))
     local isFullscreen = approxFrameEqual(win:frame(), screen:frame())
 
@@ -148,15 +148,21 @@ hs.hotkey.bind({'ctrl'}, 'Right', modifyFrame(function(win, f, screen, max)
         -- Otherwise, move to the right half of the same screen.
         return rightHalf(screen:frame())
     end
-end))
+end)
 
--- Maximize with Ctrl+Up
-hs.hotkey.bind(ctrl, 'Up', modifyFrame(function(win, f, screen, max)
+local maximize = modifyFrame(function(win, f, screen, max)
     f.x = max.x
     f.y = max.y
     f.w = max.w
     f.h = max.h
-end))
+end)
+
+hs.hotkey.bind(ctrl, 'Left', cycleLeft)
+hs.hotkey.bind(ctrl, 'Right', cycleRight)
+hs.hotkey.bind(ctrl, 'Up', maximize)
+hs.hotkey.bind(hyper, 'h', cycleLeft)
+hs.hotkey.bind(hyper, 'l', cycleRight)
+hs.hotkey.bind(hyper, 'k', maximize)
 
 
 -----------------------------------------------
