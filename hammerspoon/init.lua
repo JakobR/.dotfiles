@@ -8,6 +8,7 @@
 -----------------------------------------------
 
 local ctrl = {'ctrl'}
+local alt = {'alt'}
 local hyper = {'shift', 'cmd', 'alt', 'ctrl'}
 hs.window.animationDuration = 0  -- seconds
 
@@ -99,6 +100,18 @@ local function rightHalf(frame)
     return frame
 end
 
+local function topHalf(frame)
+    -- NOTE: the frame is passed as reference (i.e. the caller's object will be modified as well)!
+    frame.h = frame.h / 2
+    return frame
+end
+
+local function bottomHalf(frame)
+    -- NOTE: the frame is passed as reference (i.e. the caller's object will be modified as well)!
+    frame.y = frame.y + frame.h / 2
+    frame.h = frame.h / 2
+    return frame
+end
 
 
 --------------------------------------------------------------------
@@ -212,59 +225,42 @@ hs.hotkey.bind(hyper, 'g', focusApp('GitHub Desktop'));
 --hs.hotkey.bind(hyper, 'h', withFocusedWindow(hs.window.focusWindowWest))
 
 
--- -- TODO
--- -- Ctrl+NumPad and Alt+NumPad
--- -- see the following slate code:
---
---var leftMonitor = 0;
---var rightMonitor = 1;
+-----------------------------------------------
+-- Ctrl/Alt+NumPad: Place window on screen
+-----------------------------------------------
 
---var LFull = slate.operation("move", {
---  "screen": leftMonitor,
---  "x": "screenOriginX",
---  "y": "screenOriginY",
---  "width": "screenSizeX",
---  "height": "screenSizeY"
---});
---var LLeft        = LFull.dup({"width": "screenSizeX/2"});
---var LRight       = LLeft.dup({"x": "screenOriginX + screenSizeX/2"});
---var LTopLeft     = LLeft.dup({"height": "screenSizeY/2"});
---var LTopRight    = LTopLeft.dup({"x": "screenOriginX + screenSizeX/2"});
---var LBottomLeft  = LTopLeft.dup({"y": "screenOriginY + screenSizeY/2"});
---var LBottomRight = LBottomLeft.dup({"x": "screenOriginX + screenSizeX/2"});
---var LTop         = LFull.dup({"height": "screenSizeY/2"});
---var LBottom      = LTop.dup({"y": "screenOriginY + screenSizeY/2"});
---var RFull = slate.operation("move", {
---  "screen": rightMonitor,
---  "x": "screenOriginX",
---  "y": "screenOriginY",
---  "width": "screenSizeX",
---  "height": "screenSizeY"
---});
---var RLeft        = RFull.dup({"width": "screenSizeX/2"});
---var RRight       = RLeft.dup({"x": "screenOriginX + screenSizeX/2"});
---var RTopLeft     = RLeft.dup({"height": "screenSizeY/2"});
---var RTopRight    = RTopLeft.dup({"x": "screenOriginX + screenSizeX/2"});
---var RBottomLeft  = RTopLeft.dup({"y": "screenOriginY + screenSizeY/2"});
---var RBottomRight = RBottomLeft.dup({"x": "screenOriginX + screenSizeX/2"});
---var RTop         = RFull.dup({"height": "screenSizeY/2"});
---var RBottom      = RTop.dup({"y": "screenOriginY + screenSizeY/2"});
+local function firstScreenFrame()
+    return hs.screen.allScreens()[1]:frame()
+end
 
---slate.bind("pad1:ctrl", LBottomLeft);
---slate.bind("pad2:ctrl", LBottom);
---slate.bind("pad3:ctrl", LBottomRight);
---slate.bind("pad4:ctrl", LLeft);
---slate.bind("pad5:ctrl", LFull);
---slate.bind("pad6:ctrl", LRight);
---slate.bind("pad7:ctrl", LTopLeft);
---slate.bind("pad8:ctrl", LTop);
---slate.bind("pad9:ctrl", LTopRight);
---slate.bind("pad1:alt", RBottomLeft);
---slate.bind("pad2:alt", RBottom);
---slate.bind("pad3:alt", RBottomRight);
---slate.bind("pad4:alt", RLeft);
---slate.bind("pad5:alt", RFull);
---slate.bind("pad6:alt", RRight);
---slate.bind("pad7:alt", RTopLeft);
---slate.bind("pad8:alt", RTop);
---slate.bind("pad9:alt", RTopRight);
+local function secondScreenFrame()
+    return hs.screen.allScreens()[2]:frame()
+end
+
+local function setWindowFrame(frame)
+    return modifyFrame(function(win, f, screen, max)
+        return frame
+    end)
+end
+
+-- Ctrl+NumPad: Place focused window on left screen
+hs.hotkey.bind(ctrl, 'pad1', setWindowFrame(bottomHalf(leftHalf(firstScreenFrame()))))
+hs.hotkey.bind(ctrl, 'pad2', setWindowFrame(bottomHalf(firstScreenFrame())))
+hs.hotkey.bind(ctrl, 'pad3', setWindowFrame(bottomHalf(rightHalf(firstScreenFrame()))))
+hs.hotkey.bind(ctrl, 'pad4', setWindowFrame(leftHalf(firstScreenFrame())))
+hs.hotkey.bind(ctrl, 'pad5', setWindowFrame(firstScreenFrame()))
+hs.hotkey.bind(ctrl, 'pad6', setWindowFrame(rightHalf(firstScreenFrame())))
+hs.hotkey.bind(ctrl, 'pad7', setWindowFrame(topHalf(leftHalf(firstScreenFrame()))))
+hs.hotkey.bind(ctrl, 'pad8', setWindowFrame(topHalf(firstScreenFrame())))
+hs.hotkey.bind(ctrl, 'pad9', setWindowFrame(topHalf(rightHalf(firstScreenFrame()))))
+
+-- Alt+NumPad: Place focused window on right screen
+hs.hotkey.bind(alt,  'pad1', setWindowFrame(bottomHalf(leftHalf(secondScreenFrame()))))
+hs.hotkey.bind(alt,  'pad2', setWindowFrame(bottomHalf(secondScreenFrame())))
+hs.hotkey.bind(alt,  'pad3', setWindowFrame(bottomHalf(rightHalf(secondScreenFrame()))))
+hs.hotkey.bind(alt,  'pad4', setWindowFrame(leftHalf(secondScreenFrame())))
+hs.hotkey.bind(alt,  'pad5', setWindowFrame(secondScreenFrame()))
+hs.hotkey.bind(alt,  'pad6', setWindowFrame(rightHalf(secondScreenFrame())))
+hs.hotkey.bind(alt,  'pad7', setWindowFrame(topHalf(leftHalf(secondScreenFrame()))))
+hs.hotkey.bind(alt,  'pad8', setWindowFrame(topHalf(secondScreenFrame())))
+hs.hotkey.bind(alt,  'pad9', setWindowFrame(topHalf(rightHalf(secondScreenFrame()))))
