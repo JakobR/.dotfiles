@@ -161,6 +161,9 @@ fi
 # Haskell-stack
 export PATH=$HOME/.local/bin:$PATH
 
+export GOPATH=$HOME/.go
+export PATH=$GOPATH/bin:$PATH
+
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
