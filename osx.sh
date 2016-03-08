@@ -119,3 +119,6 @@ defaults write com.apple.dock no-bouncing -bool true
 # Xcode scrolling (to work around an XVim bug)
 # See https://github.com/XVimProject/XVim/issues/882
 defaults write com.apple.dt.Xcode AppleShowScrollBars -string "WhenScrolling"
+
+# Fix annoying scrollbar flickering while typing in OneNote
+defaults write com.microsoft.onenote.mac AppleShowScrollBars -string "WhenScrolling"
