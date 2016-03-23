@@ -73,7 +73,7 @@ local function strFrame(f)
 end
 
 local function approxEqual(x, y)
-    local tolerance = 50
+    local tolerance = 15
     return math.abs(x - y) < tolerance
 end
 
@@ -184,6 +184,22 @@ hs.hotkey.bind(hyper, 'k', maximize)
 
 local function focusApp(name)
     return function()
+        -- -- TODO: This does not work reliably with multiple screens
+        -- --       (e.g. switches from iTerm -> Chrome (on different screen) -> other iTerm window on the other screen...)
+        -- local app = hs.application.find(name)
+        -- if app then
+        --     local win = app:mainWindow()
+        --     if not win then
+        --         win = app:focusedWindow()
+        --     end
+        --     if win then
+        --         -- If there's a focused window, only activate this one
+        --         win:focus()
+        --         return
+        --     end
+        -- end
+        -- hs.alert.show("ohoho")
+        -- -- App is either not running or does not have a focused window
         if not hs.application.launchOrFocus(name) then
             hs.alert.show("Unable to focus application with name: " .. name)
         end
@@ -229,38 +245,45 @@ hs.hotkey.bind(hyper, 'g', focusApp('GitHub Desktop'));
 -- Ctrl/Alt+NumPad: Place window on screen
 -----------------------------------------------
 
-local function firstScreenFrame()
-    return hs.screen.allScreens()[1]:frame()
-end
-
-local function secondScreenFrame()
-    return hs.screen.allScreens()[2]:frame()
-end
-
-local function setWindowFrame(frame)
-    return modifyFrame(function(win, f, screen, max)
-        return frame
+local function setWindowFrame(screenIndex, frameTransform)
+    return modifyFrame(function(win, f, current_screen, max)
+        local screen = hs.screen.allScreens()[screenIndex]
+        if screen then
+            local frame = screen:frame()
+            return frameTransform(frame)
+        else
+            hs.alert.show("No screen with index " .. screenIndex .. " exists.")
+            return f
+        end
     end)
 end
 
+local function compose(f, g)
+    return function(...) return f(g(...)) end
+end
+
+local function identity(x)
+    return x
+end
+
 -- Ctrl+NumPad: Place focused window on left screen
-hs.hotkey.bind(ctrl, 'pad1', setWindowFrame(bottomHalf(leftHalf(firstScreenFrame()))))
-hs.hotkey.bind(ctrl, 'pad2', setWindowFrame(bottomHalf(firstScreenFrame())))
-hs.hotkey.bind(ctrl, 'pad3', setWindowFrame(bottomHalf(rightHalf(firstScreenFrame()))))
-hs.hotkey.bind(ctrl, 'pad4', setWindowFrame(leftHalf(firstScreenFrame())))
-hs.hotkey.bind(ctrl, 'pad5', setWindowFrame(firstScreenFrame()))
-hs.hotkey.bind(ctrl, 'pad6', setWindowFrame(rightHalf(firstScreenFrame())))
-hs.hotkey.bind(ctrl, 'pad7', setWindowFrame(topHalf(leftHalf(firstScreenFrame()))))
-hs.hotkey.bind(ctrl, 'pad8', setWindowFrame(topHalf(firstScreenFrame())))
-hs.hotkey.bind(ctrl, 'pad9', setWindowFrame(topHalf(rightHalf(firstScreenFrame()))))
+hs.hotkey.bind(ctrl, 'pad1', setWindowFrame(1, compose(bottomHalf, leftHalf)))
+hs.hotkey.bind(ctrl, 'pad2', setWindowFrame(1, bottomHalf))
+hs.hotkey.bind(ctrl, 'pad3', setWindowFrame(1, compose(bottomHalf, rightHalf)))
+hs.hotkey.bind(ctrl, 'pad4', setWindowFrame(1, leftHalf))
+hs.hotkey.bind(ctrl, 'pad5', setWindowFrame(1, identity))
+hs.hotkey.bind(ctrl, 'pad6', setWindowFrame(1, rightHalf))
+hs.hotkey.bind(ctrl, 'pad7', setWindowFrame(1, compose(topHalf, leftHalf)))
+hs.hotkey.bind(ctrl, 'pad8', setWindowFrame(1, topHalf))
+hs.hotkey.bind(ctrl, 'pad9', setWindowFrame(1, compose(topHalf, rightHalf)))
 
 -- Alt+NumPad: Place focused window on right screen
-hs.hotkey.bind(alt,  'pad1', setWindowFrame(bottomHalf(leftHalf(secondScreenFrame()))))
-hs.hotkey.bind(alt,  'pad2', setWindowFrame(bottomHalf(secondScreenFrame())))
-hs.hotkey.bind(alt,  'pad3', setWindowFrame(bottomHalf(rightHalf(secondScreenFrame()))))
-hs.hotkey.bind(alt,  'pad4', setWindowFrame(leftHalf(secondScreenFrame())))
-hs.hotkey.bind(alt,  'pad5', setWindowFrame(secondScreenFrame()))
-hs.hotkey.bind(alt,  'pad6', setWindowFrame(rightHalf(secondScreenFrame())))
-hs.hotkey.bind(alt,  'pad7', setWindowFrame(topHalf(leftHalf(secondScreenFrame()))))
-hs.hotkey.bind(alt,  'pad8', setWindowFrame(topHalf(secondScreenFrame())))
-hs.hotkey.bind(alt,  'pad9', setWindowFrame(topHalf(rightHalf(secondScreenFrame()))))
+hs.hotkey.bind(alt, 'pad1', setWindowFrame(2, compose(bottomHalf, leftHalf)))
+hs.hotkey.bind(alt, 'pad2', setWindowFrame(2, bottomHalf))
+hs.hotkey.bind(alt, 'pad3', setWindowFrame(2, compose(bottomHalf, rightHalf)))
+hs.hotkey.bind(alt, 'pad4', setWindowFrame(2, leftHalf))
+hs.hotkey.bind(alt, 'pad5', setWindowFrame(2, identity))
+hs.hotkey.bind(alt, 'pad6', setWindowFrame(2, rightHalf))
+hs.hotkey.bind(alt, 'pad7', setWindowFrame(2, compose(topHalf, leftHalf)))
+hs.hotkey.bind(alt, 'pad8', setWindowFrame(2, topHalf))
+hs.hotkey.bind(alt, 'pad9', setWindowFrame(2, compose(topHalf, rightHalf)))
