@@ -56,7 +56,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   # Mac OS X configuration
 
   # LaTeX
-  export PATH=/usr/texbin:$PATH
+  export PATH=/Library/TeX/texbin:$PATH
 
   # Homebrew paths
   export PATH=/usr/local/sbin:$PATH
