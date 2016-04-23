@@ -1,0 +1,8 @@
+VerbEnvir {
+    grammar
+    lstlisting
+}
+
+WipeArg {
+    \lstinline:{}
+}
