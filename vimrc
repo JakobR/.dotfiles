@@ -472,6 +472,9 @@ function UsePython2()
   let b:syntastic_python_flake8_exe = 'python -mflake8'
 endfunction
 
+" no need to have both lacheck and chktex
+let g:syntastic_tex_checkers = ['chktex']
+
 " ghc_mod seems to do the same as hdevtools
 let g:syntastic_haskell_checkers = ['hdevtools', 'hlint']
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
