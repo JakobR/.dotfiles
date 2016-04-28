@@ -57,6 +57,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
 
   # LaTeX
   export PATH=/Library/TeX/texbin:$PATH
+  export TEXINPUTS=${TEXINPUTS}:/usr/local/Frameworks/R.framework/Resources/share/texmf/tex/latex//
 
   # Homebrew paths
   export PATH=/usr/local/sbin:$PATH

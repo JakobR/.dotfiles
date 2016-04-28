@@ -73,7 +73,8 @@ local function strFrame(f)
 end
 
 local function approxEqual(x, y)
-    local tolerance = 15
+    -- need a relatively high tolerance to recognize maximized vim correctly
+    local tolerance = 50
     return math.abs(x - y) < tolerance
 end
 
