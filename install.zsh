@@ -126,9 +126,8 @@ create_symlink_to_home 'chktexrc'
 create_symlink_to_home 'inputrc'
 create_symlink_to_home 'gemrc'
 create_symlink_to_home 'Xmodmap'
-mkdir -p "${HOME}/.config/mpv"
-create_symlink "${JR_DOTFILES}/mpv/input.conf" "${HOME}/.config/mpv/input.conf"
-create_symlink "${JR_DOTFILES}/mpv/mpv.conf" "${HOME}/.config/mpv/mpv.conf"
+mkdir -p "${HOME}/.config"
+create_symlink "${JR_DOTFILES}/mpv" "${HOME}/.config/mpv"
 mkdir -p "${HOME}/.cabal"
 create_symlink "${JR_DOTFILES}/cabal-config" "${HOME}/.cabal/config"
 mkdir -p "${HOME}/.stack/global-project"
