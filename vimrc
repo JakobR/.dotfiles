@@ -231,6 +231,10 @@ autocmd FileType matlab set commentstring=%\ %s
 " No spell check in LaTeX comments
 let g:tex_comment_nospell=1
 
+" Automatically compile LaTeX files on saving
+autocmd FileType tex let &makeprg="latexmk -pdflatex='pdflatex -file-line-error -synctex=1' -pdf"
+autocmd BufWritePost *.tex Make
+
 " HTML indentation
 let g:html_indent_inctags = "body,head,li"
 let g:html_indent_script1 = "inc"
