@@ -233,7 +233,7 @@ let g:tex_comment_nospell=1
 
 " Automatically compile LaTeX files on saving
 autocmd FileType tex let &l:makeprg="latexmk -pdflatex='pdflatex -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error' -pdf %"
-autocmd BufWritePost *.tex Make
+autocmd BufWritePost *.tex silent Make
 
 " HTML indentation
 let g:html_indent_inctags = "body,head,li"
