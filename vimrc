@@ -48,8 +48,6 @@ set tabstop=4           " number of spaces a tab counts for
 set shiftwidth=4        " number of spaces for autoindents
 set expandtab           " insert spaces instead of tabs
 set shiftround
-set autoindent
-set smartindent
 set incsearch           " search incremently (search while typing)
 set hlsearch            " highlight search (very useful!)
 set display+=lastline
