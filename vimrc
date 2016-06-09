@@ -461,18 +461,24 @@ endfunction
 nnoremap <Leader>e :call RunSyntasticAndJumpToError()<CR>
 
 " Don't need pylint in addition to flake8
-let g:syntastic_python_checkers = ['python', 'flake8']
+let g:syntastic_python_checkers = ['python', 'flake8']  ", 'mypy']
 " Ignore errors that are more annoying than helpful
 " E501 is "line too long"
-let g:syntastic_python_flake8_post_args = '--ignore=E501'
+let g:syntastic_python_flake8_post_args = '--ignore=E501,W503'
 " Use python3 by default
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_flake8_exe = 'python3 -mflake8'
+" python3 for semantic completion
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
+
 " Allow switching to python 2 for specific buffers
 function UsePython2()
-  let b:syntastic_python_python_exec = 'python'
-  let b:syntastic_python_flake8_exe = 'python -mflake8'
+  let b:syntastic_python_python_exec = 'python2'
+  let b:syntastic_python_flake8_exe = 'python2 -mflake8'
+  " let b:ycm_python_binary_path = '/usr/local/bin/python2'  " not sure whether this works...
 endfunction
+
+let python_highlight_all = 1
 
 " no need to have both lacheck and chktex
 let g:syntastic_tex_checkers = ['chktex']

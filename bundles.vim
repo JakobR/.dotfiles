@@ -34,6 +34,7 @@ Plugin 'niklasl/vim-rdf'
 Plugin 'nikolavp/sparql.vim'
 Plugin 'Keithbsmiley/swift.vim'
 Plugin 'peterhoeg/vim-qml'
+Plugin 'hdima/python-syntax'
 
 " C++
 " Plugin 'vim-jp/cpp-vim'
