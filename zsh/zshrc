@@ -71,10 +71,8 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export RAILS_ENV='development'
 
   # Use MacVim to edit files, and give focus back to iTerm after closing
-  # export EDITOR="/usr/local/bin/mvim -p --nofork -c 'au VimLeave * !/usr/bin/open -a iTerm'"
   export EDITOR="/usr/local/bin/mvim -p --nofork -c ActivateTerminalOnExit"
-  # only focus iTerm if the same shell is still open
-  alias mvim="/usr/local/bin/mvim -p -c 'au VimLeave * !/usr/bin/pgrep zsh | /usr/bin/grep $$ && /usr/bin/open -a iTerm'"
+  alias mvim="/usr/local/bin/mvim -p"
   # TODO: Functions m2, m3, ... which open in the 2nd, 3rd, ... vim server in the serverlist
   function m() {
     function vim_binary() {
@@ -97,8 +95,9 @@ if [[ $OSTYPE =~ ^darwin ]] then
       vim_binary --remote-tab-silent "${@}"
     fi
   }
-  # stay in console for git commit messages
+  # stay in console for git commit messages and vimpager
   export GIT_EDITOR='/usr/local/bin/vim'
+  export VIMPAGER_VIM='/usr/local/bin/vim'
 
   # Show hidden files in Finder
   # If it doesn't work, try `killall cfprefsd` first (http://apple.stackexchange.com/a/112091)
