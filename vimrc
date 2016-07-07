@@ -381,14 +381,9 @@ nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
 " Use <Leader>s to search in project
+nnoremap <Leader>s :Ack<Space>
 if executable('ag')
-  " ag aka the_silver_searcher
-  " see https://github.com/ggreer/the_silver_searcher
-  nnoremap <Leader>s :Ag<Space>
-elseif executable('ack')
-  nnoremap <Leader>s :Ack<Space>
-else
-  nnoremap <Leader>s :echoerr 'Error: Neither ag nor ack are available!'<CR>
+  let g:ackprg = 'ag --vimgrep --smart-case'
 endif
 
 " Highlight matching tags in these file types (MatchTagAlways plugin)

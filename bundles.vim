@@ -72,7 +72,6 @@ if !exists('g:vimpager')
 
   Plugin 'kien/ctrlp.vim'
   Plugin 'kana/vim-altr'
-  Plugin 'rking/ag.vim'
   Plugin 'mileszs/ack.vim'
 
   Plugin 'rhysd/vim-clang-format'
