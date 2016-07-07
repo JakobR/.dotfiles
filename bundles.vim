@@ -76,6 +76,8 @@ if !exists('g:vimpager')
 
   Plugin 'rhysd/vim-clang-format'
 
+  Plugin 'chrisbra/csv.vim'
+
   Plugin 'tpope/vim-dispatch'
   Plugin 'Shougo/vimproc.vim'
   " Plugin 'eagletmt/ghcmod-vim'
