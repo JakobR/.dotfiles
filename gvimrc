@@ -69,6 +69,10 @@ if has("gui_macvim")
   imap <D-8> <C-O>8gt
   map  <D-9> 9gt
   imap <D-9> <C-O>9gt
+
+  macmenu Tools.Make<Tab>:make			key=<nop>
+  noremap  <D-b> :Make<CR>
+  inoremap <D-b> <C-O>:Make<CR>
 endif
 
 let g:nerdtree_tabs_open_on_gui_startup=0
