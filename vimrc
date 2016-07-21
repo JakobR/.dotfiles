@@ -166,7 +166,7 @@ endfunction
 function DisableWrap()
   if &wrap
     echo "Wrap OFF"
-    setlocal nowrap
+    setlocal nowrap list
     "set virtualedit=all
     silent! nunmap <buffer> <Up>
     silent! nunmap <buffer> <Down>
