@@ -214,7 +214,7 @@ hs.hotkey.bind(hyper, 't', focusApp('iTunes'));
 hs.hotkey.bind(hyper, 'a', focusApp('Anki'));
 hs.hotkey.bind(hyper, 'm', focusApp('Mail'));
 hs.hotkey.bind(hyper, 'c', focusApp('Calendar'));
-hs.hotkey.bind(hyper, 's', focusApp('Google Chrome'));
+hs.hotkey.bind(hyper, 's', focusApp('Firefox'));
 hs.hotkey.bind(hyper, 'f', focusApp('Finder'));
 hs.hotkey.bind(hyper, 'j', focusApp('JEDict'));
 hs.hotkey.bind(hyper, 'x', focusApp('Xcode'));
