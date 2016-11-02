@@ -44,6 +44,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 if !exists('g:vimpager')
   " Don't need these plugins in vimpager
   Plugin 'JakobR/securemodelines'
+  Plugin 'gmarik/sudo-gui.vim'
 
   Plugin 'tpope/vim-fugitive'
   Plugin 'gregsexton/gitv'

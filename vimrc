@@ -117,6 +117,9 @@ if &t_Co > 2 || has("gui_running")
   endif
 endif
 
+" ca w!! w !sudo tee > /dev/null %
+ca w!! SudoWrite
+
 " Change current directory to directory of the currently open file.
 " Apparently setting 'autochdir' can cause problems with plugins, so I rather
 " do it manually as needed instead of dealing hard-to-find bugs in plugins.
