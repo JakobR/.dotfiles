@@ -117,6 +117,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias protege='$HOME/Documents/Uni/INFO116/Protege_5.0_beta/run.command'
   alias jsonld='$HOME/code/other/jsonld.js/bin/jsonld'
   alias clang-format='$HOME/Applications/clang+llvm-3.5.0-macosx-apple-darwin/bin/clang-format'
+  alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
   # Open yesterday's or today's journal entry (day changes at 12:00)
   # Can open shift day with ±number as first argument (e.g. "mj -1")
