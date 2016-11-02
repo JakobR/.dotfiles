@@ -123,6 +123,8 @@ if !exists('g:vimpager')
 
   " Plugin 'sjl/gundo.vim'
   Plugin 'mbbill/undotree'
+
+  Plugin 'rizzatti/dash.vim'
 end
 
 " More interesting bundles to check out:
