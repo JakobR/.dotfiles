@@ -225,6 +225,7 @@ autocmd FileType * setlocal formatoptions-=o
 autocmd FileType lhaskell setlocal formatoptions+=ro
 
 " Comment style by file type
+autocmd FileType cmake set commentstring=#\ %s
 autocmd FileType qmake set commentstring=#\ %s
 autocmd FileType sparql set commentstring=#\ %s
 autocmd FileType matlab set commentstring=%\ %s

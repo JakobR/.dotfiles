@@ -35,6 +35,7 @@ Plugin 'nikolavp/sparql.vim'
 Plugin 'Keithbsmiley/swift.vim'
 Plugin 'peterhoeg/vim-qml'
 Plugin 'hdima/python-syntax'
+Plugin 'nickhutchinson/vim-cmake-syntax'
 
 " C++
 " Plugin 'vim-jp/cpp-vim'
