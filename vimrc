@@ -203,7 +203,7 @@ noremap <silent> <Leader>w :call ToggleWrap()<CR>
 autocmd FileType markdown,text silent call EnableWrap()
 
 " Don't show whitespace in man pages
-autocmd FileType man set nolist
+autocmd FileType man setlocal nolist
 
 let g:sql_type_default = 'pgsql'
 
@@ -225,10 +225,10 @@ autocmd FileType * setlocal formatoptions-=o
 autocmd FileType lhaskell setlocal formatoptions+=ro
 
 " Comment style by file type
-autocmd FileType cmake set commentstring=#\ %s
-autocmd FileType qmake set commentstring=#\ %s
-autocmd FileType sparql set commentstring=#\ %s
-autocmd FileType matlab set commentstring=%\ %s
+autocmd FileType cmake setlocal commentstring=#\ %s
+autocmd FileType qmake setlocal commentstring=#\ %s
+autocmd FileType sparql setlocal commentstring=#\ %s
+autocmd FileType matlab setlocal commentstring=%\ %s
 
 " No spell check in LaTeX comments
 let g:tex_comment_nospell=1
@@ -413,7 +413,7 @@ let g:mta_use_matchparen_group = 0
 
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
-autocmd FileType c,cpp set completeopt+=preview
+autocmd FileType c,cpp setlocal completeopt+=preview
 
 let g:ycm_allow_changing_updatetime = 0
 
