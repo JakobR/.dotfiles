@@ -436,7 +436,7 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "active_filetypes": [],
-    \ "passive_filetypes": ["java"] }
+    \ "passive_filetypes": ["java", "tex"] }
 function RunSyntasticAndJumpToError()
     if exists('b:syntastic_mode')
         let l:old_syntastic_mode = b:syntastic_mode
