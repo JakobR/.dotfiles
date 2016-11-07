@@ -487,18 +487,29 @@ let g:syntastic_haskell_checkers = ['hdevtools', 'hlint']
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 " let g:necoghc_enable_detailed_browse = 1
 " autocmd FileType haskell,lhaskell setlocal omnifunc=necoghc#omnifunc
-function HaskellShowType()
-  if exists(':GhcModType')
-    GhcModType
-    return
-  endif
-  if exists(':HdevtoolsType')
-    HdevtoolsType
-    return
-  endif
-  echoerr "Neither :GhcModType nor :HdevtoolsType is available."
+
+function ShowType()
+    if index(['c', 'cpp'], &filetype) != -1
+        " C and C++ type information via YouCompleteMe
+        if exists(':YcmCompleter')
+            YcmCompleter GetType
+        else
+            echoerr ":YcmCompleter is not available."
+        endif
+    elseif &ft == 'haskell'
+        " Haskell type information via ghc-mod or hdevtools
+        if exists(':GhcModType')
+            GhcModType
+        elseif exists(':HdevtoolsType')
+            HdevtoolsType
+        else
+            echoerr "Neither :GhcModType nor :HdevtoolsType is available."
+        endif
+    else
+        echoerr "No type information for filetype " . &filetype
+    endif
 endfunction
-nnoremap <Leader>t :call HaskellShowType()<CR>
+nnoremap <Leader>t :call ShowType()<CR>
 
 " Use same user and email as git for the templates
 let g:email = substitute(system('git --no-pager config -z user.email'), '\W$', '', '')
