@@ -171,4 +171,12 @@ source $ZSH/oh-my-zsh.sh
 HISTSIZE=1000000
 SAVEHIST=1000000
 
+setopt complete_aliases
+
+if [[ $OSTYPE =~ ^darwin ]] then
+    # compdef seems to work only after loading oh-my-zsh
+    alias s="/usr/bin/open -a Skim"
+    compdef '_path_files -g *.pdf' s
+fi
+
 # zprof
