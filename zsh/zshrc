@@ -176,7 +176,7 @@ setopt complete_aliases
 if [[ $OSTYPE =~ ^darwin ]] then
     # compdef seems to work only after loading oh-my-zsh
     alias s="/usr/bin/open -a Skim"
-    compdef '_path_files -g *.pdf' s
+    compdef '_files -g \*.pdf' s
 fi
 
 # zprof
