@@ -5,6 +5,7 @@
   ui = true
 [core]
   excludesfile = ~/.gitignore-global
+  attributesFile = ~/.gitattributes-global
 [merge "gemfilelock"]
   name = relocks the gemfile.lock
   driver = bundle install
@@ -28,3 +29,9 @@
 	required = true
 [diff]
 	compactionHeuristic = 1
+[diff "pdf"]
+    # Only metadata
+    textconv = pdfinfo
+    # Metadata and text content
+    ; textconv="pdfinfo \"$1\"; pdftotext \"$1\" - #"
+    cachetextconv = true
