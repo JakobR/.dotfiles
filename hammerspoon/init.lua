@@ -221,6 +221,8 @@ hs.hotkey.bind(hyper, 'x', focusApp('Xcode'));
 hs.hotkey.bind(hyper, 'w', focusApp('Things'));
 hs.hotkey.bind(hyper, 'g', focusApp('GitHub Desktop'));
 hs.hotkey.bind(hyper, 'd', focusApp('Dash'));
+hs.hotkey.bind(hyper, 'b', focusApp('BibDesk'));
+hs.hotkey.bind(hyper, 'r', focusApp('Skim'));
 
 
 -----------------------------------------------
