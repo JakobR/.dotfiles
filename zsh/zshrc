@@ -1,4 +1,4 @@
-# Uncomment this line and "zprof" at the end to profile zsh startup time
+# Uncomment this line and "zprof" at the end of this file to profile zsh startup time
 # zmodload zsh/zprof
 
 # Path to dotfiles
@@ -64,7 +64,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export PATH=/usr/local/bin:$PATH
 
   # See http://www.xmlsoft.org/catalog.html
-  export XML_CATALOG_FILES="$HOME/.dotfiles/xml/catalog.xml"
+  export XML_CATALOG_FILES="${JR_DOTFILES}/xml/catalog.xml"
 
   # standard rails environment on this machine
   # be careful when running tests though as they will need the 'test' environment explicitly specified.
@@ -74,6 +74,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export EDITOR="/usr/local/bin/mvim -p --nofork -c ActivateTerminalOnExit"
   alias mvim="/usr/local/bin/mvim -p"
   # TODO: Functions m2, m3, ... which open in the 2nd, 3rd, ... vim server in the serverlist
+  # TODO: A function "ms" that lists vim servers, and what project each is associated to.
   function m() {
     function vim_binary() {
       # local vim_binary_path="/usr/local/Cellar/macvim/7.4-73_1/MacVim.app/Contents/MacOS/Vim"
@@ -82,7 +83,12 @@ if [[ $OSTYPE =~ ^darwin ]] then
     }
     # TODO: When starting a new instance, add the code to switch back to the terminal on exit
     # TODO: Maybe use this server: $(vim --serverlist|tail -n 1)   (latest one started)
-    # Maybe it's possible to use a specific vim server per "project"?
+    # TODO: Maybe it's possible to use a specific vim server per "project"?
+    #       A "project" might be each folder in "~/code", or each folder in "~" if it's not in "~/code" (define a list of "project roots", e.g. ["~/code", "~/Documents/Uni/*/", ..., "~"], to match against)
+    #       Other idea:
+    #           Use "mvim" to manually open a new vim instance for a project.
+    #           "m" just picks the most appropriate open vim server (one with the same project; or if none exists, the first one)
+    #           That's probably better than opening new project-specific instances automatically?
     if [[ -z "${@}" ]] then
       if [[ -z "$(vim_binary --serverlist)" ]] then
         # No vim instances running? start a new one
@@ -141,10 +147,6 @@ if [[ $OSTYPE =~ ^darwin ]] then
   CS=$Uni/Informatik
   Math=$Uni/Mathematik
 
-  # Autojump (this is slow!)
-  # [[ -s /usr/local/etc/autojump.sh ]] && . /usr/local/etc/autojump.sh
-  # eval "$(fasd --init auto)"
-
   # additional oh-my-zsh plugins
   plugins+=osx
 
@@ -161,6 +163,7 @@ fi
 
 # Haskell-stack
 export PATH=$HOME/.local/bin:$PATH
+alias ghci='stack ghci'
 
 export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
@@ -179,4 +182,5 @@ if [[ $OSTYPE =~ ^darwin ]] then
     compdef '_files -g \*.pdf' s
 fi
 
+# Uncomment this line and "zmodload zsh/zprof" at the top of this file to profile zsh startup time
 # zprof
