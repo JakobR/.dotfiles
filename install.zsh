@@ -134,6 +134,8 @@ create_symlink "${JR_DOTFILES}/cabal-config" "${HOME}/.cabal/config"
 mkdir -p "${HOME}/.stack/global-project"
 create_symlink "${JR_DOTFILES}/stack/config.yaml" "${HOME}/.stack/config.yaml"
 create_symlink "${JR_DOTFILES}/stack/global-project/stack.yaml" "${HOME}/.stack/global-project/stack.yaml"
+mkdir -p "${HOME}/.pip"
+create_symlink "${JR_DOTFILES}/pip.conf" "${HOME}/.pip/pip.conf"
 
 
 if [[ "$OSTYPE" =~ ^darwin ]] then
