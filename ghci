@@ -1,61 +1,14 @@
 -- vim: syn=haskell
 
--- Silence most output while loading .ghci
-:set -v0
-:unset +t
-
 -- Hoogle commands
 :def hoogle \x -> return $ ":!hoogle        \"" ++ x ++ "\""
 :def doc    \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
 
--- :set prompt  "\ESC[1;34m\n%s\nλ: \ESC[0m"  -- with modules
 :set prompt  "\ESC[1;34m\nλ: \ESC[0m"
 :set prompt2 "\ESC[1;34m | \ESC[0m"
 
--- See http://www.reddit.com/r/haskell/comments/144biy/pretty_output_in_ghci_howto_in_comments/
-import qualified Text.PrettyPrint as PrettyPrint
-import qualified Text.Show.Pretty as PrettyShow
-import qualified Language.Haskell.HsColour as HsColour
-import qualified Language.Haskell.HsColour.Colourise as HsColour
-import qualified Language.Haskell.HsColour.Output as HsColour
-
-:{
--- TODO: Make colors consistent with highlighting in vim
--- see http://www.cs.york.ac.uk/fp/darcs/hscolour/docs/hscolour/Language/Haskell/HsColour/Colourise.html
--- and http://hackage.haskell.org/package/hscolour-1.14/docs/src/Language-Haskell-HsColour-Colourise.html
-let myColourPrefs = HsColour.defaultColourPrefs
-                                                -- { HsColour.conid    = [HsColour.Foreground HsColour.Yellow, HsColour.Bold]
-                                                -- , HsColour.conop    = [HsColour.Foreground HsColour.Yellow]
-                                                -- , HsColour.string   = [HsColour.Foreground HsColour.Green]
-                                                -- , HsColour.char     = [HsColour.Foreground HsColour.Cyan]
-                                                -- , HsColour.number   = [HsColour.Foreground HsColour.Red, HsColour.Bold]
-                                                -- , HsColour.layout   = [HsColour.Foreground HsColour.White]
-                                                -- , HsColour.keyglyph = [HsColour.Foreground HsColour.White]
-                                                -- }
-:}
-
-:{
--- Problem with myPrint: cannot handle infinite lists.
--- Maybe it's possible to have a timeout (0.5 seconds?) and revert to normal print if it is exceeded.
-let myPrint :: Show a => a -> IO ()
-    myPrint = putStrLn . colorize . prettify
-        where
-            -- TODO:
-            -- Use actual terminal window size for line length, see http://stackoverflow.com/questions/12806053/get-terminal-width-haskell (or use wl-pprint-terminfo)
-            -- What does "ribbonsPerLine" actually mean?
-            style = PrettyPrint.Style   { PrettyPrint.mode = PrettyPrint.PageMode
-                                        , PrettyPrint.lineLength = 230
-                                        , PrettyPrint.ribbonsPerLine = 1.5
-                                        }
-            prettify = PrettyPrint.renderStyle style . PrettyShow.ppDoc
-            colorize = HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False
-:}
-
--- :set -interactive-print=myPrint
-:set -v1
+-- Prompt with list of loaded modules
+-- :set prompt  "\ESC[1;34m\n%s\nλ: \ESC[0m"
 
 -- always show type of result (like :t)
 :set +t
-
--- enable parsing of multiline commands (seems to be annoying as default though)
--- :set +m
