@@ -155,6 +155,9 @@ elif [[ $OSTYPE =~ ^freebsd ]] then
 
   export EDITOR='/usr/local/bin/vim'
 
+  # Show full command name in top by default (-a)
+  export TOP='-a'
+
 elif [[ $OSTYPE =~ ^linux ]] then
   # Linux configuration
 
