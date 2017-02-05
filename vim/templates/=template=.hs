@@ -1,4 +1,4 @@
 #!/usr/bin/env runhaskell
-module %FILE% where
+module %CLASS% where
 
 %HERE%

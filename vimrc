@@ -224,6 +224,15 @@ autocmd FileType * setlocal formatoptions-=o
 " http://stackoverflow.com/a/18572190
 autocmd FileType lhaskell setlocal formatoptions+=ro
 
+" Additional Haskell syntax highlighting
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
 " Comment style by file type
 autocmd FileType cmake setlocal commentstring=#\ %s
 autocmd FileType qmake setlocal commentstring=#\ %s
@@ -422,12 +431,7 @@ let g:ycm_enable_diagnostic_signs = 0
 " Load .ycm_extra_conf.py only in my own projects
 let g:ycm_extra_conf_globlist = ['!~/code/other/*','~/code/*','~/Documents/Uni/*','!~/*']
 let g:ycm_global_ycm_extra_conf = $JR_DOTFILES . '/ycm_extra_conf.py'
-
-" Make Eclim play nicely with YouCompleteMe
-let g:EclimCompletionMethod = 'omnifunc'
-
-" Disable Eclim for now
-let g:EclimDisabled = 1
+" let g:ycm_key_invoke_completion = '<S-Space>'
 
 " let b:delimitMate_expand_cr = 1
 
@@ -436,26 +440,35 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "active_filetypes": [],
-    \ "passive_filetypes": ["java", "tex"] }
+    \ "passive_filetypes": ["java", "tex", "haskell"] }
 function RunSyntasticAndJumpToError()
-    if exists('b:syntastic_mode')
-        let l:old_syntastic_mode = b:syntastic_mode
-    endif
-    " Don't check twice if this is an active filetype
-    let b:syntastic_mode = 'passive'
-    w
-    SyntasticCheck
-    if exists('l:old_syntastic_mode')
-        let b:syntastic_mode = l:old_syntastic_mode
+    if &ft == 'haskell'
+        " Run :GhcModCheck for haskell
+        write
+        GhcModCheck
+        Errors
+        lclose
     else
-        unlet b:syntastic_mode
+        " Run Syntastic for everything else
+        if exists('b:syntastic_mode')
+            let l:old_syntastic_mode = b:syntastic_mode
+        endif
+        " Don't check twice if this is an active filetype
+        let b:syntastic_mode = 'passive'
+        write
+        SyntasticCheck
+        if exists('l:old_syntastic_mode')
+            let b:syntastic_mode = l:old_syntastic_mode
+        else
+            unlet b:syntastic_mode
+        endif
+        Errors
+        lclose
+        " If there are, in fact, errors, the ll command will jump to the first one
+        " and thus replace this echoed message with the message from syntastic
+        echo 'No errors'
+        silent! ll 1
     endif
-    Errors
-    lclose
-    " If there are, in fact, errors, the ll command will jump to the first one
-    " and thus replace this echoed message with the message from syntastic
-    echo 'No errors'
-    silent! ll 1
 endfunction
 nnoremap <Leader>e :call RunSyntasticAndJumpToError()<CR>
 
@@ -482,11 +495,10 @@ let python_highlight_all = 1
 " no need to have both lacheck and chktex
 let g:syntastic_tex_checkers = ['chktex']
 
-" ghc_mod seems to do the same as hdevtools
-let g:syntastic_haskell_checkers = ['hdevtools', 'hlint']
+let g:syntastic_haskell_checkers = ['hlint']
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
-" let g:necoghc_enable_detailed_browse = 1
-" autocmd FileType haskell,lhaskell setlocal omnifunc=necoghc#omnifunc
+let g:necoghc_enable_detailed_browse = 1
+autocmd FileType haskell,lhaskell setlocal omnifunc=necoghc#omnifunc
 
 function ShowType()
     if index(['c', 'cpp'], &filetype) != -1

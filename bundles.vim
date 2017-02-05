@@ -32,9 +32,11 @@ Plugin 'tmatilai/vim-monit'
 Plugin 'adimit/prolog.vim'
 Plugin 'niklasl/vim-rdf'
 Plugin 'nikolavp/sparql.vim'
-Plugin 'Keithbsmiley/swift.vim'
+Plugin 'keith/swift.vim'
 Plugin 'peterhoeg/vim-qml'
-Plugin 'hdima/python-syntax'
+Plugin 'pbrisbin/vim-syntax-shakespeare'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'JakobR/python-syntax'
 Plugin 'nickhutchinson/vim-cmake-syntax'
 
 " C++
@@ -72,7 +74,7 @@ if !exists('g:vimpager')
   Plugin 'nelstrom/vim-textobj-rubyblock'
   Plugin 'rbonvall/vim-textobj-latex'
 
-  Plugin 'kien/ctrlp.vim'
+  Plugin 'ctrlpvim/ctrlp.vim'
   Plugin 'kana/vim-altr'
   Plugin 'mileszs/ack.vim'
 
@@ -82,17 +84,24 @@ if !exists('g:vimpager')
 
   Plugin 'tpope/vim-dispatch'
   Plugin 'Shougo/vimproc.vim'
-  " Plugin 'eagletmt/ghcmod-vim'
-  Plugin 'bitc/vim-hdevtools'
-  " Plugin 'eagletmt/neco-ghc'
-  " Plugin 'lukerandall/haskellmode-vim'
-  " Plugin 'kana/vim-filetype-haskell'
-  " Plugin 'dag/vim2hs'
+
+  Plugin 'eagletmt/ghcmod-vim'
+  Plugin 'eagletmt/neco-ghc'
+  " Plugin 'glittershark/vim-hare'
+
+  " Plugin 'tomtom/tlib_vim'
+  " Plugin 'MarcWeber/vim-addon-mw-utils'
+  " Plugin 'garbas/vim-snipmate'
+
+  " Plugin 'godlygeek/tabular'
+  " Plugin 'ervandew/supertab'
 
   " Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
+  " Plugin 'xuhdev/vim-latex-live-preview'
 
   " Plugin 'scrooloose/nerdtree'
   " Plugin 'jistr/vim-nerdtree-tabs'
+  " Plugin 'scrooloose/nerdcommenter'
 
   " Plugin 'Yggdroot/indentLine'
   " Plugin 'nathanaelkane/vim-indent-guides'
@@ -100,12 +109,12 @@ if !exists('g:vimpager')
   " Installation guide: https://github.com/Valloric/YouCompleteMe
   if has('gui_macvim')
     Plugin 'Valloric/YouCompleteMe'
+    " possible alternative:
+    " Plugin 'Shougo/neocomplete'
 
     " Disable syntastic for C++ if we have YCM
     " (TODO: this should be in vimrc, with a check whether YCM is actually loaded and working)
     let g:syntastic_cpp_checkers = []
-    " Disable python-mode's autocompletion if we have YCM
-    let g:pymode_rope_complete_on_dot = 0
   endif
 
   if v:version >= 704 && exists("*matchaddpos")
@@ -116,16 +125,14 @@ if !exists('g:vimpager')
 
   if has('python')
     Plugin 'Valloric/MatchTagAlways'
-
-    "Plugin 'klen/python-mode'
-    " workaround for freezes, see https://github.com/klen/python-mode/issues/342
-    let g:pymode_rope_lookup_project = 0
   end
 
   " Plugin 'sjl/gundo.vim'
   Plugin 'mbbill/undotree'
 
   Plugin 'rizzatti/dash.vim'
+
+  Plugin 'jceb/vim-orgmode'
 end
 
 " More interesting bundles to check out:
