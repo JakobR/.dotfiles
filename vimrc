@@ -272,7 +272,7 @@ let g:ctrlp_show_hidden = 1
 "   exe, so, dll, jar, o, hi, dyn_hi, dyn_o
 let g:ctrlp_custom_ignore = {
   \ 'dir': '\v(\/\.(git|hg|svn)|\.dotfiles\/(vim\/bundle|zsh\/oh-my-zsh)|build|bin)$',
-  \ 'file': '\v\.(exe|so|dll|jar|o|hi|dyn_hi|dyn_o)'
+  \ 'file': '\v\.(exe|so|dll|jar|o|hi|dyn_hi|dyn_o)$'
   \ }
 
 nmap <Leader>a <Plug>(altr-forward)
