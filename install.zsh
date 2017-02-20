@@ -115,6 +115,8 @@ create_symlink_to_home 'zsh/zshrc'
 create_symlink_to_home 'zsh/zlogout'
 create_symlink_to_home 'zsh/zprofile'
 create_symlink_to_home 'tmux.conf'
+create_symlink_to_home 'emacs.d'
+# TODO: Remove any existing .emacs file (so it doesn't override the .emacs.d directory)
 create_symlink_to_home 'vim'
 create_symlink_to_home 'vimrc'
 create_symlink_to_home 'gvimrc'
@@ -188,6 +190,9 @@ chmod -R -- go-rwx "$HOME"/.ssh
 
 mkdir -p -- "$HOME"/.vim-tmp
 chmod -- go-rwx "$HOME"/.vim-tmp
+
+mkdir -p -- "$HOME"/.emacs-tmp/backup
+chmod -- go-rwx "$HOME"/.emacs-tmp
 
 chmod -R -- go-w "$JR_DOTFILES"
 
