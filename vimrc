@@ -80,6 +80,9 @@ call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDef
 " first line.
 autocmd BufRead * if search('\V-*- C++ -*-', 'nwc', 1) | setlocal ft=cpp | endif
 
+" Restore cursor position after reopening file
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
 " Use two spaces to separate sentences
 " See http://stevelosh.com/blog/2012/10/why-i-two-space/
 set cpo+=J
