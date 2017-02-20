@@ -135,6 +135,21 @@
     <productid>0x0797</productid>
   </deviceproductdef>
 
+  <appdef>
+    <appname>EMACS</appname>
+    <equal>org.gnu.Emacs</equal>
+  </appdef>
+
+  <item>
+      <name>Change Option_R to F17 in Emacs</name>
+      <identifier>private.emacs.option_to_f17</identifier>
+
+      <device_only>DeviceVendor::MICROSOFT, DeviceProduct::NATURAL4000</device_only>
+      <only>EMACS</only>
+      <autogen>__KeyToKey__ KeyCode::PC_APPLICATION, KeyCode::F17</autogen>
+      <!-- <autogen>__KeyToKey__ KeyCode::OPTION_R, KeyCode::F17</autogen> -->
+  </item>
+
   <item>
     <name>Microsoft Natural Ergonomic 4000</name>
     <identifier>private.microsoft.natural4000</identifier>
@@ -157,5 +172,4 @@
     <autogen>__PointingButtonToPointingButton__ PointingButton::LEFT, PointingButton::RIGHT</autogen>
     <autogen>__PointingButtonToPointingButton__ PointingButton::RIGHT, PointingButton::LEFT</autogen>
   </item>
-
 </root>

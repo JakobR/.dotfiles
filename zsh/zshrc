@@ -101,6 +101,35 @@ if [[ $OSTYPE =~ ^darwin ]] then
       vim_binary --remote-tab-silent "${@}"
     fi
   }
+  EMACSCLIENT="/usr/local/bin/emacsclient"
+  function emacs_is_running() {
+      $EMACSCLIENT --eval "t" &>/dev/null
+  }
+  function emacs_ensure_running() {
+      if ! emacs_is_running; then
+          printf "Starting Emacs server"
+          /usr/bin/open --background /Applications/Emacs.app
+          while ! emacs_is_running; do
+              printf "."
+              /bin/sleep 0.05
+          done
+          printf "\n"
+      fi
+  }
+  function e() {
+      emacs_ensure_running
+      if [[ -z "${@}" ]] then
+          # No args: just focus emacs for now
+          # $EMACSCLIENT --eval "(list-directory \"${PWD}\")"
+      else
+          $EMACSCLIENT --no-wait "${@}"
+      fi
+      # Focus emacs window
+      $EMACSCLIENT --eval "(x-focus-frame nil)" >/dev/null
+  }
+  function ea() {
+      # TODO: Open org-mode agenda in a new frame, or focus it if it is already open.
+  }
   # stay in console for git commit messages and vimpager
   export GIT_EDITOR='/usr/local/bin/vim'
   export VIMPAGER_VIM='/usr/local/bin/vim'
