@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (solarized-theme smooth-scroll quelpa-use-package nlinum-relative linum-relative helm grandshell-theme evil-tabs evil-surround evil-numbers evil-nerd-commenter evil-leader evil-indent-textobject emacs-color-theme-solarized))))
+    (emacs-color-theme-solarized quelpa-use-package quelpa package-build use-package solarized-theme nlinum-relative helm evil-surround evil-numbers evil-nerd-commenter evil-leader evil-indent-textobject))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

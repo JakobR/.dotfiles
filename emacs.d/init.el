@@ -101,18 +101,18 @@
   ;   :ensure t)
   )
 
-; (use-package helm
-;   :ensure t
+(use-package helm
+  :ensure t
 ;   :diminish helm-mode
 ;   :commands helm-mode
-;   :config
-;   (helm-mode 1)
-;   (setq helm-buffers-fuzzy-matching t)
-;   (setq helm-autoresize-mode t)
-;   (setq helm-buffer-max-length 40)
+  :config
+  (helm-mode 1)
+  (setq helm-buffers-fuzzy-matching t)
+  (setq helm-autoresize-mode t)
+  (setq helm-buffer-max-length 40)
 ;   (define-key helm-map (kbd "S-SPC") 'helm-toggle-visible-mark)
 ;   (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level)
-;   )
+  )
 
 (defvar jr-emacs-tmp "~/.emacs-tmp/")
 (defvar jr-backup-directory "~/.emacs-tmp/backup")
@@ -199,6 +199,12 @@
       org-agenda-span 'week
       )
 
+;; Keep track of when TODO item are finished
+(setq org-log-done 'time)
+
+;; The week starts on monday
+(setq calendar-week-start-day 1)
+
 ; https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
 ; (setq org-agenda-custom-commands
 ;       '(("c" "Simple agenda view"
@@ -213,6 +219,7 @@
 (define-key mode-specific-map [?a] 'org-agenda)  ;; `C-c a` for org-agenda
 
 ;; Refresh agenda views when saving org files, see http://emacs.stackexchange.com/a/16328
+;; TODO: This somehow break the agenda buffer... keys like b/f don't work any more, and it does not update on future saves, either
 (defun my-redo-all-agenda-buffers ()
   (interactive)
   (dolist (buffer (buffer-list))
