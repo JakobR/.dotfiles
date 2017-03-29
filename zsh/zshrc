@@ -62,6 +62,8 @@ if [[ $OSTYPE =~ ^darwin ]] then
   # Homebrew paths
   export PATH=/usr/local/sbin:$PATH
   export PATH=/usr/local/bin:$PATH
+  # Qt5 (not linked by homebrew)
+  export PATH=/usr/local/opt/qt5/bin:$PATH
 
   # See http://www.xmlsoft.org/catalog.html
   export XML_CATALOG_FILES="${JR_DOTFILES}/xml/catalog.xml"
