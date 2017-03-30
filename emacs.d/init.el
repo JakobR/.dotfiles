@@ -114,21 +114,25 @@
 ;   (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level)
   )
 
-(defvar jr-emacs-tmp "~/.emacs-tmp/")
-(defvar jr-backup-directory "~/.emacs-tmp/backup")
-(if (not (file-exists-p jr-backup-directory))
-    (make-directory jr-backup-directory t))
-(setq backup-directory-alist `(("." . ,jr-backup-directory))
+(defvar jr-emacs-tmp "~/.tmp-emacs/")
+(defvar jr-backup-directory "~/.tmp-emacs/backup/")
+(if (not (file-exists-p jr-backup-directory)) (make-directory jr-backup-directory t))
+(defvar jr-autosave-directory "~/.tmp-emacs/autosave/")
+(if (not (file-exists-p jr-autosave-directory)) (make-directory jr-autosave-directory t))
+;; Backup settings
+(setq backup-directory-alist `(("." . ,jr-backup-directory))  ;; Keep backup files out of the way
       make-backup-files t
-      vc-make-backup-files t ;; Also backup files that are under version control.
+      vc-make-backup-files t        ;; Also back up files that are under version control.
       backup-by-copying-when-linked t
       backup-by-copying-when-mismatch t
-      version-control t            ;; Use version numbers for backups.
-      delete-old-versions t        ;; Don't ask to delete excess backup versions.
+      version-control t             ;; Use version numbers for backups.
+      delete-old-versions t         ;; Don't ask to delete excess backup versions.
       delete-by-moving-to-trash t
       kept-new-versions 20
       kept-old-versions 10
       )
+;; Keep autosave files out of the way
+(setq auto-save-file-name-transforms `((".*" ,jr-autosave-directory t)))
 
 (global-set-key (kbd "<f17>") 'buffer-list)
 

@@ -191,8 +191,9 @@ chmod -R -- go-rwx "$HOME"/.ssh
 mkdir -p -- "$HOME"/.vim-tmp
 chmod -- go-rwx "$HOME"/.vim-tmp
 
-mkdir -p -- "$HOME"/.emacs-tmp/backup
-chmod -- go-rwx "$HOME"/.emacs-tmp
+mkdir -p -- "$HOME"/.tmp-emacs/backup
+mkdir -p -- "$HOME"/.tmp-emacs/autosave
+chmod -- go-rwx "$HOME"/.tmp-emacs
 
 chmod -R -- go-w "$JR_DOTFILES"
 
