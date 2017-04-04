@@ -242,10 +242,10 @@ autocmd FileType qmake setlocal commentstring=#\ %s
 autocmd FileType sparql setlocal commentstring=#\ %s
 autocmd FileType matlab setlocal commentstring=%\ %s
 
-" No spell check in LaTeX comments
-let g:tex_comment_nospell=1
+let g:tex_flavor = "latex"   " Don't set the filetype to `plaintex` when creating new files
+let g:tex_comment_nospell=1  " No spell check in LaTeX comments
 
-" Automatically compile LaTeX files on saving
+" LaTeX compilation
 autocmd FileType tex let &l:makeprg="latexmk -outdir=".shellescape(expand('%:p:h'),1)." -pdflatex='pdflatex -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error' -pdf ".shellescape(expand('%:p'),1)
 " autocmd BufWritePost *.tex silent Make
 
