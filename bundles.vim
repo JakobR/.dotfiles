@@ -36,7 +36,7 @@ Plugin 'keith/swift.vim'
 Plugin 'peterhoeg/vim-qml'
 Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'neovimhaskell/haskell-vim'
-Plugin 'JakobR/python-syntax'
+Plugin 'vim-python/python-syntax'
 Plugin 'nickhutchinson/vim-cmake-syntax'
 
 " C++
