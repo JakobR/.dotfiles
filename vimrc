@@ -219,6 +219,8 @@ else
   " TODO: g:haddock_browser currently only set on OS X.
 endif
 
+autocmd FileType org setlocal textwidth=0
+
 " Don't auto-insert comment-leader when hitting 'o' or 'O' in normal mode
 " ftplugin is modifying this setting, see http://stackoverflow.com/a/16035812/1889401
 autocmd FileType * setlocal formatoptions-=o
