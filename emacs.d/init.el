@@ -6,7 +6,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
-; (setq package-enable-at-startup nil)
+(setq package-enable-at-startup nil)
 (package-initialize)
 ; (if (require 'quelpa nil t)
 ;     (quelpa-self-upgrade)
@@ -23,9 +23,36 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile
+  (defvar use-package-verbose t)
   (require 'use-package))
 (quelpa '(quelpa-use-package :fetcher github :repo "quelpa/quelpa-use-package"))
 (require 'quelpa-use-package)
+
+(require 'diminish)
+
+(setq byte-compile-warnings nil
+      gnutls-min-prime-bits 4096)
+
+;; Call package-refresh-contents before installing something
+;; From https://github.com/belak/dotfiles/blob/master/emacs.d/README.org#package-setup
+(defvar belak/refreshed-package-list nil
+  "This will be t if the package list has been refreshed.")
+
+(defun belak/ensure-refreshed ()
+  "Ensure the package list has been refreshed this startup."
+  (unless belak/refreshed-package-list
+    (package-refresh-contents)
+    (setq belak/refreshed-package-list t)))
+
+(defun belak/package-ensure-installed (package)
+  "Install a missing PACKAGE if it isn't already."
+  (unless (package-installed-p package)
+    (package-install package)))
+
+(advice-add 'package-install
+            :before
+            (lambda (&rest args)
+              (belak/ensure-refreshed)))
 
 
 ;; Don't litter my init file
@@ -38,6 +65,10 @@
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+
+;; Use sh internally (my zsh config is too large to be loaded for every small background task)
+;; TODO: Check if this breaks anything (might need to adjust $PATH)
+(setq shell-file-name "/bin/sh")
 
 ; (use-package markdown-mode :ensure t)
 (use-package evil
@@ -101,9 +132,14 @@
   ;   :ensure t)
   )
 
+(use-package flycheck
+  :diminish flycheck-mode
+  :config
+  (global-flycheck-mode))
+
 (use-package helm
   :ensure t
-;   :diminish helm-mode
+  :diminish helm-mode
 ;   :commands helm-mode
   :config
   (helm-mode 1)
@@ -113,6 +149,28 @@
 ;   (define-key helm-map (kbd "S-SPC") 'helm-toggle-visible-mark)
 ;   (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level)
   )
+
+(use-package projectile
+  :ensure t
+  :diminish projectile-mode
+  :config
+  (setq projectile-enable-caching t)
+  (projectile-global-mode))
+
+(use-package helm-projectile
+  :ensure t
+  :after (helm projectile)
+  :config
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on))
+
+;; Doesn't seem to work with my Emacs GUI
+; (use-package osx-pseudo-daemon
+;   :ensure t
+;   :config
+;   (osx-pseudo-daemon-mode))
+;;(add-to-list 'load-path "~/.emacs.d/plugin/")
+;;(require 'osx-pseudo-daemon)
 
 (defvar jr-emacs-tmp "~/.tmp-emacs/")
 (defvar jr-backup-directory "~/.tmp-emacs/backup/")
@@ -133,8 +191,10 @@
       )
 ;; Keep autosave files out of the way
 (setq auto-save-file-name-transforms `((".*" ,jr-autosave-directory t)))
+;; Reload files when they are changed by other programs
+(global-auto-revert-mode t)
 
-(global-set-key (kbd "<f17>") 'buffer-list)
+(global-set-key (kbd "<f17>") 'switch-to-buffer)
 
 ; Restore cursor position after reopening file
 (setq save-place-file (concat jr-emacs-tmp "places")
@@ -186,7 +246,7 @@
 ;   (setq solarized-scale-org-headlines nil)
 ;   )
 
-(set-frame-font "Menlo 14")
+(set-frame-font "Menlo 14" nil t)
 
 (setq-default indent-tabs-mode nil
               tab-width 4
@@ -255,4 +315,6 @@
 
 (column-number-mode)
 
-(server-start)
+(require 'server)
+(unless (server-running-p)
+  (server-start))
