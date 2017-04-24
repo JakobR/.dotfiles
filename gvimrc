@@ -1,8 +1,6 @@
 set lines=50
 set columns=120
 
-set guifont=Menlo:h14
-
 set background=light
 colorscheme solarized
 highlight GitGutterAdd          guibg=#eee8d5
@@ -12,6 +10,8 @@ highlight GitGutterChangeDelete guibg=#eee8d5
 
 " from https://github.com/raecoo/dotfiles/blob/master/gvimrc
 if has("gui_macvim")
+  set guifont=Menlo:h14
+
   " Cmd-\ toggles NERDTree
   noremap <D-\> :NERDTreeTabsToggle<CR>
   inoremap <D-\> <C-O>:NERDTreeTabsToggle<CR>
@@ -73,6 +73,10 @@ if has("gui_macvim")
   macmenu Tools.Make<Tab>:make			key=<nop>
   noremap  <D-b> :Make<CR>
   inoremap <D-b> <C-O>:Make<CR>
+
+elseif has('unix')   " This returns 1 on OSX as well, so be sure to keep it in the else block
+    " See https://webcache.googleusercontent.com/search?q=cache:Dt_daRBSoJUJ:https://www.reddit.com/r/vim/comments/5oghfj/how_to_gracefully_degrade_font/+&cd=5&hl=en&ct=clnk&gl=at&client=firefox-b-ab
+    set guifont=Ubuntu\ Mono\ 12,Monospace\ 12
 endif
 
 let g:nerdtree_tabs_open_on_gui_startup=0
