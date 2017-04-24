@@ -59,11 +59,11 @@ if [[ $OSTYPE =~ ^darwin ]] then
   export PATH=/Library/TeX/texbin:$PATH
   export TEXINPUTS=${TEXINPUTS}:/usr/local/Frameworks/R.framework/Resources/share/texmf/tex/latex//
 
+  # Qt5 (not linked by homebrew)
+  export PATH=/usr/local/opt/qt5/bin:$PATH
   # Homebrew paths
   export PATH=/usr/local/sbin:$PATH
   export PATH=/usr/local/bin:$PATH
-  # Qt5 (not linked by homebrew)
-  export PATH=/usr/local/opt/qt5/bin:$PATH
 
   # See http://www.xmlsoft.org/catalog.html
   export XML_CATALOG_FILES="${JR_DOTFILES}/xml/catalog.xml"
@@ -74,35 +74,13 @@ if [[ $OSTYPE =~ ^darwin ]] then
 
   # Use MacVim to edit files, and give focus back to iTerm after closing
   export EDITOR="/usr/local/bin/mvim -p --nofork -c ActivateTerminalOnExit"
+  export VISUAL="${EDITOR}"
   alias mvim="/usr/local/bin/mvim -p"
-  # TODO: Functions m2, m3, ... which open in the 2nd, 3rd, ... vim server in the serverlist
-  # TODO: A function "ms" that lists vim servers, and what project each is associated to.
-  function m() {
-    function vim_binary() {
-      # local vim_binary_path="/usr/local/Cellar/macvim/7.4-73_1/MacVim.app/Contents/MacOS/Vim"
-      local vim_binary_path="/usr/local/bin/mvim"
-      $vim_binary_path -g "${@}"
-    }
-    # TODO: When starting a new instance, add the code to switch back to the terminal on exit
-    # TODO: Maybe use this server: $(vim --serverlist|tail -n 1)   (latest one started)
-    # TODO: Maybe it's possible to use a specific vim server per "project"?
-    #       A "project" might be each folder in "~/code", or each folder in "~" if it's not in "~/code" (define a list of "project roots", e.g. ["~/code", "~/Documents/Uni/*/", ..., "~"], to match against)
-    #       Other idea:
-    #           Use "mvim" to manually open a new vim instance for a project.
-    #           "m" just picks the most appropriate open vim server (one with the same project; or if none exists, the first one)
-    #           That's probably better than opening new project-specific instances automatically?
-    if [[ -z "${@}" ]] then
-      if [[ -z "$(vim_binary --serverlist)" ]] then
-        # No vim instances running? start a new one
-        vim_binary
-      else
-        # vim_binary --remote-send '<Esc>:tabnew<CR>' --remote-expr 'foreground()'
-        vim_binary --remote-send '<Esc>:tabnew<CR>:call foreground()<CR>'
-      fi
-    else
-      vim_binary --remote-tab-silent "${@}"
-    fi
-  }
+
+  # stay in console for git commit messages and vimpager
+  export GIT_EDITOR='/usr/local/bin/vim'
+  export VIMPAGER_VIM='/usr/local/bin/vim'
+
   EMACSCLIENT="/usr/local/bin/emacsclient"
   function emacs_is_running() {
       $EMACSCLIENT --eval "t" &>/dev/null
@@ -120,21 +98,22 @@ if [[ $OSTYPE =~ ^darwin ]] then
   }
   function e() {
       emacs_ensure_running
+
+      # Focus Emacs window
+      # Do this first, because if the Emacs GUI was hidden with CMD+H,
+      # opening a file with emacsclient will block until the GUI is activated by the user.
+      $EMACSCLIENT --eval "(x-focus-frame nil)" >/dev/null
+
       if [[ -z "${@}" ]] then
-          # No args: just focus emacs for now
+          # No args: just focus Emacs for now
           # $EMACSCLIENT --eval "(list-directory \"${PWD}\")"
       else
           $EMACSCLIENT --no-wait "${@}"
       fi
-      # Focus emacs window
-      $EMACSCLIENT --eval "(x-focus-frame nil)" >/dev/null
   }
   function ea() {
       # TODO: Open org-mode agenda in a new frame, or focus it if it is already open.
   }
-  # stay in console for git commit messages and vimpager
-  export GIT_EDITOR='/usr/local/bin/vim'
-  export VIMPAGER_VIM='/usr/local/bin/vim'
 
   # Show hidden files in Finder
   # If it doesn't work, try `killall cfprefsd` first (http://apple.stackexchange.com/a/112091)
@@ -142,7 +121,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
   alias finder-hide-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool FALSE && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
 
   # Some aliases
-  alias libreoffice='$HOME/Applications/LibreOffice.app/Contents/MacOS/soffice'
+  alias libreoffice='/Applications/LibreOffice.app/Contents/MacOS/soffice'
   alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 250'
   alias openssl='/usr/local/opt/openssl/bin/openssl'
   alias dtw='$HOME/server/dango/transmission-web.sh -f'
@@ -165,13 +144,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
     (cd "$HOME/Documents/journal" && m "./$(date "-v-12H" "-v${1}d" "+%Y-%m-%d")".txt)
   }
 
-  function o() {
-    if [[ -z "${@}" ]] then
-      /usr/bin/open .
-    else
-      /usr/bin/open "${@}"
-    fi
-  }
+  JR_OPEN="/usr/bin/open"
 
   # Directory shortcuts
   Uni=$HOME/Documents/Uni
@@ -193,7 +166,45 @@ elif [[ $OSTYPE =~ ^linux ]] then
   # Linux configuration
 
   export EDITOR='/usr/bin/vim'
+
+  JR_OPEN="xdg-open"
+
 fi
+
+function o() {
+    if [[ -z "${@}" ]] then
+        "${JR_OPEN}" .
+    else
+        "${JR_OPEN}" "${@}"
+    fi
+}
+
+function m_cmd() {
+    gvim -g "${@}"
+}
+# TODO: Functions m2, m3, ... which open in the 2nd, 3rd, ... vim server in the serverlist
+# TODO: A function "ms" that lists vim servers, and what project each is associated to.
+function m() {
+    # TODO: When starting a new instance, add the code to switch back to the terminal on exit
+    # TODO: Maybe use this server: $(vim --serverlist|tail -n 1)   (latest one started)
+    # TODO: Maybe it's possible to use a specific vim server per "project"?
+    #       A "project" might be each folder in "~/code", or each folder in "~" if it's not in "~/code" (define a list of "project roots", e.g. ["~/code", "~/Documents/Uni/*/", ..., "~"], to match against)
+    #       Other idea:
+    #           Use "mvim" to manually open a new vim instance for a project.
+    #           "m" just picks the most appropriate open vim server (one with the same project; or if none exists, the first one)
+    #           That's probably better than opening new project-specific instances automatically?
+    if [[ -z "${@}" ]] then
+        if [[ -z "$(m_cmd --serverlist)" ]] then
+            # No vim instances running? start a new one
+            m_cmd
+        else
+            # m_cmd --remote-send '<Esc>:tabnew<CR>' --remote-expr 'foreground()'
+            m_cmd --remote-send '<Esc>:tabnew<CR>:call foreground()<CR>'
+        fi
+    else
+        m_cmd --remote-tab-silent "${@}"
+    fi
+}
 
 # Haskell-stack
 export PATH=$HOME/.local/bin:$PATH
