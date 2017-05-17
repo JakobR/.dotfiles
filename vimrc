@@ -243,6 +243,7 @@ autocmd FileType cmake setlocal commentstring=#\ %s
 autocmd FileType qmake setlocal commentstring=#\ %s
 autocmd FileType sparql setlocal commentstring=#\ %s
 autocmd FileType matlab setlocal commentstring=%\ %s
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 let g:tex_flavor = "latex"   " Don't set the filetype to `plaintex` when creating new files
 let g:tex_comment_nospell=1  " No spell check in LaTeX comments
