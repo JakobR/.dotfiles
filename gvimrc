@@ -75,8 +75,30 @@ if has("gui_macvim")
   inoremap <D-b> <C-O>:Make<CR>
 
 elseif has('unix')   " This returns 1 on OSX as well, so be sure to keep it in the else block
-    " See https://webcache.googleusercontent.com/search?q=cache:Dt_daRBSoJUJ:https://www.reddit.com/r/vim/comments/5oghfj/how_to_gracefully_degrade_font/+&cd=5&hl=en&ct=clnk&gl=at&client=firefox-b-ab
+    " See https://www.reddit.com/r/vim/comments/5oghfj/how_to_gracefully_degrade_font/
     set guifont=Ubuntu\ Mono\ 12,Monospace\ 12
+
+    " Map Alt-Digit to switch to tab
+    map  <A-0> 0gt
+    imap <A-0> <C-O>0gt
+    map  <A-1> 1gt
+    imap <A-1> <C-O>1gt
+    map  <A-2> 2gt
+    imap <A-2> <C-O>2gt
+    map  <A-3> 3gt
+    imap <A-3> <C-O>3gt
+    map  <A-4> 4gt
+    imap <A-4> <C-O>4gt
+    map  <A-5> 5gt
+    imap <A-5> <C-O>5gt
+    map  <A-6> 6gt
+    imap <A-6> <C-O>6gt
+    map  <A-7> 7gt
+    imap <A-7> <C-O>7gt
+    map  <A-8> 8gt
+    imap <A-8> <C-O>8gt
+    map  <A-9> 9gt
+    imap <A-9> <C-O>9gt
 endif
 
 let g:nerdtree_tabs_open_on_gui_startup=0
