@@ -208,7 +208,6 @@ function m() {
 
 # Haskell-stack
 export PATH=$HOME/.local/bin:$PATH
-alias ghci='stack ghci'
 
 export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
