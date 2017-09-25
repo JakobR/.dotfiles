@@ -4,8 +4,8 @@
 :def hoogle \x -> return $ ":!hoogle        \"" ++ x ++ "\""
 :def doc    \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
 
-:set prompt  "\ESC[1;34m\nλ: \ESC[0m"
-:set prompt2 "\ESC[1;34m | \ESC[0m"
+:set prompt      "\ESC[1;34m\nλ: \ESC[0m"
+:set prompt-cont "\ESC[1;34m | \ESC[0m"
 
 -- Prompt with list of loaded modules
 -- :set prompt  "\ESC[1;34m\n%s\nλ: \ESC[0m"
