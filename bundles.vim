@@ -38,6 +38,7 @@ Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'vim-python/python-syntax'
 Plugin 'nickhutchinson/vim-cmake-syntax'
+Plugin 'justinmk/vim-sneak'
 
 " C++
 " Plugin 'vim-jp/cpp-vim'

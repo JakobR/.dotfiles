@@ -109,7 +109,11 @@
   ;  (global-evil-jumper-mode))
 
   (use-package evil-numbers
-    :ensure t)
+    :ensure t
+    :config
+    (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+    (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+    )
 
   (use-package evil-nerd-commenter
     :ensure t
@@ -130,12 +134,51 @@
 
   ; (use-package evil-indent-textobject
   ;   :ensure t)
+
+  (use-package evil-org
+    :ensure t
+    :after org
+    :config
+    (add-hook 'org-mode-hook 'evil-org-mode)
+    (add-hook 'evil-org-mode-hook (lambda () (evil-org-set-key-theme)))
+    )
   )
 
 (use-package flycheck
+  :ensure t
   :diminish flycheck-mode
   :config
-  (global-flycheck-mode))
+  (global-flycheck-mode)
+
+  (setq flycheck-python-pycompile-executable "python3")
+
+  ; (use-package flycheck-haskell
+  ;   :ensure t
+  ;   :config
+  ;   (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+
+  (use-package flycheck-color-mode-line
+    :ensure t
+    :config
+    (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+
+  (use-package flycheck-pos-tip
+    :ensure t
+    :config
+    ; (with-eval-after-load 'flycheck (flycheck-pos-tip-mode)))
+    (add-hook 'flycheck-mode-hook 'flycheck-pos-tip-mode))
+  )
+
+(use-package company
+  :ensure t
+  :config
+  )
+
+; See http://commercialhaskell.github.io/intero/
+(use-package intero
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook 'intero-mode))
 
 (use-package helm
   :ensure t
@@ -284,12 +327,13 @@
 
 ;; Refresh agenda views when saving org files, see http://emacs.stackexchange.com/a/16328
 ;; TODO: This somehow break the agenda buffer... keys like b/f don't work any more, and it does not update on future saves, either
+;; See https://emacs.stackexchange.com/a/21138 for a possible fix
 (defun my-redo-all-agenda-buffers ()
   (interactive)
   (dolist (buffer (buffer-list))
     (with-current-buffer buffer
       (when (derived-mode-p 'org-agenda-mode)
-        (org-agenda-redo t)))))
+        (org-agenda-maybe-redo t)))))
 (add-hook 'org-mode-hook (lambda() (add-hook 'after-save-hook 'my-redo-all-agenda-buffers nil 'make-it-local)))
 
 ; (setq org-todo-keywords
