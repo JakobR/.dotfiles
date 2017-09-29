@@ -191,6 +191,13 @@
   (setq helm-buffer-max-length 40)
 ;   (define-key helm-map (kbd "S-SPC") 'helm-toggle-visible-mark)
 ;   (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level)
+
+  ; TODO: this doesn't work. see also 
+  ; https://emacs.stackexchange.com/questions/4062/evil-mode-make-helm-quit-with-the-escape-key/4064
+  ; https://github.com/syl20bnr/evil-escape
+  ; https://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
+  (define-key helm-map (kbd "ESC") 'helm-keyboard-quit)
+  (define-key helm-find-files-map (kbd "ESC") 'helm-keyboard-quit)
   )
 
 (use-package projectile
@@ -198,6 +205,7 @@
   :diminish projectile-mode
   :config
   (setq projectile-enable-caching t)
+  (global-set-key (kbd "M-t") 'projectile-find-file)
   (projectile-global-mode))
 
 (use-package helm-projectile

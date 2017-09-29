@@ -111,8 +111,13 @@ if [[ $OSTYPE =~ ^darwin ]] then
           $EMACSCLIENT --no-wait "${@}"
       fi
   }
+  function eo() {
+      e -c "~/org/inbox.org"
+  }
   function ea() {
-      # TODO: Open org-mode agenda in a new frame, or focus it if it is already open.
+      e -c --eval "(org-agenda-list)" "(delete-other-windows)"
+      # TODO: focus agenda buffer if it is already open
+      # See also https://emacs.stackexchange.com/a/3472
   }
 
   # Show hidden files in Finder
