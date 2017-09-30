@@ -2,21 +2,28 @@
 
 (require 'package)
 
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+; To upgrade packages:
+;   M-x package-refresh-contents
+;   M-x list-packages U x
+
+(setq package-archives
+      '(("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")
+        ("org" . "http://orgmode.org/elpa/")))
 
 (setq package-enable-at-startup nil)
 (package-initialize)
-; (if (require 'quelpa nil t)
-;     (quelpa-self-upgrade)
+; (setq quelpa-update-melpa-p nil)
+; ; (if (require 'quelpa nil t)
+; ;     (quelpa-self-upgrade)
+; ;   (with-temp-buffer
+; ;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+; ;     (eval-buffer)))
+; (unless (require 'quelpa nil t)
 ;   (with-temp-buffer
 ;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
 ;     (eval-buffer)))
-(unless (require 'quelpa nil t)
-  (with-temp-buffer
-    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
 
 ;; install use-package and the quelpa handler
 (unless (package-installed-p 'use-package)
@@ -25,8 +32,8 @@
 (eval-when-compile
   (defvar use-package-verbose t)
   (require 'use-package))
-(quelpa '(quelpa-use-package :fetcher github :repo "quelpa/quelpa-use-package"))
-(require 'quelpa-use-package)
+; (quelpa '(quelpa-use-package :fetcher github :repo "quelpa/quelpa-use-package"))
+; (require 'quelpa-use-package)
 
 (require 'diminish)
 
@@ -282,20 +289,14 @@
  ; (global-nlinum-relative-mode)
  (add-hook 'prog-mode-hook #'nlinum-relative-mode))
 
-(use-package emacs-color-theme-solarized
-  :quelpa (emacs-color-theme-solarized :repo "sellout/emacs-color-theme-solarized" :fetcher github))
-(load-theme 'solarized t)  ; The :config section doesn't seem to work for this package...
-
-; (load-theme 'solarized t)
-; (use-package solarized-theme
-;   :ensure t
-;   :config
-;   (load-theme 'solarized-light)
-;   (set-face-attribute 'fringe nil :background "#EDE8D6")
-;   (set-face-attribute 'linum nil :background "#EDE8D6")
-;   (set-face-attribute 'nlinum-relative-current-face nil :foreground "#A3292C" :background "#FCF6E4")
-;   (setq solarized-scale-org-headlines nil)
-;   )
+(use-package color-theme
+  :ensure t)
+(use-package color-theme-solarized
+  :ensure t
+  :after color-theme
+  :config
+  (load-theme 'solarized t)
+  )
 
 (set-frame-font "Menlo 14" nil t)
 
