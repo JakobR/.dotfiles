@@ -15,11 +15,6 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 ; (setq quelpa-update-melpa-p nil)
-; ; (if (require 'quelpa nil t)
-; ;     (quelpa-self-upgrade)
-; ;   (with-temp-buffer
-; ;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-; ;     (eval-buffer)))
 ; (unless (require 'quelpa nil t)
 ;   (with-temp-buffer
 ;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
@@ -172,7 +167,6 @@
   (use-package flycheck-pos-tip
     :ensure t
     :config
-    ; (with-eval-after-load 'flycheck (flycheck-pos-tip-mode)))
     (add-hook 'flycheck-mode-hook 'flycheck-pos-tip-mode))
   )
 
@@ -185,7 +179,9 @@
 (use-package intero
   :ensure t
   :config
-  (add-hook 'haskell-mode-hook 'intero-mode))
+  (add-hook 'haskell-mode-hook 'intero-mode)
+  ; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+  )
 
 (use-package helm
   :ensure t
@@ -203,8 +199,8 @@
   ; https://emacs.stackexchange.com/questions/4062/evil-mode-make-helm-quit-with-the-escape-key/4064
   ; https://github.com/syl20bnr/evil-escape
   ; https://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
-  (define-key helm-map (kbd "ESC") 'helm-keyboard-quit)
-  (define-key helm-find-files-map (kbd "ESC") 'helm-keyboard-quit)
+  ; (define-key helm-map (kbd "ESC") 'helm-keyboard-quit)
+  ; (define-key helm-find-files-map (kbd "ESC") 'helm-keyboard-quit)
   )
 
 (use-package projectile
@@ -220,7 +216,8 @@
   :after (helm projectile)
   :config
   (setq projectile-completion-system 'helm)
-  (helm-projectile-on))
+  (helm-projectile-on)
+  )
 
 ;; Doesn't seem to work with my Emacs GUI
 ; (use-package osx-pseudo-daemon
@@ -265,7 +262,6 @@
 ;   (smooth-scroll-mode 1)
 ;   (setq smooth-scroll/vscroll-step-size 5)
 ;   )
-; (setq scroll-margin 3)
 (setq redisplay-dont-pause t
   scroll-margin 3
   ; scroll-step 1
@@ -275,19 +271,14 @@
 ;(use-package magit :ensure t)
 ;(use-package powerline :ensure t)
 
-; (use-package linum-relative
-;   :ensure t
-;   :config
-;   (linum-relative-global-mode)
-
 (use-package nlinum-relative
- :ensure t
- :config
- (nlinum-relative-setup-evil)
- (setq nlinum-relative-redisplay-delay 0)
- (setq nlinum-format "%4d")
- ; (global-nlinum-relative-mode)
- (add-hook 'prog-mode-hook #'nlinum-relative-mode))
+  :ensure t
+  :config
+  (nlinum-relative-setup-evil)
+  (setq nlinum-relative-redisplay-delay 0)
+  (setq nlinum-format "%4d")
+  (add-hook 'prog-mode-hook #'nlinum-relative-mode)
+  )
 
 (use-package color-theme
   :ensure t)
@@ -296,6 +287,17 @@
   :after color-theme
   :config
   (load-theme 'solarized t)
+  )
+
+; Use latest version of org-mode instead of the bundled one
+(use-package org
+  :ensure org-plus-contrib
+  :pin org)
+(use-package org-mac-link
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda ()
+    (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link)))
   )
 
 (set-frame-font "Menlo 14" nil t)
