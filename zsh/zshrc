@@ -55,6 +55,10 @@ plugins=(zaw zsh-dwim zsh-syntax-highlighting)
 if [[ $OSTYPE =~ ^darwin ]] then
   # Mac OS X configuration
 
+  # Default PATH
+  # We set this explicitly because of Emacs' exec-path-from-shell package, see https://github.com/purcell/exec-path-from-shell
+  export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
   # LaTeX
   export PATH=/Library/TeX/texbin:$PATH
   export TEXINPUTS=${TEXINPUTS}:/usr/local/Frameworks/R.framework/Resources/share/texmf/tex/latex//

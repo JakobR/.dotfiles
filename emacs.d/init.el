@@ -68,9 +68,15 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
-;; Use sh internally (my zsh config is too large to be loaded for every small background task)
-;; TODO: Check if this breaks anything (might need to adjust $PATH)
-(setq shell-file-name "/bin/sh")
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  ; Initialize with zsh so I have my PATH as usual
+  ; (this is required when Emacs is started from the GUI, because GUI apps are launched in a different environment)
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize))
+  ; But use sh internally to run commands (no need to load zsh config for every small background task)
+  (setq shell-file-name "/bin/sh"))
 
 ; (use-package markdown-mode :ensure t)
 (use-package evil
