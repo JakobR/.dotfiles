@@ -10,4 +10,4 @@ flags: {}
 extra-package-dbs: []
 packages: []
 extra-deps: []
-resolver: nightly-2017-01-31
+resolver: lts-9.6
