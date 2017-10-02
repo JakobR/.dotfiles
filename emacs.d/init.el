@@ -74,20 +74,50 @@
   ; Initialize with zsh so I have my PATH as usual
   ; (this is required when Emacs is started from the GUI, because GUI apps are launched in a different environment)
   (when (memq window-system '(mac ns x))
+    ; (delete "-i" exec-path-from-shell-arguments)  ; use non-interactive shell (but then, for some reason, additional stuff gets added...)
     (exec-path-from-shell-initialize))
   ; But use sh internally to run commands (no need to load zsh config for every small background task)
   (setq shell-file-name "/bin/sh"))
+
+; Use latest version of org-mode instead of the bundled one
+(use-package org
+  :ensure org-plus-contrib
+  :pin org  ; load from the "org" package archive
+  :config
+  ; org-mac-link is not a separate package but a file contained in org-plus-contrib
+  (require 'org-mac-link)
+  (add-hook 'org-mode-hook (lambda ()
+    (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link)))
+  )
 
 ; (use-package markdown-mode :ensure t)
 (use-package evil
   :ensure t
   :config
+
+  (use-package evil-leader
+    :ensure t
+    :config
+    ;; Note: global-evil-leader-mode should be enabled before evil-mode
+    (global-evil-leader-mode))
+
   (evil-mode 1)
 
-  (dolist (mode '(ag-mode
-		  flycheck-error-list-mode
-		  git-rebase-mode))
-    (add-to-list 'evil-emacs-state-modes mode))
+  (add-to-list 'evil-emacs-state-modes 'ag-mode)
+  (add-to-list 'evil-emacs-state-modes 'flycheck-error-list-mode)
+  (add-to-list 'evil-emacs-state-modes 'git-rebase-mode)
+
+  ; (defun tab-to-tab-stop-reverse ()
+  ;   "Like `tab-to-tab-stop', but toggle direction with prefix."
+  ;   (interactive)
+  ;   (let ((nexttab (indent-next-tab-stop (current-column) t)))
+  ;     (delete-horizontal-space t)
+  ;     (indent-to nexttab)))
+  ; (define-key evil-insert-state-map (kbd "TAB") 'tab-to-tab-stop)
+  ; TODO
+  ; (define-key evil-insert-state-map (kbd "DEL") 'tab-to-tab-stop-reverse)
+  (define-key evil-insert-state-map (kbd "A-TAB") 'tab-to-tab-stop)
+  (setq backward-delete-char-untabify-method 'hungry)
 
   ; (evil-add-hjkl-bindings occur-mode-map 'emacs
   ;   (kbd "/")       'evil-search-forward
@@ -105,11 +135,6 @@
 		(kbd "C-d")     'evil-scroll-down
 		(kbd "C-u")     'evil-scroll-up
 		(kbd "C-w C-w") 'other-window)))
-
-  (use-package evil-leader
-    :ensure t
-    :config
-    (global-evil-leader-mode))
 
   ;(use-package evil-jumper
   ;  :ensure t
@@ -149,6 +174,7 @@
     :config
     (add-hook 'org-mode-hook 'evil-org-mode)
     (add-hook 'evil-org-mode-hook (lambda () (evil-org-set-key-theme)))
+    (evil-leader/set-key-for-mode 'org-mode "o" 'org-open-at-point)
     )
   )
 
@@ -160,15 +186,10 @@
 
   (setq flycheck-python-pycompile-executable "python3")
 
-  ; (use-package flycheck-haskell
+  ; (use-package flycheck-color-mode-line
   ;   :ensure t
   ;   :config
-  ;   (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
-
-  (use-package flycheck-color-mode-line
-    :ensure t
-    :config
-    (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
+  ;   (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
 
   (use-package flycheck-pos-tip
     :ensure t
@@ -176,17 +197,24 @@
     (add-hook 'flycheck-mode-hook 'flycheck-pos-tip-mode))
   )
 
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1))
+
 (use-package company
   :ensure t
   :config
-  )
-
-; See http://commercialhaskell.github.io/intero/
-(use-package intero
-  :ensure t
-  :config
-  (add-hook 'haskell-mode-hook 'intero-mode)
-  ; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+  ; (add-hook 'after-init-hook 'global-company-mode)
+  (global-company-mode)
+  (setq company-idle-delay 0)  ; 0.05
+  (setq company-minimum-prefix-length 3)
+  (add-to-list 'company-backends 'company-dabbrev-code) 
+  (add-to-list 'company-backends 'company-yasnippet)
+  (add-to-list 'company-backends 'company-files)
+  ; TODO: https://github.com/company-mode/company-mode/pull/706
+  ; See https://github.com/company-mode/company-mode/blob/master/NEWS.md (company-tng-configure-default)
+  ; Also look at https://github.com/abingham/emacs-ycmd (can probably just use the ycmd that's contained in the vim package?)
   )
 
 (use-package helm
@@ -223,6 +251,14 @@
   :config
   (setq projectile-completion-system 'helm)
   (helm-projectile-on)
+  )
+
+; See http://commercialhaskell.github.io/intero/
+(use-package intero
+  :ensure t
+  :after flycheck company
+  :config
+  (intero-global-mode 1)
   )
 
 ;; Doesn't seem to work with my Emacs GUI
@@ -295,22 +331,12 @@
   (load-theme 'solarized t)
   )
 
-; Use latest version of org-mode instead of the bundled one
-(use-package org
-  :ensure org-plus-contrib
-  :pin org)
-(use-package org-mac-link
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda ()
-    (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link)))
-  )
-
 (set-frame-font "Menlo 14" nil t)
 
 (setq-default indent-tabs-mode nil
               tab-width 4
               tab-stop-list '(4))
+(add-hook 'haskell-mode-hook (lambda () (setq tab-width 2 tab-stop-list '(2))))
 
 ; (setq whitespace-style '(face trailing tab-mark newline-mark))
 (setq whitespace-style '(face trailing tabs tab-mark))
@@ -374,8 +400,20 @@
 ;                          )
 ;                         )
 
+;; Show matching parentheses
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+(require 'paren)
+;; (set-face-background 'show-paren-match (face-background 'default))
+(set-face-background 'show-paren-match "#ddd")
+(set-face-foreground 'show-paren-match "#f00")
+;; (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+
 (column-number-mode)
 
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+(provide 'init)
+;;; init.el ends here
