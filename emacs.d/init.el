@@ -74,9 +74,9 @@
   ; Initialize with zsh so I have my PATH as usual
   ; (this is required when Emacs is started from the GUI, because GUI apps are launched in a different environment)
   (when (memq window-system '(mac ns x))
-    ; (delete "-i" exec-path-from-shell-arguments)  ; use non-interactive shell (but then, for some reason, additional stuff gets added...)
+    (setq exec-path-from-shell-arguments '())  ; use non-interactive non-login shell
     (exec-path-from-shell-initialize))
-  ; But use sh internally to run commands (no need to load zsh config for every small background task)
+  ; But use sh internally to run commands (no need to load zsh config for every small background task -- but does that even matter if it's not an interactive shell?)
   (setq shell-file-name "/bin/sh"))
 
 ; Use latest version of org-mode instead of the bundled one

@@ -111,9 +111,10 @@ if [[ "$JR_DOTFILES" != "$DEFAULT_JR_DOTFILES" ]] then
 fi
 
 echo_msg "Symlinking dotfiles..."
+create_symlink_to_home 'zsh/zshenv'
+create_symlink_to_home 'zsh/zprofile'
 create_symlink_to_home 'zsh/zshrc'
 create_symlink_to_home 'zsh/zlogout'
-create_symlink_to_home 'zsh/zprofile'
 create_symlink_to_home 'tmux.conf'
 create_symlink_to_home 'emacs.d'
 # TODO: Remove any existing .emacs file (so it doesn't override the .emacs.d directory)
