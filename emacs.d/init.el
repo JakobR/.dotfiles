@@ -209,7 +209,7 @@
   (global-company-mode)
   (setq company-idle-delay 0)  ; 0.05
   (setq company-minimum-prefix-length 3)
-  (add-to-list 'company-backends 'company-dabbrev-code) 
+  (add-to-list 'company-backends 'company-dabbrev-code)
   (add-to-list 'company-backends 'company-yasnippet)
   (add-to-list 'company-backends 'company-files)
   ; TODO: https://github.com/company-mode/company-mode/pull/706
@@ -229,7 +229,7 @@
 ;   (define-key helm-map (kbd "S-SPC") 'helm-toggle-visible-mark)
 ;   (define-key helm-find-files-map (kbd "C-k") 'helm-find-files-up-one-level)
 
-  ; TODO: this doesn't work. see also 
+  ; TODO: this doesn't work. see also
   ; https://emacs.stackexchange.com/questions/4062/evil-mode-make-helm-quit-with-the-escape-key/4064
   ; https://github.com/syl20bnr/evil-escape
   ; https://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
@@ -332,6 +332,18 @@
   )
 
 (set-frame-font "Menlo 14" nil t)
+(setq-default frame-title-format
+              '(:eval
+                (format "%s %s%s - Emacs"
+                        (buffer-name)
+                        (if (buffer-modified-p) "+ " "")
+                        (cond
+                         (buffer-file-truename
+                          (concat "(" (directory-file-name (file-name-directory buffer-file-truename)) ")"))
+                         (dired-directory
+                          (concat "{" dired-directory "}"))
+                         (t
+                          "[no file]")))))
 
 (setq-default indent-tabs-mode nil
               tab-width 4
