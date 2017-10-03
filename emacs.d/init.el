@@ -57,6 +57,8 @@
               (belak/ensure-refreshed)))
 
 
+; (add-to-list 'load-path (expand-file-name "~/.emacs.d/plugin/"))
+
 ;; Don't litter my init file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 ; (load custom-file 'noerror)
@@ -118,6 +120,15 @@
   ; (define-key evil-insert-state-map (kbd "DEL") 'tab-to-tab-stop-reverse)
   (define-key evil-insert-state-map (kbd "A-TAB") 'tab-to-tab-stop)
   (setq backward-delete-char-untabify-method 'hungry)
+
+  (add-to-list 'load-path (expand-file-name "~/.emacs.d/plugin/evil-plugins"))
+  (require 'evil-little-word)  ; from evil-plugins at https://github.com/tarao/evil-plugins
+  ;; TODO: can I use <leader>w for these?
+  ;(define-key evil-motion-state-map (kbd "glw") 'evil-forward-little-word-begin)
+  ;(define-key evil-motion-state-map (kbd "glb") 'evil-backward-little-word-begin)
+  ;(define-key evil-motion-state-map (kbd "gle") 'evil-forward-little-word-end)
+  (define-key evil-outer-text-objects-map (kbd "v") 'evil-a-little-word)
+  (define-key evil-inner-text-objects-map (kbd "v") 'evil-inner-little-word)
 
   ; (evil-add-hjkl-bindings occur-mode-map 'emacs
   ;   (kbd "/")       'evil-search-forward
@@ -266,8 +277,8 @@
 ;   :ensure t
 ;   :config
 ;   (osx-pseudo-daemon-mode))
-;;(add-to-list 'load-path "~/.emacs.d/plugin/")
 ;;(require 'osx-pseudo-daemon)
+
 
 (defvar jr-emacs-tmp "~/.tmp-emacs/")
 (defvar jr-backup-directory "~/.tmp-emacs/backup/")

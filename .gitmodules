@@ -16,3 +16,6 @@
 [submodule "zsh/custom/plugins/zsh-dwim"]
 	path = zsh/custom/plugins/zsh-dwim
 	url = https://github.com/oknowton/zsh-dwim.git
+[submodule "emacs.d/plugin/evil-plugins"]
+	path = emacs.d/plugin/evil-plugins
+	url = https://github.com/tarao/evil-plugins
