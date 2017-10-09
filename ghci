@@ -12,3 +12,5 @@
 
 -- always show type of result (like :t)
 :set +t
+
+:set -XQuasiQuotes
