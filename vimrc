@@ -38,7 +38,6 @@ set laststatus=2        " use 2 lines for the status bar
 set matchtime=1         " show matching bracket for 0.1 seconds
 set nrformats-=octal
 set autoread            " Reload file when changed externally (but only if not yet changed in vim)
-set esckeys             " map missed escape sequences (enables keypad keys)
 set ignorecase          " case insensitive searching
 set smartcase           " but become case sensitive if you type uppercase characters
 set smarttab            " smart tab handling for indenting
