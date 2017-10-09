@@ -252,7 +252,7 @@
   :ensure t
   :diminish projectile-mode
   :config
-  (setq projectile-enable-caching t)
+  ;; (setq projectile-enable-caching t) ; apparently caching is not required with projectile-indexing-method set to "alien"? cf. https://emacs.stackexchange.com/a/2169
   (global-set-key (kbd "M-t") 'projectile-find-file)
   (projectile-global-mode))
 
@@ -361,6 +361,10 @@
               tab-stop-list '(4))
 (add-hook 'haskell-mode-hook (lambda () (setq tab-width 2 tab-stop-list '(2))))
 
+(defun set-yasnippet-fixed-indent ()
+  (setq-local yas-indent-line 'fixed))
+(add-hook 'haskell-mode-hook #'set-yasnippet-fixed-indent)
+
 ; (setq whitespace-style '(face trailing tab-mark newline-mark))
 (setq whitespace-style '(face trailing tabs tab-mark))
 (global-whitespace-mode)
@@ -395,11 +399,13 @@
 ;; TODO: This somehow break the agenda buffer... keys like b/f don't work any more, and it does not update on future saves, either
 ;; See https://emacs.stackexchange.com/a/21138 for a possible fix
 (defun my-redo-all-agenda-buffers ()
+  "Rebuild all open agenda buffers."
   (interactive)
   (dolist (buffer (buffer-list))
     (with-current-buffer buffer
       (when (derived-mode-p 'org-agenda-mode)
-        (org-agenda-maybe-redo t)))))
+        (org-agenda-maybe-redo)
+        (message "[org agenda] refreshed!")))))
 (add-hook 'org-mode-hook (lambda() (add-hook 'after-save-hook 'my-redo-all-agenda-buffers nil 'make-it-local)))
 
 ; (setq org-todo-keywords
