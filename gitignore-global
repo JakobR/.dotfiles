@@ -8,6 +8,9 @@
 .Trashes
 Thumbs.db
 
+# Emacs lockfiles
+.#*
+
 .tm_properties
 
 # Ignore OS X's folder icons
