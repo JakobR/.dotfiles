@@ -371,7 +371,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.txt$" . org-mode))
 
-(setq org-agenda-files '("~/org/" "~/org/project/")
+(setq org-agenda-files '("~/org/")
       org-agenda-start-on-weekday nil  ;; Always start agenda on current day
       org-agenda-span 'week
       )
