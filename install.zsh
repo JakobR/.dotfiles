@@ -132,6 +132,7 @@ create_symlink_to_home 'gemrc'
 create_symlink_to_home 'Xmodmap'
 mkdir -p "${HOME}/.config"
 create_symlink "${JR_DOTFILES}/mpv" "${HOME}/.config/mpv"
+create_symlink "${JR_DOTFILES}/karabiner" "${HOME}/.config/karabiner"
 mkdir -p "${HOME}/.cabal"
 create_symlink "${JR_DOTFILES}/cabal-config" "${HOME}/.cabal/config"
 mkdir -p "${HOME}/.stack/global-project"
@@ -145,22 +146,9 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   echo_msg "Symlinking OS X specific files..."
   create_symlink_to_home 'xvimrc'
   create_symlink_to_home 'hammerspoon'
-  create_symlink "$JR_DOTFILES/Karabiner/private.xml" "$HOME/Library/Application Support/Karabiner/private.xml"
-  create_symlink "$JR_DOTFILES/Ukelele/US_with_umlauts.keylayout" "$HOME/Library/Keyboard Layouts/US_with_umlauts.keylayout"
 
   echo_msg "Running OS X configuration script..."
-  "$JR_DOTFILES"/osx.sh
-
-  echo_msg "Configuring Seil..."
-  SEIL="/Applications/Seil.app/Contents/Library/bin/seil"
-  if [[ (-f "$SEIL") && (-x "$SEIL") ]] then
-    # Map Caps Lock to 80, which is the key code for F19.
-    "$SEIL" set keycode_capslock 80
-    "$SEIL" set enable_capslock 1
-  else
-    echo_err "Unable to configure Seil. Please ensure you have at least version 10.9.0 installed, and run this script again."
-    # Not serious enough to exit...
-  fi
+  # "$JR_DOTFILES"/osx.sh
 fi
 
 
@@ -215,17 +203,13 @@ END
 if [[ "$OSTYPE" =~ ^darwin ]] then
   cat <<END
   * Install additional software:
-    - Seil (formerly PCKeyboardHack)
-          https://pqrs.org/osx/karabiner/seil.html
-    - Karabiner (formerly KeyRemap4MacBook)
-          https://pqrs.org/osx/karabiner/index.html.en
-    - Slate
-          https://github.com/jigish/slate
+    - Karabiner
+        https://pqrs.org/osx/karabiner/
+    - Hammerspoon
+        http://www.hammerspoon.org/
 
-  * In System Preferences / Keyboard / Modifier Keys, set Caps Lock to "No Action".
-    (this is necessary for Seil's KeyOverlaidModifier to work correctly.)
-
-  * In Karabiner, enable the mappings.
+  * In System Preferences / Keyboard / Modifier Keys, set Caps Lock to "No Action"
+        (not sure if this is still required)
 
 END
 fi
