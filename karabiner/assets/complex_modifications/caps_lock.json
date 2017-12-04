@@ -21,7 +21,8 @@
                         "left_command",
                         "left_control",
                         "left_option"
-                    ]
+                    ],
+                    "lazy": true
                 }
             ],
             "to_after_key_up": [
