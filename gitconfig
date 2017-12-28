@@ -19,6 +19,7 @@
   ds = diff --cached
   dn = diff --no-index
   dw = -c 'core.pager=less -S' diff --word-diff
+  dsw = -c 'core.pager=less -S' diff --cached --word-diff
 [push]
   default = simple
 [include]
