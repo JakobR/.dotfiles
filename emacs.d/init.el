@@ -303,8 +303,15 @@
   :after flycheck company
   :config
   (intero-global-mode 1)
+  (put 'intero-targets 'safe-local-variable (lambda (_) t))
   )
 
+(use-package dash-at-point
+  :ensure t
+  :config
+  (add-to-list 'dash-at-point-mode-alist '(haskell-mode . "haskell,hackage"))
+  (global-set-key "\C-cd" 'dash-at-point)
+  )
 ;; Doesn't seem to work with my Emacs GUI
 ; (use-package osx-pseudo-daemon
 ;   :ensure t
@@ -397,6 +404,24 @@
 (defun set-yasnippet-fixed-indent ()
   (setq-local yas-indent-line 'fixed))
 (add-hook 'haskell-mode-hook #'set-yasnippet-fixed-indent)
+
+
+(defun haskell-evil-open-above ()
+  (interactive)
+  (evil-digit-argument-or-evil-beginning-of-line)
+  (haskell-indentation-newline-and-indent)
+  (evil-previous-line)
+  (haskell-indentation-indent-line)
+  (evil-append-line nil))
+
+(defun haskell-evil-open-below ()
+  (interactive)
+  (evil-append-line nil)
+  (haskell-indentation-newline-and-indent))
+
+(evil-define-key 'normal haskell-mode-map "o" 'haskell-evil-open-below
+  "O" 'haskell-evil-open-above)
+
 
 ; (setq whitespace-style '(face trailing tab-mark newline-mark))
 (setq whitespace-style '(face trailing tabs tab-mark))
