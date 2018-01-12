@@ -130,6 +130,39 @@
   (define-key evil-outer-text-objects-map (kbd "v") 'evil-a-little-word)
   (define-key evil-inner-text-objects-map (kbd "v") 'evil-inner-little-word)
 
+  ; Make underscore `_` part of the word textobject
+  ; see https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  (defadvice evil-inner-word (around underscore-as-word-for-iw activate)
+    (let ((table (copy-syntax-table (syntax-table))))
+      (modify-syntax-entry ?_ "w" table)
+      (with-syntax-table table
+        ad-do-it)))
+  (defadvice evil-a-word (around underscore-as-word-for-aw activate)
+    (let ((table (copy-syntax-table (syntax-table))))
+      (modify-syntax-entry ?_ "w" table)
+      (with-syntax-table table
+        ad-do-it)))
+  (defadvice evil-forward-word-begin (around underscore-as-word-for-w activate)
+    (let ((table (copy-syntax-table (syntax-table))))
+      (modify-syntax-entry ?_ "w" table)
+      (with-syntax-table table
+        ad-do-it)))
+  (defadvice evil-forward-word-end (around underscore-as-word-for-e activate)
+    (let ((table (copy-syntax-table (syntax-table))))
+      (modify-syntax-entry ?_ "w" table)
+      (with-syntax-table table
+        ad-do-it)))
+  (defadvice evil-backward-word-begin (around underscore-as-word-for-b activate)
+    (let ((table (copy-syntax-table (syntax-table))))
+      (modify-syntax-entry ?_ "w" table)
+      (with-syntax-table table
+        ad-do-it)))
+  (defadvice evil-backward-word-end (around underscore-as-word-for-ge activate)
+    (let ((table (copy-syntax-table (syntax-table))))
+      (modify-syntax-entry ?_ "w" table)
+      (with-syntax-table table
+        ad-do-it)))
+
   ; (evil-add-hjkl-bindings occur-mode-map 'emacs
   ;   (kbd "/")       'evil-search-forward
   ;   (kbd "n")       'evil-search-next
