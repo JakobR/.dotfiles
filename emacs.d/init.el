@@ -69,6 +69,7 @@
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(setq mac-frame-tabbing nil)
 
 (use-package exec-path-from-shell
   :ensure t
