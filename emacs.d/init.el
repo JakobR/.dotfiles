@@ -96,6 +96,11 @@
 ; (use-package markdown-mode :ensure t)
 (use-package evil
   :ensure t
+
+  :init
+  ; Y should behave like y$ (this variable must be set before evil is loaded, so it must be in the :init section)
+  (setq evil-want-Y-yank-to-eol t)
+
   :config
 
   (use-package evil-leader
