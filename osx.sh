@@ -67,12 +67,6 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
-# Hide some application data folders in ~/Documents
-chflags hidden "${HOME}/Documents/Eschalon Book 1 Saved Games"
-chflags hidden "${HOME}/Documents/ScummVM Savegames"
-chflags hidden "${HOME}/Documents/DefendersQuest"
-chflags hidden "${HOME}/Documents/YNAB"
-
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
@@ -122,3 +116,6 @@ defaults write com.apple.dt.Xcode AppleShowScrollBars -string "WhenScrolling"
 
 # Fix annoying scrollbar flickering while typing in OneNote
 defaults write com.microsoft.onenote.mac AppleShowScrollBars -string "WhenScrolling"
+
+# Don't show the "Other..." option on the login window
+sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool FALSE
