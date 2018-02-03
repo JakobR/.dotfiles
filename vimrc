@@ -131,7 +131,6 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 " open URL under cursor
 " see http://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
 function OpenUrlUnderCursor()
-  if system('uname -s')=~'Darwin'
     execute "normal! BvEy"
     " this regex supports one level of matching parentheses in URLs.
     " single closing parentheses are seen as end of the URL (because of link syntax in markdown)
@@ -139,14 +138,15 @@ function OpenUrlUnderCursor()
     " A better way might be to enable this behaviour only in markdown files...
     let l:url=matchstr(@0, '\(http\|https\|mailto\)://\(([^ ]*)\|[^ >,;)]\)*')
     if l:url != ""
-      silent exec "!open '".l:url."'" | redraw!
-      echo "opened ".l:url
+        if system('uname -s')=~'Darwin'
+            silent exec "!open '".l:url."'" | redraw!
+        else
+            silent exec "!xdg-open '".l:url."'" | redraw!
+        endif
+        echo "opened ".l:url
     else
-      echo "No URL under cursor."
+        echo "No URL under cursor."
     endif
-  else
-    echo "TODO: OpenUrlUnderCursor() currently only works on OS X."
-  endif
 endfunction
 nmap <leader>o :call OpenUrlUnderCursor()<CR>
 
