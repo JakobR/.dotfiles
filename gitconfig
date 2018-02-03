@@ -36,3 +36,5 @@
     # Metadata and text content
     ; textconv="pdfinfo \"$1\"; pdftotext \"$1\" - #"
     cachetextconv = true
+[difftool "pdf"]
+    cmd = diff-pdf --view \"$LOCAL\" \"$REMOTE\"
