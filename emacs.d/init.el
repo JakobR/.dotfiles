@@ -288,12 +288,11 @@
   (add-to-list 'dash-at-point-mode-alist '(haskell-mode . "haskell,hackage"))
   (global-set-key "\C-cd" 'dash-at-point)
   )
-;; Doesn't seem to work with my Emacs GUI
-; (use-package osx-pseudo-daemon
-;   :ensure t
-;   :config
-;   (osx-pseudo-daemon-mode))
-;;(require 'osx-pseudo-daemon)
+
+(use-package mac-pseudo-daemon
+  :ensure t
+  :config
+  (mac-pseudo-daemon-mode))
 
 
 (defvar jr-emacs-tmp "~/.tmp-emacs/")
