@@ -1,16 +1,23 @@
 set lines=50
 set columns=120
 
-set background=light
-colorscheme solarized
+if has('nvim')
+    colorscheme solarized8_light
+else
+    set background=light
+    colorscheme solarized
+endif
+
 highlight GitGutterAdd          guibg=#eee8d5
 highlight GitGutterChange       guibg=#eee8d5
 highlight GitGutterDelete       guibg=#eee8d5
 highlight GitGutterChangeDelete guibg=#eee8d5
 
 " from https://github.com/raecoo/dotfiles/blob/master/gvimrc
-if has("gui_macvim")
-  set guifont=Menlo:h14
+if has("gui_macvim") || has('gui_vimr')
+    if has("gui_macvim")
+        set guifont=Menlo:h14
+    endif
 
   " Cmd-\ toggles NERDTree
   noremap <D-\> :NERDTreeTabsToggle<CR>

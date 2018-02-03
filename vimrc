@@ -109,15 +109,26 @@ if &termencoding ==# 'utf-8' || &encoding ==# 'utf-8'
 endif
 let g:solarized_visibility="low"
 
+" if $COLORTERM ==# 'truecolor'
+"     set termguicolors
+" endif
+
 " color settings (if terminal/gui supports it)
 if &t_Co > 2 || has("gui_running")
   syntax on
+
   silent! colorscheme solarized
+  " if has("gui_running")
+  "     silent! colorscheme solarized8_light
+  " else
+  "     silent! colorscheme solarized8_dark
+  " endif
 
   if &t_Co >= 256
     let g:indentLine_color_term = 235
   endif
 endif
+
 
 " ca w!! w !sudo tee > /dev/null %
 ca w!! SudoWrite
@@ -236,6 +247,15 @@ let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
 let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+let g:lsc_server_commands = {
+    \ 'haskell': 'hie --lsp'
+    \ }
+
+let g:LanguageClient_serverCommands = {
+    \ 'haskell': ['hie', '--lsp']
+    \ }
+
 
 " Comment style by file type
 autocmd FileType cmake setlocal commentstring=#\ %s

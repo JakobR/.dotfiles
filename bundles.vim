@@ -4,6 +4,9 @@ filetype off                    " required
 " Initialize vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin('~/.vim/bundle')
+" TODO: maybe use https://github.com/junegunn/vim-plug instead
+" (supports post-install actions for plugins)
+" See https://www.reddit.com/r/vim/comments/3thtrv/just_switched_to_vimplug_from_vundle/
 
 " Don't let vundle update itself.
 " (since it's a git submodule it's not on a branch, so updating fails)
@@ -17,6 +20,7 @@ if v:version >= 703
 end
 
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'lifepillar/vim-solarized8'
 
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
@@ -86,9 +90,11 @@ if !exists('g:vimpager')
   Plugin 'tpope/vim-dispatch'
   Plugin 'Shougo/vimproc.vim'
 
-  Plugin 'eagletmt/ghcmod-vim'
-  Plugin 'eagletmt/neco-ghc'
+  " Plugin 'eagletmt/ghcmod-vim'
+  " Plugin 'eagletmt/neco-ghc'
   " Plugin 'glittershark/vim-hare'
+  " Plugin 'autozimu/LanguageClient-neovim'
+  " Plugin 'natebosch/vim-lsc'
 
   " Plugin 'tomtom/tlib_vim'
   " Plugin 'MarcWeber/vim-addon-mw-utils'
