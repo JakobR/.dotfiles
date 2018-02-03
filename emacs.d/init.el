@@ -357,6 +357,11 @@
   (load-theme 'solarized t)
   )
 
+(use-package ws-butler
+  :ensure t
+  :config
+  (ws-butler-global-mode))
+
 (set-frame-font "Menlo 14" nil t)
 (setq-default frame-title-format
               '(:eval
