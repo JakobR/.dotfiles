@@ -15,6 +15,7 @@
 
 :set -XQuasiQuotes
 :set -XDataKinds
+:set -XTypeApplications
 
 -- Shortcut for ":kind!" to expand type families, from https://stackoverflow.com/a/13597174/1889401
 :def k! \x -> return (":kind! " ++ x)
