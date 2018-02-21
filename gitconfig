@@ -19,8 +19,6 @@
 [core]
     excludesfile = ~/.gitignore-global
     attributesFile = ~/.gitattributes-global
-    ; NOTE: For the option -F to work properly we need a newer version of less ("brew install less" on OSX)
-    pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -SF
 [merge "gemfilelock"]
     name = relocks the gemfile.lock
     driver = bundle install
@@ -38,7 +36,7 @@
 [push]
     default = simple
 [include]
-    path = ~/.gitconfig.local
+    path = ~/.gitconfig-local
 [filter "lfs"]
     clean = git-lfs clean %f
     smudge = git-lfs smudge %f
