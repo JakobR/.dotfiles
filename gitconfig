@@ -1,35 +1,50 @@
 [user]
-  name = Jakob Rath
-  email = git@jakobrath.eu
+    name = Jakob Rath
+    email = git@jakobrath.eu
 [color]
-  ui = true
+    ui = always
+[color "diff"]
+    commit = blue bold
+    meta = yellow
+    frag = cyan
+    func = 9 ul
+    old = red
+    new = green
+    whitespace = red reverse
+[color "diff-highlight"]
+    oldNormal = red
+    oldHighlight = red bold 52
+    newNormal = green
+    newHighlight = green bold 22
 [core]
-  excludesfile = ~/.gitignore-global
-  attributesFile = ~/.gitattributes-global
+    excludesfile = ~/.gitignore-global
+    attributesFile = ~/.gitattributes-global
+    ; NOTE: For the option -F to work properly we need a newer version of less ("brew install less" on OSX)
+    pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -SF
 [merge "gemfilelock"]
-  name = relocks the gemfile.lock
-  driver = bundle install
+    name = relocks the gemfile.lock
+    driver = bundle install
 [alias]
-  st = status
-  co = checkout
-  last = log --decorate -1 HEAD
-  ld = -c 'core.pager=less -S' log --decorate --pretty=oneline --abbrev-commit
-  lg = -c 'core.pager=less -S' log --decorate --pretty=oneline --abbrev-commit --graph --all
-  d = diff
-  ds = diff --cached
-  dn = diff --no-index
-  dw = -c 'core.pager=less -S' diff --word-diff
-  dsw = -c 'core.pager=less -S' diff --cached --word-diff
+    st = status
+    co = checkout
+    last = log --decorate -1 HEAD
+    ld = log --decorate --pretty=oneline --abbrev-commit
+    lg = log --decorate --pretty=oneline --abbrev-commit --graph --all
+    d = diff
+    ds = diff --cached
+    dn = diff --no-index
+    dw = diff --word-diff
+    dsw = diff --cached --word-diff
 [push]
-  default = simple
+    default = simple
 [include]
-  path = ~/.gitconfig.local
+    path = ~/.gitconfig.local
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
 [diff]
-	compactionHeuristic = 1
+    compactionHeuristic = 1
 [diff "pdf"]
     # Only metadata
     textconv = pdfinfo
