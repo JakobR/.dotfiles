@@ -18,6 +18,9 @@ fi
 # disable shell-builtin "r" so I can access the "r" executable
 disable r
 
+# "log" is the new way to access the syslog in OSX
+disable log
+
 # set locale explicitly
 export LC_ALL="en_US.UTF-8"
 
