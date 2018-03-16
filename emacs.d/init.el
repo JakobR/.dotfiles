@@ -319,25 +319,25 @@
 
 (global-set-key (kbd "<f17>") 'switch-to-buffer)
 
-; Restore cursor position after reopening file
+;; Restore cursor position after reopening file
+(require 'saveplace)
 (setq save-place-file (concat jr-emacs-tmp "places")
       save-place-forget-unreadable-files nil)
 (save-place-mode 1)
 
-; (use-package smooth-scroll
-;   :ensure t
-;   :config
-;   (smooth-scroll-mode 1)
-;   (setq smooth-scroll/vscroll-step-size 5)
-;   )
-(setq redisplay-dont-pause t
-  scroll-margin 3
-  ; scroll-step 1
-  scroll-conservatively 10000
-  scroll-preserve-screen-position 1)
-;(use-package projectile :ensure t)
-;(use-package magit :ensure t)
-;(use-package powerline :ensure t)
+;; (use-package smooth-scroll
+;;   :ensure t
+;;   :config
+;;   (smooth-scroll-mode 1)
+;;   (setq smooth-scroll/vscroll-step-size 5)
+;;   )
+(setq scroll-margin 3
+      ;; scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+;; (use-package projectile :ensure t)
+;; (use-package magit :ensure t)
+;; (use-package powerline :ensure t)
 
 (use-package nlinum-relative
   :ensure t
@@ -361,6 +361,12 @@
   :ensure t
   :config
   (ws-butler-global-mode))
+
+(use-package org-caldav
+  :ensure t
+  :after org
+  :config
+  (load-file "~/org/.config/jr-org-caldav-config.el"))
 
 (set-frame-font "Menlo 14" nil t)
 (setq-default frame-title-format
