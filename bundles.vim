@@ -90,6 +90,7 @@ if !exists('g:vimpager')
   Plugin 'tpope/vim-dispatch'
   Plugin 'Shougo/vimproc.vim'
 
+  " https://github.com/parsonsmatt/intero-neovim
   " Plugin 'eagletmt/ghcmod-vim'
   " Plugin 'eagletmt/neco-ghc'
   " Plugin 'glittershark/vim-hare'
@@ -130,9 +131,7 @@ if !exists('g:vimpager')
     let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
   end
 
-  if has('python')
-    Plugin 'Valloric/MatchTagAlways'
-  end
+  Plugin 'Valloric/MatchTagAlways'
 
   " Plugin 'sjl/gundo.vim'
   Plugin 'mbbill/undotree'

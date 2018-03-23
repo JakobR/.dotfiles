@@ -102,6 +102,7 @@ if [[ $OSTYPE =~ ^darwin ]] then
       # TODO: focus agenda buffer if it is already open
       # See also https://emacs.stackexchange.com/a/3472
   }
+  alias ec="e -c"
 
   # Show hidden files in Finder
   # If it doesn't work, try `killall cfprefsd` first (http://apple.stackexchange.com/a/112091)

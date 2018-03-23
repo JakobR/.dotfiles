@@ -1,4 +1,8 @@
-					;-*-Emacs-Lisp-*-
+;;; init --- Emacs configuration
+
+;;; Commentary:
+
+;;; Code:
 
 (require 'package)
 
@@ -387,29 +391,55 @@
               tab-stop-list '(4))
 (add-hook 'haskell-mode-hook (lambda () (setq tab-width 2 tab-stop-list '(2))))
 
-; Make underscore `_` part of the word textobject
-; See https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+;; Make underscore `_` part of the word textobject
+;; See https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
 (add-hook 'haskell-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 
 (defun set-yasnippet-fixed-indent ()
+  "Set yas-indent-line to 'fixed."
   (setq-local yas-indent-line 'fixed))
 (add-hook 'haskell-mode-hook #'set-yasnippet-fixed-indent)
 
 
 (defun haskell-evil-open-above ()
+  "Customized version of evil-open-above for Haskell."
   (interactive)
   (evil-digit-argument-or-evil-beginning-of-line)
   (haskell-indentation-newline-and-indent)
   (evil-previous-line)
   (haskell-indentation-indent-line)
-  (evil-append-line nil))
+  (evil-append-line nil)
+  (add-hook 'post-command-hook #'evil-maybe-remove-spaces t)
+)
 
 (defun haskell-evil-open-below ()
+  "Customized version of evil-open-below for Haskell."
   (interactive)
   (evil-append-line nil)
-  (haskell-indentation-newline-and-indent))
+  (haskell-indentation-newline-and-indent)
+  (add-hook 'post-command-hook #'evil-maybe-remove-spaces t)
+  ;; (add-hook 'post-command-hook #'haskell-evil-maybe-remove-spaces t)
+  )
+;; (defun haskell-evil-open-below (count)
+;;   "Insert a new line below point and switch to Insert state.
+;; The insertion will be repeated COUNT times."
+;;   (interactive "p")
+;;   (unless (eq evil-want-fine-undo t)
+;;     (evil-start-undo-step))
+;;   (push (point) buffer-undo-list)
+;;   ;; (evil-insert-newline-below)
+;;   ;; (evil-append-line nil)
+;;   (haskell-indentation-newline-and-indent)
+;;   (setq evil-insert-count count
+;;         evil-insert-lines t
+;;         evil-insert-vcount nil)
+;;   (evil-insert-state 1)
+;;   )
+;;   ;; (when evil-auto-indent
+;;   ;;   (indent-according-to-mode)))
 
-(evil-define-key 'normal haskell-mode-map "o" 'haskell-evil-open-below
+(evil-define-key 'normal haskell-mode-map
+  "o" 'haskell-evil-open-below
   "O" 'haskell-evil-open-above)
 
 
@@ -426,6 +456,7 @@
 
 ;; Keep track of when TODO item are finished
 (setq org-log-done 'time)
+(setq org-todo-keywords '((sequence "TODO" "|" "DONE" "CANCELLED")))
 
 ;; The week starts on monday
 (setq calendar-week-start-day 1)
@@ -456,31 +487,10 @@
         (message "[org agenda] refreshed!")))))
 (add-hook 'org-mode-hook (lambda() (add-hook 'after-save-hook 'my-redo-all-agenda-buffers nil 'make-it-local)))
 
-; (setq org-todo-keywords
-;       '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELED")))
-
-
-; (add-hook 'org-mode-hook
-;           (lambda ()
-;             (font-lock-add-keywords nil
-;                                     ; '(("\\(^\\|\\s-+\\)\\(_[a-zA-Z0-9].*?:\\)" 2
-;                                     ; '(("\\[\\([0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\} ?[^\r\n>]*?\\)\\]" 0
-;                                     '(("\\[[0-9]+\\]" 0
-;                                        font-lock-warning-face t)))))
-
-; TODO: this is supposed to change the highlighting of inactive timestamps, but I can't get it to override the existing one
-; (font-lock-add-keywords 'org-mode
-;                         '(
-;                           ("\\(^\\|\\s-+\\)\\(_[a-zA-Z0-9].*?:\\)" 2 font-lock-warning-face t)
-;                         ; '(("\\[\\([0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\} ?[^\r\n>]*?\\)\\]" 0
-;                             ("a\\[123\\]x" 0 'font-lock-warning-face t)
-;                          )
-;                         )
-
 ;; Show matching parentheses
+(require 'paren)
 (setq show-paren-delay 0)
 (show-paren-mode 1)
-(require 'paren)
 ;; (set-face-background 'show-paren-match (face-background 'default))
 (set-face-background 'show-paren-match "#ddd")
 (set-face-foreground 'show-paren-match "#f00")
