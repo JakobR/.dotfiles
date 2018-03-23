@@ -13,10 +13,12 @@
 -- always show type of result (like :t)
 :set +t
 
-:set -XQuasiQuotes
-:set -XDataKinds
-:set -XTypeApplications
+:set -Wno-incomplete-uni-patterns
 :set -Wno-type-defaults
+:set -Wno-unused-top-binds
+:set -XDataKinds
+:set -XQuasiQuotes
+:set -XTypeApplications
 
 -- Shortcut for ":kind!" to expand type families, from https://stackoverflow.com/a/13597174/1889401
 :def k! \x -> return (":kind! " ++ x)
