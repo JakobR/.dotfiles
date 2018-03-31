@@ -366,6 +366,11 @@
   :config
   (ws-butler-global-mode))
 
+(use-package hl-todo
+  :ensure t
+  :config
+  (global-hl-todo-mode))
+
 (use-package org-caldav
   :ensure t
   :after org
