@@ -1,5 +1,20 @@
 -- vim: syn=haskell
 
+:seti -XDataKinds
+:seti -XOverloadedStrings
+:seti -XPackageImports
+:seti -XQuasiQuotes
+:seti -XScopedTypeVariables
+:seti -XTypeApplications
+
+:seti -Wno-incomplete-uni-patterns
+:seti -Wno-type-defaults
+:seti -Wno-unused-top-binds
+
+import "base" Data.List
+import "base" Data.Maybe
+import "base" Text.Show.Functions
+
 -- Hoogle commands
 :def hoogle \x -> return $ ":!hoogle        \"" ++ x ++ "\""
 :def doc    \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
@@ -12,13 +27,6 @@
 
 -- always show type of result (like :t)
 :set +t
-
-:set -Wno-incomplete-uni-patterns
-:set -Wno-type-defaults
-:set -Wno-unused-top-binds
-:set -XDataKinds
-:set -XQuasiQuotes
-:set -XTypeApplications
 
 -- Shortcut for ":kind!" to expand type families, from https://stackoverflow.com/a/13597174/1889401
 :def k! \x -> return (":kind! " ++ x)
