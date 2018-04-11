@@ -47,6 +47,8 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(zaw zsh-dwim zsh-syntax-highlighting)
 
+fpath+=("${JR_DOTFILES}/zsh/completions")
+
 # Platform-specific configuration
 if [[ $OSTYPE =~ ^darwin ]] then
   # Mac OS X configuration
