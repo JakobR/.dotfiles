@@ -97,13 +97,25 @@
     (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link)))
   )
 
+;; Open .v files with Proof General's Coq mode
+(load "~/.emacs.d/plugin/PG/generic/proof-site")
+
+;; Need to set this before evil loads to prevent bad interactions with Proof General, see:
+;; - https://github.com/ProofGeneral/PG/issues/174
+;; - https://github.com/syl20bnr/spacemacs/issues/8853
+;; - https://github.com/cpitclaudel/company-coq/issues/160
+(setq evil-want-abbrev-expand-on-insert-exit nil)
+;; (setq abbrev-expand-function #'ignore)
+
 ; (use-package markdown-mode :ensure t)
 (use-package evil
   :ensure t
 
   :init
-  ; Y should behave like y$ (this variable must be set before evil is loaded, so it must be in the :init section)
+  ;; Y should behave like y$ (this variable must be set before evil is loaded, so it must be in the :init section)
   (setq evil-want-Y-yank-to-eol t)
+
+  ;; (setq evil-move-beyond-eol t)
 
   :config
 
@@ -142,6 +154,23 @@
   ;(define-key evil-motion-state-map (kbd "gle") 'evil-forward-little-word-end)
   (define-key evil-outer-text-objects-map (kbd "v") 'evil-a-little-word)
   (define-key evil-inner-text-objects-map (kbd "v") 'evil-inner-little-word)
+
+  ;; (defun my-jump-to-tag ()
+  ;;   (interactive)
+  ;;   ;; (evil-emacs-state)
+  ;;   ;; (call-interactively (key-binding (kbd "M-.")))
+  ;;   ;; (evil-change-to-previous-state (other-buffer))
+  ;;   ;; (evil-change-to-previous-state (current-buffer))
+  ;;   (evil-execute-in-emacs-state)
+  ;;   (call-interactively (key-binding (kbd "M-.")))
+  ;;   )
+  ;; (define-key evil-normal-state-map (kbd "C-]") 'my-jump-to-tag)
+  (define-key evil-normal-state-map (kbd "C-]")
+    (lambda ()
+      (interactive)
+      (evil-execute-in-emacs-state)
+      (message nil)
+      (call-interactively (key-binding (kbd "M-.")))))
 
   ; (evil-add-hjkl-bindings occur-mode-map 'emacs
   ;   (kbd "/")       'evil-search-forward
@@ -446,7 +475,6 @@
 (evil-define-key 'normal haskell-mode-map
   "o" 'haskell-evil-open-below
   "O" 'haskell-evil-open-above)
-
 
 ; (setq whitespace-style '(face trailing tab-mark newline-mark))
 (setq whitespace-style '(face trailing tabs tab-mark))
