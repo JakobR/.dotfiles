@@ -1,6 +1,7 @@
 -- vim: syn=haskell
 
 :seti -XDataKinds
+:seti -XMagicHash
 :seti -XOverloadedStrings
 :seti -XPackageImports
 :seti -XQuasiQuotes

@@ -263,6 +263,7 @@ autocmd FileType qmake setlocal commentstring=#\ %s
 autocmd FileType sparql setlocal commentstring=#\ %s
 autocmd FileType matlab setlocal commentstring=%\ %s
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+autocmd FileType smt2 setlocal commentstring=;;\ %s
 
 let g:tex_flavor = "latex"   " Don't set the filetype to `plaintex` when creating new files
 let g:tex_comment_nospell=1  " No spell check in LaTeX comments
@@ -552,6 +553,34 @@ nnoremap <Leader>t :call ShowType()<CR>
 let g:email = substitute(system('git --no-pager config -z user.email'), '\W$', '', '')
 let g:user  = substitute(system('git --no-pager config -z user.name'),  '\W$', '', '')
 let g:templates_directory = $JR_DOTFILES . '/vim/templates'
+
+let g:templates_user_variables = [
+        \   ['HASKELLRESOLVER', 'GetHaskellResolver'],
+        \ ]
+
+function GetHaskellResolver()
+    if exists('g:templates_haskell_resolver')
+        return g:templates_haskell_resolver
+    endif
+    python3 << EOP
+import os
+import vim
+import yaml
+path = os.path.expanduser("~/.stack/global-project/stack.yaml")
+with open(path, 'r') as stream:
+    try:
+        data = yaml.load(stream)
+        vim.vars["templates_haskell_resolver"] = data['resolver']
+    except yaml.YAMLError as exc:
+        pass
+EOP
+    if exists('g:templates_haskell_resolver')
+        return g:templates_haskell_resolver
+    else
+        " couldn't get the resolver... so let the user fill it in
+        return 'TODO'
+    endif
+endfunction
 
 let g:clang_format#command = $HOME . '/Applications/clang+llvm-3.5.0-macosx-apple-darwin/bin/clang-format'
 

@@ -43,6 +43,7 @@ Plugin 'neovimhaskell/haskell-vim'
 Plugin 'vim-python/python-syntax'
 Plugin 'nickhutchinson/vim-cmake-syntax'
 Plugin 'c-cube/vim-tptp'
+Plugin 'bohlender/vim-z3-smt2'
 Plugin 'justinmk/vim-sneak'
 
 " C++

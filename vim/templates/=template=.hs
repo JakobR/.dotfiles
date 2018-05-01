@@ -1,6 +1,6 @@
 #!/usr/bin/env stack
 {- stack script
-  --resolver lts-9.6
+  --resolver %HASKELLRESOLVER%
 -}
 
 module %CLASS% where
