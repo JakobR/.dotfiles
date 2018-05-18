@@ -75,11 +75,12 @@ if !exists('g:vimpager')
 
   Plugin 'kana/vim-textobj-user'
   Plugin 'kana/vim-textobj-indent'
-  Plugin 'lucapette/vim-textobj-underscore'
-  Plugin 'mattn/vim-textobj-url'
+  " Plugin 'lucapette/vim-textobj-underscore'
+  " Plugin 'mattn/vim-textobj-url'
   Plugin 'Julian/vim-textobj-variable-segment'
-  Plugin 'nelstrom/vim-textobj-rubyblock'
-  Plugin 'rbonvall/vim-textobj-latex'
+  " Plugin 'nelstrom/vim-textobj-rubyblock'
+  " Plugin 'rbonvall/vim-textobj-latex'   (part of vimtex)
+  Plugin 'wellle/targets.vim'
 
   Plugin 'ctrlpvim/ctrlp.vim'
   Plugin 'kana/vim-altr'
@@ -91,6 +92,14 @@ if !exists('g:vimpager')
 
   Plugin 'tpope/vim-dispatch'
   Plugin 'Shougo/vimproc.vim'
+
+  " Plugin 'ervandew/supertab'
+  Plugin 'SirVer/ultisnips'
+  Plugin 'honza/vim-snippets'
+
+  " disable extended highlighting of matching delimiters (it seems to be messing up the cursor)
+  let g:vimtex_matchparen_enabled = 0
+  Plugin 'lervag/vimtex'
 
   " https://github.com/parsonsmatt/intero-neovim
   " Plugin 'eagletmt/ghcmod-vim'
@@ -104,9 +113,8 @@ if !exists('g:vimpager')
   " Plugin 'garbas/vim-snipmate'
 
   " Plugin 'godlygeek/tabular'
-  " Plugin 'ervandew/supertab'
 
-  " Plugin 'git://git.code.sf.net/p/vim-latex/vim-latex'
+  " Plugin 'vim-latex/vim-latex'
   " Plugin 'xuhdev/vim-latex-live-preview'
 
   " Plugin 'scrooloose/nerdtree'
@@ -154,8 +162,6 @@ end
 " or https://github.com/haya14busa/vim-easymotion
 
 " https://github.com/suan/vim-instant-markdown
-
-" snippets: https://github.com/SirVer/ultisnips
 
 " Look at http://bling.github.io/blog/2013/06/02/unite-dot-vim-the-plugin-you-didnt-know-you-need/
 " Plugin 'Shougo/unite.vim'

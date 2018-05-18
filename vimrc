@@ -56,7 +56,7 @@ set tabpagemax=50
 set mouse=a             " use mouse
 set ttimeout
 set ttimeoutlen=50
-set updatetime=750
+set updatetime=100
 set nofoldenable        " folds should be open by default
 
 " use system clipboard as default register
@@ -267,6 +267,7 @@ autocmd FileType smt2 setlocal commentstring=;;\ %s
 
 let g:tex_flavor = "latex"   " Don't set the filetype to `plaintex` when creating new files
 let g:tex_comment_nospell=1  " No spell check in LaTeX comments
+let g:vimtex_view_method = 'skim'
 
 " LaTeX compilation
 autocmd FileType tex let &l:makeprg="latexmk -outdir=".shellescape(expand('%:p:h'),1)." -pdflatex='pdflatex -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error' -pdf ".shellescape(expand('%:p'),1)
@@ -415,9 +416,13 @@ endif
 
 " tab switching is too slow otherwise
 let g:gitgutter_eager = 0
+" let g:gitgutter_max_signs = 500  " default value is 500
 " also allow ]h and [h for navigation
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
+" hunk-add and hunk-revert
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hr <Plug>GitGutterUndoHunk
 
 " Use <Leader>s to search in project
 nnoremap <Leader>s :Ack<Space>
@@ -445,6 +450,20 @@ let g:mta_use_matchparen_group = 0
 " if v:version > 704 || (v:version == 704 && has('patch???'))
 "   set shortmess+=c
 " endif
+
+
+" " make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+" " better key bindings for UltiSnipsExpandTrigger
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsExpandTrigger = "<C-j>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+
 
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
