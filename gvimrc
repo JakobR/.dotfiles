@@ -12,6 +12,8 @@ highlight GitGutterAdd          guibg=#eee8d5
 highlight GitGutterChange       guibg=#eee8d5
 highlight GitGutterDelete       guibg=#eee8d5
 highlight GitGutterChangeDelete guibg=#eee8d5
+" highlight MatchParen guibg=#eee8d5 gui=bold guifg=blue
+highlight MatchParen gui=bold guibg=green guifg=black
 
 " from https://github.com/raecoo/dotfiles/blob/master/gvimrc
 if has("gui_macvim") || has('gui_vimr')
