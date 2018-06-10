@@ -1,1 +1,3 @@
 *.pdf   diff=pdf
+*.zip   diff=zip
+*.numbers diff=zip

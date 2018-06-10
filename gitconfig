@@ -51,3 +51,5 @@
     cachetextconv = true
 [difftool "pdf"]
     cmd = diff-pdf --view \"$LOCAL\" \"$REMOTE\"
+[diff "zip"]
+    textconv = unzip -c -a
