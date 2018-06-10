@@ -4,6 +4,13 @@
 
 ;;; Code:
 
+
+
+;; Make startup faster by reducing the frequency of garbage
+;; collection.  The default is 800 kilobytes.  Measured in bytes.
+(setq gc-cons-threshold (* 500 1000 1000))
+
+
 (require 'package)
 
 ; To upgrade packages:
@@ -23,6 +30,17 @@
 ;   (with-temp-buffer
 ;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
 ;     (eval-buffer)))
+
+
+;; From https://blog.d46.us/advanced-emacs-startup/
+;; Use a hook so the message doesn't get clobbered by other messages.
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time)))
+                     gcs-done)))
 
 ;; install use-package and the quelpa handler
 (unless (package-installed-p 'use-package)
@@ -531,9 +549,13 @@
 
 (column-number-mode)
 
+;; Don't defer starting the server (need it for my `ec` shortcut)
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+;; Make gc pauses faster by decreasing the threshold.
+(setq gc-cons-threshold (* 2 1000 1000))
 
 (provide 'init)
 ;;; init.el ends here
