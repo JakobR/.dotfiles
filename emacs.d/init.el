@@ -539,13 +539,16 @@
 (add-hook 'org-mode-hook (lambda() (add-hook 'after-save-hook 'my-redo-all-agenda-buffers nil 'make-it-local)))
 
 ;; Show matching parentheses
-(require 'paren)
-(setq show-paren-delay 0)
-(show-paren-mode 1)
-;; (set-face-background 'show-paren-match (face-background 'default))
-(set-face-background 'show-paren-match "#ddd")
-(set-face-foreground 'show-paren-match "#f00")
-;; (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+(use-package paren
+  :ensure t
+  :config
+  (setq show-paren-delay 0)
+  (show-paren-mode 1)
+  (set-face-background 'show-paren-match "#ddd")
+  (set-face-foreground 'show-paren-match "#f00")
+  ;; (set-face-background 'show-paren-match "#0f0")
+  ;; (set-face-foreground 'show-paren-match "#000")
+  )
 
 (column-number-mode)
 
