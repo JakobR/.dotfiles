@@ -283,9 +283,9 @@
   (add-to-list 'company-backends 'company-dabbrev-code)
   (add-to-list 'company-backends 'company-yasnippet)
   (add-to-list 'company-backends 'company-files)
-  ; TODO: https://github.com/company-mode/company-mode/pull/706
-  ; See https://github.com/company-mode/company-mode/blob/master/NEWS.md (company-tng-configure-default)
-  ; Also look at https://github.com/abingham/emacs-ycmd (can probably just use the ycmd that's contained in the vim package?)
+  ; TODO: look at https://github.com/abingham/emacs-ycmd (can't we just use the ycmd that's contained in the vim package?)
+  ; Use "Tab and Go" mode like YCM in vim
+  (company-tng-configure-default)
   )
 
 (use-package helm
