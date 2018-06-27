@@ -7,8 +7,33 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{listings}
 \usepackage[shortlabels]{enumitem}
+% \usepackage{hyperref}
+\usepackage{prftree}
+\usepackage{mathtools}
+\usepackage{tabularx}
+% \usepackage{pdfpages}       % to include pages from existing pdf files with \includepdf[pages={1,2}]{./path/to/file.pdf}
+\usepackage{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+% \setlist{nolistsep}         % less spacing in itemize/enumerate environments
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+% This is the provability analogue to \models (note that \vdash is smaller)
+\DeclareRobustCommand\proves{\mathrel{|}\joinrel\mkern-.5mu\mathrel{-}}
+
+\newcommand{\limpl}{\rightarrow}
+\newcommand{\slimpl}{{\limpl}}  % symbol version without spacing, see https://tex.stackexchange.com/a/852
+\newcommand{\naf}{{\sim}}
+\newcommand{\caF}{\mathcal{F}}
+\newcommand{\caM}{\mathcal{M}}
+\newcommand{\caT}{\mathcal{T}}
 
 \title{%FILE%}
 \author{%USER%}
@@ -17,5 +42,8 @@
 \maketitle
 
 %HERE%
+
+% \bibliographystyle{abbrv}
+% \bibliography{/Users/jakob/Documents/Library/library.bib}
 
 \end{document}

@@ -3,6 +3,8 @@
   --resolver %HASKELLRESOLVER%
 -}
 
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module %CLASS% where
 
 %HERE%
