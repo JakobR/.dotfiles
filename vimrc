@@ -268,6 +268,16 @@ autocmd FileType smt2 setlocal commentstring=;;\ %s
 let g:tex_flavor = "latex"   " Don't set the filetype to `plaintex` when creating new files
 let g:tex_comment_nospell=1  " No spell check in LaTeX comments
 let g:vimtex_view_method = 'skim'
+" let g:vimtex_fold_enabled=0
+let g:vimtex_fold_manual=1
+
+" Apparently the combination of vimtex and relativenumber really slows vim down
+autocmd FileType tex call NoRelativeNumbers()
+function NoRelativeNumbers()
+    NumbersDisable
+    setlocal norelativenumber
+    setlocal number
+endfunction
 
 " LaTeX compilation
 autocmd FileType tex let &l:makeprg="latexmk -outdir=".shellescape(expand('%:p:h'),1)." -pdflatex='pdflatex -file-line-error -synctex=1 -interaction=nonstopmode -halt-on-error' -pdf ".shellescape(expand('%:p'),1)
