@@ -1,3 +1,9 @@
+" Workaround for bug in vim with python 3.7
+" See https://github.com/vim/vim/issues/3117#issuecomment-401811335
+if has('python3')
+  silent! python3 1
+endif
+
 " Load bundles
 if empty($JR_DOTFILES)
   " TODO: Does this still work when `$HOME/.dotfiles` is a symlink?
