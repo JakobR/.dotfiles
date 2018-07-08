@@ -333,6 +333,22 @@
   (put 'intero-targets 'safe-local-variable (lambda (_) t))
   )
 
+;; (use-package flycheck-liquidhs
+;;   :ensure t
+;;   :after flycheck intero
+;;   :config
+;;   (add-hook 'flycheck-mode-hook (lambda () (flycheck-add-next-checker 'intero 'haskell-liquid t)))
+;;   )
+
+;; (use-package liquid-types
+;;   :ensure t
+;;   :after flycheck-liquidhs
+;;   :config
+;;   (add-hook 'haskell-mode-hook '(lambda () (liquid-types-mode)))
+;;   (add-hook 'literate-haskell-mode-hook '(lambda () (liquid-types-mode)))
+;;   )
+
+
 (use-package dash-at-point
   :ensure t
   :config
@@ -390,14 +406,14 @@
 ;; (use-package magit :ensure t)
 ;; (use-package powerline :ensure t)
 
-(use-package nlinum-relative
-  :ensure t
-  :config
-  (nlinum-relative-setup-evil)
-  (setq nlinum-relative-redisplay-delay 0)
-  (setq nlinum-format "%4d")
-  (add-hook 'prog-mode-hook #'nlinum-relative-mode)
-  )
+;; Line numbers
+(add-hook 'prog-mode-hook (lambda ()
+                            (set-face-background 'line-number "#eee8d5")
+                            (set-face-foreground 'line-number "#93a1a1")
+                            (set-face-background 'line-number-current-line "#fdf6e4")
+                            (set-face-foreground 'line-number-current-line "#a52a2a")
+                            (set-face-attribute 'line-number-current-line nil :bold t)
+                            (setq-default display-line-numbers 'relative)))
 
 (use-package color-theme
   :ensure t)
