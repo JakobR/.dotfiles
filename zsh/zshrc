@@ -193,7 +193,12 @@ function m() {
             m_cmd --remote-send '<Esc>:tabnew<CR>:call foreground()<CR>'
         fi
     else
-        m_cmd --remote-tab-silent "${@}"
+        if [[ -z "$(m_cmd --serverlist)" ]] then
+            # No vim instances running? start a new one
+            m_cmd "${@}"
+        else
+            m_cmd --remote-tab-silent "${@}"
+        fi
     fi
 }
 alias vi="vim"
