@@ -19,6 +19,3 @@
 [submodule "emacs.d/plugin/evil-plugins"]
 	path = emacs.d/plugin/evil-plugins
 	url = https://github.com/tarao/evil-plugins
-[submodule "emacs.d/plugin/PG"]
-	path = emacs.d/plugin/PG
-	url = https://github.com/ProofGeneral/PG

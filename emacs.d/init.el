@@ -21,7 +21,7 @@
       '(("melpa-stable" . "https://stable.melpa.org/packages/")
         ("melpa" . "https://melpa.org/packages/")
         ("gnu" . "https://elpa.gnu.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")))
+        ("org" . "https://orgmode.org/elpa/")))
 
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -116,7 +116,9 @@
   )
 
 ;; Open .v files with Proof General's Coq mode
-(load "~/.emacs.d/plugin/PG/generic/proof-site")
+(use-package proof-general
+  :ensure t
+  :defer t)
 
 ;; Need to set this before evil loads to prevent bad interactions with Proof General, see:
 ;; - https://github.com/ProofGeneral/PG/issues/174
