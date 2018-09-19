@@ -46,6 +46,9 @@ Plugin 'c-cube/vim-tptp'
 Plugin 'bohlender/vim-z3-smt2'
 Plugin 'justinmk/vim-sneak'
 
+Plugin 'LnL7/vim-nix'
+" Plugin 'MarcWeber/vim-addon-nix'
+
 " C++
 " Plugin 'vim-jp/cpp-vim'
 " Plugin 'Mizuchi/STL-Syntax'

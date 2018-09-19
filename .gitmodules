@@ -19,3 +19,6 @@
 [submodule "emacs.d/plugin/evil-plugins"]
 	path = emacs.d/plugin/evil-plugins
 	url = https://github.com/tarao/evil-plugins
+[submodule "zsh/custom/plugins/nix-zsh-completions"]
+	path = zsh/custom/plugins/nix
+	url = https://github.com/spwhitt/nix-zsh-completions

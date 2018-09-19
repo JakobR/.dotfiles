@@ -115,6 +115,16 @@
     (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link)))
   )
 
+(use-package json-mode
+  :ensure t)
+
+(use-package nix-mode
+  :ensure t
+  :after json-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.nix$" . nix-mode))
+  )
+
 ;; Open .v files with Proof General's Coq mode
 (use-package proof-general
   :ensure t
