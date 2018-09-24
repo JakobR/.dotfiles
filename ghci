@@ -10,7 +10,7 @@
 
 :seti -Wno-incomplete-uni-patterns
 :seti -Wno-type-defaults
-:seti -Wno-unused-top-binds
+:set -Wno-unused-top-binds
 
 import "base" Data.List
 import "base" Data.Maybe
