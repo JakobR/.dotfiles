@@ -143,11 +143,6 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   # additional oh-my-zsh plugins
   plugins+=osx
 
-  # Nix
-  if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-  fi
-
 elif [[ "$OSTYPE" =~ ^freebsd ]] then
   # FreeBSD configuration
 
