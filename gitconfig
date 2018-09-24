@@ -19,6 +19,8 @@
 [core]
     excludesfile = ~/.gitignore-global
     attributesFile = ~/.gitattributes-global
+    ; NOTE: For the option "-F" to work properly we need "less" version >= 530
+    pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -SF
 [merge "gemfilelock"]
     name = relocks the gemfile.lock
     driver = bundle install

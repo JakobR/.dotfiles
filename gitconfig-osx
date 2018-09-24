@@ -3,8 +3,4 @@
 ; [include]
 ;     path = ~/.gitconfig-osx
 
-[core]
-    ; NOTE: For the option -F to work properly we need a newer version of less ("brew install less" on OSX)
-    pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -SF
-
 ; vim: ft=gitconfig
