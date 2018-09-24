@@ -8,6 +8,8 @@
 .Trashes
 Thumbs.db
 
+/.zsh_history
+
 # Emacs lockfiles
 .#*
 

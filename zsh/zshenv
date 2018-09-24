@@ -3,34 +3,38 @@
 # In this file, set variables that should be available to all programs.
 
 # Path to dotfiles
-JR_DOTFILES="$HOME/.dotfiles"
+JR_DOTFILES="${HOME}/.dotfiles"
 if [[ -L "$JR_DOTFILES" ]] then
-  JR_DOTFILES=$(readlink -n $JR_DOTFILES)
+    JR_DOTFILES="$(readlink -n "$JR_DOTFILES")"
 fi
 export JR_DOTFILES
 
-if [[ $OSTYPE =~ ^darwin ]] then
-  # Default PATH
-  # We set this explicitly because of Emacs' exec-path-from-shell package, see https://github.com/purcell/exec-path-from-shell
-  export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+# Set up $PATH, but only if we're not in a nix-shell
+# (inside nix-shell, we will get the correct PATH and other variables from the outer shell)
+if [[ -z "$IN_NIX_SHELL" ]] then
+    if [[ "$OSTYPE" =~ ^darwin ]] then
+        # Default PATH
+        # We set this explicitly because of Emacs' exec-path-from-shell package, see https://github.com/purcell/exec-path-from-shell
+        export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
-  # LaTeX
-  export PATH=/Library/TeX/texbin:$PATH
-  export TEXINPUTS=${TEXINPUTS}:/usr/local/Frameworks/R.framework/Resources/share/texmf/tex/latex//
+        # LaTeX
+        export PATH=/Library/TeX/texbin:$PATH
+        export TEXINPUTS=${TEXINPUTS}:/usr/local/Frameworks/R.framework/Resources/share/texmf/tex/latex//
 
-  # Qt5 (not linked by homebrew)
-  export PATH=/usr/local/opt/qt5/bin:$PATH
-  # Homebrew paths
-  export PATH=/usr/local/sbin:$PATH
-  export PATH=/usr/local/bin:$PATH
+        # Qt5 (not linked by homebrew)
+        export PATH=/usr/local/opt/qt/bin:$PATH
+        # Homebrew paths
+        export PATH=/usr/local/sbin:$PATH
+        export PATH=/usr/local/bin:$PATH
 
-  # See http://www.xmlsoft.org/catalog.html
-  export XML_CATALOG_FILES="${JR_DOTFILES}/xml/catalog.xml"
+        # See http://www.xmlsoft.org/catalog.html
+        export XML_CATALOG_FILES="${JR_DOTFILES}/xml/catalog.xml"
+    fi
+
+    # Haskell-stack
+    export PATH=$HOME/.local/bin:$PATH
+
+    # Go
+    export GOPATH=$HOME/.go
+    export PATH=$GOPATH/bin:$PATH
 fi
-
-# Haskell-stack
-export PATH=$HOME/.local/bin:$PATH
-
-# Go
-export GOPATH=$HOME/.go
-export PATH=$GOPATH/bin:$PATH

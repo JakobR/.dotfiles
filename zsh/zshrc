@@ -46,16 +46,14 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(zaw zsh-dwim zsh-syntax-highlighting)
+plugins+=nix  # zsh completions for nix
+plugins+=nix-shell  # use zsh as nix-shell
 
 fpath+=("${JR_DOTFILES}/zsh/completions")
 
 # Platform-specific configuration
-if [[ $OSTYPE =~ ^darwin ]] then
+if [[ "$OSTYPE" =~ ^darwin ]] then
   # Mac OS X configuration
-
-  # standard rails environment on this machine
-  # be careful when running tests though as they will need the 'test' environment explicitly specified.
-  export RAILS_ENV='development'
 
   # Use MacVim to edit files, and give focus back to iTerm after closing
   export EDITOR="/usr/local/bin/mvim -p --nofork -c ActivateTerminalOnExit"
@@ -149,10 +147,8 @@ if [[ $OSTYPE =~ ^darwin ]] then
   if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
       . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
   fi
-  # zsh completions for nix
-  plugins+=nix
 
-elif [[ $OSTYPE =~ ^freebsd ]] then
+elif [[ "$OSTYPE" =~ ^freebsd ]] then
   # FreeBSD configuration
 
   export EDITOR='/usr/local/bin/vim'
@@ -160,7 +156,7 @@ elif [[ $OSTYPE =~ ^freebsd ]] then
   # Show full command name in top by default (-a)
   export TOP='-a'
 
-elif [[ $OSTYPE =~ ^linux ]] then
+elif [[ "$OSTYPE" =~ ^linux ]] then
   # Linux configuration
 
   export EDITOR='/usr/bin/vim'
@@ -211,14 +207,67 @@ function m() {
 alias vi="vim"
 
 # Load oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+source "${ZSH}/oh-my-zsh.sh"
 
 HISTSIZE=1000000
 SAVEHIST=1000000
 
+function is_project_root {
+    [[ (-d "${1}/.git") || ("${1:P}" = "${HOME:P}") || ("$1" == "/") ]]
+}
+function find_project_root {
+    local dir="${1:-$PWD}"
+    dir="${dir:P}"  # get realpath of directory
+    while ! is_project_root "$dir"; do
+        dir="${dir:h}"
+    done
+    printf "%s\n" "$dir"
+}
+function cdr {
+    cd "$(find_project_root)"
+}
+function set_histfile_dir {
+    local dir="$1"
+    if [[ "$dir" = "/" ]] then
+        dir="$HOME"
+    fi
+    local project_histfile="${dir}/.zsh_history"
+    if [[ (! -w "$project_histfile") && ((-e "$project_histfile") || (! -w "${project_histfile:h}")) ]] then
+        # project_histfile exists and isn't writable, or
+        # project_histfile doesn't exist and the parent directory isn't writable
+        # => use the default location instead
+        project_histfile="${HOME}/.zsh_history"
+    fi
+    # Switch to project histfile
+    if [[ ${HISTFILE:P} != ${project_histfile:P} ]] then
+        fc -Pp "${project_histfile}"
+        echo "New HISTFILE: $HISTFILE"
+    fi
+}
+function set_project_histfile {
+    set_histfile_dir "$(find_project_root)"
+}
+
+# Use per-project zsh history
+# TODO: If this is too much, only switch the histfile if a file .zsh_history exists in $PWD; this change would make the feature opt-in.
+set_project_histfile
+function chpwd {
+    # Note: chpwd is called whenever the current directory changes
+    if [[ $PWD != $OLDPWD ]] then
+        set_project_histfile
+    fi
+}
+
+# Aliases for GNU coreutils (they are used in nix-shell even on macOS)
+if [[ ( -n "${IN_NIX_SHELL:-}") || ( "$OSTYPE" =~ ^linux ) ]] then
+    alias ls="ls --color=auto"
+    alias ll="ls -lhF --time-style=long-iso"
+    alias la="ll -a"
+fi
+
 setopt complete_aliases
 
-if [[ $OSTYPE =~ ^darwin ]] then
+if [[ "$OSTYPE" =~ ^darwin ]] then
     # compdef seems to work only after loading oh-my-zsh
     alias s="/usr/bin/open -a Skim"
     compdef '_files -g \*.pdf' s
@@ -226,7 +275,7 @@ fi
 
 # iTerm shell integration, see https://iterm2.com/documentation-shell-integration.html
 if [[ "$TERM_PROGRAM" == "iTerm.app" ]] then
-  source $JR_DOTFILES/zsh/iterm2_shell_integration.zsh
+    source "${JR_DOTFILES}/zsh/iterm2_shell_integration.zsh"
 fi
 
 # Uncomment this line and "zmodload zsh/zprof" at the top of this file to profile zsh startup time

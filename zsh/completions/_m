@@ -4,11 +4,11 @@
 _m () {
     # See https://stackoverflow.com/a/41508466
     # Check if a *.tex file exists in the current directory
-    # TODO: the current directory is not always the one being completed... (so this only works properly if we complete in the current directory... good enough for now)
+    # TODO: the current directory is not always the one being completed... (so this only works properly if we complete in the current directory... good enough for now); use $PREFIX?
     if [[ -n *.tex(#qN) ]] then
         # The reason for this check is that I only want to ignore the *.log extension in LaTeX directories.
         # Otherwise I sometimes want to open logs with vim.
-        _files -F \*.aux -F \*.bbl -F \*.blg -F \*.fdb_latexmk -F \*.fls -F \*.log -F \*.out -F \*.pdf -F \*.synctex.gz -F \*.thm
+        _files -F \*.aux -F \*.bbl -F \*.blg -F \*.fdb_latexmk -F \*.fls -F \*.log -F \*.out -F \*.pdf -F \*.synctex.gz -F \*.thm -F \*.png
     else
         _files -F \*.pdf
     fi

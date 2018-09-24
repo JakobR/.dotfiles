@@ -29,7 +29,7 @@ function prompt_kagami_setup () {
   local c_gray="%240F"
 
   # Special symbols used by the prompt
-  if [[ "$ZSH_THEME_NO_SPECIAL_CHARACTERS" != "true" ]] then
+  if [[ "${ZSH_THEME_NO_SPECIAL_CHARACTERS:-false}" != "true" ]] then
     local s_git_check='✓'
     local s_git_cross='✗'
     local s_prompt_char='➭'
@@ -40,13 +40,24 @@ function prompt_kagami_setup () {
   fi
   local s_prompt_root='#'
 
-  # User name (black-on-red if running in privileged mode)
-  local p_user="%(!.%196K%16F.%9F)%n"
+  # User name
+  local p_user="%(!.%196F.%9F)%n"
 
   # Host name (underlined if connected over ssh)
   local p_host="%105F%m"
-  if [[ -n "$SSH_CONNECTION" ]] then
+  if [[ -n "${SSH_CONNECTION:-}" ]] then
     p_host="%U$p_host%u"
+  fi
+
+  # Only show user and host if the user isn't the default user, or if we're connected over ssh
+  local p_user_host=""
+  if [[ ( ! "$USER" =~ ^[Jj]akob$ ) || ( -n "${SSH_CONNECTION:-}" ) ]] then
+      p_user_host="$p_user$c_gray@$p_host$c_gray:"
+  fi
+
+  local p_nix_shell=""
+  if [[ -n "${IN_NIX_SHELL:-}" ]] then
+      p_nix_shell="${c_gray}[%F{green}nix-shell${c_gray}] "
   fi
 
   # Current working directory
@@ -62,13 +73,13 @@ function prompt_kagami_setup () {
   ZSH_THEME_GIT_PROMPT_DIRTY=" %196F$s_git_cross"
 
   # Show exit code of last command if not zero
-  local p_status="%(?..%196F%?${c_bracket}! )"
+  local p_status="%(?..%196F%?! )"
 
   # Prompt symbol depends on whether we're root or not
   local p_char="%(!.%196F$s_prompt_root.$c_gray$s_prompt_char) "
 
   # Put it all together!
-  PROMPT="%B${c_gray}[$p_user$c_gray@$p_host$c_gray:$p_dir$c_gray]$p_git$p_git_stash $p_status$p_char%b%f%k"
+  PROMPT="%B${p_nix_shell}${c_gray}[$p_user_host$p_dir$c_gray]$p_git$p_git_stash $p_status$p_char%b%f%k"
 
 
   # Highlighting
