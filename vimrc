@@ -617,37 +617,33 @@ EOP
         return 'TODO'
     endif
 endfunction
-" TODO: this function works, but apparently vim-template cannot replace a
-" variable with multiple lines. So we should just add some custom hook to
-" insert the stack comment (or better, leave it in the template, and the
-" custom hook just deletes the first paragraph if necessary),
-" after vim-template has finished.
-function GetHaskellStackConfig()
-    let l:path = expand('%:p')
-    let l:resolver = GetHaskellResolver()
-    python3 << EOP
-from pathlib import Path
-import vim
-filepath = Path(vim.eval('l:path'))
-stackconf = None
-for p in filepath.parents:
-    if list(p.glob('?*.cabal')):
-        # parent "p" contains a cabal file, so we assume it is the project root
-        stackconf = ""
-        break
-else:
-    # We exhausted the parents without finding a cabal file, so we assume this is a standalone script
-    resolver = vim.eval('l:resolver')
-    stackconf = f'''
-#!/usr/bin/env stack
-{{- stack script
-  --resolver {resolver}
--}}
-'''
-vim.vars['templates_haskell_stack_config'] = stackconf
-EOP
-    return g:templates_haskell_stack_config
-endfunction
+" See vim/after/plugin/templates.vim
+" function GetHaskellStackConfig()
+"     let l:path = expand('%:p')
+"     let l:resolver = GetHaskellResolver()
+"     python3 << EOP
+" from pathlib import Path
+" import vim
+" filepath = Path(vim.eval('l:path'))
+" stackconf = None
+" for p in filepath.parents:
+"     if list(p.glob('?*.cabal')):
+"         # parent "p" contains a cabal file, so we assume it is the project root
+"         stackconf = ""
+"         break
+" else:
+"     # We exhausted the parents without finding a cabal file, so we assume this is a standalone script
+"     resolver = vim.eval('l:resolver')
+"     stackconf = f'''
+" #!/usr/bin/env stack
+" {{- stack script
+"   --resolver {resolver}
+" -}}
+" '''
+" vim.vars['templates_haskell_stack_config'] = stackconf
+" EOP
+"     return g:templates_haskell_stack_config
+" endfunction
 function GetHaskellModule()
     let l:path = expand('%:p')
     python3 << EOP
