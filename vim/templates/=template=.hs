@@ -5,6 +5,6 @@
 
 {-# LANGUAGE ScopedTypeVariables #-}
 
-module %CLASS% where
+module %HASKELLMODULE% where
 
 %HERE%

@@ -591,6 +591,7 @@ let g:templates_directory = $JR_DOTFILES . '/vim/templates'
 
 let g:templates_user_variables = [
         \   ['HASKELLRESOLVER', 'GetHaskellResolver'],
+        \   ['HASKELLMODULE', 'GetHaskellModule'],
         \ ]
 
 function GetHaskellResolver()
@@ -601,11 +602,11 @@ function GetHaskellResolver()
 import os
 import vim
 import yaml
-path = os.path.expanduser("~/.stack/global-project/stack.yaml")
+path = os.path.expanduser('~/.stack/global-project/stack.yaml')
 with open(path, 'r') as stream:
     try:
         data = yaml.load(stream)
-        vim.vars["templates_haskell_resolver"] = data['resolver']
+        vim.vars['templates_haskell_resolver'] = data['resolver']
     except yaml.YAMLError as exc:
         pass
 EOP
@@ -615,6 +616,62 @@ EOP
         " couldn't get the resolver... so let the user fill it in
         return 'TODO'
     endif
+endfunction
+" TODO: this function works, but apparently vim-template cannot replace a
+" variable with multiple lines. So we should just add some custom hook to
+" insert the stack comment (or better, leave it in the template, and the
+" custom hook just deletes the first paragraph if necessary),
+" after vim-template has finished.
+function GetHaskellStackConfig()
+    let l:path = expand('%:p')
+    let l:resolver = GetHaskellResolver()
+    python3 << EOP
+from pathlib import Path
+import vim
+filepath = Path(vim.eval('l:path'))
+stackconf = None
+for p in filepath.parents:
+    if list(p.glob('?*.cabal')):
+        # parent "p" contains a cabal file, so we assume it is the project root
+        stackconf = ""
+        break
+else:
+    # We exhausted the parents without finding a cabal file, so we assume this is a standalone script
+    resolver = vim.eval('l:resolver')
+    stackconf = f'''
+#!/usr/bin/env stack
+{{- stack script
+  --resolver {resolver}
+-}}
+'''
+vim.vars['templates_haskell_stack_config'] = stackconf
+EOP
+    return g:templates_haskell_stack_config
+endfunction
+function GetHaskellModule()
+    let l:path = expand('%:p')
+    python3 << EOP
+from pathlib import Path
+import vim
+# A path like /bla/bla/project/src/Blah/Blup/Blop.hs should result in module name of "Blah.Blup.Blop"
+filepath = Path(vim.eval('l:path'))
+modname = filepath.stem.capitalize()
+for p in filepath.parents:
+    if list(p.glob('?*.cabal')):
+        # parent "p" contains a cabal file, so we assume it is the project root
+        break
+    else:
+        # not yet add project root, so we prepend the name to the module name
+        modname = p.name + '.' + modname
+    # Chop off the first component if it's lower-cased (because it is most likely the "src" directory)
+    if modname[0].islower():
+        modname = modname[1+modname.find('.'):]
+else:
+    # We exhausted the parents without finding a cabal file, so we assume this is a standalone script
+    modname = filepath.stem.capitalize()
+vim.vars['templates_haskell_module'] = modname
+EOP
+    return g:templates_haskell_module
 endfunction
 
 let g:clang_format#command = $HOME . '/Applications/clang+llvm-3.5.0-macosx-apple-darwin/bin/clang-format'
