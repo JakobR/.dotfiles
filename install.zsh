@@ -92,7 +92,7 @@ function create_symlink () {
     fi
     # Create link
     echo "Creating link from $(echo_path $link_path) to $(echo_path $orig_path)..."
-    /bin/ln -is -- "$orig_path" "$link_path"
+    ln -is -- "$orig_path" "$link_path"
   fi
 }
 

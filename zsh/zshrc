@@ -22,7 +22,7 @@ disable r
 disable log
 
 # set locale explicitly
-export LC_ALL="en_US.UTF-8"
+export LC_ALL="en_GB.UTF-8"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -158,6 +158,15 @@ elif [[ "$OSTYPE" =~ ^linux ]] then
 
   JR_OPEN="xdg-open"
 
+  #########
+  # NixOS #
+  #########
+  # Clear right-side prompt
+  RPS1=
+  # Terminfo
+  if [[ "$TERM_PROGRAM" == "iTerm.app" ]] then
+      TERM=iTerm2.app
+  fi
 fi
 
 function o() {
