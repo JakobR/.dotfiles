@@ -52,8 +52,6 @@
 ; (quelpa '(quelpa-use-package :fetcher github :repo "quelpa/quelpa-use-package"))
 ; (require 'quelpa-use-package)
 
-(require 'diminish)
-
 (setq byte-compile-warnings nil
       gnutls-min-prime-bits 4096)
 
