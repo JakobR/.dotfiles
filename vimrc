@@ -492,7 +492,11 @@ let g:ycm_enable_diagnostic_signs = 0
 " Load .ycm_extra_conf.py only in my own projects
 let g:ycm_extra_conf_globlist = ['!~/code/other/*','~/code/*','~/Documents/Uni/*','!~/*']
 let g:ycm_global_ycm_extra_conf = $JR_DOTFILES . '/ycm_extra_conf.py'
-" let g:ycm_key_invoke_completion = '<S-Space>'
+" Key to invoke semantic completion. Useful for searching top-level functions
+" and classes. (By default, semantic completion is only triggered
+" automatically after typing `.`, `->`, and `::`).
+" See https://github.com/Valloric/YouCompleteMe#the-gycm_key_invoke_completion-option
+let g:ycm_key_invoke_completion = '<C-l>'
 
 " let b:delimitMate_expand_cr = 1
 
