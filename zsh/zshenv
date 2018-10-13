@@ -29,6 +29,11 @@ if [[ -z "$IN_NIX_SHELL" ]] then
 
         # See http://www.xmlsoft.org/catalog.html
         export XML_CATALOG_FILES="${JR_DOTFILES}/xml/catalog.xml"
+
+        # LunarG Vulkan SDK
+        export VULKAN_SDK=/usr/local/Caskroom/vulkan-sdk/1.1.85.0/macOS
+        export VK_ICD_FILENAMES=/usr/local/etc/vulkan/icd.d/MoltenVK_icd.json
+        export VK_LAYER_PATH=/usr/local/etc/vulkan/explicit_layer.d
     fi
 
     # Haskell-stack
