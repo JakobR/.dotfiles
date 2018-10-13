@@ -119,3 +119,6 @@ defaults write com.microsoft.onenote.mac AppleShowScrollBars -string "WhenScroll
 
 # Don't show the "Other..." option on the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool FALSE
+
+# Speed up browsing on network shares, see https://support.apple.com/en-us/HT208209
+# defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
