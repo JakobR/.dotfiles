@@ -65,10 +65,10 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   export VIMPAGER_VIM='/usr/local/bin/vim'
 
   EMACSCLIENT="/usr/local/bin/emacsclient"
-  function emacs_is_running() {
+  function emacs_is_running {
       $EMACSCLIENT --eval "t" &>/dev/null
   }
-  function emacs_ensure_running() {
+  function emacs_ensure_running {
       if ! emacs_is_running; then
           printf "Starting Emacs server"
           /usr/bin/open --background /Applications/Emacs.app
@@ -79,7 +79,7 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
           printf "\n"
       fi
   }
-  function e() {
+  function e {
       emacs_ensure_running
 
       # Focus Emacs window
@@ -94,15 +94,23 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
           $EMACSCLIENT --no-wait "${@}"
       fi
   }
-  function eo() {
+  function eo {
       e -c "~/org/inbox.org"
   }
-  function ea() {
+  function ea {
       e -c --eval "(org-agenda-list)" "(delete-other-windows)"
       # TODO: focus agenda buffer if it is already open
       # See also https://emacs.stackexchange.com/a/3472
   }
-  alias ec="e -c"
+  function ec {
+      # Only pass -c if emacs is already running,
+      # otherwise we end up with an extra empty window.
+      if emacs_is_running; then
+          e -c "${@}"
+      else
+          e "${@}"
+      fi
+  }
 
   # Show hidden files in Finder
   # If it doesn't work, try `killall cfprefsd` first (http://apple.stackexchange.com/a/112091)
@@ -126,7 +134,7 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
 
   # Open yesterday's or today's journal entry (day changes at 12:00)
   # Can open shift day with ±number as first argument (e.g. "mj -1")
-  function mj() {
+  function mj {
     if [[ ! "${1}" =~ ^[+-][0-9]+$ ]] then
       1='+0'
     fi
@@ -169,7 +177,7 @@ elif [[ "$OSTYPE" =~ ^linux ]] then
   fi
 fi
 
-function o() {
+function o {
     if [[ -z "${@}" ]] then
         "${JR_OPEN}" .
     else
@@ -177,12 +185,12 @@ function o() {
     fi
 }
 
-function m_cmd() {
+function m_cmd {
     gvim -g "${@}"
 }
 # TODO: Functions m2, m3, ... which open in the 2nd, 3rd, ... vim server in the serverlist
 # TODO: A function "ms" that lists vim servers, and what project each is associated to.
-function m() {
+function m {
     # TODO: When starting a new instance, add the code to switch back to the terminal on exit
     # TODO: Maybe use this server: $(vim --serverlist|tail -n 1)   (latest one started)
     # TODO: Maybe it's possible to use a specific vim server per "project"?
