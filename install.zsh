@@ -12,13 +12,13 @@ set -e
 autoload -Uz colors
 colors
 
-function echo_msg () {
+function echo_msg {
   echo "$fg[green]$@$fg[default]"
 }
-function echo_err () {
+function echo_err {
   echo "$fg[red]$@$fg[default]"
 }
-function echo_path () {
+function echo_path {
   # Resetting color to default isn't actually correct (if used with echo_err for example), but that doesn't really matter
   echo "$fg[yellow]$@$fg[default]"
 }
@@ -58,7 +58,7 @@ fi
 
 
 # creates a symlink with additional checks and output
-function create_symlink () {
+function create_symlink {
   local orig_path="$1"
   local link_path="$2"
 
@@ -72,6 +72,7 @@ function create_symlink () {
     echo "Found correct link at $(echo_path $link_path)"
   else
     # Something else exists at original path. Move it out of the way.
+    # TODO: Extract this into a separate function, so we can use it to move .emacs out of the way (see TODO below)
     if [[ -e "$link_path" ]] then
       # Find a free file name for the backup file
       local i=0
@@ -97,7 +98,7 @@ function create_symlink () {
 }
 
 # Expects a path relative to $JR_DOTFILES.
-function create_symlink_to_home () {
+function create_symlink_to_home {
   local file="$1"
 
   # "${file:t}" is the basename of the path in $file
@@ -168,6 +169,7 @@ if [[ "$JR_UPDATE" = "true" ]] then
     git submodule sync
     git submodule update --init --recursive
     vim -u "$JR_DOTFILES/bundles.vim" '+PluginUpdate'
+    # TODO: After updating, we should execute the *new* install script...
   )
 fi
 
