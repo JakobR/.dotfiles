@@ -4,3 +4,4 @@ templates:
     author-email: git@jakobrath.eu
     copyright: 'Copyright: (c) 2018 Jakob Rath'
     github-username: JakobR
+allow-newer: true
