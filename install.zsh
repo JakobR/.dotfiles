@@ -134,6 +134,7 @@ create_symlink_to_home 'inputrc'
 create_symlink_to_home 'gemrc'
 create_symlink_to_home 'Xmodmap'
 mkdir -p "${HOME}/.config"
+create_symlink "${JR_DOTFILES}/mk" "${HOME}/.config/mk"
 create_symlink "${JR_DOTFILES}/mpv" "${HOME}/.config/mpv"
 create_symlink "${JR_DOTFILES}/karabiner" "${HOME}/.config/karabiner"
 mkdir -p "${HOME}/.cabal"

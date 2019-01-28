@@ -44,6 +44,7 @@ Plugin 'c-cube/vim-tptp'
 Plugin 'bohlender/vim-smt2'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'justinmk/vim-sneak'
+Plugin 'vmchale/dhall-vim'
 
 Plugin 'LnL7/vim-nix'
 " Plugin 'MarcWeber/vim-addon-nix'
