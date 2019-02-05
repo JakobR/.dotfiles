@@ -22,4 +22,4 @@ EOP
     endif
 endfunction
 
-autocmd BufNewFile *.hs silent call AdjustHaskellStackConfig()
+" autocmd BufNewFile *.hs silent call AdjustHaskellStackConfig()

@@ -129,7 +129,6 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   alias pplex-gui='java -jar $HOME/code/other/pplex/pplex.jar'
   alias protege='$HOME/Documents/Uni/INFO116/Protege_5.0_beta/run.command'
   alias jsonld='$HOME/code/other/jsonld.js/bin/jsonld'
-  alias clang-format='$HOME/Applications/clang+llvm-3.5.0-macosx-apple-darwin/bin/clang-format'
   alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
   # Open yesterday's or today's journal entry (day changes at 12:00)
@@ -219,10 +218,14 @@ function m {
 alias vi="vim"
 
 function mkm {
-    local cursor_pos
-    cursor_pos="$(mk -p vim "$1")"
+    if (( $# != 1 )) then
+        echo "mkm: please pass exactly one argument"
+        return 1
+    fi
+    local cursor_cmd
+    cursor_cmd="$(mk -p vim "$1")"
     if (( $? == 0 )) then
-        m "$cursor_pos" "$1"
+        m "+${cursor_cmd}" "$1"
     fi
 }
 

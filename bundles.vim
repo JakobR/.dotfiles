@@ -74,6 +74,8 @@ if !exists('g:vimpager')
 
   Plugin 'scrooloose/syntastic'
 
+  " Don't load vim-template; we only add the plugin to download the included templates
+  let g:templates_plugin_loaded = 1
   Plugin 'aperezdc/vim-template'
 
   Plugin 'kana/vim-textobj-user'
