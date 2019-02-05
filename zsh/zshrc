@@ -230,11 +230,27 @@ function mkm {
 }
 
 function mkec {
-    mk "$1" && ec "$1"
+    if (( $# != 1 )) then
+        echo "mkec: please pass exactly one argument"
+        return 1
+    fi
+    local cursor_pos
+    cursor_pos="$(mk -p emacs "$1")"
+    if (( $? == 0 )) then
+        ec "+${cursor_pos}" "$1"
+    fi
 }
 
 function mke {
-    mk "$1" && e "$1"
+    if (( $# != 1 )) then
+        echo "mke: please pass exactly one argument"
+        return 1
+    fi
+    local cursor_pos
+    cursor_pos="$(mk -p emacs "$1")"
+    if (( $? == 0 )) then
+        e "+${cursor_pos}" "$1"
+    fi
 }
 
 
