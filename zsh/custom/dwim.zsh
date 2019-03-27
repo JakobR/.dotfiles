@@ -31,6 +31,18 @@ _dwim_add_transform '^dtr -t [0-9,-]+ *--remove-and-delete$' \
   _dwim_cursor=$#BUFFER'
 
 
+#     brew
+# =>  brew update && echo --- && brew outdated
+_dwim_add_transform '^brew' \
+  'BUFFER="brew update && echo --- && brew outdated"
+  _dwim_cursor=$#BUFFER'
+
+#     brew update ...
+# =>  brew upgrade
+_dwim_add_transform '^brew update' \
+  'BUFFER="brew upgrade"
+  _dwim_cursor=$#BUFFER'
+
 #     brew info <formula>
 # =>  brew install <formula>
 _dwim_add_transform '^brew info ' \
