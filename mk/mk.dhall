@@ -6,7 +6,7 @@
     ]
 
 , variableOverrides =
-    let Eval = constructors < Const : Text | Command : Text >
+    let Eval = < Const : Text | Command : Text >
     let Const = Eval.Const
     let Command = Eval.Command
 
