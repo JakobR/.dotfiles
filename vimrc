@@ -49,7 +49,8 @@ set smartcase           " but become case sensitive if you type uppercase charac
 set smarttab            " smart tab handling for indenting
 set magic               " change the way backslashes are used in search patterns
 set bs=indent,eol,start " Allow backspacing over everything in insert mode
-set tabstop=4           " number of spaces a tab counts for
+set tabstop=8           " width of actual <TAB> characters in the file
+set softtabstop=4       " how many spaces to insert when pressing <TAB>
 set shiftwidth=4        " number of spaces for autoindents
 set expandtab           " insert spaces instead of tabs
 set shiftround
@@ -500,6 +501,9 @@ let g:ycm_key_invoke_completion = '<C-l>'
 
 " let b:delimitMate_expand_cr = 1
 
+let g:syntastic_always_populate_loc_list = 1
+let g:ycm_always_populate_location_list = 1
+
 let g:syntastic_aggregate_errors = 1
 
 let g:syntastic_mode_map = {
@@ -628,16 +632,16 @@ function ProjectSpecificSetup()
   let l:path = expand('%:p')
   if IsProject(l:path, 'code/anki-addons')
     call UsePython2()   " Anki uses python 2.7.6
+  elseif IsProject(l:path, 'code/vampire')
+      setlocal ts=8
+      setlocal sts=2
+      setlocal sw=2
   " elseif IsProject(l:path, 'code/something_else')
   "   " something else
   " elseif l:path =~ '\V\^/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1'
   "   setlocal ft=cpp
   elseif l:path =~ '\V\.\*libxml2-2.\..\.\+'    " libxml2-2.?.? (mixed tabs and spaces for indentation)
     set ts=8
-  elseif IsProject(l:path, 'Documents/Uni/Verteilte Systeme VO_UE/')
-    " (for all projects in this folder)
-    " let g:syntastic_java_javac_custom_classpath_command = "ant -s build.xml -q src-path | grep echo | cut -f2- -d] | tr -d ' ' | tr ':' '\n'"
-    let g:ctrlp_root_markers =['build.xml']
   endif
 endfunction
 autocmd BufReadPost,BufNewFile * call ProjectSpecificSetup()
