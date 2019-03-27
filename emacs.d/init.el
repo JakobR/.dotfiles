@@ -10,6 +10,9 @@
 ;; collection.  The default is 800 kilobytes.  Measured in bytes.
 (setq gc-cons-threshold (* 500 1000 1000))
 
+;; Verify TLS certificates
+(setq tls-checktrust t)
+(setq gnutls-verify-error t)
 
 (require 'package)
 
@@ -102,15 +105,20 @@
   ; But use sh internally to run commands (no need to load zsh config for every small background task -- but does that even matter if it's not an interactive shell?)
   (setq shell-file-name "/bin/sh"))
 
-; Use latest version of org-mode instead of the bundled one
+;; Use latest version of org-mode instead of the bundled one
 (use-package org
   :ensure org-plus-contrib
   :pin org  ; load from the "org" package archive
+  :after color-theme-solarized
   :config
-  ; org-mac-link is not a separate package but a file contained in org-plus-contrib
+  ;; org-mac-link is not a separate package but a file contained in org-plus-contrib
   (require 'org-mac-link)
   (add-hook 'org-mode-hook (lambda ()
     (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link)))
+  ;; Enable easy-templates (i.e., typing "<s[TAB]" to get a "begin_src" block etc.)
+  ;; New method is `C-C C-,`.
+  ;; Should probably replace it by yasnippets later, see https://github.com/dakra/dmacs/blob/master/etc/yasnippet/snippets/org-mode/source.yasnippet via https://www.reddit.com/r/emacs/comments/ad68zk/get_easytemplates_back_in_orgmode_92/edh1mxt
+  (require 'org-tempo)
   )
 
 (use-package json-mode
@@ -257,6 +265,8 @@
     (add-hook 'evil-org-mode-hook (lambda () (evil-org-set-key-theme)))
     (evil-leader/set-key-for-mode 'org-mode "o" 'org-open-at-point)
     )
+
+  ;; TODO: Check out package https://github.com/hlissner/evil-snipe
   )
 
 (use-package flycheck
@@ -432,6 +442,14 @@
   :after color-theme
   :config
   (load-theme 'solarized t)
+
+  (set-face-attribute 'org-block-begin-line nil
+                      ;; :background "#e8fde4"
+                      :underline "#a7a6aa")
+  (set-face-attribute 'org-block-end-line nil
+                      ;; :background "#e8fde4"
+                      :overline "#a7a6aa"
+                      :underline nil)
   )
 
 (use-package ws-butler
@@ -534,6 +552,9 @@
 ;; Keep track of when TODO item are finished
 (setq org-log-done 'time)
 (setq org-todo-keywords '((sequence "TODO" "|" "DONE" "CANCELLED")))
+
+;; Syntax highlighting inside org BEGIN_SRC blocks
+(setq org-src-fontify-natively t)
 
 ;; The week starts on monday
 (setq calendar-week-start-day 1)
