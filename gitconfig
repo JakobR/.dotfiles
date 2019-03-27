@@ -29,7 +29,7 @@
     co = checkout
     last = log --decorate -1 HEAD
     ld = log --decorate --pretty=oneline --abbrev-commit
-    lg = log --decorate --pretty=oneline --abbrev-commit --graph --all
+    lg = log --decorate --pretty=oneline --abbrev-commit --graph --branches
     d = diff
     ds = diff --cached
     dn = diff --no-index
