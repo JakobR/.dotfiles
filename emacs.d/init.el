@@ -435,11 +435,8 @@
                             (set-face-attribute 'line-number-current-line nil :bold t)
                             (setq-default display-line-numbers 'relative)))
 
-(use-package color-theme
-  :ensure t)
 (use-package color-theme-solarized
   :ensure t
-  :after color-theme
   :config
   (load-theme 'solarized t)
 
