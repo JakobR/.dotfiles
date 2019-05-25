@@ -45,7 +45,7 @@
     process = git-lfs filter-process
     required = true
 [diff]
-    compactionHeuristic = 1
+    colorMoved = dimmed-zebra
 ; [diff "pdf"]
 ;     # Only metadata
 ;     textconv = pdfinfo
