@@ -137,7 +137,10 @@
   :defer t)
 
 (use-package fstar-mode
-  :ensure t)
+  :ensure t
+  :config
+  (setq-default fstar-smt-executable "/opt/z3-4.5.1.1f29cebd4df6-x64-osx-10.11.6/bin/z3")
+  )
 
 ;; Need to set this before evil loads to prevent bad interactions with Proof General, see:
 ;; - https://github.com/ProofGeneral/PG/issues/174
