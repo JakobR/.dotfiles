@@ -1,8 +1,6 @@
 [user]
     name = Jakob Rath
     email = git@jakobrath.eu
-[color]
-    ui = always
 [color "diff"]
     commit = blue bold
     meta = yellow
