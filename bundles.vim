@@ -154,7 +154,7 @@ if !exists('g:vimpager')
 
   Plugin 'rizzatti/dash.vim'
 
-  Plugin 'jceb/vim-orgmode'
+  " Plugin 'jceb/vim-orgmode'
 end
 
 " More interesting bundles to check out:
