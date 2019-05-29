@@ -136,6 +136,9 @@
   :ensure t
   :defer t)
 
+(use-package fstar-mode
+  :ensure t)
+
 ;; Need to set this before evil loads to prevent bad interactions with Proof General, see:
 ;; - https://github.com/ProofGeneral/PG/issues/174
 ;; - https://github.com/syl20bnr/spacemacs/issues/8853
