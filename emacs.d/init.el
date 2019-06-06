@@ -338,7 +338,8 @@
   :ensure t
   :diminish projectile-mode
   :config
-  ;; (setq projectile-enable-caching t) ; apparently caching is not required with projectile-indexing-method set to "alien"? cf. https://emacs.stackexchange.com/a/2169
+  ;; Use indexing method 'hybrid' because this allows post-filtering with a project-specific ".projectile"-file
+  (setq projectile-indexing-method 'hybrid)
   (global-set-key (kbd "M-t") 'projectile-find-file)
   (projectile-global-mode))
 
