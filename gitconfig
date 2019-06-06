@@ -27,6 +27,8 @@
     co = checkout
     last = log --decorate -1 HEAD
     ld = log --decorate --pretty=oneline --abbrev-commit
+    ldd = log '--pretty=format:"%C(auto)[%ai] %h%d %s"'   # like "ld" but with author date
+    lda = log '--pretty=format:"%C(auto)[%<(20,trunc)%an, %ai] %h%d %s"'   # like "ld" but with author name&date
     lg = log --decorate --pretty=oneline --abbrev-commit --graph --branches
     d = diff
     ds = diff --cached
