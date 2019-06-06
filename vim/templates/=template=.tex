@@ -1,9 +1,13 @@
 % vim:ft=tex:
 %
+\RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[12pt]{scrartcl}
+
+\usepackage{lmodern}
 
 \usepackage[T1]{fontenc}    % Determines font encoding of the output. Font packages have to be included before this line.
 \usepackage[utf8]{inputenc} % Determines encoding of the input. All input files have to use UTF8 encoding.
+\usepackage[english]{babel}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -16,6 +20,7 @@
 \usepackage{tabularx}
 % \usepackage{pdfpages}       % to include pages from existing pdf files with \includepdf[pages={1,2}]{./path/to/file.pdf}
 \usepackage{xcolor}
+\usepackage{todonotes}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
@@ -28,6 +33,7 @@
 % This is the provability analogue to \models (note that \vdash is smaller)
 \DeclareRobustCommand\proves{\mathrel{|}\joinrel\mkern-.5mu\mathrel{-}}
 
+\newcommand{\todoi}[1]{\todo[inline]{#1}}
 \newcommand{\limpl}{\rightarrow}
 \newcommand{\slimpl}{{\limpl}}  % symbol version without spacing, see https://tex.stackexchange.com/a/852
 \newcommand{\naf}{{\sim}}
