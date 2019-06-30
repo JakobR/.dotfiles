@@ -55,6 +55,9 @@ fpath+=("${JR_DOTFILES}/zsh/completions")
 if [[ "$OSTYPE" =~ ^darwin ]] then
   # Mac OS X configuration
 
+  # No auto-cleanup when upgrading homebrew formulas
+  export HOMEBREW_NO_INSTALL_CLEANUP=1
+
   # Use MacVim to edit files, and give focus back to iTerm after closing
   export EDITOR="/usr/local/bin/mvim -p --nofork -c ActivateTerminalOnExit"
   export VISUAL="${EDITOR}"
