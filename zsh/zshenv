@@ -48,3 +48,6 @@ if [[ -z "$IN_NIX_SHELL" ]] then
         source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
     fi
 fi
+
+# Path to local TPTP installation, helps provers to find axioms included by problems
+export TPTP=/opt/TPTP
