@@ -3,7 +3,7 @@
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[12pt]{scrartcl}
 
-\usepackage{lmodern}
+\usepackage{lmodern}        % Improved version of the original Computer Modern font
 
 \usepackage[T1]{fontenc}    % Determines font encoding of the output. Font packages have to be included before this line.
 \usepackage[utf8]{inputenc} % Determines encoding of the input. All input files have to use UTF8 encoding.
@@ -12,6 +12,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{stmaryrd}       % For \llbracket and \rrbracket
 \usepackage{listings}
 \usepackage[shortlabels]{enumitem}
 \usepackage[hidelinks]{hyperref}  % optional argument [hidelinks] hides colored boxes around clickable areas
@@ -27,16 +28,21 @@
 
 % \setlist{nolistsep}  % less spacing in itemize/enumerate environments
 
+\theoremstyle{plain}        % italic text
 \newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
+
+\theoremstyle{definition}   % upright text
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
 
 % This is the provability analogue to \models (note that \vdash is smaller)
 \DeclareRobustCommand\proves{\mathrel{|}\joinrel\mkern-.5mu\mathrel{-}}
 
-\newcommand{\todoi}[1]{\todo[inline]{#1}}
-\newcommand{\limpl}{\rightarrow}
-\newcommand{\slimpl}{{\limpl}}  % symbol version without spacing, see https://tex.stackexchange.com/a/852
-\newcommand{\naf}{{\sim}}
+\newcommand{\todoi}[1]{\todo[inline,caption={}]{#1}}    % caption={} allows itemize etc. inside todoi, see https://tex.stackexchange.com/a/54068
+\newcommand{\limpl}{\rightarrow}    % logical implication
+\newcommand{\slimpl}{{\limpl}}      % symbol version without spacing, see https://tex.stackexchange.com/a/852
+\newcommand{\naf}{{\sim}}           % negation as failure, default negation
 \newcommand{\caF}{\mathcal{F}}
 \newcommand{\caM}{\mathcal{M}}
 \newcommand{\caT}{\mathcal{T}}
