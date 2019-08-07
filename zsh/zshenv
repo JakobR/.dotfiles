@@ -34,6 +34,9 @@ if [[ -z "$IN_NIX_SHELL" ]] then
         export VULKAN_SDK=/usr/local/Caskroom/vulkan-sdk/1.1.85.0/macOS
         export VK_ICD_FILENAMES=/usr/local/etc/vulkan/icd.d/MoltenVK_icd.json
         export VK_LAYER_PATH=/usr/local/etc/vulkan/explicit_layer.d
+
+        # See https://stackoverflow.com/a/55344565
+        export SDKROOT="macosx10.14"
     fi
 
     # Haskell-stack
