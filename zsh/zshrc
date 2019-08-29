@@ -134,6 +134,9 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   alias jsonld='$HOME/code/other/jsonld.js/bin/jsonld'
   alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
+  # Newer SQLite from homebrew
+  alias sqlite3="/usr/local/opt/sqlite/bin/sqlite3"
+
   # Open yesterday's or today's journal entry (day changes at 12:00)
   # Can open shift day with ±number as first argument (e.g. "mj -1")
   function mj {
