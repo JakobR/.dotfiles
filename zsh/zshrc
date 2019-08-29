@@ -64,7 +64,7 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   alias mvim="/usr/local/bin/mvim -p"
 
   # stay in console for git commit messages and vimpager
-  export GIT_EDITOR='/usr/local/bin/vim'
+  export GIT_EDITOR='/usr/local/bin/vim +0'
   export VIMPAGER_VIM='/usr/local/bin/vim'
 
   EMACSCLIENT="/usr/local/bin/emacsclient"
