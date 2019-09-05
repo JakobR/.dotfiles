@@ -10,6 +10,8 @@ _m () {
         # Otherwise I sometimes want to open logs with vim.
         _files \
             -F \*.acn \
+            -F \*.acr \
+            -F \*.alg \
             -F \*.aux \
             -F \*.bbl \
             -F \*.blg \
