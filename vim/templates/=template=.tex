@@ -4,6 +4,19 @@
 \documentclass[12pt]{scrartcl}
 
 \usepackage{lmodern}        % Improved version of the original Computer Modern font
+\usepackage{stmaryrd}       % For \llbracket and \rrbracket
+% Define font from package 'stmaryrd' for arbitrary size,
+% see https://tex.stackexchange.com/a/128801
+\DeclareFontFamily{U}{stmry}{}
+\DeclareFontShape{U}{stmry}{m}{n}
+{
+    <-5.5>    stmary5
+    <5.5-6.5> stmary6
+    <6.5-7.5> stmary7
+    <7.5-8.5> stmary8
+    <8.5-9.5> stmary9
+    <9.5->    stmary10
+}{}
 
 \usepackage[T1]{fontenc}    % Determines font encoding of the output. Font packages have to be included before this line.
 \usepackage[utf8]{inputenc} % Determines encoding of the input. All input files have to use UTF8 encoding.
@@ -12,7 +25,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{stmaryrd}       % For \llbracket and \rrbracket
 \usepackage{listings}
 \usepackage[shortlabels]{enumitem}
 \usepackage[hidelinks]{hyperref}  % optional argument [hidelinks] hides colored boxes around clickable areas
