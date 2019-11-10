@@ -158,6 +158,7 @@ fi
 
 
 # vim bundles
+# TODO: Only do this if vim is installed
 echo_msg "Installing vim bundles..."
 vim -u "$JR_DOTFILES/bundles.vim" '+PluginInstall' '+qall'
 
@@ -174,6 +175,9 @@ if [[ "$JR_UPDATE" = "true" ]] then
     # TODO: After updating, we should execute the *new* install script...
   )
 fi
+
+
+# TODO: Install/update Emacs packages? (only if Emacs is installed)
 
 
 # Permissions
