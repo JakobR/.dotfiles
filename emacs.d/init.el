@@ -161,6 +161,10 @@
 
   :config
 
+  (global-set-key "\M-s" 'save-buffer)
+  (global-set-key "\M-c" 'evil-yank)
+  (global-set-key "\M-v" 'evil-paste-after)
+
   (use-package evil-leader
     :ensure t
     :config
