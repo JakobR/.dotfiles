@@ -8,9 +8,45 @@ _m () {
     if [[ -n *.tex(#qN) ]] then
         # The reason for this check is that I only want to ignore the *.log extension in LaTeX directories.
         # Otherwise I sometimes want to open logs with vim.
-        _files -F \*.aux -F \*.bbl -F \*.blg -F \*.dvi -F \*.fdb_latexmk -F \*.fls -F \*.log -F \*.nav -F \*.out -F \*.pdf -F \*.snm -F \*.synctex.gz -F \*.thm -F \*.toc -F \*.vrb -F \*.png
+        _files \
+            -F \*.acn \
+            -F \*.acr \
+            -F \*.alg \
+            -F \*.aux \
+            -F \*.bbl \
+            -F \*.blg \
+            -F \*.fdb_latexmk \
+            -F \*.fls \
+            -F \*.glg \
+            -F \*.glo \
+            -F \*.gls \
+            -F \*.glsdefs \
+            -F \*.idx \
+            -F \*.ilg \
+            -F \*.ind \
+            -F \*.ist \
+            -F \*.loa \
+            -F \*.lof \
+            -F \*.log \
+            -F \*.lot \
+            -F \*.nav \
+            -F \*.out \
+            -F \*.snm \
+            -F \*.synctex.gz \
+            -F \*.thm \
+            -F \*.toc \
+            -F \*.vrb \
+            \
+            -F \*.dvi \
+            -F \*.pdf \
+            -F \*.png \
+            # end
     else
-        _files -F \*.dvi -F \*.pdf
+        _files \
+            -F \*.dvi \
+            -F \*.pdf \
+            -F \*.png \
+            # end
     fi
 }
 

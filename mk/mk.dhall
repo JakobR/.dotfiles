@@ -10,7 +10,7 @@
     let Const = Eval.Const
     let Command = Eval.Command
 
-    in  [ { name = "MAIL", value = Command "git --no-pager config -z user.email | tr -d \"\\000\"" }
+    in  [ { name = "MAIL", value = Command "git --no-pager config user.email" }
         , { name = "LICENSE", value = Const "MIT" }
         ]
 }
