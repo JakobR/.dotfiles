@@ -50,6 +50,11 @@ if [[ -z "$IN_NIX_SHELL" ]] then
     if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]] then
         source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
     fi
+
+    # Local settings
+    if [[ -e "${JR_DOTFILES}/zsh/zshenv.local" ]] then
+        source "${JR_DOTFILES}/zsh/zshenv.local"
+    fi
 fi
 
 # Path to local TPTP installation, helps provers to find axioms included by problems

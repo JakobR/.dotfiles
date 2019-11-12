@@ -218,7 +218,7 @@ hs.hotkey.bind(hyper, 's', focusApp('Firefox'));
 hs.hotkey.bind(hyper, 'f', focusApp('Finder'));
 hs.hotkey.bind(hyper, 'j', focusApp('JEDict'));
 hs.hotkey.bind(hyper, 'x', focusApp('Xcode'));
-hs.hotkey.bind(hyper, 'w', focusApp('Things'));
+hs.hotkey.bind(hyper, 'w', focusApp('2Do'));
 hs.hotkey.bind(hyper, 'g', focusApp('Adobe Acrobat Reader DC'));
 hs.hotkey.bind(hyper, 'd', focusApp('Dash'));
 hs.hotkey.bind(hyper, 'b', focusApp('BibDesk'));

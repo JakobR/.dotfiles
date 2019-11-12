@@ -130,6 +130,7 @@ create_symlink_to_home 'gitignore-global'
 create_symlink_to_home 'ghci'
 create_symlink_to_home 'chktexrc'
 create_symlink_to_home 'latexmkrc'
+create_symlink_to_home 'sqliterc'
 create_symlink_to_home 'inputrc'
 create_symlink_to_home 'gemrc'
 create_symlink_to_home 'Xmodmap'
@@ -157,6 +158,7 @@ fi
 
 
 # vim bundles
+# TODO: Only do this if vim is installed
 echo_msg "Installing vim bundles..."
 vim -u "$JR_DOTFILES/bundles.vim" '+PluginInstall' '+qall'
 
@@ -173,6 +175,9 @@ if [[ "$JR_UPDATE" = "true" ]] then
     # TODO: After updating, we should execute the *new* install script...
   )
 fi
+
+
+# TODO: Install/update Emacs packages? (only if Emacs is installed)
 
 
 # Permissions
