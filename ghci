@@ -14,11 +14,14 @@
 
 import "base" Data.List
 import "base" Data.Maybe
+import "base" Data.Monoid
 import "base" Text.Show.Functions
 
 -- Hoogle commands
 :def hoogle \x -> return $ ":!hoogle        \"" ++ x ++ "\""
 :def doc    \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
+
+:def dash   \x -> return $ ":!/usr/bin/open \"dash://h:" ++ x ++ "\""
 
 :set prompt      "\ESC[1;34m\nλ: \ESC[0m"
 :set prompt-cont "\ESC[1;34m | \ESC[0m"
