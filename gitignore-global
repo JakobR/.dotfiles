@@ -10,6 +10,9 @@ Thumbs.db
 
 /.zsh_history
 
+# Temporary file that sometimes appears during LaTeX compilation
+*.synctex(busy)
+
 # Emacs lockfiles
 .#*
 
