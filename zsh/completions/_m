@@ -31,6 +31,8 @@ _m () {
             -F \*.lot \
             -F \*.nav \
             -F \*.out \
+            -F \*.sfp \
+            -F \*.sfr \
             -F \*.snm \
             -F \*.synctex.gz \
             -F \*.thm \
