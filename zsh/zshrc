@@ -115,6 +115,10 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
       fi
   }
 
+  function dash {
+      /usr/bin/open "dash://$1"
+  }
+
   # Show hidden files in Finder
   # If it doesn't work, try `killall cfprefsd` first (http://apple.stackexchange.com/a/112091)
   alias finder-show-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool TRUE  && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
