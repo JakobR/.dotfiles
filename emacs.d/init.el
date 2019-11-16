@@ -164,6 +164,8 @@
   (global-set-key "\M-s" 'save-buffer)
   (global-set-key "\M-c" 'evil-yank)
   (global-set-key "\M-v" 'evil-paste-after)
+  (global-set-key "\M-w" 'evil-quit)
+  (global-set-key "\M-d" 'split-window-right)
 
   (use-package evil-leader
     :ensure t
