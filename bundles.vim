@@ -130,12 +130,12 @@ if !exists('g:vimpager')
   " Plugin 'Yggdroot/indentLine'
   " Plugin 'nathanaelkane/vim-indent-guides'
 
+
+  " Plugin 'neoclide/coc.nvim', {'branch': 'release'}    " TODO: option 'branch' doesn't work with vundle, maybe switch to vim-plug
+
   " Installation guide: https://github.com/Valloric/YouCompleteMe
   if has('gui_macvim')
     Plugin 'Valloric/YouCompleteMe'
-    " possible alternative:
-    " Plugin 'Shougo/neocomplete'
-
     " Disable syntastic for C++ if we have YCM
     " (TODO: this should be in vimrc, with a check whether YCM is actually loaded and working)
     let g:syntastic_cpp_checkers = []

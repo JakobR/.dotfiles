@@ -63,8 +63,11 @@ set tabpagemax=50
 set mouse=a             " use mouse
 set ttimeout
 set ttimeoutlen=50
-set updatetime=100
+set updatetime=200
 set nofoldenable        " folds should be open by default
+
+set hidden              " apparently coc.nvim wants this
+set signcolumn=yes
 
 " use system clipboard as default register
 set clipboard=unnamed,unnamedplus
@@ -94,14 +97,8 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 set cpo+=J
 
 " Use <C-L> to clear the highlighting of :set hlsearch
-" and of :GhcModType and :HdevtoolsType
 function ClearOtherHighlighting()
-  if exists(':GhcModTypeClear')
-    GhcModTypeClear
-  endif
-  if exists(':HdevtoolsClear')
-    HdevtoolsClear
-  endif
+    " nothing to do here currently
 endfunction
 " <C-L> is already used to redraw the screen, keep that functionality by
 " executing the previous <C-L> at the end.
@@ -461,12 +458,10 @@ let g:mta_filetypes = {
 " Use MatchTag highlighting group for matching tags (and not MatchParen)
 let g:mta_use_matchparen_group = 0
 
-" Disable messages for completion menu
-" see patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
-" TODO: Activate as soon as this patch is pulled into main vim
-" if v:version > 704 || (v:version == 704 && has('patch???'))
-"   set shortmess+=c
-" endif
+" Disable messages for completion menu, see https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
+if v:version > 704 || (v:version == 704 && has('patch314'))
+    set shortmess+=c
+endif
 
 
 " " make YCM compatible with UltiSnips (using supertab)
@@ -481,6 +476,74 @@ let g:UltiSnipsExpandTrigger = "<C-j>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
+" Configure coc.nvim only if it has been loaded
+if exists('g:did_coc_loaded')
+    " use <tab> to trigger completion and navigate to the next complete item
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    inoremap <silent><expr> <Tab>
+                \ pumvisible() ? "\<C-n>" :
+                \ <SID>check_back_space() ? "\<Tab>" :
+                \ coc#refresh()
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    " " Use <Tab> and <S-Tab> to navigate the completion list
+    " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+    " Use <c-space> to trigger completion.
+    " inoremap <silent><expr> <c-space> coc#refresh()
+
+    " TODO: I might want to use <C-j> for that (like ultisnips)
+    " " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+    " " Coc only does snippet and additional edit on confirm.
+    " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    " " Or use `complete_info` if your vim support it, like:
+    " " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+    " Use `[g` and `]g` to navigate diagnostics
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+    " Remap keys for gotos
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+
+    " Use K to show documentation in preview window
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+    function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        else
+            call CocAction('doHover')
+        endif
+    endfunction
+
+    " autocmd CursorHold * nested exe "silent! call CocAction('doHover')"
+    " autocmd CursorHold * nested exe "call CocAction('doHover')"
+
+    " Highlight symbol under cursor on CursorHold
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+
+    " Remap for rename current word
+    nmap <leader>rn <Plug>(coc-rename)
+
+    " Remap for format selected region
+    xmap <leader>f  <Plug>(coc-format-selected)
+    nmap <leader>f  <Plug>(coc-format-selected)
+
+    " Create mappings for function text object, requires document symbols feature of languageserver.
+    xmap if <Plug>(coc-funcobj-i)
+    xmap af <Plug>(coc-funcobj-a)
+    omap if <Plug>(coc-funcobj-i)
+    omap af <Plug>(coc-funcobj-a)
+endif
 
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
@@ -512,11 +575,7 @@ let g:syntastic_mode_map = {
     \ "passive_filetypes": ["java", "tex", "haskell"] }
 function RunSyntasticAndJumpToError()
     if &ft == 'haskell'
-        " Run :GhcModCheck for haskell
-        write
-        GhcModCheck
-        Errors
-        lclose
+        echoerr 'TODO: implement RunSyntasticAndJumpToError for ft=haskell'
     else
         " Run Syntastic for everything else
         if exists('b:syntastic_mode')
@@ -578,13 +637,10 @@ function ShowType()
             echoerr ":YcmCompleter is not available."
         endif
     elseif &ft == 'haskell'
-        " Haskell type information via ghc-mod or hdevtools
-        if exists(':GhcModType')
-            GhcModType
-        elseif exists(':HdevtoolsType')
-            HdevtoolsType
+        if exists('g:did_coc_loaded')
+            call CocAction('doHover')
         else
-            echoerr "Neither :GhcModType nor :HdevtoolsType is available."
+            echoerr "Coc not loaded"
         endif
     else
         echoerr "No type information for filetype " . &filetype
