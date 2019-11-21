@@ -432,11 +432,11 @@ endif
 let g:gitgutter_eager = 0
 " let g:gitgutter_max_signs = 500  " default value is 500
 " also allow ]h and [h for navigation
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 " hunk-add and hunk-revert
-nmap <Leader>ha <Plug>GitGutterStageHunk
-nmap <Leader>hr <Plug>GitGutterUndoHunk
+nmap <Leader>ha <Plug>(GitGutterStageHunk)
+nmap <Leader>hr <Plug>(GitGutterUndoHunk)
 
 " Use <Leader>s to search in project
 nnoremap <Leader>s :Ack<Space>
