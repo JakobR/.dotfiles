@@ -83,6 +83,15 @@ if has("gui_macvim") || has('gui_vimr')
   noremap  <D-b> :Make<CR>
   inoremap <D-b> <C-O>:Make<CR>
 
+  " anoremenu TouchBar.-Sep-             <Nop>
+  " anoremenu TouchBar.UndoTree          :UndotreeToggle<CR>
+  " anoremenu TouchBar.-Sep-             <Nop>
+  " anoremenu TouchBar.Refresh\ CtrlP    :CtrlPClearCache<CR>
+  amenu TouchBar.-flexspace1-  :
+  amenu TouchBar.F5            <F5>
+  amenu TouchBar.-space1-      :
+  amenu TouchBar.-flexspace2-  :
+
 elseif has('unix')   " This returns 1 on OSX as well, so be sure to keep it in the else block
     " See https://www.reddit.com/r/vim/comments/5oghfj/how_to_gracefully_degrade_font/
     set guifont=Ubuntu\ Mono\ 12,Monospace\ 12
