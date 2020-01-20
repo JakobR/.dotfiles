@@ -119,6 +119,12 @@
   ;; New method is `C-C C-,`.
   ;; Should probably replace it by yasnippets later, see https://github.com/dakra/dmacs/blob/master/etc/yasnippet/snippets/org-mode/source.yasnippet via https://www.reddit.com/r/emacs/comments/ad68zk/get_easytemplates_back_in_orgmode_92/edh1mxt
   (require 'org-tempo)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (shell . t)
+     (sqlite . t)
+     ))
   )
 
 (use-package json-mode
