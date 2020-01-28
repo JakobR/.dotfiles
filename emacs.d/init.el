@@ -111,6 +111,11 @@
   :pin org  ; load from the "org" package archive
   :after color-theme-solarized
   :config
+
+  ;; some stuff from https://zzamboni.org/post/beautifying-org-mode-in-emacs/
+
+  (setq org-hide-emphasis-markers t)
+
   ;; org-mac-link is not a separate package but a file contained in org-plus-contrib
   (require 'org-mac-link)
   (add-hook 'org-mode-hook (lambda ()
@@ -125,6 +130,15 @@
      (shell . t)
      (sqlite . t)
      ))
+
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
   )
 
 (use-package json-mode
@@ -452,7 +466,7 @@
                             (set-face-background 'line-number-current-line "#fdf6e4")
                             (set-face-foreground 'line-number-current-line "#a52a2a")
                             (set-face-attribute 'line-number-current-line nil :bold t)
-                            (setq-default display-line-numbers 'relative)))
+                            (setq display-line-numbers 'relative)))
 
 (use-package color-theme-solarized
   :ensure t
@@ -467,6 +481,37 @@
                       :overline "#a7a6aa"
                       :underline nil)
   )
+
+(set-frame-font "Menlo 14" nil t)
+(custom-theme-set-faces
+ 'user
+ '(org-level-8 ((t (:weight bold))))
+ '(org-level-7 ((t (:weight bold))))
+ '(org-level-6 ((t (:weight bold))))
+ '(org-level-5 ((t (:weight bold))))
+ '(org-level-4 ((t (:weight bold :height 1.0))))
+ '(org-level-3 ((t (:weight bold :height 1.0))))
+ '(org-level-2 ((t (:weight bold :height 1.05))))
+ '(org-level-1 ((t (:weight bold :height 1.1))))
+ '(org-document-title ((t (:weight bold :height 1.2))))
+ '(fixed-pitch ((t (:family "Menlo" :height 1.0 :width normal :weight normal))))
+ '(variable-pitch ((t (:family "Source Sans Pro" :height 180 :width normal :weight normal))))
+ )
+(set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-code  nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-table nil :inherit 'fixed-pitch)
+(add-hook 'text-mode-hook 'variable-pitch-mode)
+(add-hook 'text-mode-hook 'visual-line-mode)
+; (set-face-attribute 'fixed-pitch nil
+;                     :family "Menlo"
+;                     :height 1.0
+;                     :width 'normal
+;                     :weight 'normal)
+; (set-face-attribute 'variable-pitch nil
+;                     :family "Source Sans Pro"
+;                     :height 180
+;                     :width 'normal
+;                     :weight 'normal)
 
 (use-package ws-butler
   :ensure t
@@ -484,7 +529,6 @@
   :config
   (load-file "~/org/.config/jr-org-caldav-config.el"))
 
-(set-frame-font "Menlo 14" nil t)
 (setq-default frame-title-format
               '(:eval
                 (format "%s %s%s - Emacs"
