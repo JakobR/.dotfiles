@@ -2,6 +2,7 @@
 
 :seti -XDataKinds
 :seti -XMagicHash
+:seti -XNumericUnderscores
 :seti -XOverloadedStrings
 :seti -XPackageImports
 :seti -XQuasiQuotes
@@ -12,10 +13,20 @@
 :seti -Wno-type-defaults
 :set -Wno-unused-top-binds
 
+import "base" Data.Foldable
 import "base" Data.List
 import "base" Data.Maybe
 import "base" Data.Monoid
 import "base" Text.Show.Functions
+
+import           "bytestring" Data.ByteString (ByteString)
+import qualified "bytestring" Data.ByteString as B
+import qualified "bytestring" Data.ByteString.Lazy as BL
+
+import           "text" Data.Text (Text)
+import qualified "text" Data.Text as T
+import qualified "text" Data.Text.Lazy as TL
+import qualified "text" Data.Text.IO as TIO
 
 -- Hoogle commands
 :def hoogle \x -> return $ ":!hoogle        \"" ++ x ++ "\""
