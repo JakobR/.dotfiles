@@ -39,12 +39,16 @@ if [[ -z "$IN_NIX_SHELL" ]] then
         export SDKROOT="macosx10.14"
     fi
 
-    # Haskell-stack
-    export PATH=$HOME/.local/bin:$PATH
-
     # Go
     export GOPATH=$HOME/.go
     export PATH=$GOPATH/bin:$PATH
+
+    # Rust
+    export CARGO_TARGET_DIR=".cargo-target/"
+    export PATH=$HOME/.cargo/bin:$PATH
+
+    # Haskell-stack
+    export PATH=$HOME/.local/bin:$PATH
 
     # Nix
     if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]] then
