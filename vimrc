@@ -72,6 +72,12 @@ set signcolumn=yes
 " use system clipboard as default register
 set clipboard=unnamed,unnamedplus
 
+if !exists('g:vimpager')
+    " Use <Space> as <Leader>
+    " See http://superuser.com/a/693644
+    map <Space> <Leader>
+endif
+
 function s:AddToPath(dir)
   if isdirectory(a:dir)
     let &path .= ',' . escape(a:dir, ' ')
@@ -165,6 +171,22 @@ function OpenUrlUnderCursor()
 endfunction
 nmap <leader>o :call OpenUrlUnderCursor()<CR>
 
+" Close all hidden buffers
+" see https://stackoverflow.com/a/30101152
+" TODO doesn't seem to work as-is, fix it!
+function! DeleteHiddenBuffers()
+  let tpbl=[]
+  let closed = 0
+  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    if getbufvar(buf, '&mod') == 0
+      silent execute 'bwipeout' buf
+      let closed += 1
+    endif
+  endfor
+  echo "Closed ".closed." hidden buffers"
+endfunction
+
 " Functions to enable/disable wrapping
 function EnableWrap()
   if !&wrap
@@ -206,12 +228,6 @@ function ToggleWrap()
     call EnableWrap()
   endif
 endfunction
-
-if !exists('g:vimpager')
-    " Use <Space> as <Leader>
-    " See http://superuser.com/a/693644
-    map <Space> <Leader>
-endif
 
 " Toggle wrapping with <Leader>w
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
