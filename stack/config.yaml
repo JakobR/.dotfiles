@@ -2,6 +2,6 @@ templates:
   params:
     author-name: Jakob Rath
     author-email: git@jakobrath.eu
-    copyright: 'Copyright: (c) 2018 Jakob Rath'
+    copyright: 'Copyright: (c) 2020 Jakob Rath'
     github-username: JakobR
 # allow-newer: true
