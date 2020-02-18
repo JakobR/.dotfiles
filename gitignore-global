@@ -10,6 +10,8 @@ Thumbs.db
 
 /.zsh_history
 
+.cargo-target/
+
 # Temporary file that sometimes appears during LaTeX compilation
 *.synctex(busy)
 
