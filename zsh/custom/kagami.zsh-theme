@@ -81,6 +81,7 @@ function prompt_kagami_setup () {
   # Put it all together!
   PROMPT="%B${p_nix_shell}${c_gray}[$p_user_host$p_dir$c_gray]$p_git$p_git_stash $p_status$p_char%b%f%k"
 
+  RPROMPT="${c_gray}%*"
 
   # Highlighting
   ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=white"
