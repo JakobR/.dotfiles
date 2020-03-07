@@ -19,10 +19,12 @@ import "base" Data.Maybe
 import "base" Data.Monoid
 import "base" Text.Show.Functions
 
+:set -package bytestring
 import           "bytestring" Data.ByteString (ByteString)
 import qualified "bytestring" Data.ByteString as B
 import qualified "bytestring" Data.ByteString.Lazy as BL
 
+:set -package text
 import           "text" Data.Text (Text)
 import qualified "text" Data.Text as T
 import qualified "text" Data.Text.Lazy as TL
