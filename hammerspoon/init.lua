@@ -252,7 +252,14 @@ hs.hotkey.bind(hyper, 'r', focusApp('Emacs'));
 
 local function setWindowFrame(screenIndex, frameTransform)
     return modifyFrame(function(win, f, current_screen, max)
-        local screen = hs.screen.allScreens()[screenIndex]
+        local screens = hs.screen.allScreens()
+        -- If I have three screens I'm using the laptop at my home desk, where 1=primary, 2=builtin, 3=secondary.
+        -- Since I don't really use the built-in screen, skip it here.
+        -- (TODO: replace this ugly hack with checks of the screen names/UUIDs?)
+        if #screens == 3 and screenIndex == 2 then
+            screenIndex = 3
+        end
+        local screen = screens[screenIndex]
         if screen then
             local frame = screen:frame()
             return frameTransform(frame)
