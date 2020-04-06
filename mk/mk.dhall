@@ -11,6 +11,7 @@
     let Command = Eval.Command
 
     in  [ { name = "MAIL", value = Command "git --no-pager config user.email" }
-        , { name = "LICENSE", value = Const "MIT" }
+        , { name = "USER", value = Command "git --no-pager config user.name" }
+        , { name = "LICENSE", value = Command "${env:JR_DOTFILES as Text}/mk/license.zsh" }
         ]
 }
