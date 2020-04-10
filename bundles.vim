@@ -46,6 +46,8 @@ Plugin 'tikhomirov/vim-glsl'
 Plugin 'justinmk/vim-sneak'
 Plugin 'vmchale/dhall-vim'
 Plugin 'mgrabovsky/vim-xverif'
+Plugin 'ron-rs/ron.vim'
+Plugin 'rust-lang/rust.vim'
 
 Plugin 'LnL7/vim-nix'
 " Plugin 'MarcWeber/vim-addon-nix'
@@ -132,6 +134,7 @@ if !exists('g:vimpager')
 
 
   " Plugin 'neoclide/coc.nvim', {'branch': 'release'}    " TODO: option 'branch' doesn't work with vundle, maybe switch to vim-plug
+  " TODO try coc-rust-analyzer
 
   " Installation guide: https://github.com/Valloric/YouCompleteMe
   if has('gui_macvim')

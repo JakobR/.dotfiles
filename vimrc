@@ -589,7 +589,7 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "active_filetypes": [],
-    \ "passive_filetypes": ["java", "tex", "haskell"] }
+    \ "passive_filetypes": ["java", "tex", "haskell", "rust"] }
 function RunSyntasticAndJumpToError()
     if &ft == 'haskell'
         echoerr 'TODO: implement RunSyntasticAndJumpToError for ft=haskell'
