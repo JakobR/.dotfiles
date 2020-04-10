@@ -188,6 +188,12 @@ elif [[ "$OSTYPE" =~ ^linux ]] then
   fi
 fi
 
+
+# Fix GPG (it needs to know where to display the passphrase dialog)
+# See also https://www.gnupg.org/(it)/documentation/manuals/gnupg/Common-Problems.html
+export GPG_TTY="$(tty)"
+
+
 function o {
     if [[ -z "${@}" ]] then
         "${JR_OPEN}" .
