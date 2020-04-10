@@ -36,7 +36,9 @@ if [[ -z "$IN_NIX_SHELL" ]] then
         export VK_LAYER_PATH=/usr/local/etc/vulkan/explicit_layer.d
 
         # See https://stackoverflow.com/a/55344565
-        export SDKROOT="macosx10.14"
+        # export SDKROOT="macosx10.14"
+        # export SDKROOT="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+        # This might only be necessary on 10.13.x for me. If yes, add a version check (using command `sw_vers`?).
     fi
 
     # Go
