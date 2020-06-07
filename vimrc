@@ -666,7 +666,7 @@ endfunction
 nnoremap <Leader>t :call ShowType()<CR>
 
 " TODO: If GoTo doesn't work, that means YCM is currently compiling your file. Consider using GoToImprecise to not re-trigger compilation.
-autocmd FileType c,cpp nnoremap <buffer> <C-]> :YcmCompleter GoTo<CR>
+autocmd FileType c,cpp,rust nnoremap <buffer> <C-]> :YcmCompleter GoTo<CR>
 
 
 augroup Templating
