@@ -502,6 +502,7 @@
 (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
 (add-hook 'text-mode-hook 'variable-pitch-mode)
 (add-hook 'text-mode-hook 'visual-line-mode)
+(setq org-adapt-indentation nil)
 ; (set-face-attribute 'fixed-pitch nil
 ;                     :family "Menlo"
 ;                     :height 1.0
