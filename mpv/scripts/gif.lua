@@ -36,9 +36,11 @@ Installation
 --]=]
 
 -- The filters to pass into ffmpeg's -vf option.
--- filters="fps=24,scale=320:-1:flags=lanczos"
--- filters="fps=15,scale=540:-1:flags=lanczos"
-filters="fps=10,scale=320:-1:flags=lanczos"
+-- gif_filters="fps=24,scale=320:-1:flags=lanczos"
+-- gif_filters="fps=15,scale=540:-1:flags=lanczos"
+gif_filters="fps=10,scale=320:-1:flags=lanczos"
+fakegif_filters="scale=1280:-1:flags=lanczos"
+-- video_filters=""
 
 local msg = require 'mp.msg'
 
@@ -132,7 +134,8 @@ function export_loop(convert_to_gif)
 
     local output_ext
     if convert_to_gif then
-        output_ext = "gif"
+        output_ext = "mp4"
+        -- output_ext = "gif"
     else
         output_ext = fileext(input_file)
     end
@@ -145,10 +148,27 @@ function export_loop(convert_to_gif)
     end
 
     if convert_to_gif then
-        export_gif(t1, d, input_file, output_file)
+        export_fakegif(t1, d, input_file, output_file)
     else
         export_video(t1, d, input_file, output_file)
     end
+end
+
+-- NOTE: we don't really want *.gif format as it's very inefficient.
+-- This command actually creates a "highly compatible *.mp4" video which should serve the same purpose.
+function export_fakegif(position, duration, input_file, output_file)
+    mp.osd_message(string.format("Exporting as mp4-FakeGIF (%s, duration %s)...", position, duration))
+
+    -- Note: Using -an to remove audio
+    -- Maybe check out this command line:
+    --      ffmpeg -i <input> -c:v libx264 -crf 23 -profile:v baseline -level 3.0 -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -an <output.mp4>
+    -- from https://www.reddit.com/r/Telegram/comments/948hs7/q_how_do_i_get_telegram_to_render_a_clip_as_gif
+    cmd = string.format("ffmpeg -v warning -ss %s -i %s -t %s -vf %s -an -y %s", position, shellescape(input_file), duration, shellescape(fakegif_filters), shellescape(output_file))
+    msg.debug(cmd)
+    os.execute(cmd)
+
+    msg.info("Exported to " .. output_file)
+    mp.osd_message("Exported to " .. output_file)
 end
 
 function export_gif(position, duration, input_file, output_file)
@@ -157,14 +177,14 @@ function export_gif(position, duration, input_file, output_file)
     local palette_file = tmpfile() .. ".png"
 
     -- Create palette
-    cmd = string.format("ffmpeg -v warning -ss %s -t %s -i %s -vf %s -y %s", position, duration, shellescape(input_file), shellescape(filters .. ",palettegen"), shellescape(palette_file))
+    cmd = string.format("ffmpeg -v warning -ss %s -t %s -i %s -vf %s -y %s", position, duration, shellescape(input_file), shellescape(gif_filters .. ",palettegen"), shellescape(palette_file))
     msg.debug(cmd)
     os.execute(cmd)
     -- TODO: Use mp.command (with "subprocess"?) instead of os.execute. Should be able to save the manual escaping
     -- TODO: Extract command-running into a function
 
     -- Create actual GIF
-    cmd = string.format("ffmpeg -v warning -ss %s -t %s -i %s -i %s -lavfi %s -y %s", position, duration, shellescape(input_file), shellescape(palette_file), shellescape(filters .. " [x]; [x][1:v] paletteuse"), shellescape(output_file))
+    cmd = string.format("ffmpeg -v warning -ss %s -t %s -i %s -i %s -lavfi %s -y %s", position, duration, shellescape(input_file), shellescape(palette_file), shellescape(gif_filters .. " [x]; [x][1:v] paletteuse"), shellescape(output_file))
     msg.debug(cmd)
     os.execute(cmd)
     os.remove(palette_file)
@@ -176,7 +196,8 @@ end
 function export_video(position, duration, input_file, output_file)
     mp.osd_message(string.format("Exporting (%s, duration %s)...", position, duration))
 
-    cmd = string.format("ffmpeg -v warning -ss %s -i %s -t %s -vf %s -y %s", position, shellescape(input_file), duration, shellescape(filters), shellescape(output_file))
+    -- cmd = string.format("ffmpeg -v warning -ss %s -i %s -t %s -vf %s -an -y %s", position, shellescape(input_file), duration, shellescape(video_filters), shellescape(output_file))
+    cmd = string.format("ffmpeg -v warning -ss %s -i %s -t %s -y %s", position, shellescape(input_file), duration, shellescape(output_file))
     msg.debug(cmd)
     os.execute(cmd)
 
