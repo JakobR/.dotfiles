@@ -48,6 +48,7 @@ Plugin 'vmchale/dhall-vim'
 Plugin 'mgrabovsky/vim-xverif'
 Plugin 'ron-rs/ron.vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'martinlroth/vim-acpi-asl'
 
 Plugin 'LnL7/vim-nix'
 " Plugin 'MarcWeber/vim-addon-nix'
