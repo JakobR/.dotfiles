@@ -60,6 +60,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 
 if !exists('g:vimpager')
   " Don't need these plugins in vimpager
+
   Plugin 'JakobR/securemodelines'
   Plugin 'gmarik/sudo-gui.vim'
 
@@ -67,6 +68,7 @@ if !exists('g:vimpager')
   Plugin 'gregsexton/gitv'
   Plugin 'airblade/vim-gitgutter'
   " alternative to gitgutter: https://github.com/mhinz/vim-signify
+  Plugin 'junkblocker/git-time-lapse'
 
   Plugin 'tpope/vim-repeat'
   Plugin 'tpope/vim-surround'
