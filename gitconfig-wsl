@@ -1,0 +1,12 @@
+; NOTE:
+; To load this file, add the following to "~/.gitconfig-local":
+; [include]
+;     path = ~/.dotfiles/gitconfig-wsl
+
+[credential]
+    helper = /mnt/c/Program\\ Files/Git/mingw64/libexec/git-core/git-credential-manager.exe
+
+[core]
+    pager = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -SF
+
+; vim: ft=gitconfig
