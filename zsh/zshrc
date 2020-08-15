@@ -21,8 +21,13 @@ disable r
 # "log" is the new way to access the syslog in OSX
 disable log
 
-# set locale explicitly
-export LC_ALL="en_GB.UTF-8"
+# Set language/locale
+# See https://stackoverflow.com/a/30479702
+export LANG="en_GB.UTF-8"
+export LC_NUMERIC="de_AT.UTF-8"
+export LC_TIME="de_AT.UTF-8"
+export LC_MONETARY="de_AT.UTF-8"
+export LC_MEASUREMENT="de_AT.UTF-8"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
