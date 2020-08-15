@@ -185,11 +185,56 @@ elif [[ "$OSTYPE" =~ ^linux ]] then
   #########
   # NixOS #
   #########
-  # Clear right-side prompt
-  RPS1=
+  # # Clear right-side prompt
+  # RPS1=
   # Terminfo
   if [[ "$TERM_PROGRAM" == "iTerm.app" ]] then
       TERM=iTerm2.app
+  fi
+
+  ##########
+  # Ubuntu #
+  ##########
+  if [[ "$(lsb_release -s -i)" = "Ubuntu" ]] then
+      alias fd=fdfind
+  fi
+
+  ###############################
+  # Windows Subsystem for Linux #
+  ###############################
+  if [[ -v WSL_DISTRO_NAME ]] then
+
+      if [[ "$PWD" == "/mnt/c/Windows/System32" ]] then
+          cd ~
+      fi
+
+      # Disable C-s handling by the terminal
+      # (C-s sends signal XOFF to stop output, C-q sends XON to resume)
+      # See https://unix.stackexchange.com/a/72092
+      stty -ixon
+
+      alias explorer="/mnt/c/Windows/explorer.exe"
+
+      function o {
+          local path
+          if (( $# == 0 )) then
+              path="$PWD"
+          elif (( $# == 1 )) then
+              path="$1"
+          else
+              echo "Error: I don't know what to do with multiple arguments :("
+              return 2
+          fi
+          /mnt/c/Windows/explorer.exe "$(/usr/bin/wslpath -w "$path")"
+      }
+
+      # From https://github.com/rupor-github/wsl-ssh-agent#wsl-2-compatibility
+      export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+      ss -a | grep -q "$SSH_AUTH_SOCK"
+      if [[ $? -ne 0 ]] then
+          rm -f "$SSH_AUTH_SOCK"
+          ( setsid socat UNIX-LISTEN:"$SSH_AUTH_SOCK",fork EXEC:"$HOME/winhome/.wsl/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork & ) >/dev/null 2>&1
+      fi
   fi
 fi
 
@@ -199,13 +244,16 @@ fi
 export GPG_TTY="$(tty)"
 
 
-function o {
-    if [[ -z "${@}" ]] then
-        "${JR_OPEN}" .
-    else
-        "${JR_OPEN}" "${@}"
-    fi
-}
+# Define function "o" if not yet defined
+if ! typeset -f o > /dev/null; then
+    function o {
+        if [[ -z "${@}" ]] then
+            "${JR_OPEN}" .
+        else
+            "${JR_OPEN}" "${@}"
+        fi
+    }
+fi
 
 function m_cmd {
     gvim -g "${@}"
