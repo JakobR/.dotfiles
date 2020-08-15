@@ -90,6 +90,22 @@ call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDef
 call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/6.0/include')
 call s:AddToPath('/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include')
 
+" Save with C-s in terminal
+" Note: this requires `stty -ixon`, see https://unix.stackexchange.com/a/59772
+function Save()
+    if &modified
+        if empty(bufname('%'))
+            " this doesn't seem to work, maybe a problem with some other part of my config
+            browse confirm write
+        else
+            confirm write
+        endif
+    endif
+endfunction
+nnoremap <silent> <C-s> :call Save()<CR>
+inoremap <silent> <C-s> <C-o>:call Save()<CR>
+vnoremap <silent> <C-s> <Esc>:call Save()<CR>gv
+
 " Set filetype for C++ headers without extension (like <iostream>)
 " Standard library headers all seem to have a comment "// -*- C++ -*-" in the
 " first line.
