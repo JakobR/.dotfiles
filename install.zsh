@@ -115,6 +115,7 @@ echo_msg "Symlinking dotfiles..."
 create_symlink_to_home 'zsh/zshenv'
 create_symlink_to_home 'zsh/zprofile'
 create_symlink_to_home 'zsh/zshrc'
+create_symlink_to_home 'zsh/zlogin'
 create_symlink_to_home 'zsh/zlogout'
 create_symlink_to_home 'tmux.conf'
 create_symlink_to_home 'emacs.d'
