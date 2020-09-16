@@ -5,3 +5,6 @@ templates:
     copyright: 'Copyright: (c) 2020 Jakob Rath'
     github-username: JakobR
 # allow-newer: true
+
+ghc-options:
+    "$everything": -haddock
