@@ -204,6 +204,9 @@ elif [[ "$OSTYPE" =~ ^linux ]] then
   ###############################
   if [[ -v WSL_DISTRO_NAME ]] then
 
+      if [[ "$PWD" == "/mnt/c/Windows" ]] then
+          cd ~
+      fi
       if [[ "$PWD" == "/mnt/c/Windows/System32" ]] then
           cd ~
       fi
