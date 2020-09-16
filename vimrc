@@ -687,7 +687,7 @@ autocmd FileType c,cpp,rust nnoremap <buffer> <C-]> :YcmCompleter GoTo<CR>
 
 augroup Templating
     autocmd!
-    autocmd BufNewFile * call LoadMkTemplate()
+    autocmd BufNewFile * silent! call LoadMkTemplate()
 augroup END
 
 function LoadMkTemplate()
