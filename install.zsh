@@ -126,7 +126,6 @@ create_symlink_to_home 'gvimrc'
 create_symlink_to_home 'ackrc'
 create_symlink_to_home 'gdbinit'
 create_symlink_to_home 'gitconfig'
-create_symlink_to_home 'gitconfig-osx'
 create_symlink_to_home 'gitattributes-global'
 create_symlink_to_home 'gitignore-global'
 create_symlink_to_home 'ghci'
@@ -153,11 +152,16 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   echo_msg "Symlinking OS X specific files..."
   create_symlink_to_home 'xvimrc'
   create_symlink_to_home 'hammerspoon'
+  create_symlink_to_home 'gitconfig-osx'
 
-  echo_msg "Running OS X configuration script..."
+  # echo_msg "Running OS X configuration script..."
   # "$JR_DOTFILES"/osx.sh
 fi
 
+if [[ "$OSTYPE" =~ ^linux && -v WSL_DISTRO_NAME ]] then
+  # Windows Subsystem for Linux
+  create_symlink_to_home 'gitconfig-wsl'
+fi
 
 # vim bundles
 # TODO: Only do this if vim is installed
