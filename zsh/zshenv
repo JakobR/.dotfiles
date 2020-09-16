@@ -49,8 +49,12 @@ if [[ -z "$IN_NIX_SHELL" ]] then
     export CARGO_TARGET_DIR=".cargo-target/"
     export PATH=$HOME/.cargo/bin:$PATH
 
-    # Haskell-stack
-    export PATH=$HOME/.local/bin:$PATH
+    # Haskell
+    export PATH="$HOME/.local/bin:$PATH"
+    export PATH="$HOME/.cabal/bin:$PATH"
+    if [[ -d "$HOME/.ghcup/bin" ]] then
+        export PATH="$HOME/.ghcup/bin:$PATH"
+    fi
 
     # Nix
     if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]] then
