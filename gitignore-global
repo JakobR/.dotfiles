@@ -10,6 +10,7 @@ Thumbs.db
 
 /.zsh_history
 
+/.stack-work/
 .cargo-target/
 
 # Temporary file that sometimes appears during LaTeX compilation
