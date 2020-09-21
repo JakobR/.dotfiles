@@ -600,6 +600,16 @@ let g:ycm_key_invoke_completion = '<C-l>'
 let g:syntastic_always_populate_loc_list = 1
 let g:ycm_always_populate_location_list = 1
 
+let g:ycm_language_server =
+\ [
+\   {
+\     'name': 'rust',
+\     'cmdline': ['rust-analyzer'],
+\     'filetypes': ['rust'],
+\     'project_root_files': ['Cargo.toml']
+\   }
+\ ]
+
 let g:syntastic_aggregate_errors = 1
 
 let g:syntastic_mode_map = {
