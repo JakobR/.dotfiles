@@ -2,40 +2,17 @@
 
 ;;; Commentary:
 
+;; To upgrade packages:
+;;   M-x package-refresh-contents
+;;   M-x list-packages U x
+
 ;;; Code:
-
-
 
 ;; Make startup faster by reducing the frequency of garbage
 ;; collection.  The default is 800 kilobytes.  Measured in bytes.
-(setq gc-cons-threshold (* 500 1000 1000))
+(setq gc-cons-threshold (* 512 1024 1024))
 
-;; Verify TLS certificates
-(setq tls-checktrust t)
-(setq gnutls-verify-error t)
-
-(require 'package)
-
-; To upgrade packages:
-;   M-x package-refresh-contents
-;   M-x list-packages U x
-
-(setq package-archives
-      '(("melpa-stable" . "https://stable.melpa.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")
-        ("gnu" . "https://elpa.gnu.org/packages/")
-        ("org" . "https://orgmode.org/elpa/")))
-
-(setq package-enable-at-startup nil)
-(package-initialize)
-; (setq quelpa-update-melpa-p nil)
-; (unless (require 'quelpa nil t)
-;   (with-temp-buffer
-;     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-;     (eval-buffer)))
-
-
-;; From https://blog.d46.us/advanced-emacs-startup/
+;; Display startup statistics, from https://blog.d46.us/advanced-emacs-startup/
 ;; Use a hook so the message doesn't get clobbered by other messages.
 (add-hook 'emacs-startup-hook
           (lambda ()
@@ -45,18 +22,33 @@
                               (time-subtract after-init-time before-init-time)))
                      gcs-done)))
 
-;; install use-package and the quelpa handler
+;; Verify TLS certificates
+(require 'tls)
+(setq tls-checktrust t)
+(setq gnutls-verify-error t)
+(setq gnutls-min-prime-bits 4096)
+
+;; Set up package repositories
+(require 'package)
+(setq package-archives
+      '(("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")))
+
+(setq package-enable-at-startup nil)
+(package-initialize)
+
+;; Install "use-package"
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile
   (defvar use-package-verbose t)
   (require 'use-package))
-; (quelpa '(quelpa-use-package :fetcher github :repo "quelpa/quelpa-use-package"))
-; (require 'quelpa-use-package)
 
-(setq byte-compile-warnings nil
-      gnutls-min-prime-bits 4096)
+(setq byte-compile-warnings nil)
+
 
 ;; Call package-refresh-contents before installing something
 ;; From https://github.com/belak/dotfiles/blob/master/emacs.d/README.org#package-setup
@@ -82,7 +74,7 @@
 
 ; (add-to-list 'load-path (expand-file-name "~/.emacs.d/plugin/"))
 
-;; Don't litter my init file
+;; Don't litter my init file with customizations
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 ; (load custom-file 'noerror)
 
@@ -138,8 +130,15 @@
   (use-package org-bullets
     :ensure t
     :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    )
+  (use-package org-brain
+    :ensure t
+    )
   )
+
+(use-package cmake-mode
+  :ensure t)
 
 (use-package json-mode
   :ensure t)
@@ -159,15 +158,8 @@
 (use-package fstar-mode
   :ensure t
   :config
-  (setq-default fstar-smt-executable "/opt/z3-4.5.1.1f29cebd4df6-x64-osx-10.11.6/bin/z3")
+  ;(setq-default fstar-smt-executable "/opt/z3-4.5.1.1f29cebd4df6-x64-osx-10.11.6/bin/z3")
   )
-
-;; Need to set this before evil loads to prevent bad interactions with Proof General, see:
-;; - https://github.com/ProofGeneral/PG/issues/174
-;; - https://github.com/syl20bnr/spacemacs/issues/8853
-;; - https://github.com/cpitclaudel/company-coq/issues/160
-(setq evil-want-abbrev-expand-on-insert-exit nil)
-;; (setq abbrev-expand-function #'ignore)
 
 ; (use-package markdown-mode :ensure t)
 (use-package evil
@@ -177,7 +169,12 @@
   ;; Y should behave like y$ (this variable must be set before evil is loaded, so it must be in the :init section)
   (setq evil-want-Y-yank-to-eol t)
 
-  ;; (setq evil-move-beyond-eol t)
+  ;; Need to set this before evil loads to prevent bad interactions with Proof General, see:
+  ;; - https://github.com/ProofGeneral/PG/issues/174
+  ;; - https://github.com/syl20bnr/spacemacs/issues/8853
+  ;; - https://github.com/cpitclaudel/company-coq/issues/160
+  (setq evil-want-abbrev-expand-on-insert-exit nil)
+  ;; (setq abbrev-expand-function #'ignore)
 
   :config
 
@@ -468,18 +465,22 @@
                             (set-face-attribute 'line-number-current-line nil :bold t)
                             (setq display-line-numbers 'relative)))
 
+;; TODO: check out https://github.com/bbatsov/solarized-emacs and maybe switch to it
+;;       (seems to be maintained actively and have better color assignment to various faces)
 (use-package color-theme-solarized
   :ensure t
   :config
   (load-theme 'solarized t)
 
-  (set-face-attribute 'org-block-begin-line nil
-                      ;; :background "#e8fde4"
-                      :underline "#a7a6aa")
-  (set-face-attribute 'org-block-end-line nil
-                      ;; :background "#e8fde4"
-                      :overline "#a7a6aa"
-                      :underline nil)
+  ;; (set-face-attribute 'org-block-begin-line nil
+  ;;                     ;; :background "#e8fde4"
+  ;;                     :underline "#a7a6aa")
+  ;; (set-face-attribute 'org-block-end-line nil
+  ;;                     ;; :background "#e8fde4"
+  ;;                     :overline "#a7a6aa"
+  ;;                     :underline nil)
+  (set-face-attribute 'org-block nil
+                      :foreground "#708183")
   )
 
 (set-frame-font "Menlo 14" nil t)
@@ -503,16 +504,6 @@
 (add-hook 'text-mode-hook 'variable-pitch-mode)
 (add-hook 'text-mode-hook 'visual-line-mode)
 (setq org-adapt-indentation nil)
-; (set-face-attribute 'fixed-pitch nil
-;                     :family "Menlo"
-;                     :height 1.0
-;                     :width 'normal
-;                     :weight 'normal)
-; (set-face-attribute 'variable-pitch nil
-;                     :family "Source Sans Pro"
-;                     :height 180
-;                     :width 'normal
-;                     :weight 'normal)
 
 (use-package ws-butler
   :ensure t
@@ -523,12 +514,6 @@
   :ensure t
   :config
   (global-hl-todo-mode))
-
-(use-package org-caldav
-  :ensure t
-  :after org
-  :config
-  (load-file "~/org/.config/jr-org-caldav-config.el"))
 
 (setq-default frame-title-format
               '(:eval
@@ -610,7 +595,7 @@
       org-agenda-span 'week
       )
 
-;; Keep track of when TODO item are finished
+;; Keep track of when TODO items are finished
 (setq org-log-done 'time)
 (setq org-todo-keywords '((sequence "TODO" "|" "DONE" "CANCELLED")))
 
@@ -666,7 +651,7 @@
   (server-start))
 
 ;; Make gc pauses faster by decreasing the threshold.
-(setq gc-cons-threshold (* 2 1000 1000))
+(setq gc-cons-threshold (* 2 1024 1024))
 
 (provide 'init)
 ;;; init.el ends here
