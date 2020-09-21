@@ -3,6 +3,10 @@
 # Abort on errors
 set -euo pipefail
 
+# Use ruby from homebrew so we can find the "licensee" script
+export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
 function find_license_file {
     dir="$1"
     if [[ -f "${dir}/LICENSE" ]] then
