@@ -1,0 +1,6 @@
+# To enable:
+#   ln -s zshenv.morbol zshenv.local
+
+export UNISONLOCALHOSTNAME="morbol.local"
+
+# vim: ft=zsh

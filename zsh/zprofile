@@ -1,1 +1,26 @@
-# empty
+# .zprofile
+
+# Why do we do this here in .zprofile?
+# Because on macOS, the following happens:
+# - ...
+# - $ZDOTDIR/.zshenv
+# - ...
+# - /etc/profile is sourced, which calls /usr/libexec/path_helper, and this puts /usr/bin etc. in front
+# - $ZDOTDIR/.zprofile is sourced
+# - ...
+#
+# So to override system binaries we need to add the path in this file
+# See https://superuser.com/a/1464744
+
+# Set up $PATH, but only if we're not in a nix-shell
+# (inside nix-shell, we will get the correct PATH and other variables from the outer shell)
+if [[ ! -v IN_NIX_SHELL ]] then
+    if [[ "$OSTYPE" =~ ^darwin ]] then
+        # ruby from homebrew
+        export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+        export PATH="/usr/local/opt/ruby/bin:$PATH"
+    fi
+fi
+
+
+# vim: ft=zsh

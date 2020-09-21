@@ -11,7 +11,7 @@ export JR_DOTFILES
 
 # Set up $PATH, but only if we're not in a nix-shell
 # (inside nix-shell, we will get the correct PATH and other variables from the outer shell)
-if [[ -z "$IN_NIX_SHELL" ]] then
+if [[ ! -v IN_NIX_SHELL ]] then
     if [[ "$OSTYPE" =~ ^darwin ]] then
         # Default PATH
         # We set this explicitly because of Emacs' exec-path-from-shell package, see https://github.com/purcell/exec-path-from-shell
