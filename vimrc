@@ -358,8 +358,8 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v(\.(exe|so|dll|jar|o|hi|dyn_hi|dyn_o)|\/vampire_[^.]+)$'
   \ }
 
-nmap <Leader>a <Plug>(altr-forward)
-nmap <Leader>A <Plug>(altr-back)
+nmap <F4> <Plug>(altr-forward)
+nmap <S-F4> <Plug>(altr-back)
 
 nnoremap <F5> :UndotreeToggle<CR>
 inoremap <F5> <C-O>:UndotreeToggle<CR>
