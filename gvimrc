@@ -88,6 +88,7 @@ if has("gui_macvim") || has('gui_vimr')
   " anoremenu TouchBar.-Sep-             <Nop>
   " anoremenu TouchBar.Refresh\ CtrlP    :CtrlPClearCache<CR>
   amenu TouchBar.-flexspace1-  :
+  amenu TouchBar.F4            <F4>
   amenu TouchBar.F5            <F5>
   amenu TouchBar.-space1-      :
   amenu TouchBar.-flexspace2-  :
