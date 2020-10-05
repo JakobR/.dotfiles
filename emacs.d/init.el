@@ -22,9 +22,9 @@
                               (time-subtract after-init-time before-init-time)))
                      gcs-done)))
 
-;; Verify TLS certificates
-(require 'tls)
-(setq tls-checktrust t)
+;; Try to improve TLS security
+(require 'nsm)
+(setq network-security-level 'high)
 (setq gnutls-verify-error t)
 (setq gnutls-min-prime-bits 4096)
 
