@@ -105,8 +105,11 @@ if !exists('g:vimpager')
   Plugin 'Shougo/vimproc.vim'
 
   " Plugin 'ervandew/supertab'
-  Plugin 'SirVer/ultisnips'
-  Plugin 'honza/vim-snippets'
+
+  if has('python3')
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
+  endif
 
   " disable extended highlighting of matching delimiters (it seems to be messing up the cursor)
   let g:vimtex_matchparen_enabled = 0
@@ -135,6 +138,8 @@ if !exists('g:vimpager')
   " Plugin 'Yggdroot/indentLine'
   " Plugin 'nathanaelkane/vim-indent-guides'
 
+  Plugin 'junegunn/fzf.vim'
+  Plugin 'fiatjaf/neuron.vim'
 
   " Plugin 'neoclide/coc.nvim', {'branch': 'release'}    " TODO: option 'branch' doesn't work with vundle, maybe switch to vim-plug
   " TODO try coc-rust-analyzer
@@ -151,9 +156,11 @@ if !exists('g:vimpager')
     " Plugin 'bbchung/clighter'
 
     let g:clighter_libclang_file = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-  end
+  endif
 
-  Plugin 'Valloric/MatchTagAlways'
+  if has('python')
+    Plugin 'Valloric/MatchTagAlways'
+  endif
 
   " Plugin 'sjl/gundo.vim'
   Plugin 'mbbill/undotree'
@@ -161,7 +168,7 @@ if !exists('g:vimpager')
   Plugin 'rizzatti/dash.vim'
 
   " Plugin 'jceb/vim-orgmode'
-end
+endif
 
 " More interesting bundles to check out:
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
