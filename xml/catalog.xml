@@ -9,5 +9,6 @@
     <group xml:base="file:///Users/jakob/.dotfiles/xml/">
         <public publicId="-//Apple//DTD PLIST 1.0//EN" uri="PropertyList-1.0.dtd"/>
         <public publicId="-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN" uri="catalog.dtd"/>
+        <public publicId="+//IDN sosy-lab.org//DTD BenchExec benchmark 1.18//EN" uri="benchmark-1.18.dtd"/>
     </group>
 </catalog>
