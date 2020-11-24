@@ -67,6 +67,3 @@ if [[ ! -v IN_NIX_SHELL ]] then
         source "${JR_DOTFILES}/zsh/zshenv.local"
     fi
 fi
-
-# Path to local TPTP installation, helps provers to find axioms included by problems
-export TPTP=/opt/TPTP

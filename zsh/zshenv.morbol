@@ -3,4 +3,9 @@
 
 export UNISONLOCALHOSTNAME="morbol.local"
 
+# Path to local TPTP installation, helps provers to find axioms included by problems
+if [[ ! -v TPTP ]] then
+    export TPTP="/opt/TPTP"
+fi
+
 # vim: ft=zsh
