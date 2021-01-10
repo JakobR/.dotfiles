@@ -5,14 +5,22 @@
 
 export LSCOLORS="ExfxcxdxBxegedabagacad"
 
-function kagami_git_stash_info () {
+function kagami_git_prompt_info {
+    if [[ ( -v WSL_DISTRO_NAME ) && ( "${PWD:A}" =~ "^/mnt/(.)(/|$)" ) ]] then
+        print " [${match[1]:u}:\\\\]"
+        return
+    fi
+    git_prompt_info
+}
+
+function kagami_git_stash_info {
   local p_git_stash_count="$(git stash list 2> /dev/null | wc -l | tr -d \ \t)"
   if [[ "${p_git_stash_count}" -ne "0" ]] then
     print " %F{blue}s${p_git_stash_count}"
   fi
 }
 
-function prompt_kagami_setup () {
+function prompt_kagami_setup {
   # Prompt expansion:
   # see http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
   #
@@ -64,7 +72,7 @@ function prompt_kagami_setup () {
   local p_dir="%220F%~"
 
   # Branch and status of git repository in current directory
-  local p_git="\$(git_prompt_info)"
+  local p_git="\$(kagami_git_prompt_info)"
   local p_git_stash="" #"\$(kagami_git_stash_info)"
   # Configure the oh-my-zsh git_prompt_info helper
   ZSH_THEME_GIT_PROMPT_PREFIX=" $c_gray(%40F"
