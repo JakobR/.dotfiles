@@ -144,6 +144,7 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   alias protege='$HOME/Documents/Uni/INFO116/Protege_5.0_beta/run.command'
   alias jsonld='$HOME/code/other/jsonld.js/bin/jsonld'
   alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+  alias pbclear='echo -n | pbcopy'
 
   # Newer SQLite from homebrew
   alias sqlite3="/usr/local/opt/sqlite/bin/sqlite3"
@@ -181,6 +182,8 @@ elif [[ "$OSTYPE" =~ ^linux ]] then
   export EDITOR='/usr/bin/vim'
 
   JR_OPEN="xdg-open"
+
+  alias gdate="date"
 
   #########
   # NixOS #
@@ -239,6 +242,7 @@ fi
 # See also https://www.gnupg.org/(it)/documentation/manuals/gnupg/Common-Problems.html
 export GPG_TTY="$(tty)"
 
+export ZFS_COLOR=1
 
 # Define function "o" if not yet defined
 if ! typeset -f o > /dev/null; then

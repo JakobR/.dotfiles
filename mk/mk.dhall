@@ -13,5 +13,6 @@
     in  [ { name = "MAIL", value = Command "git --no-pager config user.email" }
         , { name = "USER", value = Command "git --no-pager config user.name" }
         , { name = "LICENSE", value = Command "${env:JR_DOTFILES as Text}/mk/license.zsh" }
+        , { name = "NEURONDATE", value = Command "gdate +%Y-%m-%dT%H:%M" }
         ]
 }
