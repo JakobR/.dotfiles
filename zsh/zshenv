@@ -59,7 +59,11 @@ if [[ ! -v IN_NIX_SHELL ]] then
 
     # Nix
     if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]] then
+        # Multi-user installation
         source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    elif [[ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] then
+        # Single-user installation
+        source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
     fi
 
     # Local settings
