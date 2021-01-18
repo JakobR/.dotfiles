@@ -14,5 +14,6 @@
         , { name = "USER", value = Command "git --no-pager config user.name" }
         , { name = "LICENSE", value = Command "${env:JR_DOTFILES as Text}/mk/license.zsh" }
         , { name = "NEURONDATE", value = Command "gdate +%Y-%m-%dT%H:%M" }
+        , { name = "WEEKDAY", value = Command "/usr/bin/env LC_TIME=en_GB.UTF-8 gdate +%A" }
         ]
 }
