@@ -149,15 +149,6 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   # Newer SQLite from homebrew
   alias sqlite3="/usr/local/opt/sqlite/bin/sqlite3"
 
-  # Open yesterday's or today's journal entry (day changes at 12:00)
-  # Can open shift day with ±number as first argument (e.g. "mj -1")
-  function mj {
-    if [[ ! "${1}" =~ ^[+-][0-9]+$ ]] then
-      1='+0'
-    fi
-    (cd "$HOME/Documents/journal" && m "./$(date "-v-12H" "-v${1}d" "+%Y-%m-%d")".txt)
-  }
-
   JR_OPEN="/usr/bin/open"
 
   # Directory shortcuts
@@ -184,6 +175,10 @@ elif [[ "$OSTYPE" =~ ^linux ]] then
   JR_OPEN="xdg-open"
 
   alias gdate="date"
+
+  function m_cmd {
+      vim "${@}"
+  }
 
   #########
   # NixOS #
@@ -255,9 +250,13 @@ if ! typeset -f o > /dev/null; then
     }
 fi
 
-function m_cmd {
-    gvim -g "${@}"
-}
+# Define function "m_cmd" if not yet defined
+if ! typeset -f m_cmd > /dev/null; then
+    function m_cmd {
+        gvim -g "${@}"
+    }
+fi
+
 # TODO: Functions m2, m3, ... which open in the 2nd, 3rd, ... vim server in the serverlist
 # TODO: A function "ms" that lists vim servers, and what project each is associated to.
 function m {
@@ -322,6 +321,17 @@ function mke {
     if (( $? == 0 )) then
         e "+${cursor_pos}" "$1"
     fi
+}
+
+# Open today's journal entry.
+# Can shift day with ±number as first argument (e.g., "mj -1" for yesterday's entry).
+function mj {
+    if [[ ! "${1}" =~ ^[+-][0-9]+$ ]] then
+        1='+0'
+    fi
+    # TODO: use 'gdate' for portability, compute offset with timestamp,
+    #       then back to date with: gdate --date='@2147483647'
+    (cd "${HOME}/kb/Journal/" && m "./journal-$(date "-v${1}d" "+%Y-%m-%d")".md)
 }
 
 
