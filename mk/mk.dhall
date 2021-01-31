@@ -15,5 +15,14 @@
         , { name = "LICENSE", value = Command "${env:JR_DOTFILES as Text}/mk/license.zsh" }
         , { name = "NEURONDATE", value = Command "gdate +%Y-%m-%dT%H:%M" }
         , { name = "WEEKDAY", value = Command "/usr/bin/env LC_TIME=en_GB.UTF-8 gdate +%A" }
+        , { name = "ENVWEEKDAY", value = Const (env:WEEKDAY as Text ? "?") }
+        , { name = "ENVDATE", value = Const (env:DATE as Text ? "????-??-??") }
+        , { name = "ENVTAG", value = Const (env:TAG as Text ? "???") }
+        -- TODO: need newer dhall version for Text/replace
+        -- , { name = "JOURNALTAG", value = Const (
+        --         let isodate = env:DATE as Text ? "???"
+        --         in Text/replace "-" "/" isodate
+        --             )
+        --   }
         ]
 }

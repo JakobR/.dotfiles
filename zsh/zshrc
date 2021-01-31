@@ -329,9 +329,15 @@ function mj {
     if [[ ! "${1}" =~ ^[+-][0-9]+$ ]] then
         1='+0'
     fi
-    # TODO: use 'gdate' for portability, compute offset with timestamp,
-    #       then back to date with: gdate --date='@2147483647'
-    (cd "${HOME}/kb/Journal/" && m "./journal-$(date "-v${1}d" "+%Y-%m-%d")".md)
+    local timestamp
+    timestamp="$(gdate +%s)"
+    timestamp="$(( $timestamp + ( $1 * 60 * 60 * 24 ) ))"
+    (
+        export DATE="$(gdate --date="@${timestamp}" "+%Y-%m-%d")"
+        export TAG="$(gdate --date="@${timestamp}" "+%Y/%m/%d")"
+        export WEEKDAY="$(/usr/bin/env LC_TIME=en_GB.UTF-8 gdate --date="@${timestamp}" "+%A")"
+        cd "${HOME}/kb/Journal/" && vim "./journal-${DATE}".md
+    )
 }
 
 

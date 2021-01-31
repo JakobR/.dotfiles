@@ -1,7 +1,9 @@
 ---
-date: %NEURONDATE%
+date: %ENVDATE%
+tags:
+    - Journal/Entry/%ENVTAG%
 ---
 
-# Journal %DATE% (%WEEKDAY%)
+# Journal %ENVDATE% (%ENVWEEKDAY%)
 
 %HERE%
