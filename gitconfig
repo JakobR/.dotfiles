@@ -58,3 +58,5 @@
     textconv = unzip -c -a
 [pull]
 	ff = only
+[init]
+	defaultBranch = main
