@@ -143,12 +143,12 @@ let g:solarized_visibility="low"
 if &t_Co > 2 || has("gui_running")
   syntax on
 
-  silent! colorscheme solarized
-  " if has("gui_running")
-  "     silent! colorscheme solarized8_light
-  " else
-  "     silent! colorscheme solarized8_dark
-  " endif
+  if empty($WSL_DISTRO_NAME)
+      " TODO: maybe also switch to solarized8... regularly?
+      silent! colorscheme solarized
+  else
+      silent! colorscheme solarized8_high
+  endif
 
   if &t_Co >= 256
     let g:indentLine_color_term = 235
