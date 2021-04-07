@@ -11,4 +11,7 @@ fi
 # Fix git-svn (it doesn't find the module 'SVN::Core' otherwise)
 export PERLLIB="/usr/local/Cellar/subversion/1.14.0_7/lib/perl5/site_perl/5.18.4/darwin-thread-multi-2level:$PERLLIB"
 
+# Certora build directory and key
+source ~/work/certora/setup.sh
+
 # vim: ft=zsh
