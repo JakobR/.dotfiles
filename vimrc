@@ -251,6 +251,12 @@ noremap <silent> <Leader>w :call ToggleWrap()<CR>
 " Enable wrapping in markdown and text files
 autocmd FileType markdown,text silent call EnableWrap()
 
+" Markdown settings, see: https://github.com/plasticboy/vim-markdown
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_new_list_item_indent = 2
+
 " Don't show whitespace in man pages
 autocmd FileType man setlocal nolist
 

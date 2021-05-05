@@ -22,7 +22,7 @@ end
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'lifepillar/vim-solarized8'
 
-Plugin 'tpope/vim-markdown'
+Plugin 'plasticboy/vim-markdown'
 " Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'exu/pgsql.vim'
