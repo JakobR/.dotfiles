@@ -139,7 +139,7 @@ if !exists('g:vimpager')
   " Plugin 'nathanaelkane/vim-indent-guides'
 
   Plugin 'junegunn/fzf.vim'
-  Plugin 'fiatjaf/neuron.vim'
+  " Plugin 'fiatjaf/neuron.vim'
 
   " Plugin 'neoclide/coc.nvim', {'branch': 'release'}    " TODO: option 'branch' doesn't work with vundle, maybe switch to vim-plug
   " TODO try coc-rust-analyzer
