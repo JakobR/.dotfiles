@@ -195,6 +195,7 @@ elif [[ "$OSTYPE" =~ ^linux ]] then
   ##########
   if [[ "$(lsb_release -s -i)" = "Ubuntu" ]] then
       alias fd=fdfind
+      alias yt-dlp=$HOME/youtube-dl/bin/yt-dlp
   fi
 
   ###############################
