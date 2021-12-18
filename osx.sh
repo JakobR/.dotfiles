@@ -1,5 +1,10 @@
 #!/bin/sh
 
+
+echo "osx.sh disabled"
+exit 1
+
+
 # OS X Settings
 # most stuff from https://github.com/sjl/dotfiles/blob/master/osx.sh
 # also interesting: https://github.com/mathiasbynens/dotfiles/blob/master/.osx

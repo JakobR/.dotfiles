@@ -68,6 +68,11 @@ function prompt_kagami_setup {
       p_nix_shell="${c_gray}[%F{green}nix-shell${c_gray}] "
   fi
 
+  local p_isengard=""
+  if [[ -n "${AWS_PROFILE}" ]] then
+      p_isengard="${c_gray}[%196F${AWS_PROFILE}${c_gray}] "
+  fi
+
   # Current working directory
   local p_dir="%220F%~"
 
@@ -87,7 +92,7 @@ function prompt_kagami_setup {
   local p_char="%(!.%196F$s_prompt_root.$c_gray$s_prompt_char) "
 
   # Put it all together!
-  PROMPT="%B${p_nix_shell}${c_gray}[$p_user_host$p_dir$c_gray]$p_git$p_git_stash $p_status$p_char%b%f%k"
+  PROMPT="%B${p_nix_shell}${p_isengard}${c_gray}[$p_user_host$p_dir$c_gray]$p_git$p_git_stash $p_status$p_char%b%f%k"
 
   RPROMPT="${c_gray}%*"
 

@@ -1,6 +1,8 @@
 [user]
     name = Jakob Rath
     email = git@jakobrath.eu
+[color]
+    ui = auto
 [color "diff"]
     commit = blue bold
     meta = yellow
@@ -30,6 +32,7 @@
     ldd = log '--pretty=format:"%C(auto)[%ai] %h%d %s"'   # like "ld" but with author date
     lda = log '--pretty=format:"%C(auto)[%<(20,trunc)%an, %ai] %h%d %s"'   # like "ld" but with author name&date
     lg = log --decorate --pretty=oneline --abbrev-commit --graph --branches
+    lag = log --graph --date-order --format='format:%C(yellow)%h%C(reset) %C(blue)%an <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s'
     d = diff
     ds = diff --cached
     dn = diff --no-index

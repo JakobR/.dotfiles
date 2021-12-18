@@ -5,7 +5,7 @@
 
 
 # Abort on error
-set -e
+set -euo pipefail
 
 
 # Colors
@@ -149,13 +149,10 @@ create_symlink "${JR_DOTFILES}/pip.conf" "${HOME}/.pip/pip.conf"
 
 
 if [[ "$OSTYPE" =~ ^darwin ]] then
-  echo_msg "Symlinking OS X specific files..."
+  echo_msg "Symlinking macOS specific files..."
   create_symlink_to_home 'xvimrc'
   create_symlink_to_home 'hammerspoon'
-  create_symlink_to_home 'gitconfig-osx'
-
-  # echo_msg "Running OS X configuration script..."
-  # "$JR_DOTFILES"/osx.sh
+  create_symlink_to_home 'gitconfig-mac'
 fi
 
 if [[ "$OSTYPE" =~ ^linux && -v WSL_DISTRO_NAME ]] then

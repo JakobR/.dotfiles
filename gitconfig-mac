@@ -1,6 +1,9 @@
 ; NOTE:
 ; To load this file, add the following to "~/.gitconfig-local":
 ; [include]
-;     path = ~/.gitconfig-osx
+;     path = ~/.gitconfig-mac
+
+[credential]
+    helper = osxkeychain
 
 ; vim: ft=gitconfig

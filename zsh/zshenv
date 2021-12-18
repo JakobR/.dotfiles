@@ -71,3 +71,5 @@ if [[ ! -v IN_NIX_SHELL ]] then
         source "${JR_DOTFILES}/zsh/zshenv.local"
     fi
 fi
+
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
