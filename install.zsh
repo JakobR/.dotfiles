@@ -25,6 +25,7 @@ function echo_path {
 
 
 # Parse command line parameters.
+JR_UPDATE="false"
 if [[ ("${#}" -eq "1") && ("$1" = "--update") ]] then
   JR_UPDATE="true"
 elif [[ "${#}" -ne "0" ]] then
