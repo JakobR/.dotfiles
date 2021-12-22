@@ -70,9 +70,8 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   export VISUAL="${EDITOR}"
   alias mvim="${HOMEBREW_PREFIX}/bin/mvim -p"
 
-  # stay in console for git commit messages and vimpager
+  # stay in console for git commit messages
   export GIT_EDITOR="${HOMEBREW_PREFIX}/bin/vim +0"
-  export VIMPAGER_VIM="${HOMEBREW_PREFIX}/bin/vim"
 
   EMACSCLIENT="${HOMEBREW_PREFIX}/bin/emacsclient"
   function emacs_is_running {
