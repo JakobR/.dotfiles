@@ -66,15 +66,15 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   export HOMEBREW_NO_AUTO_UPDATE=1
 
   # Use MacVim to edit files, and give focus back to iTerm after closing
-  export EDITOR="/usr/local/bin/mvim -p --nofork -c ActivateTerminalOnExit"
+  export EDITOR="${HOMEBREW_PREFIX}/bin/mvim -p --nofork -c ActivateTerminalOnExit"
   export VISUAL="${EDITOR}"
-  alias mvim="/usr/local/bin/mvim -p"
+  alias mvim="${HOMEBREW_PREFIX}/bin/mvim -p"
 
   # stay in console for git commit messages and vimpager
-  export GIT_EDITOR='/usr/local/bin/vim +0'
-  export VIMPAGER_VIM='/usr/local/bin/vim'
+  export GIT_EDITOR="${HOMEBREW_PREFIX}/bin/vim +0"
+  export VIMPAGER_VIM="${HOMEBREW_PREFIX}/bin/vim"
 
-  EMACSCLIENT="/usr/local/bin/emacsclient"
+  EMACSCLIENT="${HOMEBREW_PREFIX}/bin/emacsclient"
   function emacs_is_running {
       $EMACSCLIENT --eval "t" &>/dev/null
   }
@@ -132,29 +132,13 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   alias finder-hide-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool FALSE && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
 
   # Some aliases
-  alias libreoffice='/Applications/LibreOffice.app/Contents/MacOS/soffice'
   alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 250'
-  alias openssl='/usr/local/opt/openssl/bin/openssl'
   alias dtw='$HOME/server/dango/transmission-web.sh -f'
   alias dtr='$HOME/server/dango/transmission-remote.sh'
-  alias rtw='$HOME/server/raspberrypi/transmission-web.sh -f'
-  alias rtr='$HOME/server/raspberrypi/transmission-remote.sh'
-  alias pplex='java -jar $HOME/code/other/pplex/pplex.jar -nogui'
-  alias pplex-gui='java -jar $HOME/code/other/pplex/pplex.jar'
-  alias protege='$HOME/Documents/Uni/INFO116/Protege_5.0_beta/run.command'
-  alias jsonld='$HOME/code/other/jsonld.js/bin/jsonld'
   alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
   alias pbclear='echo -n | pbcopy'
 
-  # Newer SQLite from homebrew
-  alias sqlite3="/usr/local/opt/sqlite/bin/sqlite3"
-
   JR_OPEN="/usr/bin/open"
-
-  # Directory shortcuts
-  Uni=$HOME/Documents/Uni
-  CS=$Uni/Informatik
-  Math=$Uni/Mathematik
 
   # additional oh-my-zsh plugins
   plugins+=osx
