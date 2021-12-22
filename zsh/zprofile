@@ -16,9 +16,13 @@
 # (inside nix-shell, we will get the correct PATH and other variables from the outer shell)
 if [[ ! -v IN_NIX_SHELL ]] then
     if [[ "$OSTYPE" =~ ^darwin ]] then
-        # ruby from homebrew
-        export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
-        export PATH="/usr/local/opt/ruby/bin:$PATH"
+        # Support multiple homebrew installations on Apple Silicon Macs
+        # See https://stackoverflow.com/a/68443301
+        if [[ "$(arch)" = "arm64" ]] then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        else
+            eval "$(/usr/local/bin/brew shellenv)"
+        fi
     fi
 fi
 
