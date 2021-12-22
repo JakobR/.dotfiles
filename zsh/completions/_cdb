@@ -1,0 +1,9 @@
+#compdef cdb
+
+function _cdb {
+    _files -/ -W "$(project_build_root)"
+}
+
+_cdb "$@"
+
+# vim: ft=zsh
