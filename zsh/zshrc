@@ -217,6 +217,9 @@ elif [[ "$OSTYPE" =~ ^linux ]] then
 fi
 
 
+# NOTE: For the option "-F" to work properly we need "less" version >= 530
+export PAGER="less -SF"
+
 # Fix GPG (it needs to know where to display the passphrase dialog)
 # See also https://www.gnupg.org/(it)/documentation/manuals/gnupg/Common-Problems.html
 export GPG_TTY="$(tty)"
