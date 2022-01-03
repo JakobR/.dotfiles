@@ -42,14 +42,22 @@ function prompt_kagami_setup {
   local c_nix_shell="%F{green}"
   local c_isengard="%196F"
   local c_status_err="%196F"
+  local c_dir="%220F"
   local c_git_branch="%40F"
   local c_git_clean="%40F"
   local c_git_dirty="%196F"
   local c_gray="%240F"
+  local c_hl_command="111"
+  local c_hl_quote="114"
+  local c_hl_keyword="063"
 
   case "${ZSH_THEME_BACKGROUND:-dark}" in
     (light)
-      # TODO: override (some?) colors for light background
+      local c_dir="%178F"
+      local c_git_branch="%34F"
+      local c_git_clean="%34F"
+      local c_hl_command="033"
+      local c_hl_quote="029"
       ;;
   esac
 
@@ -101,7 +109,7 @@ function prompt_kagami_setup {
   fi
 
   # Current working directory
-  local p_dir="%220F%~"
+  local p_dir="${c_dir}%~"
 
   # Branch and status of git repository in current directory
   local p_git="\$(kagami_git_prompt_info)"
@@ -126,7 +134,6 @@ function prompt_kagami_setup {
   # Highlighting
   ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=gray"
 
-  local c_hl_command="111" # 033 would be ok too, but 111 is easier to read
   ZSH_HIGHLIGHT_STYLES[alias]="fg=$c_hl_command,bold"
   ZSH_HIGHLIGHT_STYLES[builtin]="fg=$c_hl_command,bold"
   ZSH_HIGHLIGHT_STYLES[function]="fg=$c_hl_command,bold"
@@ -141,10 +148,10 @@ function prompt_kagami_setup {
   ZSH_HIGHLIGHT_STYLES[path_approx]="none"
   ZSH_HIGHLIGHT_STYLES[globbing]="fg=black,bg=yellow,underline"
 
-  ZSH_HIGHLIGHT_STYLES[single-quoted-argument]="fg=108,underline"
-  ZSH_HIGHLIGHT_STYLES[double-quoted-argument]="fg=108,underline"
+  ZSH_HIGHLIGHT_STYLES[single-quoted-argument]="fg=${c_hl_quote},underline"
+  ZSH_HIGHLIGHT_STYLES[double-quoted-argument]="fg=${c_hl_quote},underline"
 
-  ZSH_HIGHLIGHT_STYLES[reserved-word]="fg=063,bold"
+  ZSH_HIGHLIGHT_STYLES[reserved-word]="fg=${c_hl_keyword},bold"
 
   # The default highlight styles:
   # : ${ZSH_HIGHLIGHT_STYLES[default]:=none}
