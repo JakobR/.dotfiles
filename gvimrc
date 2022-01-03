@@ -1,12 +1,7 @@
 set lines=50
 set columns=120
 
-if has('nvim')
-    colorscheme solarized8_light
-else
-    set background=light
-    colorscheme solarized
-endif
+set background=light
 
 highlight GitGutterAdd          guibg=#eee8d5
 highlight GitGutterChange       guibg=#eee8d5
@@ -16,10 +11,8 @@ highlight GitGutterChangeDelete guibg=#eee8d5
 highlight MatchParen gui=bold guibg=green guifg=black
 
 " from https://github.com/raecoo/dotfiles/blob/master/gvimrc
-if has("gui_macvim") || has('gui_vimr')
-    if has("gui_macvim")
-        set guifont=Menlo:h14
-    endif
+if has("gui_macvim")
+  set guifont=Menlo:h14
 
   " Cmd-\ toggles NERDTree
   noremap <D-\> :NERDTreeTabsToggle<CR>
@@ -82,16 +75,6 @@ if has("gui_macvim") || has('gui_vimr')
   macmenu Tools.Make<Tab>:make			key=<nop>
   noremap  <D-b> :Make<CR>
   inoremap <D-b> <C-O>:Make<CR>
-
-  " anoremenu TouchBar.-Sep-             <Nop>
-  " anoremenu TouchBar.UndoTree          :UndotreeToggle<CR>
-  " anoremenu TouchBar.-Sep-             <Nop>
-  " anoremenu TouchBar.Refresh\ CtrlP    :CtrlPClearCache<CR>
-  amenu TouchBar.-flexspace1-  :
-  amenu TouchBar.F4            <F4>
-  amenu TouchBar.F5            <F5>
-  amenu TouchBar.-space1-      :
-  amenu TouchBar.-flexspace2-  :
 
 elseif has('unix')   " This returns 1 on OSX as well, so be sure to keep it in the else block
     " See https://www.reddit.com/r/vim/comments/5oghfj/how_to_gracefully_degrade_font/
