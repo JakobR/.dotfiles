@@ -317,9 +317,11 @@ else
   SHORT_HOST=${HOST/.*/}
 fi
 
-# TODO: move to .cache/zsh ???
-#   ZSH_CACHE_DIR="${HOME}/.cache/zsh"
-ZSH_CACHE_DIR="$ZSH/cache"
+ZSH_CACHE_DIR="${HOME}/.cache/zsh"
+if [[ ! -d "${ZSH_CACHE_DIR}" ]]; then
+    mkdir -p "${ZSH_CACHE_DIR}"
+fi
+# TODO: move to cache dir?
 ZSH_COMPDUMP="${HOME}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 
 # Load all stock functions (from $fpath files) called below.
