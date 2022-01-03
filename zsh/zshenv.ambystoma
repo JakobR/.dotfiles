@@ -1,0 +1,17 @@
+# To enable:
+#   ln -s zshenv.ambystoma zshenv.local
+
+export UNISONLOCALHOSTNAME="ambystoma.local"
+
+# Path to local TPTP installation, helps provers to find axioms included by problems
+if [[ ! -v TPTP ]] then
+    export TPTP="/opt/TPTP"
+fi
+
+# Fix git-svn (it doesn't find the module 'SVN::Core' otherwise)
+export PERLLIB="${HOMEBREW_PREFIX}/opt/subversion/lib/perl5/site_perl/5.30.3/darwin-thread-multi-2level:$PERLLIB"
+
+# Certora build directory and key
+source ~/work/certora/setup.sh
+
+# vim: ft=zsh
