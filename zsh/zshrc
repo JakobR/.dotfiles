@@ -8,7 +8,6 @@
 ZSH=$JR_DOTFILES/zsh/oh-my-zsh
 ZSH_CUSTOM=$JR_DOTFILES/zsh/custom
 
-ZSH_THEME='kagami'
 ZSH_THEME_BACKGROUND="dark"
 case "$TERM_PROGRAM" in
     (iTerm.app)
@@ -36,35 +35,6 @@ export LC_NUMERIC="de_AT.UTF-8"
 export LC_TIME="de_AT.UTF-8"
 export LC_MONETARY="de_AT.UTF-8"
 export LC_MEASUREMENT="de_AT.UTF-8"
-
-# TODO: get rid of oh-my-zsh (copy the relevant parts)
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Disable bi-weekly auto-update checks of oh-my-zsh
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zaw zsh-dwim zsh-syntax-highlighting)
-plugins+=nix  # zsh completions for nix
-plugins+=nix-shell  # use zsh as nix-shell
-
-fpath+=("${JR_DOTFILES}/zsh/completions")
 
 # Platform-specific configuration
 if [[ "$OSTYPE" =~ ^darwin ]] then
@@ -146,9 +116,6 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   alias pbclear='echo -n | pbcopy'
 
   JR_OPEN="/usr/bin/open"
-
-  # additional oh-my-zsh plugins
-  plugins+=osx
 
 elif [[ "$OSTYPE" =~ ^freebsd ]] then
   # FreeBSD configuration
@@ -337,8 +304,83 @@ function mj {
 }
 
 
-# Load oh-my-zsh
-source "${ZSH}/oh-my-zsh.sh"
+
+
+
+
+
+##########################################################################
+# work in progress: getting rid of oh-my-zsh
+
+
+# Figure out the SHORT hostname
+if [[ "$OSTYPE" = darwin* ]]; then
+  # macOS's $HOST changes with dhcp, etc. Use ComputerName if possible.
+  SHORT_HOST=$(scutil --get ComputerName 2>/dev/null) || SHORT_HOST=${HOST/.*/}
+else
+  SHORT_HOST=${HOST/.*/}
+fi
+
+# TODO: move to .cache/zsh ???
+#   ZSH_CACHE_DIR="${HOME}/.cache/zsh"
+ZSH_CACHE_DIR="$ZSH/cache"
+ZSH_COMPDUMP="${HOME}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+
+# Load all stock functions (from $fpath files) called below.
+autoload -U compaudit compinit
+
+fpath=("${JR_DOTFILES}/zsh/completions" $fpath)
+fpath=("${ZSH_CUSTOM}/plugins/zaw" $fpath)
+fpath=("${ZSH_CUSTOM}/plugins/zsh-dwim" $fpath)
+fpath=("${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" $fpath)
+fpath=("${ZSH_CUSTOM}/plugins/nix" $fpath)
+fpath=("${ZSH_CUSTOM}/plugins/nix-shell" $fpath)
+if [[ "$OSTYPE" = darwin* ]]; then
+    fpath=("${ZSH}/plugins/osx" $fpath)
+fi
+
+source $ZSH/lib/compfix.zsh
+# If completion insecurities exist, warn the user
+handle_completion_insecurities
+# Load only from secure directories
+compinit -i -C -d "${ZSH_COMPDUMP}"
+
+# Load all of the config files in ~/oh-my-zsh that end in .zsh
+# TIP: Add files you don't want in git to .gitignore
+for config_file ($ZSH/lib/*.zsh); do
+  source $config_file
+done
+
+source "${ZSH_CUSTOM}/plugins/zaw/zaw.plugin.zsh"
+source "${ZSH_CUSTOM}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
+source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+source "${ZSH_CUSTOM}/plugins/nix/nix.plugin.zsh"
+source "${ZSH_CUSTOM}/plugins/nix-shell/nix-shell.plugin.zsh"
+if [[ "$OSTYPE" = darwin* ]]; then
+    source "${ZSH}/plugins/osx/osx.plugin.zsh"
+fi
+
+# Load all of your custom configurations from custom/  (TODO: replace loop by explicit list)
+for config_file in $ZSH_CUSTOM/*.zsh(N); do
+  source $config_file
+done
+unset config_file
+
+# Load the theme
+source "$ZSH_CUSTOM/kagami.zsh-theme"
+
+
+##########################################################################
+
+
+
+
+
+
+
+
+
+
 
 HISTSIZE=1000000
 SAVEHIST=1000000
