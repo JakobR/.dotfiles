@@ -4,10 +4,6 @@
 # Uncomment this line and "zprof" at the end of this file to profile zsh startup time
 # zmodload zsh/zprof
 
-# Path to oh-my-zsh configuration.
-ZSH=$JR_DOTFILES/zsh/oh-my-zsh
-ZSH_CUSTOM=$JR_DOTFILES/zsh/custom
-
 ZSH_THEME_BACKGROUND="dark"
 case "$TERM_PROGRAM" in
     (iTerm.app)
@@ -326,6 +322,9 @@ ZSH_COMPDUMP="${HOME}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 
 # Load all stock functions (from $fpath files) called below.
 autoload -U compaudit compinit
+
+# TODO: rename variable to ZSH
+ZSH_CUSTOM="${JR_DOTFILES}/zsh/custom"
 
 fpath=("${JR_DOTFILES}/zsh/completions" $fpath)
 fpath=("${ZSH_CUSTOM}/plugins/zaw" $fpath)
