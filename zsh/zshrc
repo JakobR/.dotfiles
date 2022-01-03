@@ -347,7 +347,6 @@ source "${JR_DOTFILES}/zsh/lib/termsupport.zsh"
 
 source "${ZSH_CUSTOM}/plugins/zaw/zaw.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
-source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/nix/nix.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/nix-shell/nix-shell.plugin.zsh"
 
@@ -356,6 +355,8 @@ for config_file in $ZSH_CUSTOM/*.zsh(N); do
   source $config_file
 done
 unset config_file
+
+source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
 # Load the theme
 source "$ZSH_CUSTOM/kagami.zsh-theme"
