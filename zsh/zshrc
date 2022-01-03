@@ -105,11 +105,6 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
       /usr/bin/open "dash://$1"
   }
 
-  # Show hidden files in Finder
-  # If it doesn't work, try `killall cfprefsd` first (http://apple.stackexchange.com/a/112091)
-  alias finder-show-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool TRUE  && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
-  alias finder-hide-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool FALSE && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
-
   alias dtw='$HOME/server/dango/transmission-web.sh -f'
   alias dtr='$HOME/server/dango/transmission-remote.sh'
   alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
@@ -336,9 +331,6 @@ fpath=("${ZSH_CUSTOM}/plugins/zsh-dwim" $fpath)
 fpath=("${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" $fpath)
 fpath=("${ZSH_CUSTOM}/plugins/nix" $fpath)
 fpath=("${ZSH_CUSTOM}/plugins/nix-shell" $fpath)
-if [[ "$OSTYPE" = darwin* ]]; then
-    fpath=("${ZSH}/plugins/osx" $fpath)
-fi
 
 source "${JR_DOTFILES}/zsh/lib/compfix.zsh"
 # If completion insecurities exist, warn the user
@@ -357,9 +349,6 @@ source "${ZSH_CUSTOM}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/nix/nix.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/nix-shell/nix-shell.plugin.zsh"
-if [[ "$OSTYPE" = darwin* ]]; then
-    source "${ZSH}/plugins/osx/osx.plugin.zsh"
-fi
 
 # Load all of your custom configurations from custom/  (TODO: replace loop by explicit list)
 for config_file in $ZSH_CUSTOM/*.zsh(N); do
