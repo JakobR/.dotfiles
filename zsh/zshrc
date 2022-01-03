@@ -8,11 +8,14 @@
 ZSH=$JR_DOTFILES/zsh/oh-my-zsh
 ZSH_CUSTOM=$JR_DOTFILES/zsh/custom
 
-# Set name of the theme to load. Set to "random" for a random theme.
 ZSH_THEME='kagami'
+ZSH_THEME_BACKGROUND="dark"
 # Disable special characters on prompt when not connected with iTerm
 if [[ "$TERM_PROGRAM" != "iTerm.app" ]] then
   ZSH_THEME_NO_SPECIAL_CHARACTERS="true"
+fi
+if [[ "$TERM_PROGRAM" = "vscode" ]] then
+  ZSH_THEME_BACKGROUND="light"
 fi
 
 # disable shell-builtin "r" so I can access the "r" executable
@@ -28,6 +31,8 @@ export LC_NUMERIC="de_AT.UTF-8"
 export LC_TIME="de_AT.UTF-8"
 export LC_MONETARY="de_AT.UTF-8"
 export LC_MEASUREMENT="de_AT.UTF-8"
+
+# TODO: get rid of oh-my-zsh (copy the relevant parts)
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
