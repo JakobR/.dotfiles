@@ -19,7 +19,6 @@ if v:version >= 703
   Plugin 'myusuf3/numbers.vim'
 end
 
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'lifepillar/vim-solarized8'
 
 Plugin 'plasticboy/vim-markdown'
