@@ -124,7 +124,7 @@ function prompt_kagami_setup {
   RPROMPT="${c_gray}%*"
 
   # Highlighting
-  ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=white"
+  ZSH_HIGHLIGHT_STYLES[unknown-token]="fg=gray"
 
   local c_hl_command="111" # 033 would be ok too, but 111 is easier to read
   ZSH_HIGHLIGHT_STYLES[alias]="fg=$c_hl_command,bold"

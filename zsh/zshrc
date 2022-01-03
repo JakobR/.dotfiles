@@ -135,8 +135,6 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
   alias finder-show-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool TRUE  && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
   alias finder-hide-hidden-files='/usr/bin/defaults write com.apple.finder AppleShowAllFiles -bool FALSE && /usr/bin/killall Finder && /usr/bin/open -g /System/Library/CoreServices/Finder.app'
 
-  # Some aliases
-  alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 250'
   alias dtw='$HOME/server/dango/transmission-web.sh -f'
   alias dtr='$HOME/server/dango/transmission-remote.sh'
   alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
@@ -230,6 +228,7 @@ export PAGER="less -SF"
 export GPG_TTY="$(tty)"
 
 export ZFS_COLOR=1
+alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 100'
 
 # Define function "o" if not yet defined
 if ! typeset -f o > /dev/null; then
