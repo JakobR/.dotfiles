@@ -27,6 +27,10 @@ runtime macros/matchit.vim
 runtime! ftplugin/man.vim
 
 set background=dark
+if $ZSH_THEME_BACKGROUND ==# 'light'
+  set background=light
+endif
+
 set nowrap
 set scrolloff=2         " 2 lines above/below cursor when scrolling
 set sidescrolloff=5

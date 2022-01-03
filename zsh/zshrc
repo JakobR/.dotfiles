@@ -21,6 +21,7 @@ case "$TERM_PROGRAM" in
         ZSH_THEME_NO_SPECIAL_CHARACTERS="true"
         ;;
 esac
+export ZSH_THEME_BACKGROUND
 
 # disable shell-builtin "r" so I can access the "r" executable
 disable r
