@@ -29,9 +29,19 @@ function d () {
 compdef _dirs d
 
 if [[ ( "$OSTYPE" =~ ^linux ) || ( -n "${IN_NIX_SHELL:-}") ]] then
+    # GNU ls
+
     # Aliases for GNU coreutils (they are used in nix-shell even on macOS)
     alias ls="ls -F --color=auto"
     alias ll="ls -lhF --time-style=long-iso"
+
+    # Use default color theme
+    if [[ -z "$LS_COLORS" ]]; then
+      (( $+commands[dircolors] )) && eval "$(dircolors -b)"
+    fi
+
+    # Take advantage of $LS_COLORS for completion as well.
+    zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 elif [[ ($OSTYPE =~ ^darwin) || ($OSTYPE =~ ^freebsd) ]] then
     alias ls="ls -FG"
     alias ll="ls -lhF -D '%F %T'"

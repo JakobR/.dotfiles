@@ -3,8 +3,16 @@
 #
 # vim: set ft=zsh:
 
+autoload -U colors && colors
+
 # See https://apple.stackexchange.com/a/282189
 export LSCOLORS="ExfxcxdxBxegedabagacad"
+# export LSCOLORS="Gxfxcxdxbxegedabagacad"  TODO: check this
+
+# TODO: move to better place?
+setopt auto_cd
+setopt multios
+setopt prompt_subst
 
 function kagami_git_prompt_info {
     if [[ ( -v WSL_DISTRO_NAME ) && ( "${PWD:A}" =~ "^/mnt/(.)(/|$)" ) ]] then

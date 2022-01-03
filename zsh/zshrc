@@ -353,6 +353,7 @@ for config_file in $ZSH/lib/*.zsh; do
 done
 
 source "${JR_DOTFILES}/zsh/lib/clipboard.zsh"
+source "${JR_DOTFILES}/zsh/lib/completion.zsh"
 source "${JR_DOTFILES}/zsh/lib/git.zsh"
 source "${JR_DOTFILES}/zsh/lib/spectrum.zsh"
 
