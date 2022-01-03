@@ -388,7 +388,13 @@ function project_build_root {
 # CONFIG: the build configuration, defaults to "debug".
 function cdb {
     local build_cfg="${1:-debug}"
-    cd "$(project_build_root)/${build_cfg}"
+    local build_dir="$(project_build_root)/${build_cfg}"
+    if [[ ! -e "${build_dir}" ]] then
+        echo "cdb: creating new build directory: ${build_dir}"
+        /bin/mkdir -p "${build_dir}"
+        # TODO: link .git to the project folder if necessary.
+    fi
+    cd "${build_dir}"
 }
 
 # Use per-project zsh history
