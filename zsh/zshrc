@@ -346,16 +346,11 @@ handle_completion_insecurities
 # Load only from secure directories
 compinit -i -C -d "${ZSH_COMPDUMP}"
 
-# Load all of the config files in ~/oh-my-zsh that end in .zsh
-# TIP: Add files you don't want in git to .gitignore
-for config_file in $ZSH/lib/*.zsh; do
-  source $config_file
-done
-
 source "${JR_DOTFILES}/zsh/lib/clipboard.zsh"
 source "${JR_DOTFILES}/zsh/lib/completion.zsh"
 source "${JR_DOTFILES}/zsh/lib/git.zsh"
 source "${JR_DOTFILES}/zsh/lib/spectrum.zsh"
+source "${JR_DOTFILES}/zsh/lib/termsupport.zsh"
 
 source "${ZSH_CUSTOM}/plugins/zaw/zaw.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
@@ -383,13 +378,21 @@ source "$ZSH_CUSTOM/kagami.zsh-theme"
 
 
 
-
-
-
-
-
+## History file configuration
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
 SAVEHIST=1000000
+
+## History command configuration
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt inc_append_history     # add commands to HISTFILE in order of execution
+setopt share_history          # share command history data
+
+
 
 # Find current project's root folder.
 function is_project_root {
