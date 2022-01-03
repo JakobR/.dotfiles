@@ -352,6 +352,9 @@ for config_file in $ZSH/lib/*.zsh; do
   source $config_file
 done
 
+source "${JR_DOTFILES}/zsh/lib/clipboard.zsh"
+source "${JR_DOTFILES}/zsh/lib/git.zsh"
+
 source "${ZSH_CUSTOM}/plugins/zaw/zaw.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
