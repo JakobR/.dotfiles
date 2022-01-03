@@ -194,6 +194,7 @@ fi
 
 # NOTE: For the option "-F" to work properly we need "less" version >= 530
 export PAGER="less -SF"
+export LESS="-R"
 
 # Fix GPG (it needs to know where to display the passphrase dialog)
 # See also https://www.gnupg.org/(it)/documentation/manuals/gnupg/Common-Problems.html
@@ -347,7 +348,7 @@ compinit -i -C -d "${ZSH_COMPDUMP}"
 
 # Load all of the config files in ~/oh-my-zsh that end in .zsh
 # TIP: Add files you don't want in git to .gitignore
-for config_file ($ZSH/lib/*.zsh); do
+for config_file in $ZSH/lib/*.zsh; do
   source $config_file
 done
 
@@ -456,13 +457,6 @@ function chpwd {
         set_project_histfile
     fi
 }
-
-# Aliases for GNU coreutils (they are used in nix-shell even on macOS)
-if [[ ( -n "${IN_NIX_SHELL:-}") || ( "$OSTYPE" =~ ^linux ) ]] then
-    alias ls="ls --color=auto"
-    alias ll="ls -lhF --time-style=long-iso"
-    alias la="ll -a"
-fi
 
 setopt complete_aliases
 

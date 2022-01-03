@@ -3,6 +3,7 @@
 #
 # vim: set ft=zsh:
 
+# See https://apple.stackexchange.com/a/282189
 export LSCOLORS="ExfxcxdxBxegedabagacad"
 
 function kagami_git_prompt_info {
@@ -112,6 +113,7 @@ function prompt_kagami_setup {
     local p_dir="${c_dir}%~"
 
     # Branch and status of git repository in current directory
+    # TODO: show git user name! if it's not my main identity. function: git_current_user_name
     local p_git="\$(kagami_git_prompt_info)"
     local p_git_stash="" #"\$(kagami_git_stash_info)"
     # Configure the oh-my-zsh git_prompt_info helper
