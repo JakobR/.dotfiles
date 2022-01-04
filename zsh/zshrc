@@ -317,8 +317,8 @@ ZSH_CACHE_DIR="${HOME}/.cache/zsh"
 if [[ ! -d "${ZSH_CACHE_DIR}" ]]; then
     mkdir -p "${ZSH_CACHE_DIR}"
 fi
-# TODO: move to cache dir?
-ZSH_COMPDUMP="${HOME}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+
+ZSH_COMPDUMP="${ZSH_CACHE_DIR}/zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 
 # Load all stock functions (from $fpath files) called below.
 autoload -U compaudit compinit
