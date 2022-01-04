@@ -42,6 +42,10 @@ if [[ ! -v IN_NIX_SHELL ]] then
         # This might only be necessary on 10.13.x for me. If yes, add a version check (using command `sw_vers`?).
     fi
 
+    if [[ "$OSTYPE" = freebsd* ]] then
+        export PATH="${PATH}:/usr/local/share/git-core/contrib/diff-highlight"
+    fi
+
     # Go
     export GOPATH=$HOME/.go
     export PATH=$GOPATH/bin:$PATH
