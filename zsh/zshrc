@@ -237,7 +237,6 @@ source "${ZSH}/conf/disable-autocorrection.zsh"
 source "${ZSH}/conf/dwim.zsh"
 source "${ZSH}/conf/iterm-tab-color.zsh"
 source "${ZSH}/conf/key-bindings.zsh"
-[[ "$OSTYPE" = darwin* ]] && source "${ZSH}/conf/macos.zsh"
 source "${ZSH}/conf/misc.zsh"
 source "${ZSH}/conf/project.zsh"
 source "${ZSH}/conf/rvm.zsh"
@@ -245,6 +244,20 @@ source "${ZSH}/conf/sudo-prompt.zsh"
 source "${ZSH}/conf/tmux.zsh"
 source "${ZSH}/conf/vim.zsh"
 source "${ZSH}/conf/zaw.zsh"
+
+# OS-specific configuration
+case "$OSTYPE" in
+    (darwin*)
+        source "${ZSH}/conf/os/macos.zsh"
+        ;;
+    (freebsd*)
+        source "${ZSH}/conf/os/freebsd.zsh"
+        ;;
+    (linux*)
+        source "${ZSH}/conf/os/linux.zsh"
+        [[ -v WSL_DISTRO_NAME ]] && source "${ZSH}/conf/os/wsl.zsh"
+        ;;
+esac
 
 ## History file configuration
 [[ -z "$HISTFILE" ]] && HISTFILE="$HOME/.zsh_history"
