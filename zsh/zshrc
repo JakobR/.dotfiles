@@ -34,132 +34,10 @@ export LC_TIME="de_AT.UTF-8"
 export LC_MONETARY="de_AT.UTF-8"
 export LC_MEASUREMENT="de_AT.UTF-8"
 
-# Platform-specific configuration
-if [[ "$OSTYPE" = darwin* ]] then
-  # macOS configuration
-
-  # Disable auto-cleanup when upgrading homebrew formulas
-  export HOMEBREW_NO_INSTALL_CLEANUP=1
-  # Disable homebrew auto-update
-  export HOMEBREW_NO_AUTO_UPDATE=1
-
-  EMACSCLIENT="${HOMEBREW_PREFIX}/bin/emacsclient"
-  function emacs_is_running {
-      $EMACSCLIENT --eval "t" &>/dev/null
-  }
-  function emacs_ensure_running {
-      if ! emacs_is_running; then
-          printf "Starting Emacs server"
-          /usr/bin/open --background /Applications/Emacs.app
-          while ! emacs_is_running; do
-              printf "."
-              /bin/sleep 0.05
-          done
-          printf "\n"
-      fi
-  }
-  function e {
-      emacs_ensure_running
-
-      # Focus Emacs window
-      # Do this first, because if the Emacs GUI was hidden with CMD+H,
-      # opening a file with emacsclient will block until the GUI is activated by the user.
-      $EMACSCLIENT --eval "(x-focus-frame nil)" >/dev/null
-
-      if [[ -z "${@}" ]] then
-          # No args: just focus Emacs for now
-          # $EMACSCLIENT --eval "(list-directory \"${PWD}\")"
-      else
-          $EMACSCLIENT --no-wait "${@}"
-      fi
-  }
-  function eo {
-      e -c "~/org/inbox.org"
-  }
-  function ea {
-      e -c --eval "(org-agenda-list)" "(delete-other-windows)"
-      # TODO: focus agenda buffer if it is already open
-      # See also https://emacs.stackexchange.com/a/3472
-  }
-  function ec {
-      # Only pass -c if emacs is already running,
-      # otherwise we end up with an extra empty window.
-      if emacs_is_running; then
-          e -c "${@}"
-      else
-          e "${@}"
-      fi
-  }
-
-  function dash {
-      /usr/bin/open "dash://$1"
-  }
-
-  alias dtw='$HOME/server/dango/transmission-web.sh -f'
-  alias dtr='$HOME/server/dango/transmission-remote.sh'
-  alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
-  alias pbclear='echo -n | pbcopy'
-
-  JR_OPEN="/usr/bin/open"
-
-elif [[ "$OSTYPE" = freebsd* ]] then
-  # FreeBSD configuration
-
-  # Show full command name in top by default (-a)
-  export TOP='-a'
-
-elif [[ "$OSTYPE" = linux* ]] then
-  # Linux configuration
-
-  JR_OPEN="xdg-open"
-
-  alias gdate="date"
-
-  #########
-  # NixOS #
-  #########
-  # # Clear right-side prompt
-  # RPS1=
-  # Terminfo
-  if [[ "$TERM_PROGRAM" == "iTerm.app" ]] then
-      TERM=iTerm2.app
-  fi
-
-  ###############################
-  # Windows Subsystem for Linux #
-  ###############################
-  if [[ -v WSL_DISTRO_NAME ]] then
-
-      if [[ "$PWD" == "/mnt/c/Windows" ]] then
-          cd ~
-      fi
-      if [[ "$PWD" == "/mnt/c/Windows/System32" ]] then
-          cd ~
-      fi
-
-      # Disable C-s handling by the terminal
-      # (C-s sends signal XOFF to stop output, C-q sends XON to resume)
-      # See https://unix.stackexchange.com/a/72092
-      stty -ixon
-
-      alias explorer="/mnt/c/Windows/explorer.exe"
-
-      function o {
-          local path
-          if (( $# == 0 )) then
-              path="$PWD"
-          elif (( $# == 1 )) then
-              path="$1"
-          else
-              echo "Error: I don't know what to do with multiple arguments :("
-              return 2
-          fi
-          /mnt/c/Windows/explorer.exe "$(/usr/bin/wslpath -w "$path")"
-      }
-
-  fi
-fi
-
+# Disable C-s handling by the terminal
+# (C-s sends signal XOFF to stop output, C-q sends XON to resume)
+# See https://unix.stackexchange.com/a/72092
+stty -ixon
 
 # NOTE: For the option "-F" to work properly we need "less" version >= 530
 export PAGER="less -SF"
@@ -235,6 +113,7 @@ source "${ZSH}/conf/ag.zsh"
 source "${ZSH}/conf/directories.zsh"
 source "${ZSH}/conf/disable-autocorrection.zsh"
 source "${ZSH}/conf/dwim.zsh"
+source "${ZSH}/conf/emacs.zsh"
 source "${ZSH}/conf/iterm-tab-color.zsh"
 source "${ZSH}/conf/key-bindings.zsh"
 source "${ZSH}/conf/misc.zsh"
