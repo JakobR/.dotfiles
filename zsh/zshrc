@@ -350,11 +350,19 @@ source "${ZSH_CUSTOM}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/nix/nix.plugin.zsh"
 source "${ZSH_CUSTOM}/plugins/nix-shell/nix-shell.plugin.zsh"
 
-# Load all of your custom configurations from custom/  (TODO: replace loop by explicit list)
-for config_file in $ZSH_CUSTOM/*.zsh(N); do
-  source $config_file
-done
-unset config_file
+# Load all of your custom configurations from custom/
+source "${ZSH_CUSTOM}/ag.zsh"
+source "${ZSH_CUSTOM}/directories.zsh"
+source "${ZSH_CUSTOM}/disable-autocorrection.zsh"
+source "${ZSH_CUSTOM}/dwim.zsh"
+source "${ZSH_CUSTOM}/iterm-tab-color.zsh"
+source "${ZSH_CUSTOM}/key-bindings.zsh"
+source "${ZSH_CUSTOM}/macos.zsh"
+source "${ZSH_CUSTOM}/misc.zsh"
+source "${ZSH_CUSTOM}/rvm.zsh"
+source "${ZSH_CUSTOM}/sudo-prompt.zsh"
+source "${ZSH_CUSTOM}/tmux.zsh"
+source "${ZSH_CUSTOM}/zaw.zsh"
 
 source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
