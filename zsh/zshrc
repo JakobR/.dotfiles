@@ -4,6 +4,8 @@
 # Uncomment this line and "zprof" at the end of this file to profile zsh startup time
 # zmodload zsh/zprof
 
+# Determine whether the background of the current terminal is dark or light (affects color choices),
+# and whether we want to use non-ASCII characters in the prompt.
 ZSH_THEME_BACKGROUND="dark"
 case "$TERM_PROGRAM" in
     (iTerm.app)
@@ -18,10 +20,10 @@ case "$TERM_PROGRAM" in
 esac
 export ZSH_THEME_BACKGROUND
 
-# disable shell-builtin "r" so I can access the "r" executable
+# Disable builtin command "r" so I can access the "r" executable.
 disable r
 
-# "log" is the new way to access the syslog in OSX
+# Disable builtin command "log" (on macOS, the command to access the syslog is also called "log").
 disable log
 
 # Set language/locale
@@ -121,14 +123,6 @@ elif [[ "$OSTYPE" = linux* ]] then
   # Terminfo
   if [[ "$TERM_PROGRAM" == "iTerm.app" ]] then
       TERM=iTerm2.app
-  fi
-
-  ##########
-  # Ubuntu #
-  ##########
-  if [[ "$(lsb_release -s -i)" = "Ubuntu" ]] then
-      alias fd=fdfind
-      alias yt-dlp=$HOME/youtube-dl/bin/yt-dlp
   fi
 
   ###############################
