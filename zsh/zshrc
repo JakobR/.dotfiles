@@ -385,10 +385,11 @@ setopt share_history          # share command history data
 
 
 
-# Find current project's root folder.
+# Tests whether the argument is a project root folder.
 function is_project_root {
     [[ (-e "${1}/.git") || (-e "${1}/.zsh_history") || ("${1:P}" = "${HOME:P}") || ("$1" == "/") ]]
 }
+# Find current project's root folder.
 function find_project_root {
     local dir="${1:-$PWD}"
     dir="${dir:P}"  # get realpath of directory

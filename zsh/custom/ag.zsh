@@ -6,4 +6,5 @@ if type ag >/dev/null 2>/dev/null; then
 
 fi
 
-alias grep="grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
+# alias grep="grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
+alias grep="grep --color=auto"
