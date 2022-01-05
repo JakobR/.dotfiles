@@ -183,11 +183,7 @@ if ! typeset -f o > /dev/null; then
     }
 fi
 
-
-
-##########################################################################
-# work in progress: getting rid of oh-my-zsh
-
+setopt complete_aliases
 
 # Figure out the SHORT hostname
 if [[ "$OSTYPE" = darwin* ]]; then
@@ -243,24 +239,12 @@ source "${ZSH}/conf/iterm-tab-color.zsh"
 source "${ZSH}/conf/key-bindings.zsh"
 [[ "$OSTYPE" = darwin* ]] && source "${ZSH}/conf/macos.zsh"
 source "${ZSH}/conf/misc.zsh"
+source "${ZSH}/conf/project.zsh"
 source "${ZSH}/conf/rvm.zsh"
 source "${ZSH}/conf/sudo-prompt.zsh"
 source "${ZSH}/conf/tmux.zsh"
 source "${ZSH}/conf/vim.zsh"
 source "${ZSH}/conf/zaw.zsh"
-
-source "${ZSH}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
-
-# Load the theme (sets the prompt and the syntax highlighting colors)
-source "${ZSH}/conf/theme.zsh"
-
-
-##########################################################################
-
-
-
-
-
 
 ## History file configuration
 [[ -z "$HISTFILE" ]] && HISTFILE="$HOME/.zsh_history"
@@ -276,73 +260,7 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
 
-
-
-# Tests whether the argument is a project root folder.
-function is_project_root {
-    [[ (-e "${1}/.git") || (-e "${1}/.zsh_history") || ("${1:P}" = "${HOME:P}") || ("$1" == "/") ]]
-}
-# Find current project's root folder.
-function find_project_root {
-    local dir="${1:-$PWD}"
-    dir="${dir:P}"  # get realpath of directory
-    while ! is_project_root "$dir"; do
-        dir="${dir:h}"
-    done
-    printf "%s\n" "$dir"
-}
-# Go to the current project's root folder.
-function cdr {
-    cd "$(find_project_root)"
-}
-function set_histfile_dir {
-    local dir="$1"
-    if [[ "$dir" = "/" ]] then
-        dir="$HOME"
-    fi
-    local project_histfile="${dir}/.zsh_history"
-    if [[ (! -w "$project_histfile") && ((-e "$project_histfile") || (! -w "${project_histfile:h}")) ]] then
-        # project_histfile exists and isn't writable, or
-        # project_histfile doesn't exist and the parent directory isn't writable
-        # => use the default location instead
-        project_histfile="${HOME}/.zsh_history"
-    fi
-    # Switch to project histfile.
-    # We follow symbolic links. This makes it possible to link the histories of
-    # different folders. If we didn't follow the link, zsh would replace it
-    # with a regular file on the next write.
-    local real_project_histfile="${project_histfile:P}"
-    if [[ ${HISTFILE:P} != "${real_project_histfile}" ]] then
-        fc -Pp "${real_project_histfile}"
-        echo "New HISTFILE: $HISTFILE"
-    fi
-}
-function set_project_histfile {
-    set_histfile_dir "$(find_project_root)"
-}
-
-function project_build_root {
-    local project_root="$(find_project_root)"
-    local project_name="${project_root:t}"
-    local dir="${HOME}/.cache/build/${project_name}"
-    printf "%s\n" "$dir"
-}
-# Usage:
-#   cdb [CONFIG]
-# Go to the current project's build directory.
-# CONFIG: the build configuration, defaults to "debug".
-function cdb {
-    local build_cfg="${1:-debug}"
-    local build_dir="$(project_build_root)/${build_cfg}"
-    if [[ ! -e "${build_dir}" ]] then
-        echo "cdb: creating new build directory: ${build_dir}"
-        /bin/mkdir -p "${build_dir}"
-        # TODO: link .git to the project folder if necessary.
-    fi
-    cd "${build_dir}"
-}
-
-# Use per-project zsh history
+## Use per-project zsh history
 set_project_histfile
 function chpwd {
     # Note: chpwd is called whenever the current directory changes
@@ -351,7 +269,10 @@ function chpwd {
     fi
 }
 
-setopt complete_aliases
+source "${ZSH}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+
+# Load the theme (sets the prompt and the syntax highlighting colors)
+source "${ZSH}/conf/theme.zsh"
 
 # Uncomment this line and "zmodload zsh/zprof" at the top of this file to profile zsh startup time
 # zprof
