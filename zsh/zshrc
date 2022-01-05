@@ -338,6 +338,7 @@ handle_completion_insecurities
 # Load only from secure directories
 compinit -i -C -d "${ZSH_COMPDUMP}"
 
+# External config files
 source "${ZSH}/lib/clipboard.zsh"
 source "${ZSH}/lib/completion.zsh"
 source "${ZSH}/lib/git.zsh"
@@ -349,7 +350,7 @@ source "${ZSH}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
 source "${ZSH}/plugins/nix/nix.plugin.zsh"
 source "${ZSH}/plugins/nix-shell/nix-shell.plugin.zsh"
 
-# Load all of your custom configurations from custom/
+# My config files
 source "${ZSH}/conf/ag.zsh"
 source "${ZSH}/conf/directories.zsh"
 source "${ZSH}/conf/disable-autocorrection.zsh"
@@ -365,7 +366,7 @@ source "${ZSH}/conf/zaw.zsh"
 
 source "${ZSH}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
-# Load the theme
+# Load the theme (sets the prompt and the syntax highlighting colors)
 source "${ZSH}/conf/theme.zsh"
 
 
@@ -472,11 +473,6 @@ if [[ "$OSTYPE" =~ ^darwin ]] then
     alias s="/usr/bin/open -a Skim"
     compdef '_files -g \*.pdf' s
 fi
-
-# # iTerm shell integration, see https://iterm2.com/documentation-shell-integration.html
-# if [[ "$TERM_PROGRAM" == "iTerm.app" ]] then
-#     source "${ZSH}/iterm2_shell_integration.zsh"
-# fi
 
 # Uncomment this line and "zmodload zsh/zprof" at the top of this file to profile zsh startup time
 # zprof
