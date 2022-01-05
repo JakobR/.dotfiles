@@ -367,7 +367,7 @@ source "${JR_DOTFILES}/zsh/conf/zaw.zsh"
 source "${JR_DOTFILES}/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
 # Load the theme
-source "$ZSH_CUSTOM/kagami.zsh-theme"
+source "${JR_DOTFILES}/zsh/conf/theme.zsh"
 
 
 ##########################################################################
