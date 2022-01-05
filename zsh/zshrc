@@ -50,16 +50,13 @@ export GPG_TTY="$(tty)"
 export ZFS_COLOR=1
 alias color_test='for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done | column -c 100'
 
-# Define function "o" if not yet defined
-if ! typeset -f o > /dev/null; then
-    function o {
-        if [[ -z "${@}" ]] then
-            "${JR_OPEN}" .
-        else
-            "${JR_OPEN}" "${@}"
-        fi
-    }
-fi
+function o {
+    if [[ -z "${@}" ]] then
+        "${JR_OPEN}" .
+    else
+        "${JR_OPEN}" "${@}"
+    fi
+}
 
 setopt complete_aliases
 
