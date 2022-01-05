@@ -323,51 +323,50 @@ ZSH_COMPDUMP="${ZSH_CACHE_DIR}/zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 # Load all stock functions (from $fpath files) called below.
 autoload -U compaudit compinit
 
-# TODO: rename variable to ZSH
-ZSH_CUSTOM="${JR_DOTFILES}/zsh/custom"
+ZSH="${JR_DOTFILES}/zsh"
 
-fpath=("${JR_DOTFILES}/zsh/completions" $fpath)
-fpath=("${JR_DOTFILES}/zsh/plugins/zaw" $fpath)
-fpath=("${JR_DOTFILES}/zsh/plugins/zsh-dwim" $fpath)
-fpath=("${JR_DOTFILES}/zsh/plugins/zsh-syntax-highlighting" $fpath)
-fpath=("${JR_DOTFILES}/zsh/plugins/nix" $fpath)
-fpath=("${JR_DOTFILES}/zsh/plugins/nix-shell" $fpath)
+fpath=("${ZSH}/completions" $fpath)
+fpath=("${ZSH}/plugins/zaw" $fpath)
+fpath=("${ZSH}/plugins/zsh-dwim" $fpath)
+fpath=("${ZSH}/plugins/zsh-syntax-highlighting" $fpath)
+fpath=("${ZSH}/plugins/nix" $fpath)
+fpath=("${ZSH}/plugins/nix-shell" $fpath)
 
-source "${JR_DOTFILES}/zsh/lib/compfix.zsh"
+source "${ZSH}/lib/compfix.zsh"
 # If completion insecurities exist, warn the user
 handle_completion_insecurities
 # Load only from secure directories
 compinit -i -C -d "${ZSH_COMPDUMP}"
 
-source "${JR_DOTFILES}/zsh/lib/clipboard.zsh"
-source "${JR_DOTFILES}/zsh/lib/completion.zsh"
-source "${JR_DOTFILES}/zsh/lib/git.zsh"
-source "${JR_DOTFILES}/zsh/lib/spectrum.zsh"
-source "${JR_DOTFILES}/zsh/lib/termsupport.zsh"
+source "${ZSH}/lib/clipboard.zsh"
+source "${ZSH}/lib/completion.zsh"
+source "${ZSH}/lib/git.zsh"
+source "${ZSH}/lib/spectrum.zsh"
+source "${ZSH}/lib/termsupport.zsh"
 
-source "${JR_DOTFILES}/zsh/plugins/zaw/zaw.plugin.zsh"
-source "${JR_DOTFILES}/zsh/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
-source "${JR_DOTFILES}/zsh/plugins/nix/nix.plugin.zsh"
-source "${JR_DOTFILES}/zsh/plugins/nix-shell/nix-shell.plugin.zsh"
+source "${ZSH}/plugins/zaw/zaw.plugin.zsh"
+source "${ZSH}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
+source "${ZSH}/plugins/nix/nix.plugin.zsh"
+source "${ZSH}/plugins/nix-shell/nix-shell.plugin.zsh"
 
 # Load all of your custom configurations from custom/
-source "${JR_DOTFILES}/zsh/conf/ag.zsh"
-source "${JR_DOTFILES}/zsh/conf/directories.zsh"
-source "${JR_DOTFILES}/zsh/conf/disable-autocorrection.zsh"
-source "${JR_DOTFILES}/zsh/conf/dwim.zsh"
-source "${JR_DOTFILES}/zsh/conf/iterm-tab-color.zsh"
-source "${JR_DOTFILES}/zsh/conf/key-bindings.zsh"
-source "${JR_DOTFILES}/zsh/conf/macos.zsh"
-source "${JR_DOTFILES}/zsh/conf/misc.zsh"
-source "${JR_DOTFILES}/zsh/conf/rvm.zsh"
-source "${JR_DOTFILES}/zsh/conf/sudo-prompt.zsh"
-source "${JR_DOTFILES}/zsh/conf/tmux.zsh"
-source "${JR_DOTFILES}/zsh/conf/zaw.zsh"
+source "${ZSH}/conf/ag.zsh"
+source "${ZSH}/conf/directories.zsh"
+source "${ZSH}/conf/disable-autocorrection.zsh"
+source "${ZSH}/conf/dwim.zsh"
+source "${ZSH}/conf/iterm-tab-color.zsh"
+source "${ZSH}/conf/key-bindings.zsh"
+source "${ZSH}/conf/macos.zsh"
+source "${ZSH}/conf/misc.zsh"
+source "${ZSH}/conf/rvm.zsh"
+source "${ZSH}/conf/sudo-prompt.zsh"
+source "${ZSH}/conf/tmux.zsh"
+source "${ZSH}/conf/zaw.zsh"
 
-source "${JR_DOTFILES}/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+source "${ZSH}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
 # Load the theme
-source "${JR_DOTFILES}/zsh/conf/theme.zsh"
+source "${ZSH}/conf/theme.zsh"
 
 
 ##########################################################################
@@ -476,7 +475,7 @@ fi
 
 # # iTerm shell integration, see https://iterm2.com/documentation-shell-integration.html
 # if [[ "$TERM_PROGRAM" == "iTerm.app" ]] then
-#     source "${JR_DOTFILES}/zsh/iterm2_shell_integration.zsh"
+#     source "${ZSH}/iterm2_shell_integration.zsh"
 # fi
 
 # Uncomment this line and "zmodload zsh/zprof" at the top of this file to profile zsh startup time
