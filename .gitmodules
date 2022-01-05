@@ -1,21 +1,21 @@
 [submodule "zsh/custom/plugins/zsh-syntax-highlighting"]
-	path = zsh/custom/plugins/zsh-syntax-highlighting
+	path = zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule "vim/bundle/vundle"]
 	path = vim/bundle/vundle
 	url = https://github.com/VundleVim/Vundle.vim.git
 [submodule "zsh/custom/plugins/zaw"]
-	path = zsh/custom/plugins/zaw
+	path = zsh/plugins/zaw
 	url = https://github.com/zsh-users/zaw.git
 [submodule "zsh/custom/plugins/zsh-dwim"]
-	path = zsh/custom/plugins/zsh-dwim
+	path = zsh/plugins/zsh-dwim
 	url = https://github.com/oknowton/zsh-dwim.git
 [submodule "emacs.d/plugin/evil-plugins"]
 	path = emacs.d/plugin/evil-plugins
 	url = https://github.com/tarao/evil-plugins
 [submodule "zsh/custom/plugins/nix-zsh-completions"]
-	path = zsh/custom/plugins/nix
+	path = zsh/plugins/nix
 	url = https://github.com/spwhitt/nix-zsh-completions
 [submodule "zsh/custom/plugins/nix-shell"]
-	path = zsh/custom/plugins/nix-shell
+	path = zsh/plugins/nix-shell
 	url = https://github.com/chisui/zsh-nix-shell

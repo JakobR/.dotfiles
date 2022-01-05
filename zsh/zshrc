@@ -327,11 +327,11 @@ autoload -U compaudit compinit
 ZSH_CUSTOM="${JR_DOTFILES}/zsh/custom"
 
 fpath=("${JR_DOTFILES}/zsh/completions" $fpath)
-fpath=("${ZSH_CUSTOM}/plugins/zaw" $fpath)
-fpath=("${ZSH_CUSTOM}/plugins/zsh-dwim" $fpath)
-fpath=("${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" $fpath)
-fpath=("${ZSH_CUSTOM}/plugins/nix" $fpath)
-fpath=("${ZSH_CUSTOM}/plugins/nix-shell" $fpath)
+fpath=("${JR_DOTFILES}/zsh/plugins/zaw" $fpath)
+fpath=("${JR_DOTFILES}/zsh/plugins/zsh-dwim" $fpath)
+fpath=("${JR_DOTFILES}/zsh/plugins/zsh-syntax-highlighting" $fpath)
+fpath=("${JR_DOTFILES}/zsh/plugins/nix" $fpath)
+fpath=("${JR_DOTFILES}/zsh/plugins/nix-shell" $fpath)
 
 source "${JR_DOTFILES}/zsh/lib/compfix.zsh"
 # If completion insecurities exist, warn the user
@@ -345,10 +345,10 @@ source "${JR_DOTFILES}/zsh/lib/git.zsh"
 source "${JR_DOTFILES}/zsh/lib/spectrum.zsh"
 source "${JR_DOTFILES}/zsh/lib/termsupport.zsh"
 
-source "${ZSH_CUSTOM}/plugins/zaw/zaw.plugin.zsh"
-source "${ZSH_CUSTOM}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
-source "${ZSH_CUSTOM}/plugins/nix/nix.plugin.zsh"
-source "${ZSH_CUSTOM}/plugins/nix-shell/nix-shell.plugin.zsh"
+source "${JR_DOTFILES}/zsh/plugins/zaw/zaw.plugin.zsh"
+source "${JR_DOTFILES}/zsh/plugins/zsh-dwim/zsh-dwim.plugin.zsh"
+source "${JR_DOTFILES}/zsh/plugins/nix/nix.plugin.zsh"
+source "${JR_DOTFILES}/zsh/plugins/nix-shell/nix-shell.plugin.zsh"
 
 # Load all of your custom configurations from custom/
 source "${JR_DOTFILES}/zsh/conf/ag.zsh"
@@ -364,7 +364,7 @@ source "${JR_DOTFILES}/zsh/conf/sudo-prompt.zsh"
 source "${JR_DOTFILES}/zsh/conf/tmux.zsh"
 source "${JR_DOTFILES}/zsh/conf/zaw.zsh"
 
-source "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+source "${JR_DOTFILES}/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
 # Load the theme
 source "$ZSH_CUSTOM/kagami.zsh-theme"
