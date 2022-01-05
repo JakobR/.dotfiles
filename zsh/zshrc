@@ -241,7 +241,7 @@ source "${ZSH}/conf/disable-autocorrection.zsh"
 source "${ZSH}/conf/dwim.zsh"
 source "${ZSH}/conf/iterm-tab-color.zsh"
 source "${ZSH}/conf/key-bindings.zsh"
-source "${ZSH}/conf/macos.zsh"
+[[ "$OSTYPE" = darwin* ]] && source "${ZSH}/conf/macos.zsh"
 source "${ZSH}/conf/misc.zsh"
 source "${ZSH}/conf/rvm.zsh"
 source "${ZSH}/conf/sudo-prompt.zsh"
@@ -263,7 +263,7 @@ source "${ZSH}/conf/theme.zsh"
 
 
 ## History file configuration
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+[[ -z "$HISTFILE" ]] && HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
 SAVEHIST=1000000
 
@@ -352,12 +352,6 @@ function chpwd {
 }
 
 setopt complete_aliases
-
-if [[ "$OSTYPE" =~ ^darwin ]] then
-    # compdef seems to work only after loading oh-my-zsh
-    alias s="/usr/bin/open -a Skim"
-    compdef '_files -g \*.pdf' s
-fi
 
 # Uncomment this line and "zmodload zsh/zprof" at the top of this file to profile zsh startup time
 # zprof

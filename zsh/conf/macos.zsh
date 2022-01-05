@@ -1,7 +1,4 @@
 # Source: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/macos/macos.plugin.zsh
-if [[ "$OSTYPE" = darwin* ]]; then
-
-
 
 # Show/hide hidden files in Finder
 # If it doesn't work, try `killall cfprefsd` first (see https://apple.stackexchange.com/a/112091)
@@ -39,6 +36,5 @@ function cdf {
   cd "$(pfd)"
 }
 
-
-
-fi
+alias s="/usr/bin/open -a Skim"
+compdef '_files -g \*.pdf' s
