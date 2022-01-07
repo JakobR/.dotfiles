@@ -48,3 +48,10 @@ _dwim_add_transform '^brew update' \
 _dwim_add_transform '^brew info ' \
   '_dwim_sed "s/^brew info/brew install/"
   _dwim_cursor=$#BUFFER'
+
+
+#     sudo cat <file>
+# =>  sudoedit <file>
+_dwim_add_transform '^sudo cat ' \
+  '_dwim_sed "s/^sudo cat/sudoedit/"
+  _dwim_cursor=$#BUFFER'
