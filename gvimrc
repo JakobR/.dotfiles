@@ -31,6 +31,11 @@ if has("gui_macvim")
   noremap <D-t> :CtrlP<CR>
   inoremap <D-t> <C-O>:CtrlP<CR>
 
+  " Work around muscle memory from VSCode
+  macmenu &File.Print key=<D-P>
+  noremap <D-p> :CtrlP<CR>
+  inoremap <D-p> <C-O>:CtrlP<CR>
+
   " Command-/ to toggle comments
   map <D-/> <Plug>CommentaryLine
   vmap <D-/> <Plug>Commentary<CR>gv
