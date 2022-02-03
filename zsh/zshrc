@@ -60,6 +60,8 @@ function o {
 
 setopt complete_aliases
 
+REPORTTIME=5
+
 # Figure out the SHORT hostname
 if [[ "$OSTYPE" = darwin* ]]; then
   # macOS's $HOST changes with dhcp, etc. Use ComputerName if possible.
