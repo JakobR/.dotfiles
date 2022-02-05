@@ -1,11 +1,11 @@
 alias vi="vim"
 
 if [[ "$OSTYPE" = darwin* ]] then
-    alias mvim="${HOMEBREW_PREFIX}/bin/mvim -p"
+    alias mvim="${HOMEBREW_PREFIX:-/usr/local}/bin/mvim -p"
     # On macOS, use MacVim to edit files, and give focus back to iTerm after closing
-    export EDITOR="${HOMEBREW_PREFIX}/bin/mvim -p --nofork -c ActivateTerminalOnExit"
+    export EDITOR="${HOMEBREW_PREFIX:-/usr/local}/bin/mvim -p --nofork -c ActivateTerminalOnExit"
     # But stay in the console for git commit messages
-    export GIT_EDITOR="${HOMEBREW_PREFIX}/bin/vim +0"
+    export GIT_EDITOR="${HOMEBREW_PREFIX:-/usr/local}/bin/vim +0"
 elif (( $+commands[vim] )) then
     export EDITOR="${commands[vim]}"
 fi
