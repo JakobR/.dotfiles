@@ -137,11 +137,8 @@ if !exists('g:vimpager')
   " Plugin 'Yggdroot/indentLine'
   " Plugin 'nathanaelkane/vim-indent-guides'
 
-  Plugin 'junegunn/fzf.vim'
+  " Plugin 'junegunn/fzf.vim'
   " Plugin 'fiatjaf/neuron.vim'
-
-  " Plugin 'neoclide/coc.nvim', {'branch': 'release'}    " TODO: option 'branch' doesn't work with vundle, maybe switch to vim-plug
-  " TODO try coc-rust-analyzer
 
   " Installation guide: https://github.com/Valloric/YouCompleteMe
   if has('gui_macvim')
@@ -164,7 +161,7 @@ if !exists('g:vimpager')
   " Plugin 'sjl/gundo.vim'
   Plugin 'mbbill/undotree'
 
-  Plugin 'rizzatti/dash.vim'
+  " Plugin 'rizzatti/dash.vim'
 
   " Plugin 'jceb/vim-orgmode'
 endif

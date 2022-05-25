@@ -69,8 +69,6 @@ set ttimeout
 set ttimeoutlen=50
 set updatetime=200
 set nofoldenable        " folds should be open by default
-
-set hidden              " apparently coc.nvim wants this
 set signcolumn=yes
 
 " use system clipboard as default register
@@ -188,7 +186,6 @@ nmap <leader>o :call OpenUrlUnderCursor()<CR>
 
 " Close all hidden buffers
 " see https://stackoverflow.com/a/30101152
-" TODO doesn't seem to work as-is, fix it!
 function! DeleteHiddenBuffers()
   let tpbl=[]
   let closed = 0
@@ -513,75 +510,6 @@ endif
 let g:UltiSnipsExpandTrigger = "<C-j>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
-
-" Configure coc.nvim only if it has been loaded
-if exists('g:did_coc_loaded')
-    " use <tab> to trigger completion and navigate to the next complete item
-    function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
-
-    inoremap <silent><expr> <Tab>
-                \ pumvisible() ? "\<C-n>" :
-                \ <SID>check_back_space() ? "\<Tab>" :
-                \ coc#refresh()
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-    " " Use <Tab> and <S-Tab> to navigate the completion list
-    " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-    " Use <c-space> to trigger completion.
-    " inoremap <silent><expr> <c-space> coc#refresh()
-
-    " TODO: I might want to use <C-j> for that (like ultisnips)
-    " " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-    " " Coc only does snippet and additional edit on confirm.
-    " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-    " " Or use `complete_info` if your vim support it, like:
-    " " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-    " Use `[g` and `]g` to navigate diagnostics
-    nmap <silent> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-    " Remap keys for gotos
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
-
-    " Use K to show documentation in preview window
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-    function! s:show_documentation()
-        if (index(['vim','help'], &filetype) >= 0)
-            execute 'h '.expand('<cword>')
-        else
-            call CocAction('doHover')
-        endif
-    endfunction
-
-    " autocmd CursorHold * nested exe "silent! call CocAction('doHover')"
-    " autocmd CursorHold * nested exe "call CocAction('doHover')"
-
-    " Highlight symbol under cursor on CursorHold
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-
-    " Remap for rename current word
-    nmap <leader>rn <Plug>(coc-rename)
-
-    " Remap for format selected region
-    xmap <leader>f  <Plug>(coc-format-selected)
-    nmap <leader>f  <Plug>(coc-format-selected)
-
-    " Create mappings for function text object, requires document symbols feature of languageserver.
-    xmap if <Plug>(coc-funcobj-i)
-    xmap af <Plug>(coc-funcobj-a)
-    omap if <Plug>(coc-funcobj-i)
-    omap af <Plug>(coc-funcobj-a)
-endif
 
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
