@@ -112,7 +112,6 @@ function jr_prompt_setup {
     local p_dir="${c_dir}%~"
 
     # Branch and status of git repository in current directory
-    # TODO: show git user name! if it's not my main identity. function: git_current_user_name
     local p_git="\$(jr_git_prompt_info)"
     # Configure the oh-my-zsh git_prompt_info helper
     ZSH_THEME_GIT_PROMPT_PREFIX=" ${c_gray}(${c_git_branch}"
