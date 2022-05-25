@@ -11,25 +11,27 @@ function __git_prompt_git() {
 
 function git_prompt_info() {
   # If we are on a folder not tracked by git, get out.
-  # Otherwise, check for hide-info at global and local repository level
-  if ! __git_prompt_git rev-parse --git-dir &> /dev/null \
-     || [[ "$(__git_prompt_git config --get oh-my-zsh.hide-info 2>/dev/null)" == 1 ]]; then
+  if ! __git_prompt_git rev-parse --git-dir &> /dev/null; then
     return 0
   fi
+  # # Check for hide-info at global and local repository level
+  # if [[ "$(__git_prompt_git config --get oh-my-zsh.hide-info 2>/dev/null)" == 1 ]]; then
+  #   return 0
+  # fi
 
   local ref
   ref=$(__git_prompt_git symbolic-ref --short HEAD 2> /dev/null) \
   || ref=$(__git_prompt_git rev-parse --short HEAD 2> /dev/null) \
   || return 0
 
-  # Use global ZSH_THEME_GIT_SHOW_UPSTREAM=1 for including upstream remote info
-  local upstream
-  if (( ${+ZSH_THEME_GIT_SHOW_UPSTREAM} )); then
-    upstream=$(__git_prompt_git rev-parse --abbrev-ref --symbolic-full-name "@{upstream}" 2>/dev/null) \
-    && upstream=" -> ${upstream}"
-  fi
+  # # Use global ZSH_THEME_GIT_SHOW_UPSTREAM=1 for including upstream remote info
+  # local upstream
+  # if (( ${+ZSH_THEME_GIT_SHOW_UPSTREAM} )); then
+  #   upstream=$(__git_prompt_git rev-parse --abbrev-ref --symbolic-full-name "@{upstream}" 2>/dev/null) \
+  #   && upstream=" -> ${upstream}"
+  # fi
 
-  echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref:gs/%/%%}${upstream:gs/%/%%}$(parse_git_dirty)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
+  echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref:gs/%/%%}${upstream:gs/%/%%}$(parse_git_dirty)$(parse_git_stash)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
 }
 
 # Checks if working tree is dirty
@@ -57,6 +59,14 @@ function parse_git_dirty() {
     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
   else
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  fi
+}
+
+function parse_git_stash {
+  local stash_count
+  stash_count="$(__git_prompt_git stash list 2> /dev/null | wc -l | tr -d \ \t)"
+  if [[ "${stash_count}" -ne "0" ]] then
+    print "${ZSH_THEME_GIT_STASH_PREFIX}${stash_count}"
   fi
 }
 

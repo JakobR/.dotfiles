@@ -20,13 +20,6 @@ function jr_git_prompt_info {
     git_prompt_info
 }
 
-function jr_git_stash_info {
-    local p_git_stash_count="$(git stash list 2> /dev/null | wc -l | tr -d \ \t)"
-    if [[ "${p_git_stash_count}" -ne "0" ]] then
-        print " %F{blue}s${p_git_stash_count}"
-    fi
-}
-
 function jr_prompt_setup {
     # Prompt expansion:
     # see http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
@@ -121,12 +114,12 @@ function jr_prompt_setup {
     # Branch and status of git repository in current directory
     # TODO: show git user name! if it's not my main identity. function: git_current_user_name
     local p_git="\$(jr_git_prompt_info)"
-    local p_git_stash="" #"\$(jr_git_stash_info)"
     # Configure the oh-my-zsh git_prompt_info helper
     ZSH_THEME_GIT_PROMPT_PREFIX=" ${c_gray}(${c_git_branch}"
     ZSH_THEME_GIT_PROMPT_SUFFIX="${c_gray})"
     ZSH_THEME_GIT_PROMPT_CLEAN=" ${c_git_clean}${s_git_check}"
     ZSH_THEME_GIT_PROMPT_DIRTY=" ${c_git_dirty}${s_git_cross}"
+    ZSH_THEME_GIT_STASH_PREFIX=" %F{blue}"
 
     # Show exit code of last command if not zero
     local p_status="%(?..${c_status_err}%?! )"
@@ -135,7 +128,7 @@ function jr_prompt_setup {
     local p_prompt="%(!.${c_user_root}${s_prompt_root}${c_gray}.${c_gray}${s_prompt_char}) "
 
     # Put it all together!
-    PROMPT="%B${p_arch}${p_nix_shell}${p_isengard}${c_gray}[$p_user_host$p_dir$c_gray]$p_git$p_git_stash $p_status$p_prompt%b%f%k"
+    PROMPT="%B${p_arch}${p_nix_shell}${p_isengard}${c_gray}[$p_user_host$p_dir$c_gray]$p_git $p_status$p_prompt%b%f%k"
 
     RPROMPT="${c_gray}%*"
 
