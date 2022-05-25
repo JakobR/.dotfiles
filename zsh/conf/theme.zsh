@@ -120,6 +120,7 @@ function jr_prompt_setup {
     ZSH_THEME_GIT_PROMPT_CLEAN=" ${c_git_clean}${s_git_check}"
     ZSH_THEME_GIT_PROMPT_DIRTY=" ${c_git_dirty}${s_git_cross}"
     ZSH_THEME_GIT_STASH_PREFIX=" %F{blue}"
+    ZSH_THEME_GIT_NAME_PREFIX=" %99F"
 
     # Show exit code of last command if not zero
     local p_status="%(?..${c_status_err}%?! )"

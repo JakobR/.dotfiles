@@ -31,7 +31,7 @@ function git_prompt_info() {
   #   && upstream=" -> ${upstream}"
   # fi
 
-  echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref:gs/%/%%}${upstream:gs/%/%%}$(parse_git_dirty)$(parse_git_stash)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
+  echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref:gs/%/%%}${upstream:gs/%/%%}$(parse_git_dirty)$(parse_git_stash)$(parse_git_name)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
 }
 
 # Checks if working tree is dirty
@@ -67,6 +67,16 @@ function parse_git_stash {
   stash_count="$(__git_prompt_git stash list 2> /dev/null | wc -l | tr -d \ \t)"
   if [[ "${stash_count}" -ne "0" ]] then
     print "${ZSH_THEME_GIT_STASH_PREFIX}${stash_count}"
+  fi
+}
+
+function parse_git_name {
+  local default_name
+  local current_name
+  default_name="$(git_default_user_name)"
+  current_name="$(git_current_user_name)"
+  if [[ "$default_name" != "$current_name" ]] then
+    print "${ZSH_THEME_GIT_NAME_PREFIX}${current_name}"
   fi
 }
 
@@ -273,6 +283,10 @@ function git_prompt_status() {
 # Usage example: $(git_current_user_name)
 function git_current_user_name() {
   __git_prompt_git config user.name 2>/dev/null
+}
+
+function git_default_user_name() {
+  __git_prompt_git config --global user.name 2>/dev/null
 }
 
 # Outputs the email of the current user
