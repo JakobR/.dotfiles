@@ -5,16 +5,14 @@
 
 autoload -U colors && colors
 
+# Perform parameter expansion, command substitution and arithmetic expansion in prompts
+setopt prompt_subst
+
 # See https://apple.stackexchange.com/a/282189
 export LSCOLORS="ExfxcxdxBxegedabagacad"
 # export LSCOLORS="Gxfxcxdxbxegedabagacad"  TODO: check this
 
-# TODO: move to better place?
-setopt auto_cd
-setopt multios
-setopt prompt_subst
-
-function kagami_git_prompt_info {
+function jr_git_prompt_info {
     if [[ ( -v WSL_DISTRO_NAME ) && ( "${PWD:A}" =~ "^/mnt/(.)(/|$)" ) ]] then
         print " [${match[1]:u}:\\\\]"
         return
@@ -22,14 +20,14 @@ function kagami_git_prompt_info {
     git_prompt_info
 }
 
-function kagami_git_stash_info {
+function jr_git_stash_info {
     local p_git_stash_count="$(git stash list 2> /dev/null | wc -l | tr -d \ \t)"
     if [[ "${p_git_stash_count}" -ne "0" ]] then
         print " %F{blue}s${p_git_stash_count}"
     fi
 }
 
-function prompt_kagami_setup {
+function jr_prompt_setup {
     # Prompt expansion:
     # see http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
     #
@@ -122,8 +120,8 @@ function prompt_kagami_setup {
 
     # Branch and status of git repository in current directory
     # TODO: show git user name! if it's not my main identity. function: git_current_user_name
-    local p_git="\$(kagami_git_prompt_info)"
-    local p_git_stash="" #"\$(kagami_git_stash_info)"
+    local p_git="\$(jr_git_prompt_info)"
+    local p_git_stash="" #"\$(jr_git_stash_info)"
     # Configure the oh-my-zsh git_prompt_info helper
     ZSH_THEME_GIT_PROMPT_PREFIX=" ${c_gray}(${c_git_branch}"
     ZSH_THEME_GIT_PROMPT_SUFFIX="${c_gray})"
@@ -189,4 +187,4 @@ function prompt_kagami_setup {
     # : ${ZSH_HIGHLIGHT_STYLES[assign]:=none}
 }
 
-prompt_kagami_setup
+jr_prompt_setup
