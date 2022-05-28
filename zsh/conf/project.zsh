@@ -11,6 +11,16 @@
 # that links back to the project.
 # could also have a link .jr_build in the project folder.
 
+if (( $+commands[grealpath] )) then
+    function jr_realpath {
+        grealpath "${@}"
+    }
+else
+    function jr_realpath {
+        realpath "${@}"
+    }
+fi
+
 # Print current directory relative to home folder.
 function rpwd {
     realpath --relative-to="$HOME" "$(pwd -r)"
