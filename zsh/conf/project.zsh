@@ -23,7 +23,7 @@ fi
 
 # Print current directory relative to home folder.
 function rpwd {
-    realpath --relative-to="$HOME" "$(pwd -r)"
+    jr_realpath --relative-to="$HOME" "$(pwd -r)"
 }
 
 # Test whether the argument is a project root folder.
@@ -35,7 +35,7 @@ function is_project_root {
 function find_project_root {
     local dir="${1:-$PWD}"
     dir="${dir:P}"  # get realpath of directory
-    local reldir="$(realpath --relative-to="$HOME" "$dir")"
+    local reldir="$(jr_realpath --relative-to="$HOME" "$dir")"
     if [[ "$reldir" =~ '^\.cache/build/([^/]+)($|/)' ]] then
         # If we're inside the project's build folder, return the project's real root folder.
         dir="$HOME/projects/${match[1]}"
