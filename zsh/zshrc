@@ -100,7 +100,8 @@ source "${ZSH}/lib/clipboard.zsh"
 source "${ZSH}/lib/completion.zsh"
 source "${ZSH}/lib/git.zsh"
 source "${ZSH}/lib/spectrum.zsh"
-source "${ZSH}/lib/termsupport.zsh"
+source "${ZSH}/lib/urlencode.zsh"
+source "${ZSH}/lib/termsupport.zsh"     # requires lib/urlencode.zsh
 
 source "${ZSH}/plugins/zaw/zaw.plugin.zsh"
 source "${ZSH}/plugins/zsh-dwim/zsh-dwim.plugin.zsh"

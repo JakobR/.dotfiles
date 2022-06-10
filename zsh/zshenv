@@ -12,17 +12,11 @@ export JR_DOTFILES
 # Set up $PATH, but only if we're not in a nix-shell
 # (inside nix-shell, we will get the correct PATH and other variables from the outer shell)
 if [[ ! -v IN_NIX_SHELL ]] then
-    if [[ "$OSTYPE" =~ ^darwin ]] then
-        # Default PATH
-        # We set this explicitly because of Emacs' exec-path-from-shell package, see https://github.com/purcell/exec-path-from-shell
-        export PATH=/usr/bin:/bin:/usr/sbin:/sbin
-
+    if [[ "$OSTYPE" = darwin* ]] then
         # LaTeX
         export PATH=/Library/TeX/texbin:$PATH
         export TEXINPUTS=${TEXINPUTS}:/usr/local/Frameworks/R.framework/Resources/share/texmf/tex/latex//
 
-        # Qt5 (not linked by homebrew)
-        export PATH=/usr/local/opt/qt/bin:$PATH
         # Homebrew paths
         export PATH=/usr/local/sbin:$PATH
         export PATH=/usr/local/bin:$PATH
@@ -47,25 +41,18 @@ if [[ ! -v IN_NIX_SHELL ]] then
     fi
 
     if [[ "$OSTYPE" = linux* ]] then
-        if [[ -d /usr/share/doc/git/contrib/diff-highlight ]] then
-            export PATH="${PATH}:/usr/share/doc/git/contrib/diff-highlight"
-        fi
+        export PATH="${PATH}:/usr/share/doc/git/contrib/diff-highlight"
     fi
 
-    # Go
-    export GOPATH=$HOME/.go
-    export PATH=$GOPATH/bin:$PATH
+    export PATH="$HOME/.local/bin:$PATH"
 
     # Rust
     export CARGO_TARGET_DIR=".cargo-target/"
     export PATH=$HOME/.cargo/bin:$PATH
 
     # Haskell
-    export PATH="$HOME/.local/bin:$PATH"
     export PATH="$HOME/.cabal/bin:$PATH"
-    if [[ -d "$HOME/.ghcup/bin" ]] then
-        export PATH="$HOME/.ghcup/bin:$PATH"
-    fi
+    export PATH="$HOME/.ghcup/bin:$PATH"
 
     # Nix
     if [[ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]] then
