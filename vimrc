@@ -1,26 +1,4 @@
-" Workaround for bug in vim with python 3.7
-" See https://github.com/vim/vim/issues/3117#issuecomment-401811335
-if has('python3')
-  silent! python3 1
-endif
-
-" Load bundles
-if empty($JR_DOTFILES)
-  " TODO: Does this still work when `$HOME/.dotfiles` is a symlink?
-  source $HOME/.dotfiles/bundles.vim
-
-  if has("gui_macvim")
-    " zshrc is not sourced when opening a file from Finder or when creating a
-    " new window with Cmd+N
-    "
-    " Need to add at least homebrew's paths here.
-    " TODO: This is a suboptimal solution, find something better.
-    let $PATH = '/usr/local/bin:/usr/local/sbin:' . $PATH
-  endif
-else
-  source $JR_DOTFILES/bundles.vim
-endif
-
+set nocompatible
 filetype plugin indent on
 
 runtime macros/matchit.vim
@@ -28,7 +6,7 @@ runtime! ftplugin/man.vim
 
 set background=dark
 if $ZSH_THEME_BACKGROUND ==# 'light'
-  set background=light
+    set background=light
 endif
 
 set nowrap
@@ -74,11 +52,9 @@ set signcolumn=yes
 " use system clipboard as default register
 set clipboard=unnamed,unnamedplus
 
-if !exists('g:vimpager')
-    " Use <Space> as <Leader>
-    " See http://superuser.com/a/693644
-    map <Space> <Leader>
-endif
+" Use <Space> as <Leader>
+" See http://superuser.com/a/693644
+map <Space> <Leader>
 
 function s:AddToPath(dir)
   if isdirectory(a:dir)
@@ -309,6 +285,8 @@ let g:tex_comment_nospell=1  " No spell check in LaTeX comments
 let g:vimtex_view_method = 'skim'
 " let g:vimtex_fold_enabled=0
 let g:vimtex_fold_manual=1
+" disable extended highlighting of matching delimiters (it seems to be messing up the cursor)
+let g:vimtex_matchparen_enabled = 0
 
 " Apparently the combination of vimtex and relativenumber really slows vim down
 autocmd FileType tex call NoRelativeNumbers()

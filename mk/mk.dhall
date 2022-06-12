@@ -1,7 +1,7 @@
 { templateSearchDirs =
     [ "${env:JR_DOTFILES as Text}/vim/templates/10-pre"
     , "${env:JR_DOTFILES as Text}/vim/templates"
-    , "${env:JR_DOTFILES as Text}/vim/bundle/vim-template/templates"
+    , "${env:JR_DOTFILES as Text}/vim/templates/90-vim-template"
     , "${env:JR_DOTFILES as Text}/vim/templates/99-fallback"
     ]
 

@@ -19,3 +19,114 @@
 [submodule "zsh/custom/plugins/nix-shell"]
 	path = zsh/plugins/nix-shell
 	url = https://github.com/chisui/zsh-nix-shell
+[submodule "vim/pack/plugins/start/numbers.vim"]
+	path = vim/pack/plugins/start/numbers.vim
+	url = https://github.com/myusuf3/numbers.vim.git
+[submodule "vim/pack/plugins/start/vim-git"]
+	path = vim/pack/plugins/start/vim-git
+	url = https://github.com/tpope/vim-git
+[submodule "vim/pack/plugins/start/vim-solarized8"]
+	path = vim/pack/plugins/start/vim-solarized8
+	url = https://github.com/lifepillar/vim-solarized8
+[submodule "vim/pack/plugins/start/vim-markdown"]
+	path = vim/pack/plugins/start/vim-markdown
+	url = https://github.com/preservim/vim-markdown
+[submodule "vim/pack/plugins/start/pgsql.vim"]
+	path = vim/pack/plugins/start/pgsql.vim
+	url = https://github.com/exu/pgsql.vim
+[submodule "vim/pack/plugins/start/abnf"]
+	path = vim/pack/plugins/start/abnf
+	url = https://github.com/vim-scripts/abnf
+[submodule "vim/pack/plugins/start/vim-monit"]
+	path = vim/pack/plugins/start/vim-monit
+	url = https://github.com/tmatilai/vim-monit
+[submodule "vim/pack/plugins/start/vim2hs"]
+	path = vim/pack/plugins/start/vim2hs
+	url = https://github.com/goolord/vim2hs
+[submodule "vim/pack/plugins/start/python-syntax"]
+	path = vim/pack/plugins/start/python-syntax
+	url = https://github.com/vim-python/python-syntax
+[submodule "vim/pack/plugins/start/vim-cmake-syntax"]
+	path = vim/pack/plugins/start/vim-cmake-syntax
+	url = https://github.com/pboettch/vim-cmake-syntax
+[submodule "vim/pack/plugins/start/vim-tptp"]
+	path = vim/pack/plugins/start/vim-tptp
+	url = https://github.com/c-cube/vim-tptp
+[submodule "vim/pack/plugins/start/vim-smt2"]
+	path = vim/pack/plugins/start/vim-smt2
+	url = https://github.com/bohlender/vim-smt2
+[submodule "vim/pack/plugins/start/vim-glsl"]
+	path = vim/pack/plugins/start/vim-glsl
+	url = https://github.com/tikhomirov/vim-glsl
+[submodule "vim/pack/plugins/start/dhall-vim"]
+	path = vim/pack/plugins/start/dhall-vim
+	url = https://github.com/vmchale/dhall-vim
+[submodule "vim/pack/plugins/start/ron.vim"]
+	path = vim/pack/plugins/start/ron.vim
+	url = https://github.com/ron-rs/ron.vim
+[submodule "vim/pack/plugins/start/rust.vim"]
+	path = vim/pack/plugins/start/rust.vim
+	url = https://github.com/rust-lang/rust.vim
+[submodule "vim/pack/plugins/start/vim-nix"]
+	path = vim/pack/plugins/start/vim-nix
+	url = https://github.com/LnL7/vim-nix
+[submodule "vim/pack/plugins/start/vim-cpp-enhanced-highlight"]
+	path = vim/pack/plugins/start/vim-cpp-enhanced-highlight
+	url = https://github.com/octol/vim-cpp-enhanced-highlight
+[submodule "vim/pack/plugins/start/vim-sneak"]
+	path = vim/pack/plugins/start/vim-sneak
+	url = https://github.com/justinmk/vim-sneak
+[submodule "vim/pack/plugins/start/securemodelines"]
+	path = vim/pack/plugins/start/securemodelines
+	url = https://github.com/JakobR/securemodelines
+[submodule "vim/pack/plugins/start/sudo-gui.vim"]
+	path = vim/pack/plugins/start/sudo-gui.vim
+	url = https://github.com/gmarik/sudo-gui.vim
+[submodule "vim/pack/plugins/start/vim-fugitive"]
+	path = vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/pack/plugins/start/vim-gitgutter"]
+	path = vim/pack/plugins/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "vim/pack/plugins/start/vim-repeat"]
+	path = vim/pack/plugins/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim/pack/plugins/start/vim-surround"]
+	path = vim/pack/plugins/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/pack/plugins/start/vim-speeddating"]
+	path = vim/pack/plugins/start/vim-speeddating
+	url = https://github.com/tpope/vim-speeddating
+[submodule "vim/pack/plugins/start/vim-unimpaired"]
+	path = vim/pack/plugins/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+[submodule "vim/pack/plugins/start/vim-eunuch"]
+	path = vim/pack/plugins/start/vim-eunuch
+	url = https://github.com/tpope/vim-eunuch
+[submodule "vim/pack/plugins/start/vim-commentary"]
+	path = vim/pack/plugins/start/vim-commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "vim/pack/plugins/start/vim-textobj-user"]
+	path = vim/pack/plugins/start/vim-textobj-user
+	url = https://github.com/kana/vim-textobj-user
+[submodule "vim/pack/plugins/start/vim-textobj-variable-segment"]
+	path = vim/pack/plugins/start/vim-textobj-variable-segment
+	url = https://github.com/Julian/vim-textobj-variable-segment
+[submodule "vim/pack/plugins/start/ctrlp.vim"]
+	path = vim/pack/plugins/start/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim
+[submodule "vim/pack/plugins/start/vim-altr"]
+	path = vim/pack/plugins/start/vim-altr
+	url = https://github.com/kana/vim-altr
+[submodule "vim/pack/plugins/start/csv.vim"]
+	path = vim/pack/plugins/start/csv.vim
+	url = https://github.com/chrisbra/csv.vim
+[submodule "vim/pack/plugins/start/vimtex"]
+	path = vim/pack/plugins/start/vimtex
+	url = https://github.com/lervag/vimtex
+[submodule "vim/pack/plugins/start/MatchTagAlways"]
+	path = vim/pack/plugins/start/MatchTagAlways
+	url = https://github.com/Valloric/MatchTagAlways
+[submodule "vim/pack/plugins/start/undotree"]
+	path = vim/pack/plugins/start/undotree
+	url = https://github.com/mbbill/undotree
