@@ -161,12 +161,6 @@ if [[ "$OSTYPE" =~ ^linux && -v WSL_DISTRO_NAME ]] then
   create_symlink_to_home 'gitconfig-wsl'
 fi
 
-# vim bundles
-# TODO: Only do this if vim is installed
-echo_msg "Installing vim bundles..."
-vim -u "$JR_DOTFILES/bundles.vim" '+PluginInstall' '+qall'
-
-
 if [[ "$JR_UPDATE" = "true" ]] then
   echo_msg "Updating..."
   (
@@ -175,13 +169,9 @@ if [[ "$JR_UPDATE" = "true" ]] then
     git pull origin master
     git submodule sync
     git submodule update --init --recursive
-    vim -u "$JR_DOTFILES/bundles.vim" '+PluginUpdate'
     # TODO: After updating, we should execute the *new* install script...
   )
 fi
-
-
-# TODO: Install/update Emacs packages? (only if Emacs is installed)
 
 
 # Permissions
