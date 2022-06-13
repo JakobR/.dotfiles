@@ -207,22 +207,30 @@ local function focusApp(name)
     end
 end
 
-hs.hotkey.bind(hyper, 'p', focusApp('Preview'));
-hs.hotkey.bind(hyper, 'v', focusApp('MacVim'));
-hs.hotkey.bind(hyper, 'e', focusApp('iTerm'));
-hs.hotkey.bind(hyper, 't', focusApp('Music'));
-hs.hotkey.bind(hyper, 'a', focusApp('Anki'));
-hs.hotkey.bind(hyper, 'm', focusApp('Mail'));
-hs.hotkey.bind(hyper, 'c', focusApp('Calendar'));
-hs.hotkey.bind(hyper, 's', focusApp('Firefox'));
-hs.hotkey.bind(hyper, 'f', focusApp('Finder'));
-hs.hotkey.bind(hyper, 'x', focusApp('Visual Studio Code'));
-hs.hotkey.bind(hyper, 'r', focusApp('Visual Studio Code'));
-hs.hotkey.bind({}, 'f17', focusApp('2Do'));  -- actually Hyper+W, but we cannot use that directly anymore, see https://apple.stackexchange.com/questions/373378/wifidiagnostics-files-filling-up-drive-even-with-logging-disabled
-hs.hotkey.bind(hyper, 'g', focusApp('Joplin'));
-hs.hotkey.bind(hyper, 'd', focusApp('Dash'));
-hs.hotkey.bind(hyper, 'b', focusApp('BibDesk'));
+-- QWERT
 hs.hotkey.bind(hyper, 'q', focusApp('Skim'));
+hs.hotkey.bind({}, 'f17', focusApp('2Do'));  -- actually Hyper+W, but we cannot use that directly anymore, see https://apple.stackexchange.com/questions/373378/wifidiagnostics-files-filling-up-drive-even-with-logging-disabled
+hs.hotkey.bind(hyper, 'e', focusApp('iTerm'));
+hs.hotkey.bind(hyper, 'r', focusApp('Visual Studio Code'));
+hs.hotkey.bind(hyper, 't', focusApp('Music'));
+
+-- ASDFG
+hs.hotkey.bind(hyper, 'a', focusApp('Anki'));
+hs.hotkey.bind(hyper, 's', focusApp('Firefox'));
+hs.hotkey.bind(hyper, 'd', focusApp('Dash'));
+hs.hotkey.bind(hyper, 'f', focusApp('Finder'));
+hs.hotkey.bind(hyper, 'g', focusApp('Obsidian'));
+
+-- ZXCVB
+-- hs.hotkey.bind(hyper, 'z', focusApp('Skim'));
+-- hs.hotkey.bind(hyper, 'x', focusApp('Visual Studio Code'));
+hs.hotkey.bind(hyper, 'c', focusApp('Calendar'));
+hs.hotkey.bind(hyper, 'v', focusApp('MacVim'));
+hs.hotkey.bind(hyper, 'b', focusApp('BibDesk'));
+
+-- other
+hs.hotkey.bind(hyper, 'p', focusApp('Preview'));
+hs.hotkey.bind(hyper, 'm', focusApp('Mail'));
 
 
 -----------------------------------------------
