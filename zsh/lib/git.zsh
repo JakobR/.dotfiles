@@ -30,8 +30,9 @@ function git_prompt_info() {
   #   upstream=$(__git_prompt_git rev-parse --abbrev-ref --symbolic-full-name "@{upstream}" 2>/dev/null) \
   #   && upstream=" -> ${upstream}"
   # fi
+  # echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref:gs/%/%%}${upstream:gs/%/%%}$(parse_git_dirty)$(parse_git_stash)$(parse_git_name)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
 
-  echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref:gs/%/%%}${upstream:gs/%/%%}$(parse_git_dirty)$(parse_git_stash)$(parse_git_name)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
+  echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref:gs/%/%%}$(parse_git_dirty)$(parse_git_stash)$(parse_git_name)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
 }
 
 # Checks if working tree is dirty
