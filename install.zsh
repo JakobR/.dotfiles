@@ -36,7 +36,7 @@ fi
 
 
 DEFAULT_JR_DOTFILES="$HOME/.dotfiles"
-if [[ -z "$JR_DOTFILES" ]] then
+if [[ -z "${JR_DOTFILES:-}" ]] then
   # Use default location if not set
   JR_DOTFILES="$DEFAULT_JR_DOTFILES"
   if [[ -L "$JR_DOTFILES" ]] then
