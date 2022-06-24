@@ -4,6 +4,10 @@ filetype plugin indent on
 runtime macros/matchit.vim
 runtime! ftplugin/man.vim
 
+if has('python')
+    packadd! MatchTagAlways
+endif
+
 set background=dark
 if $ZSH_THEME_BACKGROUND ==# 'light'
     set background=light

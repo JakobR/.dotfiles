@@ -122,7 +122,7 @@
 	path = vim/pack/plugins/start/vimtex
 	url = https://github.com/lervag/vimtex
 [submodule "vim/pack/plugins/start/MatchTagAlways"]
-	path = vim/pack/plugins/start/MatchTagAlways
+	path = vim/pack/plugins/opt/MatchTagAlways
 	url = https://github.com/Valloric/MatchTagAlways
 [submodule "vim/pack/plugins/start/undotree"]
 	path = vim/pack/plugins/start/undotree
